@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import Hero from "../components/Hero";
+import Footer from "../components/Footer";
 
 const Homepage = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const Homepage = () => {
           </Link>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
