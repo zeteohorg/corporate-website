@@ -16,7 +16,7 @@
 	});
 </script>
 
-<div class="min-h-screen flex flex-col">
+<div class="flex min-h-screen flex-col">
 	<Header />
 	<main class="flex-1">
 		{@render children?.()}

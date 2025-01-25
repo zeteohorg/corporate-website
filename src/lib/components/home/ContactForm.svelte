@@ -31,17 +31,17 @@
 </script>
 
 <section class="py-20">
-	<div class="container mx-auto px-4 max-w-xl">
-		<h2 class="text-3xl font-bold text-center mb-12">{t.common.contact.title}</h2>
+	<div class="container mx-auto max-w-xl px-4">
+		<h2 class="mb-12 text-center text-3xl font-bold">{t.common.contact.title}</h2>
 
 		{#if submitted}
-			<div class="text-center p-4 bg-green-100 text-green-700 rounded">
+			<div class="rounded bg-green-100 p-4 text-center text-green-700">
 				{t.common.contact.success}
 			</div>
 		{:else}
 			<form onsubmit={handleSubmit} class="space-y-6">
 				<div>
-					<label for="name" class="block text-sm font-medium mb-1">{t.common.contact.name}</label>
+					<label for="name" class="mb-1 block text-sm font-medium">{t.common.contact.name}</label>
 					<Input
 						type="text"
 						id="name"
@@ -49,12 +49,12 @@
 						class={errors.name ? 'border-red-500' : ''}
 					/>
 					{#if errors.name}
-						<p class="text-red-500 text-sm mt-1">{errors.name}</p>
+						<p class="mt-1 text-sm text-red-500">{errors.name}</p>
 					{/if}
 				</div>
 
 				<div>
-					<label for="email" class="block text-sm font-medium mb-1">{t.common.contact.email}</label>
+					<label for="email" class="mb-1 block text-sm font-medium">{t.common.contact.email}</label>
 					<Input
 						type="email"
 						id="email"
@@ -62,15 +62,15 @@
 						class={errors.email ? 'border-red-500' : ''}
 					/>
 					{#if errors.email}
-						<p class="text-red-500 text-sm mt-1">{errors.email}</p>
+						<p class="mt-1 text-sm text-red-500">{errors.email}</p>
 					{/if}
 				</div>
 
 				<div>
-					<label for="message" class="block text-sm font-medium mb-1"
+					<label for="message" class="mb-1 block text-sm font-medium"
 						>{t.common.contact.message}</label
 					>
-					<textarea id="message" bind:value={message} class="w-full p-2 border rounded-md" rows="4"
+					<textarea id="message" bind:value={message} class="w-full rounded-md border p-2" rows="4"
 					></textarea>
 				</div>
 

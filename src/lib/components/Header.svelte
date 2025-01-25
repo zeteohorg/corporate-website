@@ -12,8 +12,8 @@
 
 <header class="border-b">
 	<div class="container mx-auto px-4">
-		<div class="flex items-center justify-between h-16">
-			<a href="/{$page.params.lang}" class="font-bold text-xl">YourCompany</a>
+		<div class="flex h-16 items-center justify-between">
+			<a href="/{$page.params.lang}" class="text-xl font-bold">YourCompany</a>
 			<nav class="space-x-4">
 				<a href="/{$page.params.lang}/blog" class={buttonVariants({ variant: 'ghost' })}>Blog</a>
 				<a href="/{$page.params.lang}/news" class={buttonVariants({ variant: 'ghost' })}>News</a>
