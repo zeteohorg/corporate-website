@@ -6,13 +6,13 @@
 	let t = $derived(translations[lang as keyof typeof translations]);
 </script>
 
-<section id="use-cases" class="py-20 bg-gray-50">
+<section id="use-cases" class="bg-gray-50 py-20">
 	<div class="container mx-auto px-4">
-		<h2 class="text-3xl font-bold text-center mb-12">{t.home.useCases.title}</h2>
-		<div class="grid md:grid-cols-3 gap-8">
+		<h2 class="mb-12 text-center text-3xl font-bold">{t.home.useCases.title}</h2>
+		<div class="grid gap-8 md:grid-cols-3">
 			{#each t.home.useCases.items as useCase}
-				<div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-					<h3 class="text-xl font-semibold mb-4">{useCase.title}</h3>
+				<div class="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+					<h3 class="mb-4 text-xl font-semibold">{useCase.title}</h3>
 					<p class="text-gray-600">{useCase.description}</p>
 				</div>
 			{/each}

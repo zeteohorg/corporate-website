@@ -7,7 +7,7 @@
 </script>
 
 <div class="container mx-auto px-4 py-8">
-	<h1 class="text-4xl font-bold mb-8">{t.common.nav.company}</h1>
+	<h1 class="mb-8 text-4xl font-bold">{t.common.nav.company}</h1>
 
 	<div class="prose prose-slate max-w-none">
 		{#if currentLanguage === 'en'}
