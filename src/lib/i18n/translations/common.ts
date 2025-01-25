@@ -24,7 +24,7 @@ export const en: CommonTranslation = {
 		resources: 'Resources',
 		legal: 'Legal',
 		social: 'Social',
-		copyright: '© 2025 Your Company, Inc. All rights reserved.',
+		copyright: '© 2025 Zeteoh, Inc. All rights reserved.',
 		links: {
 			about: 'About',
 			careers: 'Careers',
@@ -64,7 +64,7 @@ export const ja: CommonTranslation = {
 		resources: 'リソース',
 		legal: '法的情報',
 		social: 'ソーシャル',
-		copyright: '© 2025 Your Company, Inc. All rights reserved.',
+		copyright: '© 2025 Zeteoh, Inc. All rights reserved.',
 		links: {
 			about: '会社概要',
 			careers: '採用情報',
