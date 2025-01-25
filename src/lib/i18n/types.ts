@@ -16,6 +16,26 @@ export type CommonTranslation = {
 			invalidEmail: string;
 		};
 	};
+	footer: {
+		company: string;
+		product: string;
+		resources: string;
+		legal: string;
+		social: string;
+		copyright: string;
+		links: {
+			about: string;
+			careers: string;
+			contact: string;
+			pricing: string;
+			features: string;
+			documentation: string;
+			blog: string;
+			news: string;
+			privacyPolicy: string;
+			terms: string;
+		};
+	};
 };
 
 export type HomeTranslation = {
