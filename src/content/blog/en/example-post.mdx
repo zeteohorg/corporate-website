@@ -1,0 +1,106 @@
+---
+title: Example Post with All Components
+description: This post demonstrates all available MDX components
+date: 2024-01-25
+published: true
+author:
+  name: John Doe
+  avatar: /api/placeholder/64x64
+  bio: Technical writer and developer
+tags:
+  - tutorial
+  - mdx
+  - components
+thumbnail:
+  url: /images/blog/dashboard_hero.png
+  alt: Example post thumbnail
+---
+
+<script>
+	import CodeBlock from '$lib/components/mdx/CodeBlock.svelte'; import Blockquote from
+	'$lib/components/mdx/Blockquote.svelte'; import Table from '$lib/components/mdx/Table.svelte';
+	import ImageGallery from '$lib/components/mdx/ImageGallery.svelte'; import VideoEmbed from
+	'$lib/components/mdx/VideoEmbed.svelte'; import Callout from '$lib/components/mdx/Callout.svelte';
+</script>
+
+# Introduction
+
+This post demonstrates all available MDX components that you can use in your blog posts.
+
+## Code Blocks
+
+Here's an example of a code block with syntax highlighting:
+
+<CodeBlock
+  language="typescript"
+  filename="example.ts"
+  code={`function greet(name: string) {
+  console.log(\`Hello, \${name}!\`);
+}
+
+greet('World');`}
+
+/>
+
+## Blockquotes
+
+<Blockquote>The best way to predict the future is to invent it. — Alan Kay</Blockquote>
+
+## Tables
+
+<Table>
+	<thead>
+		<tr>
+			<th>Feature</th>
+			<th>Description</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>MDX</td>
+			<td>Enhanced markdown with components</td>
+			<td>✅</td>
+		</tr>
+	</tbody>
+</Table>
+
+## Callouts
+
+<Callout type="info" title="Information">
+	This is an informational callout. Use it for general information and tips.
+</Callout>
+
+<Callout type="warning" title="Warning">
+	This is a warning callout. Use it to warn users about potential issues.
+</Callout>
+
+## Image Gallery
+
+<ImageGallery
+	images={[
+		{
+			url: '/api/placeholder/400/400',
+			alt: 'Image 1',
+			caption: 'Beautiful landscape'
+		},
+		{
+			url: '/api/placeholder/400/400',
+			alt: 'Image 2',
+			caption: 'City lights'
+		},
+		{
+			url: '/api/placeholder/400/400',
+			alt: 'Image 3',
+			caption: 'Mountain view'
+		}
+	]}
+/>
+
+## Video Embed
+
+<VideoEmbed url="https://www.youtube.com/watch?v=HkICrJEVTjI" title="Example Video" />
+
+## Conclusion
+
+These components make your blog posts more engaging and interactive. Feel free to mix and match them as needed!

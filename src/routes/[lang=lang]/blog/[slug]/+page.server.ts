@@ -1,27 +1,37 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import * as YAML from 'yaml';
+import { compile } from 'mdsvex';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	try {
 		const { lang, slug } = params;
 		const cleanSlug = slug.replace(/\./g, '');
 
-		const modules = import.meta.glob(['/src/content/blog/**/*.{md,mdx}'], {
+		const modules = import.meta.glob('/src/content/blog/**/*.{md,mdx}', {
 			eager: true,
 			query: '?raw',
 			import: 'default'
 		});
 
-		const mdxPath = `/src/content/blog/${lang}/${cleanSlug}.mdx`;
-		const mdPath = `/src/content/blog/${lang}/${cleanSlug}.md`;
+		// Find the matching content file
+		let content;
+		let filePath;
+		for (const [path, moduleContent] of Object.entries(modules)) {
+			if (path.includes(`/${lang}/`) && path.includes(cleanSlug)) {
+				content = moduleContent;
+				filePath = path;
+				break;
+			}
+		}
 
-		const content = modules[mdxPath] || modules[mdPath];
 		if (!content) {
+			console.error('Available paths:', Object.keys(modules));
 			throw error(404, `Could not find post ${cleanSlug}`);
 		}
 
-		// Split the content into frontmatter and markdown
 		const [, frontmatterContent, markdown] =
 			content.match(/---\n([\s\S]*?)\n---\n?([\s\S]*)/) || [];
 
@@ -29,21 +39,54 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 			throw error(500, 'Invalid post format');
 		}
 
-		// Parse frontmatter
 		const metadata = YAML.parse(frontmatterContent);
 
-		// Process MDX content
-		const response = await fetch('/api/mdx', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ content: markdown })
+		// Compile the MDX content
+		const result = await compile(markdown, {
+			remarkPlugins: [remarkGfm],
+			rehypePlugins: [rehypeSlug]
 		});
 
-		if (!response.ok) {
-			throw error(500, 'Failed to process MDX content');
+		if (!result) {
+			throw error(500, 'Failed to compile MDX content');
 		}
 
-		const { html } = await response.json();
+		// Process the MDX components to convert them to HTML with custom elements
+		const processedHtml = result.code
+			.replace(/<CodeBlock/g, '<mdx-code-block')
+			.replace(/<\/CodeBlock>/g, '</mdx-code-block>')
+			.replace(/<Blockquote/g, '<mdx-blockquote')
+			.replace(/<\/Blockquote>/g, '</mdx-blockquote>')
+			.replace(/<Table/g, '<mdx-table')
+			.replace(/<\/Table>/g, '</mdx-table>')
+			.replace(/<ImageGallery/g, '<mdx-gallery')
+			.replace(/<\/ImageGallery>/g, '</mdx-gallery>')
+			.replace(/<VideoEmbed/g, '<mdx-video')
+			.replace(/<\/VideoEmbed>/g, '</mdx-video>')
+			.replace(/<Callout/g, '<mdx-callout')
+			.replace(/<\/Callout>/g, '</mdx-callout>');
+
+		// Get all blog posts for navigation
+		const posts = Object.entries(modules)
+			.filter(([path]) => path.includes(`/blog/${lang}/`))
+			.map(([path, content]) => {
+				const [, frontmatter] = (content as string).match(/---\n([\s\S]*?)\n---/) || [];
+				if (!frontmatter) return null;
+				const meta = YAML.parse(frontmatter);
+				return {
+					slug: path
+						.split('/')
+						.pop()
+						?.replace(/\.(md|mdx)$/, ''),
+					...meta
+				};
+			})
+			.filter((post): post is NonNullable<typeof post> => post !== null && post.published === true)
+			.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+		const currentIndex = posts.findIndex((post) => post.slug === cleanSlug);
+		const previousPost = posts[currentIndex + 1];
+		const nextPost = posts[currentIndex - 1];
 
 		return {
 			metadata: {
@@ -51,10 +94,14 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 				date: metadata.date || new Date().toISOString(),
 				description: metadata.description || '',
 				published: metadata.published ?? false,
+				author: metadata.author,
+				tags: metadata.tags,
 				thumbnail: metadata.thumbnail
 			},
-			html,
-			content: markdown // Include raw content for debugging
+			content: markdown,
+			html: processedHtml,
+			previousPost,
+			nextPost
 		};
 	} catch (e) {
 		console.error('Error loading post:', e);
