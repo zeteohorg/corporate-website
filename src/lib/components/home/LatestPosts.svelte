@@ -1,17 +1,13 @@
-<!-- src/lib/components/home/LatestPosts.svelte -->
 <script lang="ts">
 	import type { Post } from '$lib/types';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import * as Card from '$lib/components/ui/card';
+	import { cn } from '$lib/utils';
 
 	let { posts, type }: { posts: Post[]; type: 'blog' | 'news' } = $props();
-
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage][type]);
-
-	// Take only the 3 most recent posts
 	const latestPosts = $derived(posts.slice(0, 3));
 </script>
 
@@ -26,26 +22,31 @@
 
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{#each latestPosts as post}
-				<Card.Root class="flex h-full flex-col">
-					<Card.Header>
-						<Card.Title>
-							<a
-								href="/{currentLanguage}/{type}/{post.slug}"
-								class="transition-colors hover:text-primary"
-							>
-								{post.title}
-							</a>
-						</Card.Title>
-						<Card.Description>
-							{post.description}
-						</Card.Description>
-					</Card.Header>
-					<Card.Footer class="mt-auto">
+				<a
+					href="/{currentLanguage}/{type}/{post.slug}"
+					class="block overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md"
+				>
+					{#if post.thumbnail}
+						<div class="relative aspect-video overflow-hidden">
+							<img
+								src={post.thumbnail.url}
+								alt={post.thumbnail.alt}
+								class="object-cover transition-all hover:scale-105"
+								loading="lazy"
+								decoding="async"
+								width={800}
+								height={400}
+							/>
+						</div>
+					{/if}
+					<div class="p-6">
+						<h3 class="mb-2 text-2xl font-semibold">{post.title}</h3>
+						<p class="mb-4 text-muted-foreground">{post.description}</p>
 						<time class="text-sm text-muted-foreground">
 							{new Date(post.date).toLocaleDateString(currentLanguage)}
 						</time>
-					</Card.Footer>
-				</Card.Root>
+					</div>
+				</a>
 			{/each}
 		</div>
 	</div>

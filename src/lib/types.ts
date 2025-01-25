@@ -5,4 +5,8 @@ export type Post = {
 	date: string;
 	published: boolean;
 	content: string;
+	thumbnail?: {
+		url: string;
+		alt: string;
+	};
 };

@@ -27,14 +27,29 @@
 	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 		{#each data.posts as post}
 			<a
-				href="/{$page.params.lang}/blog/{post.slug}"
-				class="block rounded-lg bg-white p-6 shadow transition-shadow hover:shadow-lg"
+				href="/{currentLanguage}/blog/{post.slug}"
+				class="block overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md"
 			>
-				<h2 class="mb-2 text-2xl font-semibold">{post.title}</h2>
-				<p class="mb-4 text-gray-600">{post.description}</p>
-				<time class="text-sm text-gray-500">
-					{new Date(post.date).toLocaleDateString()}
-				</time>
+				{#if post.thumbnail}
+					<div class="relative aspect-video overflow-hidden">
+						<img
+							src={post.thumbnail.url}
+							alt={post.thumbnail.alt}
+							class="object-cover transition-all hover:scale-105"
+							loading="lazy"
+							decoding="async"
+							width={800}
+							height={400}
+						/>
+					</div>
+				{/if}
+				<div class="p-6">
+					<h2 class="mb-2 text-2xl font-semibold">{post.title}</h2>
+					<p class="mb-4 text-muted-foreground">{post.description}</p>
+					<time class="text-sm text-muted-foreground">
+						{new Date(post.date).toLocaleDateString(currentLanguage)}
+					</time>
+				</div>
 			</a>
 		{/each}
 	</div>

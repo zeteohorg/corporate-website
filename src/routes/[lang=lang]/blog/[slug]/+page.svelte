@@ -26,11 +26,22 @@
 		</Breadcrumb.List>
 	</Breadcrumb.Root>
 
-	<article class="prose prose-slate mx-auto max-w-3xl">
+	<article class="prose prose-slate dark:prose-invert mx-auto max-w-3xl">
 		<h1>{data.metadata.title}</h1>
-		<div class="mb-8 text-sm text-gray-500">
-			Published on {new Date(data.metadata.date).toLocaleDateString()}
+		{#if data.metadata?.thumbnail}
+			<img
+				src={data.metadata.thumbnail.url}
+				alt={data.metadata.thumbnail.alt}
+				class="w-full rounded-lg"
+				width={800}
+				height={400}
+			/>
+		{/if}
+		<div class="mb-8 text-sm text-muted-foreground">
+			Published on {new Date(data.metadata.date).toLocaleDateString(currentLanguage)}
 		</div>
-		{@html data.html}
+		<div class="mdsvex">
+			{@html data.html}
+		</div>
 	</article>
 </div>
