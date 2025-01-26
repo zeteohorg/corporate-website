@@ -25,7 +25,6 @@
 	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		if (!validateForm()) return;
-		console.log('Form submitted:', { name, email, message });
 		submitted = true;
 	}
 </script>

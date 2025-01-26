@@ -13,6 +13,6 @@
 >
 	<div class="flex gap-2">
 		<Quote class="size-5 text-primary" />
-		{@render children?.()}
+		{@html children}
 	</div>
 </blockquote>

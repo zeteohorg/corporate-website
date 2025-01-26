@@ -5,21 +5,47 @@
 	import { formatReadingTime } from '$lib/utils/reading-time';
 	import { PUBLIC_SITE_URL } from '$env/static/public';
 	import { ArrowLeft, ArrowRight, Share2, Calendar } from 'lucide-svelte';
-	import * as Card from '$lib/components/ui/card';
 	import TableOfContents from '$lib/components/blog/TableOfContents.svelte';
+	import AuthorCard from '$lib/components/blog/AuthorCard.svelte';
 	import type { TableOfContentsItem } from '$lib/types';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { cn } from '$lib/utils';
-
+	console.log('[blog.svelte] Props received:', $$props, 'Data property exists:', 'data' in $$props);
+	console.log('[blog.svelte] Raw props before destructure:', {
+		props: $$props,
+		metadata: $$props.metadata,
+		hasContent: 'content' in $$props,
+		contentLocation: $$props.content ? 'root' : $$props.metadata?.content ? 'metadata' : 'missing'
+	});
 	let { metadata, previousPost, nextPost, children } = $props<{
 		metadata: {
 			title: string;
 			description: string;
 			date: string;
-			thumbnail?: { url: string; alt: string };
-			author?: { name: string; avatar: string; bio: string };
-			tags?: string[];
 			content?: string;
+			author?: {
+				id: string;
+				name: string;
+				avatar: string;
+				bio: {
+					en: string;
+					ja: string;
+				};
+				title?: {
+					en: string;
+					ja: string;
+				};
+				social?: {
+					twitter?: string;
+					github?: string;
+					linkedin?: string;
+				};
+			};
+			tags?: string[];
+			thumbnail?: {
+				url: string;
+				alt: string;
+			};
 		};
 		previousPost?: { slug: string; title: string };
 		nextPost?: { slug: string; title: string };
@@ -29,10 +55,12 @@
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage]);
 
-	// Generate table of contents from content
+	const readingTime = $derived(() => {
+		return metadata.content ? formatReadingTime(metadata.content, currentLanguage) : '';
+	});
+
 	const toc = $derived<TableOfContentsItem[]>(() => {
 		if (!metadata.content) return [];
-
 		const headings = metadata.content.match(/^#{2,3}\s+.+$/gm) || [];
 		return headings.map((heading) => {
 			const level = heading.match(/^#{2,3}/)?.[0].length || 2;
@@ -42,13 +70,8 @@
 		});
 	});
 
-	const readingTime = $derived(() => {
-		return metadata.content ? formatReadingTime(metadata.content, currentLanguage) : '';
-	});
-
 	async function shareArticle() {
 		const url = `${PUBLIC_SITE_URL}${$page.url.pathname}`;
-
 		if (navigator.share) {
 			await navigator.share({
 				title: metadata.title,
@@ -57,7 +80,6 @@
 			});
 		} else {
 			await navigator.clipboard.writeText(url);
-			// You might want to add a toast notification here
 		}
 	}
 </script>
@@ -120,10 +142,13 @@
 						</time>
 					</div>
 					<div>·</div>
-					<div>{readingTime}</div>
+					{#if readingTime}
+						<div>{readingTime}</div>
+					{/if}
 					<button
 						onclick={shareArticle}
 						class={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'gap-1')}
+						aria-label="Share article"
 					>
 						<Share2 class="size-4" />
 						Share
@@ -162,23 +187,7 @@
 
 			{#if metadata.author}
 				<div class="not-prose mt-12">
-					<Card.Root>
-						<Card.Content class="flex gap-4 p-6">
-							<img
-								src={metadata.author.avatar}
-								alt={metadata.author.name}
-								class="size-16 rounded-full"
-								width={64}
-								height={64}
-							/>
-							<div>
-								<Card.Title>{metadata.author.name}</Card.Title>
-								<Card.Description class="mt-2">
-									{metadata.author.bio}
-								</Card.Description>
-							</div>
-						</Card.Content>
-					</Card.Root>
+					<AuthorCard author={metadata.author} />
 				</div>
 			{/if}
 

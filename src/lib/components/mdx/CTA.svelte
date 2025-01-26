@@ -13,12 +13,12 @@
 		variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 		size?: 'default' | 'sm' | 'lg' | 'icon';
 		class?: string;
-		children?: any;
+		children?: string;
 	} = $props();
 </script>
 
 <div class="my-8 text-center">
 	<a {href} class={cn(buttonVariants({ variant, size }), className)}>
-		{@render children?.()}
+		{@html children}
 	</a>
 </div>

@@ -20,9 +20,9 @@ const config = {
 			extensions: ['.md', '.mdx'],
 			rehypePlugins: [rehypeSlug, rehypeUnwrapImages],
 			remarkPlugins: [remarkToc],
-			layout: {
-				blog: 'src/lib/layouts/blog.svelte',
-				news: 'src/lib/layouts/news.svelte'
+			// Remove the layout configuration as we're handling it in the route
+			smartypants: {
+				dashes: 'oldschool'
 			},
 			frontmatter: {
 				marker: '-',

@@ -22,3 +22,22 @@ export type TableOfContentsItem = {
 	title: string;
 	id: string;
 };
+
+export type Author = {
+	id: string;
+	name: string;
+	avatar: string;
+	bio: {
+		en: string;
+		ja: string;
+	};
+	title?: {
+		en: string;
+		ja: string;
+	};
+	social?: {
+		twitter?: string;
+		github?: string;
+		linkedin?: string;
+	};
+};

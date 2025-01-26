@@ -6,6 +6,5 @@ export function formatReadingTime(content: string, locale: string = 'en'): strin
 	if (locale === 'ja') {
 		return `約${minutes}分で読めます`;
 	}
-
 	return `${minutes} min read`;
 }

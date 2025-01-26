@@ -10,7 +10,7 @@
 	}: {
 		type?: 'info' | 'warning' | 'error' | 'success';
 		title?: string;
-		children?: any;
+		children?: string;
 	} = $props();
 
 	const icons = {
@@ -31,7 +31,7 @@
 		info: 'border-blue-200 dark:border-blue-800 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400',
 		warning:
 			'border-amber-200 dark:border-amber-800 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400',
-		error: '', // Using destructive variant
+		error: '',
 		success:
 			'border-green-200 dark:border-green-800 [&>svg]:text-green-600 dark:[&>svg]:text-green-400'
 	};
@@ -45,6 +45,6 @@
 		<Alert.Title>{title}</Alert.Title>
 	{/if}
 	<Alert.Description>
-		{@render children?.()}
+		{@html children}
 	</Alert.Description>
 </Alert.Root>

@@ -3,7 +3,7 @@
 
 	let { class: className, children } = $props<{
 		class?: string;
-		children?: any;
+		children?: string;
 	}>();
 </script>
 
@@ -14,6 +14,6 @@
 			className
 		)}
 	>
-		{@render children?.()}
+		{@html children}
 	</table>
 </div>

@@ -6,29 +6,29 @@
 	import { formatReadingTime } from '$lib/utils/reading-time';
 	import { onMount } from 'svelte';
 	import { mount } from 'svelte';
-
-	// Import MDX components
 	import CodeBlock from '$lib/components/mdx/CodeBlock.svelte';
 	import Blockquote from '$lib/components/mdx/Blockquote.svelte';
 	import Table from '$lib/components/mdx/Table.svelte';
 	import ImageGallery from '$lib/components/mdx/ImageGallery.svelte';
 	import VideoEmbed from '$lib/components/mdx/VideoEmbed.svelte';
 	import Callout from '$lib/components/mdx/Callout.svelte';
+	import { buttonVariants } from '$lib/components/ui/button';
+	import { cn } from '$lib/utils';
+	import { ArrowLeft, ArrowRight } from 'lucide-svelte';
 
 	let { data } = $props<{ data: PageData }>();
 	const currentLanguage = $derived($page.params.lang);
 	const t = $derived(translations[currentLanguage]);
-
-	const readingTime = $derived(() => {
-		return data.content ? formatReadingTime(data.content, currentLanguage) : '';
-	});
+	const readingTime = $derived(
+		data.content ? formatReadingTime(data.content, currentLanguage) : ''
+	);
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			const content = document.querySelector('.mdsvex-content');
 			if (!content) return;
 
-			// Mount custom components
+			// Mount CodeBlock components
 			content.querySelectorAll('mdx-code-block').forEach((el) => {
 				const props = Object.fromEntries(
 					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
@@ -36,14 +36,23 @@
 				mount(CodeBlock, { target: el, props });
 			});
 
+			// Mount Blockquote components
 			content.querySelectorAll('mdx-blockquote').forEach((el) => {
-				mount(Blockquote, { target: el, props: { children: el.innerHTML } });
+				mount(Blockquote, {
+					target: el,
+					props: { children: el.innerHTML }
+				});
 			});
 
+			// Mount Table components
 			content.querySelectorAll('mdx-table').forEach((el) => {
-				mount(Table, { target: el, props: { children: el.innerHTML } });
+				mount(Table, {
+					target: el,
+					props: { children: el.innerHTML }
+				});
 			});
 
+			// Mount ImageGallery components
 			content.querySelectorAll('mdx-gallery').forEach((el) => {
 				const props = Object.fromEntries(
 					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
@@ -51,6 +60,7 @@
 				mount(ImageGallery, { target: el, props });
 			});
 
+			// Mount VideoEmbed components
 			content.querySelectorAll('mdx-video').forEach((el) => {
 				const props = Object.fromEntries(
 					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
@@ -58,6 +68,7 @@
 				mount(VideoEmbed, { target: el, props });
 			});
 
+			// Mount Callout components
 			content.querySelectorAll('mdx-callout').forEach((el) => {
 				const props = Object.fromEntries(
 					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
@@ -88,11 +99,11 @@
 			<Breadcrumb.Item>
 				<Breadcrumb.Link href="/{currentLanguage}">Home</Breadcrumb.Link>
 			</Breadcrumb.Item>
-			<Breadcrumb.Separator />
+			<Breadcrumb.Separator></Breadcrumb.Separator>
 			<Breadcrumb.Item>
 				<Breadcrumb.Link href="/{currentLanguage}/blog">{t.blog.title}</Breadcrumb.Link>
 			</Breadcrumb.Item>
-			<Breadcrumb.Separator />
+			<Breadcrumb.Separator></Breadcrumb.Separator>
 			<Breadcrumb.Item>
 				<Breadcrumb.Page>{data.metadata.title}</Breadcrumb.Page>
 			</Breadcrumb.Item>
@@ -105,7 +116,13 @@
 			<div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
 				{#if data.metadata.author}
 					<div class="flex items-center gap-2">
-						<div class="size-8 rounded-full bg-muted" aria-label={data.metadata.author.name}></div>
+						<img
+							src={data.metadata.author.avatar}
+							alt={data.metadata.author.name}
+							class="size-8 rounded-full"
+							width={32}
+							height={32}
+						/>
 						<span>{data.metadata.author.name}</span>
 					</div>
 				{/if}
@@ -155,10 +172,20 @@
 		{#if data.metadata.author}
 			<div class="not-prose mt-12 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
 				<div class="flex gap-4">
-					<div class="size-16 rounded-full bg-muted" aria-label={data.metadata.author.name}></div>
+					<img
+						src={data.metadata.author.avatar}
+						alt={data.metadata.author.name}
+						class="size-16 rounded-full"
+						width={64}
+						height={64}
+					/>
 					<div>
 						<h2 class="text-lg font-semibold">{data.metadata.author.name}</h2>
-						<p class="mt-2 text-sm text-muted-foreground">{data.metadata.author.bio}</p>
+						{#if data.metadata.author.bio?.[currentLanguage]}
+							<p class="mt-2 text-sm text-muted-foreground">
+								{data.metadata.author.bio[currentLanguage]}
+							</p>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -168,9 +195,10 @@
 			{#if data.previousPost}
 				<a
 					href="/{currentLanguage}/blog/{data.previousPost.slug}"
-					class="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+					class={cn(buttonVariants({ variant: 'ghost' }), 'gap-2')}
 				>
-					← {data.previousPost.title}
+					<ArrowLeft class="size-4"></ArrowLeft>
+					{data.previousPost.title}
 				</a>
 			{:else}
 				<div></div>
@@ -179,9 +207,10 @@
 			{#if data.nextPost}
 				<a
 					href="/{currentLanguage}/blog/{data.nextPost.slug}"
-					class="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+					class={cn(buttonVariants({ variant: 'ghost' }), 'gap-2')}
 				>
-					{data.nextPost.title} →
+					{data.nextPost.title}
+					<ArrowRight class="size-4"></ArrowRight>
 				</a>
 			{/if}
 		</nav>
