@@ -79,6 +79,14 @@ export type ProductTranslation = {
 	description: string;
 };
 
+export type HowItWorksTranslation = {
+	title: string;
+	steps: Array<{
+		title: string;
+		description: string;
+	}>;
+};
+
 export type Translation = {
 	common: CommonTranslation;
 	home: HomeTranslation;
@@ -86,4 +94,5 @@ export type Translation = {
 	news: NewsTranslation;
 	challenges: ChallengesTranslation;
 	product: ProductTranslation;
+	howItWorks: HowItWorksTranslation;
 };
