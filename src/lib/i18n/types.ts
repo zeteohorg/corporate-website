@@ -8,9 +8,21 @@ export type CommonTranslation = {
 		title: string;
 		name: string;
 		email: string;
+		company: string;
+		jobTitle: string;
 		message: string;
 		submit: string;
 		success: string;
+		required: string;
+		inquiryType: {
+			label: string;
+			placeholder: string;
+			options: {
+				demo: string;
+				vendor: string;
+				other: string;
+			};
+		};
 		errors: {
 			required: string;
 			invalidEmail: string;
