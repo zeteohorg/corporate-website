@@ -73,10 +73,17 @@ export type ChallengesTranslation = {
 	}>;
 };
 
+export type ProductTranslation = {
+	title: string;
+	subtitle: string;
+	description: string;
+};
+
 export type Translation = {
 	common: CommonTranslation;
 	home: HomeTranslation;
 	blog: BlogTranslation;
 	news: NewsTranslation;
 	challenges: ChallengesTranslation;
+	product: ProductTranslation;
 };
