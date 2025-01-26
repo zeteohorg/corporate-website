@@ -1,3 +1,9 @@
+<!-- FIXME
+The blog.svelte layout isn't being used at all - instead, 
+the blog post content is being rendered directly in +page.svelte. 
+The Author Card component isn't working because it's 
+actually redundant - the author info is already being 
+rendered directly in the page. -->
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
@@ -5,7 +11,7 @@
 	import { translations } from '$lib/i18n/translations';
 	import { formatReadingTime } from '$lib/utils/reading-time';
 	import { onMount } from 'svelte';
-	import { mount } from 'svelte';
+	import { mountMDXComponents } from '$lib/mount-mdx';
 	import CodeBlock from '$lib/components/mdx/CodeBlock.svelte';
 	import Blockquote from '$lib/components/mdx/Blockquote.svelte';
 	import Table from '$lib/components/mdx/Table.svelte';
@@ -23,69 +29,23 @@
 		data.content ? formatReadingTime(data.content, currentLanguage) : ''
 	);
 
+	const mdxComponents = {
+		CodeBlock,
+		Blockquote,
+		Table,
+		ImageGallery,
+		VideoEmbed,
+		Callout
+	};
+
 	onMount(() => {
-		if (typeof window !== 'undefined') {
+		requestAnimationFrame(() => {
 			const content = document.querySelector('.mdsvex-content');
-			if (!content) return;
-
-			// Mount CodeBlock components
-			content.querySelectorAll('mdx-code-block').forEach((el) => {
-				const props = Object.fromEntries(
-					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
-				);
-				mount(CodeBlock, { target: el, props });
-			});
-
-			// Mount Blockquote components
-			content.querySelectorAll('mdx-blockquote').forEach((el) => {
-				mount(Blockquote, {
-					target: el,
-					props: { children: el.innerHTML }
-				});
-			});
-
-			// Mount Table components
-			content.querySelectorAll('mdx-table').forEach((el) => {
-				mount(Table, {
-					target: el,
-					props: { children: el.innerHTML }
-				});
-			});
-
-			// Mount ImageGallery components
-			content.querySelectorAll('mdx-gallery').forEach((el) => {
-				const props = Object.fromEntries(
-					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
-				);
-				mount(ImageGallery, { target: el, props });
-			});
-
-			// Mount VideoEmbed components
-			content.querySelectorAll('mdx-video').forEach((el) => {
-				const props = Object.fromEntries(
-					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
-				);
-				mount(VideoEmbed, { target: el, props });
-			});
-
-			// Mount Callout components
-			content.querySelectorAll('mdx-callout').forEach((el) => {
-				const props = Object.fromEntries(
-					Array.from(el.attributes).map((attr) => [attr.name, tryParseJSON(attr.value)])
-				);
-				props.children = el.innerHTML;
-				mount(Callout, { target: el, props });
-			});
-		}
+			if (content instanceof HTMLElement) {
+				mountMDXComponents(content, mdxComponents);
+			}
+		});
 	});
-
-	function tryParseJSON(value: string) {
-		try {
-			return JSON.parse(value);
-		} catch {
-			return value;
-		}
-	}
 </script>
 
 <svelte:head>
@@ -150,7 +110,8 @@
 			/>
 		{/if}
 
-		<div class="mdsvex-content">
+		<!-- Use a container div for SSR matching -->
+		<div class="mdsvex-content" data-hydration-container>
 			{@html data.html}
 		</div>
 

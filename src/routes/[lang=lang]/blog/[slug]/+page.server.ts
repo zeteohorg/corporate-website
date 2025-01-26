@@ -16,33 +16,36 @@ export const load: PageServerLoad = async ({ params }) => {
 			import: 'default'
 		});
 
-		// Find the matching content file
 		let content;
-		let filePath;
 		for (const [path, moduleContent] of Object.entries(modules)) {
 			if (path.includes(`/${lang}/`) && path.includes(cleanSlug)) {
 				content = moduleContent;
-				filePath = path;
 				break;
 			}
 		}
 
 		if (!content) {
-			console.error('Available paths:', Object.keys(modules));
 			throw error(404, `Could not find post ${cleanSlug}`);
 		}
 
+		// Extract frontmatter and content
 		const [, frontmatterContent, markdown] =
 			content.match(/---\n([\s\S]*?)\n---\n?([\s\S]*)/) || [];
-
 		if (!frontmatterContent || !markdown) {
 			throw error(500, 'Invalid post format');
 		}
 
+		// Parse frontmatter
 		const metadata = YAML.parse(frontmatterContent);
 
-		// Compile the MDX content
-		const result = await compile(markdown, {
+		// Remove script tags and imports from markdown
+		const cleanMarkdown = markdown
+			.replace(/<script[\s\S]*?<\/script>/g, '')
+			.replace(/^import.*$/gm, '')
+			.trim();
+
+		// Compile MDX
+		const result = await compile(cleanMarkdown, {
 			remarkPlugins: [remarkGfm],
 			rehypePlugins: [rehypeSlug]
 		});
@@ -51,20 +54,25 @@ export const load: PageServerLoad = async ({ params }) => {
 			throw error(500, 'Failed to compile MDX content');
 		}
 
-		// Process the MDX components to convert them to HTML with custom elements
-		const processedHtml = result.code
-			.replace(/<CodeBlock/g, '<mdx-code-block')
-			.replace(/<\/CodeBlock>/g, '</mdx-code-block>')
-			.replace(/<Blockquote/g, '<mdx-blockquote')
-			.replace(/<\/Blockquote>/g, '</mdx-blockquote>')
-			.replace(/<Table/g, '<mdx-table')
-			.replace(/<\/Table>/g, '</mdx-table>')
-			.replace(/<ImageGallery/g, '<mdx-gallery')
-			.replace(/<\/ImageGallery>/g, '</mdx-gallery>')
-			.replace(/<VideoEmbed/g, '<mdx-video')
-			.replace(/<\/VideoEmbed>/g, '</mdx-video>')
-			.replace(/<Callout/g, '<mdx-callout')
-			.replace(/<\/Callout>/g, '</mdx-callout>');
+		// Replace MDX component tags with placeholder divs
+		const processedHtml = result.code.replace(
+			/<(CodeBlock|Blockquote|Table|ImageGallery|VideoEmbed|Callout)([^>]*?)>([\s\S]*?)<\/\1>/g,
+			(_, name, attrs, content) => {
+				// Parse attributes into props object
+				const props = {};
+				const attrMatches = attrs.matchAll(/(\w+)=\{([^}]+)\}/g);
+				for (const [, key, value] of attrMatches) {
+					props[key] = value.trim();
+				}
+
+				// Create placeholder with encoded props and content
+				return `<div 
+          data-mdx="${name}" 
+          data-props="${encodeURIComponent(JSON.stringify(props))}"
+          data-content="${encodeURIComponent(content)}"
+        ></div>`;
+			}
+		);
 
 		// Get all blog posts for navigation
 		const posts = Object.entries(modules)
@@ -98,7 +106,7 @@ export const load: PageServerLoad = async ({ params }) => {
 				tags: metadata.tags,
 				thumbnail: metadata.thumbnail
 			},
-			content: markdown,
+			content: cleanMarkdown,
 			html: processedHtml,
 			previousPost,
 			nextPost
