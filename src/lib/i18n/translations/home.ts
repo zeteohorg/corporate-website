@@ -2,25 +2,25 @@ import type { HomeTranslation } from '../types';
 
 export const en: HomeTranslation = {
 	hero: {
-		title: 'Location Intelligence inside out',
+		title: 'Location Intelligence, inside out',
 		subtitle: 'Transform your business with powerful location insights',
-		getStarted: 'Get started',
-		learnMore: 'Learn More'
+		getStarted: 'Schedule a meeting',
+		learnMore: 'Contact us'
 	},
 	useCases: {
-		title: 'Use Cases',
+		title: 'Use Cases: Transforming Industries',
 		items: [
 			{
-				title: 'Market Analysis',
-				description: 'Understand market potential and customer behavior through location data'
+				title: 'Manufacturing & Energy',
+				description: 'Enhance worker safety through real-time positioning. Enable immediate incident detection and response for improved operational efficiency in power plants and factories.'
 			},
 			{
-				title: 'Site Selection',
-				description: 'Make data-driven decisions for new location openings'
+				title: 'Critical Infrastructure',
+				description: 'Streamline maintenance operations in tunnels and underground facilities. Reduce maintenance costs and increase facility uptime through real-time progress visualization.'
 			},
 			{
-				title: 'Territory Planning',
-				description: 'Optimize sales territories and service areas'
+				title: 'Transportation Hubs',
+				description: 'Optimize airport and station operations. Improve visitor satisfaction through strategic staff placement and enhanced security. Enable seamless navigation with real-time positioning.'
 			}
 		]
 	}
@@ -28,25 +28,25 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: 'ロケーションインテリジェンス',
+		title: 'Location Intelligence, inside out',
 		subtitle: '位置情報の洞察であなたのビジネスを変革',
-		getStarted: '詳細を見る',
-		learnMore: 'Learn More'
+		getStarted: 'お打ち合わせを設定する',
+		learnMore: 'お問い合わせをする'
 	},
 	useCases: {
-		title: 'ユースケース',
+		title: 'ビジネス変革を加速するユースケース',
 		items: [
 			{
-				title: '市場分析',
-				description: '位置情報データを通じて市場の可能性と顧客行動を理解する'
+				title: '産業施設',
+				description: '作業員の位置をリアルタイムで把握し、安全性を強化。プラントや工場での作業効率を向上。'
 			},
 			{
-				title: '出店計画',
-				description: '新規出店の意思決定にデータを活用'
+				title: '重要インフラ施設',
+				description: 'トンネルや地下施設での保守点検作業を効率化。作業進捗の可視化により、メンテナンスコストを削減し、施設稼働率を向上。'
 			},
 			{
-				title: 'テリトリー計画',
-				description: '営業テリトリーとサービスエリアの最適化'
+				title: '交通ハブ',
+				description: '空港・駅での施設運営を最適化。スタッフの適切な配置とセキュリティ強化により、利用者満足度を向上。リアルタイムのナビゲーションで、スムーズな導線を実現。'
 			}
 		]
 	}

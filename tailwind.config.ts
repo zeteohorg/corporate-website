@@ -69,7 +69,17 @@ const config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: [
+					'-apple-system',
+					'BlinkMacSystemFont',
+					'Segoe UI',
+					'Noto Sans JP',
+					'Hiragino Sans',
+					'Hiragino Kaku Gothic ProN',
+					'メイリオ',
+					'Meiryo',
+					...fontFamily.sans
+				]
 			},
 			keyframes: {
 				'accordion-down': {

@@ -10,13 +10,13 @@
 	<div class="container mx-auto px-4">
 		<div class="grid items-center gap-12 lg:grid-cols-2">
 			<div>
-				<h2 class="whitespace-pre-line text-4xl font-bold tracking-tight lg:text-5xl">
+				<h2 class="whitespace-pre-line text-4xl font-bold tracking-tight lg:text-3xl">
 					{t.title}
 				</h2>
-				<p class="mt-4 text-xl text-muted-foreground">
+				<p class="mt-4 text-lg font-bold text-muted-foreground">
 					{t.subtitle}
 				</p>
-				<p class="mt-6 whitespace-pre-line text-lg leading-8 text-muted-foreground">
+				<p class="mt-6 whitespace-pre-line leading-8 text-base text-muted-foreground">
 					{t.description}
 				</p>
 			</div>
@@ -26,7 +26,7 @@
 					<img
 						src="/images/dashboard_image.png"
 						alt="TRAILS Dashboard"
-						class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
+						class="w-full ring-gray-400/10"
 						width={1000}
 						height={600}
 						loading="lazy"
