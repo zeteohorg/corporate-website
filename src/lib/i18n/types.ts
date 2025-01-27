@@ -107,4 +107,45 @@ export type Translation = {
 	challenges: ChallengesTranslation;
 	product: ProductTranslation;
 	howItWorks: HowItWorksTranslation;
+	privacyPolicy: PrivacyPolicyTranslation; 
 };
+
+// Add to Translation interface
+export type PrivacyPolicyTranslation = {
+	title: string;
+	intro: string;
+	information: {
+	  title: string;
+	  description: string;
+	};
+	usage: {
+	  title: string;
+	  description: string;
+	  purposes: string[];
+	};
+	sharing: {
+	  title: string;
+	  description: string;
+	};
+	cookies: {
+	  title: string;
+	  description: string;
+	};
+	rights: {
+	  title: string;
+	  description: string;
+	};
+	updates: {
+	  title: string;
+	  description: string;
+	};
+	contact: {
+	  title: string;
+	  address: string;
+	  email: string;
+	};
+	lastUpdate: string;
+  };
+  
+
+ 
