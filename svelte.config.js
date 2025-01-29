@@ -1,14 +1,17 @@
-import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
+import adapter from '@sveltejs/adapter-netlify';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			edge: false,
+			split: true
+		  }),
 		alias: {
 			$lib: 'src/lib'
 		}
