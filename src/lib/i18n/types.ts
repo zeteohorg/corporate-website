@@ -64,9 +64,19 @@ export type NewsTranslation = {
 	readMore: string;
 };
 
+export type ChallengesTranslation = {
+	title: string;
+	subtitle: string;
+	items: Array<{
+		title: string;
+		description: string;
+	}>;
+};
+
 export type Translation = {
 	common: CommonTranslation;
 	home: HomeTranslation;
 	blog: BlogTranslation;
 	news: NewsTranslation;
+	challenges: ChallengesTranslation;
 };

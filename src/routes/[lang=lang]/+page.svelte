@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/home/Hero.svelte';
 	import UseCases from '$lib/components/home/UseCases.svelte';
+	import Challenges from '$lib/components/home/Challenges.svelte';
 	import LatestPosts from '$lib/components/home/LatestPosts.svelte';
 	import ContactForm from '$lib/components/home/ContactForm.svelte';
 	import { page } from '$app/stores';
@@ -13,6 +14,7 @@
 
 <Hero />
 <UseCases />
+<Challenges />
 {#if data.blogPosts?.length > 0}
 	<LatestPosts posts={data.blogPosts} type="blog" />
 {/if}
