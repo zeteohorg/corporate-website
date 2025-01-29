@@ -6,13 +6,21 @@
 	import { page } from '$app/stores';
 	import { getPreferredLanguage } from '$lib/utils/language';
 	import { goto } from '$app/navigation';
+	import { theme } from '$lib/stores/theme';
 
 	let { children } = $props();
 
 	$effect(() => {
-		if (browser && $page.url.pathname === '/') {
-			const preferredLang = getPreferredLanguage();
-			goto(`/${preferredLang}`);
+		if (browser) {
+			if ($page.url.pathname === '/') {
+				const preferredLang = getPreferredLanguage();
+				goto(`/${preferredLang}`);
+			}
+
+			// Initialize theme
+			if ($theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			}
 		}
 	});
 </script>
