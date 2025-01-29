@@ -18,7 +18,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.48.1",
 		"@sveltejs/adapter-auto": "^3.3.0",
-		"@sveltejs/kit": "^2.7.2",
+		"@sveltejs/kit": "^2.16.1",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/typography": "^0.5.16",
@@ -38,7 +38,7 @@
 		"prettier-plugin-svelte": "^3.2.7",
 		"prettier-plugin-tailwindcss": "^0.6.10",
 		"super-sitemap": "^0.15.1",
-		"svelte": "^5.1.1",
+		"svelte": "^5.19.3",
 		"svelte-check": "^4.0.5",
 		"sveltekit-superforms": "2.20.0",
 		"tailwind-merge": "^2.5.4",
