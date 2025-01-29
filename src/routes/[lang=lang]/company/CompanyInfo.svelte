@@ -1,40 +1,68 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { translations } from '$lib/i18n/translations';
-	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	const { t } = $props<{ t: any }>();
 
-	const currentLanguage = $derived($page.params.lang ?? 'en');
-	const t = $derived(translations[currentLanguage]);
-
-	const infoItems = [
-		t.company.info.companyName,
-		t.company.info.founded,
-		t.company.info.capital,
-		t.company.info.location,
-		t.company.info.business
-	];
+	$effect(() => {
+		const infoItems = [
+			t.company.info.companyName,
+			t.company.info.founded,
+			t.company.info.capital,
+			t.company.info.location,
+			t.company.info.business
+		];
+		return infoItems;
+	});
 </script>
 
-<div class="container mx-auto px-4 pb-24 pt-8">
-	<Card class="mx-auto max-w-4xl bg-background">
-		<CardHeader>
-			<CardTitle class="text-center text-3xl font-bold">
-				{t.company.info.title}
-			</CardTitle>
-		</CardHeader>
-		<CardContent>
-			<div class="grid gap-4 md:grid-cols-2">
-				{#each infoItems as item}
-					<div class="border-b border-border pb-4 last:border-0 last:pb-0">
-						<div class="mb-1 font-medium text-foreground/80">
-							{item.label}
-						</div>
-						<div class="whitespace-pre-line text-foreground">
-							{item.value}
-						</div>
-					</div>
-				{/each}
-			</div>
-		</CardContent>
-	</Card>
+<div class="mx-auto max-w-4xl px-4 py-16">
+	<h2 class="mb-8 text-3xl font-bold">{t.company.info.title}</h2>
+	<div class="space-y-6">
+		<div class="overflow-hidden rounded-lg bg-white shadow dark:bg-gray-800">
+			<dl class="divide-y divide-gray-200 dark:divide-gray-700">
+				<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+						{t.company.info.companyName.label}
+					</dt>
+					<dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0">
+						{t.company.info.companyName.value}
+					</dd>
+				</div>
+				<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+						{t.company.info.founded.label}
+					</dt>
+					<dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0">
+						{t.company.info.founded.value}
+					</dd>
+				</div>
+				<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+						{t.company.info.capital.label}
+					</dt>
+					<dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0">
+						{t.company.info.capital.value}
+					</dd>
+				</div>
+				<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+						{t.company.info.location.label}
+					</dt>
+					<dd
+						class="mt-1 whitespace-pre-line text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0"
+					>
+						{t.company.info.location.value}
+					</dd>
+				</div>
+				<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+					<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+						{t.company.info.business.label}
+					</dt>
+					<dd
+						class="mt-1 whitespace-pre-line text-sm text-gray-900 dark:text-gray-100 sm:col-span-2 sm:mt-0"
+					>
+						{t.company.info.business.value}
+					</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
 </div>

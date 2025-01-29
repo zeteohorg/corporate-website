@@ -1,16 +1,44 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
-import remarkToc from 'remark-toc';
-import rehypeUnwrapImages from 'rehype-unwrap-images';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGfm from 'remark-gfm';
+import remarkCallout from '@r4ai/remark-callout';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: 'index.html',
+			precompress: true,
+			strict: true
+		}),
 		alias: {
 			$lib: 'src/lib'
+		},
+		prerender: {
+			entries: [
+				'/',
+				'/en',
+				'/ja',
+				'/en/blog/*',
+				'/ja/blog/*',
+				'/en/privacy-policy',
+				'/ja/privacy-policy',
+				'/en/company',
+				'/ja/company',
+				'/sitemap.xml',
+				'/en/news/*',
+				'/ja/news/*'
+			],
+			handleHttpError: ({ path, referrer, message }) => {
+				if (path.startsWith('/images/')) return;
+				console.warn(`${path} referred from ${referrer}: ${message}`);
+			},
+			handleMissingId: 'warn'
 		}
 	},
 	extensions: ['.svelte', '.md', '.mdx'],
@@ -18,15 +46,11 @@ const config = {
 		vitePreprocess(),
 		mdsvex({
 			extensions: ['.md', '.mdx'],
-			rehypePlugins: [rehypeSlug, rehypeUnwrapImages],
-			remarkPlugins: [remarkToc],
-			// Remove the layout configuration as we're handling it in the route
-			smartypants: {
-				dashes: 'oldschool'
-			},
+			rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+			remarkPlugins: [remarkGfm, [remarkCallout]],
 			frontmatter: {
-				marker: '-',
-				type: 'yaml'
+				type: 'yaml',
+				marker: '-'
 			}
 		})
 	]

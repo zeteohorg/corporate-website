@@ -1,59 +1,75 @@
 <script lang="ts">
 	import type { PrivacyPolicyTranslation } from '$lib/i18n/types';
-	import { cn } from '$lib/utils';
 
 	export let t: PrivacyPolicyTranslation;
 </script>
 
-<div class="min-h-screen bg-black text-white">
-	<div class="container mx-auto max-w-4xl px-4 py-12">
-		<h1 class="mb-8 text-4xl font-bold">{t.title}</h1>
+<svelte:head>
+	<title>{t.title}</title>
+	<meta name="description" content={t.intro} />
+</svelte:head>
 
-		<div class="prose prose-invert max-w-none">
-			<p class="mb-8 text-gray-300">{t.intro}</p>
+<div class="container mx-auto max-w-4xl px-4 py-8">
+	<article class="prose mx-auto dark:prose-invert lg:prose-lg">
+		<h1>{t.title}</h1>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.information.title}</h2>
-				<p class="text-gray-300">{t.information.description}</p>
-			</section>
+		<p>{t.intro}</p>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.usage.title}</h2>
-				<p class="text-gray-300">{t.usage.description}</p>
-				<ul class="mt-4 list-disc pl-6 text-gray-300">
-					{#each t.usage.purposes as purpose}
-						<li>{purpose}</li>
-					{/each}
-				</ul>
-			</section>
+		<section>
+			<h2>{t.information.title}</h2>
+			<p>{t.information.description}</p>
+		</section>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.sharing.title}</h2>
-				<p class="text-gray-300">{t.sharing.description}</p>
-			</section>
+		<section>
+			<h2>{t.usage.title}</h2>
+			<p>{t.usage.description}</p>
+			<ul>
+				{#each t.usage.purposes as purpose}
+					<li>{purpose}</li>
+				{/each}
+			</ul>
+		</section>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.cookies.title}</h2>
-				<p class="text-gray-300">{t.cookies.description}</p>
-			</section>
+		<section>
+			<h2>{t.sharing.title}</h2>
+			<p>{t.sharing.description}</p>
+		</section>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.rights.title}</h2>
-				<p class="text-gray-300">{t.rights.description}</p>
-			</section>
+		<section>
+			<h2>{t.cookies.title}</h2>
+			<p>{t.cookies.description}</p>
+		</section>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.updates.title}</h2>
-				<p class="text-gray-300">{t.updates.description}</p>
-			</section>
+		<section>
+			<h2>{t.rights.title}</h2>
+			<p>{t.rights.description}</p>
+		</section>
 
-			<section class="mb-8">
-				<h2 class="mb-4 text-2xl font-semibold text-white">{t.contact.title}</h2>
-				<p class="mb-2 text-gray-300">{t.contact.address}</p>
-				<p class="text-gray-300">Email: {t.contact.email}</p>
-			</section>
+		<section>
+			<h2>{t.updates.title}</h2>
+			<p>{t.updates.description}</p>
+		</section>
 
-			<p class="mt-12 text-sm text-gray-400">{t.lastUpdate}</p>
-		</div>
-	</div>
+		<section>
+			<h2>{t.contact.title}</h2>
+			<address class="not-italic">
+				<p>{t.contact.address}</p>
+				<p>Email: <a href="mailto:{t.contact.email}">{t.contact.email}</a></p>
+			</address>
+		</section>
+
+		<footer class="mt-8 text-sm text-muted-foreground">
+			<p>{t.lastUpdate}</p>
+		</footer>
+	</article>
 </div>
+
+<style lang="postcss">
+	article section {
+		@apply mb-8;
+	}
+
+	article section:last-child {
+		@apply mb-0;
+	}
+</style>

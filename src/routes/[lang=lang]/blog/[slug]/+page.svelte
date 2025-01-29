@@ -1,180 +1,191 @@
-<!-- FIXME
-The blog.svelte layout isn't being used at all - instead, 
-the blog post content is being rendered directly in +page.svelte. 
-The Author Card component isn't working because it's 
-actually redundant - the author info is already being 
-rendered directly in the page. -->
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { page } from '$app/stores';
-	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
-	import { translations } from '$lib/i18n/translations';
-	import { formatReadingTime } from '$lib/utils/reading-time';
 	import { onMount } from 'svelte';
+	import { error } from '@sveltejs/kit';
 	import { mountMDXComponents } from '$lib/mount-mdx';
-	import CodeBlock from '$lib/components/mdx/CodeBlock.svelte';
-	import Blockquote from '$lib/components/mdx/Blockquote.svelte';
-	import Table from '$lib/components/mdx/Table.svelte';
-	import ImageGallery from '$lib/components/mdx/ImageGallery.svelte';
-	import VideoEmbed from '$lib/components/mdx/VideoEmbed.svelte';
-	import Callout from '$lib/components/mdx/Callout.svelte';
-	import { buttonVariants } from '$lib/components/ui/button';
-	import { cn } from '$lib/utils';
-	import { ArrowLeft, ArrowRight } from 'lucide-svelte';
+	import type { PageData } from './$types';
+	import { formatReadingTime } from '$lib/utils/reading-time';
+	import { authors } from '$lib/data/authors';
+	import { Alert, AlertTitle } from '$lib/components/ui/alert';
+	import AuthorCard from '$lib/components/blog/AuthorCard.svelte';
+	import TableOfContents from '$lib/components/blog/TableOfContents.svelte';
 
-	let { data } = $props<{ data: PageData }>();
-	const currentLanguage = $derived($page.params.lang);
-	const t = $derived(translations[currentLanguage]);
-	const readingTime = $derived(
-		data.content ? formatReadingTime(data.content, currentLanguage) : ''
-	);
-
+	// Import MDX components lazily
 	const mdxComponents = {
-		CodeBlock,
-		Blockquote,
-		Table,
-		ImageGallery,
-		VideoEmbed,
-		Callout
+		CodeBlock: () => import('$lib/components/mdx/CodeBlock.svelte'),
+		ImageGallery: () => import('$lib/components/mdx/ImageGallery.svelte'),
+		Blockquote: () => import('$lib/components/mdx/Blockquote.svelte'),
+		Table: () => import('$lib/components/mdx/Table.svelte'),
+		VideoEmbed: () => import('$lib/components/mdx/VideoEmbed.svelte'),
+		Callout: () => import('$lib/components/mdx/Callout.svelte')
 	};
 
-	onMount(() => {
-		requestAnimationFrame(() => {
-			const content = document.querySelector('.mdsvex-content');
-			if (content instanceof HTMLElement) {
-				mountMDXComponents(content, mdxComponents);
+	export let data: PageData;
+
+	let post: any = null;
+	let loadError: Error | null = null;
+	let toc: any[] = [];
+	let contentElement: HTMLElement;
+
+	onMount(async () => {
+		try {
+			const response = await fetch(`/content/blog/${data.params.lang}/${data.params.slug}.mdx`);
+			if (!response.ok) throw error(404, 'Post not found');
+
+			const content = await response.text();
+
+			// Process MDX on the client
+			const mdxResponse = await fetch('/api/mdx', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ content })
+			});
+
+			const { html, metadata } = await mdxResponse.json();
+
+			post = {
+				...metadata,
+				html,
+				slug: data.params.slug
+			};
+
+			await new Promise((resolve) => setTimeout(resolve, 0));
+			if (contentElement) {
+				// Load all MDX components before mounting
+				const loadedComponents = await Promise.all(
+					Object.entries(mdxComponents).map(async ([name, loader]) => {
+						const component = await loader();
+						return [name, component.default];
+					})
+				);
+
+				mountMDXComponents(contentElement, Object.fromEntries(loadedComponents));
 			}
-		});
+		} catch (e) {
+			loadError = e as Error;
+			console.error('Error loading post:', e);
+		}
 	});
 </script>
 
 <svelte:head>
-	<title>{data.metadata.title}</title>
-	<meta name="description" content={data.metadata.description} />
+	{#if loadState.post}
+		<title>{loadState.post.title}</title>
+		<meta name="description" content={loadState.post.description} />
+		{#if loadState.post.thumbnail}
+			<meta property="og:image" content={loadState.post.thumbnail.url} />
+			<meta name="twitter:image" content={loadState.post.thumbnail.url} />
+			<meta name="twitter:card" content="summary_large_image" />
+		{/if}
+	{/if}
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8">
-	<div class="pb-8 pt-4">
-		<Breadcrumb.Root>
-			<Breadcrumb.List>
-				<Breadcrumb.Item>
-					<Breadcrumb.Link href="/{currentLanguage}">Home</Breadcrumb.Link>
-				</Breadcrumb.Item>
-				<Breadcrumb.Separator></Breadcrumb.Separator>
-				<Breadcrumb.Item>
-					<Breadcrumb.Link href="/{currentLanguage}/blog">{t.blog.title}</Breadcrumb.Link>
-				</Breadcrumb.Item>
-				<Breadcrumb.Separator></Breadcrumb.Separator>
-				<Breadcrumb.Item>
-					<Breadcrumb.Page>{data.metadata.title}</Breadcrumb.Page>
-				</Breadcrumb.Item>
-			</Breadcrumb.List>
-		</Breadcrumb.Root>
-	</div>
-	<article class="prose prose-slate mx-auto max-w-3xl dark:prose-invert">
-		<header class="not-prose mb-8">
-			<h1 class="mb-4 text-4xl font-bold">{data.metadata.title}</h1>
-			<div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-				{#if data.metadata.author}
-					<div class="flex items-center gap-2">
-						<img
-							src={data.metadata.author.avatar}
-							alt={data.metadata.author.name}
-							class="size-8 rounded-full"
-							width={32}
-							height={32}
-						/>
-						<span>{data.metadata.author.name}</span>
-					</div>
-				{/if}
-				<time datetime={data.metadata.date}>
-					{new Date(data.metadata.date).toLocaleDateString(currentLanguage, {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
-				</time>
-				{#if readingTime}
-					<div>·</div>
-					<div>{readingTime}</div>
-				{/if}
-			</div>
-		</header>
-
-		{#if data.metadata?.thumbnail}
-			<img
-				src={data.metadata.thumbnail.url}
-				alt={data.metadata.thumbnail.alt}
-				class="mb-8 w-full rounded-lg"
-				width={800}
-				height={400}
-			/>
-		{/if}
-
-		<!-- Use a container div for SSR matching -->
-		<div class="mdsvex-content" data-hydration-container>
-			{@html data.html}
+	{#if loadState.loading}
+		<div class="flex h-64 items-center justify-center">
+			<div class="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-900"></div>
 		</div>
+	{:else if loadState.errorMsg}
+		<div class="text-center text-red-500">{loadState.errorMsg}</div>
+	{:else if loadState.post}
+		<div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_250px]">
+			<div>
+				<!-- Breadcrumb -->
+				<Breadcrumb>
+					<BreadcrumbList>
+						<BreadcrumbItem>
+							<a href="/{lang}">{translations[lang].common.nav.home}</a>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<a href="/{lang}/blog">{translations[lang].blog.title}</a>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							{loadState.post.title}
+						</BreadcrumbItem>
+					</BreadcrumbList>
+				</Breadcrumb>
 
-		{#if data.metadata.tags}
-			<div class="not-prose mt-8">
-				<div class="flex flex-wrap gap-2">
-					{#each data.metadata.tags as tag}
-						<a
-							href="/{currentLanguage}/blog/tag/{tag}"
-							class="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-secondary/80"
-						>
-							{tag}
-						</a>
-					{/each}
-				</div>
-			</div>
-		{/if}
+				<!-- Article -->
+				<article class="prose mt-8 max-w-none dark:prose-invert">
+					<h1>{loadState.post.title}</h1>
 
-		{#if data.metadata.author}
-			<div class="not-prose mt-12 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
-				<div class="flex gap-4">
-					<img
-						src={data.metadata.author.avatar}
-						alt={data.metadata.author.name}
-						class="size-16 rounded-full"
-						width={64}
-						height={64}
-					/>
-					<div>
-						<h2 class="text-lg font-semibold">{data.metadata.author.name}</h2>
-						{#if data.metadata.author.bio?.[currentLanguage]}
-							<p class="mt-2 text-sm text-muted-foreground">
-								{data.metadata.author.bio[currentLanguage]}
-							</p>
-						{/if}
+					<div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+						<time datetime={loadState.post.date}>
+							{new Date(loadState.post.date).toLocaleDateString(lang === 'ja' ? 'ja-JP' : 'en-US', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</time>
+						<span>·</span>
+						<span>{formatReadingTime(loadState.post.content, lang)}</span>
 					</div>
-				</div>
+
+					{#if loadState.post.thumbnail}
+						<img
+							src={loadState.post.thumbnail.url}
+							alt={loadState.post.thumbnail.alt}
+							class="my-8 w-full rounded-lg"
+						/>
+					{/if}
+
+					<div id="post-content">
+						{@html loadState.post.html}
+					</div>
+				</article>
+
+				<!-- Author -->
+				{#if loadState.post.author && authors[loadState.post.author.id]}
+					<div class="mt-12">
+						<AuthorCard author={authors[loadState.post.author.id]} />
+					</div>
+				{/if}
+
+				<!-- Navigation -->
+				<nav class="mt-12 flex justify-between">
+					{#if loadState.previousPost}
+						<Card>
+							<a href="/{lang}/blog/{loadState.previousPost.slug}" class="block p-4">
+								<span class="text-sm text-gray-500">← Previous</span>
+								<p class="mt-1">{loadState.previousPost.title}</p>
+							</a>
+						</Card>
+					{:else}
+						<div></div>
+					{/if}
+
+					{#if loadState.nextPost}
+						<Card>
+							<a href="/{lang}/blog/{loadState.nextPost.slug}" class="block p-4 text-right">
+								<span class="text-sm text-gray-500">Next →</span>
+								<p class="mt-1">{loadState.nextPost.title}</p>
+							</a>
+						</Card>
+					{/if}
+				</nav>
 			</div>
-		{/if}
 
-		<nav class="not-prose mt-12 flex justify-between">
-			{#if data.previousPost}
-				<a
-					href="/{currentLanguage}/blog/{data.previousPost.slug}"
-					class={cn(buttonVariants({ variant: 'ghost' }), 'gap-2')}
-				>
-					<ArrowLeft class="size-4"></ArrowLeft>
-					{data.previousPost.title}
-				</a>
-			{:else}
-				<div></div>
-			{/if}
+			<!-- Sidebar -->
+			<div class="lg:sticky lg:top-8">
+				<TableOfContents toc={loadState.toc} />
 
-			{#if data.nextPost}
-				<a
-					href="/{currentLanguage}/blog/{data.nextPost.slug}"
-					class={cn(buttonVariants({ variant: 'ghost' }), 'gap-2')}
-				>
-					{data.nextPost.title}
-					<ArrowRight class="size-4"></ArrowRight>
-				</a>
-			{/if}
-		</nav>
-	</article>
+				{#if loadState.post.tags && loadState.post.tags.length > 0}
+					<div class="mt-8">
+						<h3 class="mb-4 font-semibold">Tags</h3>
+						<div class="flex flex-wrap gap-2">
+							{#each loadState.post.tags as tag}
+								<a
+									href="/{lang}/blog/tag/{tag}"
+									class="rounded-full bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800"
+								>
+									{tag}
+								</a>
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
+		</div>
+	{/if}
 </div>
