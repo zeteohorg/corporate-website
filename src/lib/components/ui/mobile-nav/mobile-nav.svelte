@@ -7,7 +7,12 @@
 	import { translations } from '$lib/i18n/translations';
 
 	const currentLanguage = $derived($page.params.lang ?? 'en');
-	const t = $derived(translations[currentLanguage].common.nav);
+	// Add default values to prevent undefined access
+	const t = $derived((translations[currentLanguage]?.common?.nav ?? {
+		blog: 'Blog',
+		news: 'News',
+		company: 'Company'
+	}));
 
 	function switchLanguage() {
 		const currentLang = $page.params.lang;
@@ -42,19 +47,19 @@
 					href="/{currentLanguage}/blog"
 					class={buttonVariants({ variant: 'ghost', class: 'w-full justify-start' })}
 				>
-					{t.blog}
+					{t?.blog || 'Blog'}
 				</a>
 				<a
 					href="/{currentLanguage}/news"
 					class={buttonVariants({ variant: 'ghost', class: 'w-full justify-start' })}
 				>
-					{t.news}
+					{t?.news || 'News'}
 				</a>
 				<a
 					href="/{currentLanguage}/company"
 					class={buttonVariants({ variant: 'ghost', class: 'w-full justify-start' })}
 				>
-					{t.company}
+					{t?.company || 'Company'}
 				</a>
 
 				<div class="flex items-center space-x-4 pt-4">
