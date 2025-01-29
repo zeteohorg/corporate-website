@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Just Ship - A batteries included Svelte 5 SaaS Boilerplate
 
-## Getting Started
+### Comes With
 
-First, run the development server:
+- 💻 **Svelte 5 and SvelteKit 2**
+- 🚪 **Auth** (both social and magic link, using Lucia)
+- 📧 **Sending Emails** (using Postmark)
+- 🎨 **Styling** (using tailwindcss and shadcn)
+- 📦 **Database** (using turso and drizzle as ORM)
+- ☁️ **Serverless hosting** using vercel
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Getting Started 🚀
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Local Development
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Run `pnpm install`
+- Rename the `.env.example` file to `.env` and **populate it with your own values**
+- Run `npm run generate && npm run migrate` to create a local database
+- Install mailpit to receive emails locally https://mailpit.axllent.org/docs/install/
+- run `npm run dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Production 🌐
 
-## Learn More
+- 🌍 Get a domain name
+- 📬 Create a **postmark** account and get the server api key
+- 💾 Set up a database with **Turso**: [Turso Setup](https://turso.tech/)
+- 🔑 Create an OAuth credential in **Google Cloud**
+- 🏗️ Set up a project from this repo on **Vercel**: [vercel](https://vercel.com)
+- 🎯 Point your main domain name to your project on Vercel
+- 🔐 fill out the environment variables in `.env`
+- ⚙️ Add those environment variables to your project in Vercel
 
-To learn more about Next.js, take a look at the following resources:
+Feel free to contribute or suggest improvements! 🤝
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### How to setup Just Ship the youtube tutorial
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+(note this tutorial is slightly outdated) You don't need mailpit neccesarily I log the email login link in the console.
+I also use shadcn now instead of daisyUI
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![How to use Just Ship](https://img.youtube.com/vi/sJZOXUhkvMc/0.jpg)](https://www.youtube.com/watch?v=sJZOXUhkvMc)
