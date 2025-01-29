@@ -8,17 +8,25 @@ import rehypeUnwrapImages from 'rehype-unwrap-images';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			$lib: 'src/lib'
+		}
 	},
-	extensions: ['.svelte', '.md'],
+	extensions: ['.svelte', '.md', '.mdx'],
 	preprocess: [
 		vitePreprocess(),
 		mdsvex({
-			extensions: ['.md'],
+			extensions: ['.md', '.mdx'],
 			rehypePlugins: [rehypeSlug, rehypeUnwrapImages],
 			remarkPlugins: [remarkToc],
-			layout: {
-				blog: 'src/lib/layouts/blog.svelte'
+			// Remove the layout configuration as we're handling it in the route
+			smartypants: {
+				dashes: 'oldschool'
+			},
+			frontmatter: {
+				marker: '-',
+				type: 'yaml'
 			}
 		})
 	]
