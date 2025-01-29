@@ -5,6 +5,7 @@ import * as blog from './blog';
 import * as news from './news';
 import * as challenges from './challenges';
 import * as product from './product';
+import * as howItWorks from './how-it-works';
 
 export const en: Translation = {
 	common: common.en,
@@ -12,7 +13,8 @@ export const en: Translation = {
 	blog: blog.en,
 	news: news.en,
 	challenges: challenges.en,
-	product: product.en
+	product: product.en,
+	howItWorks: howItWorks.en
 };
 
 export const ja: Translation = {
@@ -21,7 +23,8 @@ export const ja: Translation = {
 	blog: blog.ja,
 	news: news.ja,
 	challenges: challenges.ja,
-	product: product.ja
+	product: product.ja,
+	howItWorks: howItWorks.ja
 };
 
 export const translations = { en, ja };

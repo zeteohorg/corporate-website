@@ -5,6 +5,7 @@
 	import LatestPosts from '$lib/components/home/LatestPosts.svelte';
 	import ContactForm from '$lib/components/home/ContactForm.svelte';
 	import Product from '$lib/components/home/Product.svelte';
+	import HowItWorks from '$lib/components/home/HowItWorks.svelte';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 
@@ -17,6 +18,7 @@
 <UseCases />
 <Challenges />
 <Product />
+<HowItWorks />
 {#if data.blogPosts?.length > 0}
 	<LatestPosts posts={data.blogPosts} type="blog" />
 {/if}
