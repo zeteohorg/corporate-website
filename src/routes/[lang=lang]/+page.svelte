@@ -15,10 +15,10 @@
 </script>
 
 <Hero />
-<UseCases />
 <Challenges />
 <Product />
 <HowItWorks />
+<UseCases />
 {#if data.blogPosts?.length > 0}
 	<LatestPosts posts={data.blogPosts} type="blog" />
 {/if}

@@ -12,7 +12,7 @@
 <section class="bg-muted/50 py-20">
 	<div class="container mx-auto px-4">
 		<div class="mx-auto max-w-3xl text-center">
-			<h2 class="mb-4 text-3xl font-bold sm:text-4xl">{t.title}</h2>
+			<h2 class="mb-4 text-2xl font-bold sm:text-3xl">{t.title}</h2>
 			<p class="text-muted-foreground">{t.subtitle}</p>
 		</div>
 

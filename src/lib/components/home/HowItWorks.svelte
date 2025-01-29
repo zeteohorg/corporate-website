@@ -8,7 +8,7 @@
 
 <section class="py-20">
 	<div class="container mx-auto px-4">
-		<h2 class="mb-16 text-center text-3xl font-bold sm:text-4xl">{t.title}</h2>
+		<h2 class="mb-16 text-center text-3xl font-bold sm:text-3xl">{t.title}</h2>
 
 		<div class="grid gap-8 md:grid-cols-2">
 			<div class="order-2 md:order-1">
