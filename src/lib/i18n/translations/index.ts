@@ -6,6 +6,7 @@ import * as news from './news';
 import * as challenges from './challenges';
 import * as product from './product';
 import * as howItWorks from './how-it-works';
+import * as privacyPolicy from './privacy-policy';
 
 export const en: Translation = {
 	common: common.en,
@@ -14,7 +15,8 @@ export const en: Translation = {
 	news: news.en,
 	challenges: challenges.en,
 	product: product.en,
-	howItWorks: howItWorks.en
+	howItWorks: howItWorks.en,
+	privacyPolicy: privacyPolicy.en
 };
 
 export const ja: Translation = {
@@ -24,7 +26,8 @@ export const ja: Translation = {
 	news: news.ja,
 	challenges: challenges.ja,
 	product: product.ja,
-	howItWorks: howItWorks.ja
+	howItWorks: howItWorks.ja,
+	privacyPolicy: privacyPolicy.ja
 };
 
 export const translations = { en, ja };
