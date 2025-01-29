@@ -48,24 +48,20 @@
 					<!-- Mobile image -->
 					<source
 						media="(max-width: 639px)"
-						srcset="/images/dashboard_hero_mobile.webp"
+						srcset="/images/dashboard_hero.webp"
 						type="image/webp"
 					/>
-					<source
-						media="(max-width: 639px)"
-						srcset="/images/dashboard_hero_mobile.png"
-						type="image/png"
-					/>
+					<source media="(max-width: 639px)" srcset="/images/dashboard_hero.png" type="image/png" />
 
 					<!-- Tablet image -->
 					<source
 						media="(max-width: 1023px)"
-						srcset="/images/dashboard_hero_tablet.webp"
+						srcset="/images/dashboard_hero.webp"
 						type="image/webp"
 					/>
 					<source
 						media="(max-width: 1023px)"
-						srcset="/images/dashboard_hero_tablet.png"
+						srcset="/images/dashboard_hero.png"
 						type="image/png"
 					/>
 
