@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
+	import { theme } from '$lib/stores/theme';
 	import ThemeToggle from './ThemeToggle.svelte';
 
 	const switchLanguage = () => {
@@ -14,7 +15,29 @@
 <header class="border-b">
 	<div class="container mx-auto px-4">
 		<div class="flex h-16 items-center justify-between">
-			<a href="/{$page.params.lang}" class="text-xl font-bold">YourCompany</a>
+			<a href="/{$page.params.lang}" class="flex h-8 items-center">
+				<picture>
+					{#if $theme === 'dark'}
+						<source srcset="/images/kana-logo-white.webp" type="image/webp" />
+						<img
+							src="/images/kana-logo-white.png"
+							alt="Kana"
+							class="h-8 w-auto"
+							height="32"
+							width="100"
+						/>
+					{:else}
+						<source srcset="/images/kana-logo-bl.webp" type="image/webp" />
+						<img
+							src="/images/kana-logo-bl.png"
+							alt="Kana"
+							class="h-8 w-auto"
+							height="32"
+							width="100"
+						/>
+					{/if}
+				</picture>
+			</a>
 			<nav class="flex items-center space-x-4">
 				<a href="/{$page.params.lang}/blog" class={buttonVariants({ variant: 'ghost' })}>Blog</a>
 				<a href="/{$page.params.lang}/news" class={buttonVariants({ variant: 'ghost' })}>News</a>
