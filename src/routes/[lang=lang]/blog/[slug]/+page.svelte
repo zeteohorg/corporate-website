@@ -54,22 +54,23 @@ rendered directly in the page. -->
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8">
-	<Breadcrumb.Root>
-		<Breadcrumb.List>
-			<Breadcrumb.Item>
-				<Breadcrumb.Link href="/{currentLanguage}">Home</Breadcrumb.Link>
-			</Breadcrumb.Item>
-			<Breadcrumb.Separator></Breadcrumb.Separator>
-			<Breadcrumb.Item>
-				<Breadcrumb.Link href="/{currentLanguage}/blog">{t.blog.title}</Breadcrumb.Link>
-			</Breadcrumb.Item>
-			<Breadcrumb.Separator></Breadcrumb.Separator>
-			<Breadcrumb.Item>
-				<Breadcrumb.Page>{data.metadata.title}</Breadcrumb.Page>
-			</Breadcrumb.Item>
-		</Breadcrumb.List>
-	</Breadcrumb.Root>
-
+	<div class="pb-8 pt-4">
+		<Breadcrumb.Root>
+			<Breadcrumb.List>
+				<Breadcrumb.Item>
+					<Breadcrumb.Link href="/{currentLanguage}">Home</Breadcrumb.Link>
+				</Breadcrumb.Item>
+				<Breadcrumb.Separator></Breadcrumb.Separator>
+				<Breadcrumb.Item>
+					<Breadcrumb.Link href="/{currentLanguage}/blog">{t.blog.title}</Breadcrumb.Link>
+				</Breadcrumb.Item>
+				<Breadcrumb.Separator></Breadcrumb.Separator>
+				<Breadcrumb.Item>
+					<Breadcrumb.Page>{data.metadata.title}</Breadcrumb.Page>
+				</Breadcrumb.Item>
+			</Breadcrumb.List>
+		</Breadcrumb.Root>
+	</div>
 	<article class="prose prose-slate mx-auto max-w-3xl dark:prose-invert">
 		<header class="not-prose mb-8">
 			<h1 class="mb-4 text-4xl font-bold">{data.metadata.title}</h1>

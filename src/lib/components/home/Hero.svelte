@@ -7,7 +7,7 @@
 
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage].home.hero);
-	
+
 	let isContentVisible = $state(false);
 	let isMobile = $state(false);
 	let observer: IntersectionObserver;
@@ -19,7 +19,7 @@
 
 		observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach(entry => {
+				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						isContentVisible = true;
 						observer.disconnect();
@@ -62,9 +62,13 @@
 		></div>
 	</div>
 
-	<div class="container mx-auto px-4 py-12 sm:px-6 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-32">
+	<div
+		class="container mx-auto px-4 py-12 sm:px-6 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-32"
+	>
 		<!-- Hero Content -->
-		<div class="mx-auto flex min-h-[80vh] max-w-2xl flex-col justify-center sm:min-h-0 lg:mx-0 lg:flex-auto">
+		<div
+			class="mx-auto flex min-h-[80vh] max-w-2xl flex-col justify-center sm:min-h-0 lg:mx-0 lg:flex-auto"
+		>
 			<h1 class="mt-4 text-5xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
 				{t.title}
 			</h1>
@@ -72,7 +76,11 @@
 				{t.subtitle}
 			</p>
 			<div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-x-6">
-				<a href="https://meetings-eu1.hubspot.com/satomi-le-guilly" target="_blank" class={buttonVariants({ size: 'lg' })}>
+				<a
+					href="https://meetings-eu1.hubspot.com/satomi-le-guilly"
+					target="_blank"
+					class={buttonVariants({ size: 'lg' })}
+				>
 					{t.getStarted}
 				</a>
 				<a
@@ -86,22 +94,23 @@
 		</div>
 
 		<!-- Dashboard Image -->
-		<div 
+		<div
 			bind:this={contentRef}
 			class="mt-12 lg:mt-0 lg:flex-shrink-0 lg:flex-grow {isMobile ? 'hidden' : ''}"
 		>
 			{#if isContentVisible}
-				<div 
-					class="relative mx-auto max-w-[550px]"
-					transition:fade={{ duration: 300 }}
-				>
+				<div class="relative mx-auto max-w-[550px]" transition:fade={{ duration: 300 }}>
 					<picture>
 						<source
 							media="(max-width: 639px)"
 							srcset="/images/dashboard_hero.webp"
 							type="image/webp"
 						/>
-						<source media="(max-width: 639px)" srcset="/images/dashboard_hero.png" type="image/png" />
+						<source
+							media="(max-width: 639px)"
+							srcset="/images/dashboard_hero.png"
+							type="image/png"
+						/>
 						<source
 							media="(max-width: 1023px)"
 							srcset="/images/dashboard_hero.webp"
@@ -130,7 +139,9 @@
 
 	<!-- Bottom halo -->
 	<div
-		class="absolute bottom-[100px] left-1/2 -z-10 h-[100px] w-[300px] -translate-x-1/2 transform-gpu overflow-hidden blur-[64px] sm:bottom-[300px] {isMobile ? 'hidden' : ''}"
+		class="absolute bottom-[100px] left-1/2 -z-10 h-[100px] w-[300px] -translate-x-1/2 transform-gpu overflow-hidden blur-[64px] sm:bottom-[300px] {isMobile
+			? 'hidden'
+			: ''}"
 		aria-hidden="true"
 	>
 		<div

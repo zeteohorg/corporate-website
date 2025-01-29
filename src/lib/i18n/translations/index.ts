@@ -7,6 +7,7 @@ import * as challenges from './challenges';
 import * as product from './product';
 import * as howItWorks from './how-it-works';
 import * as privacyPolicy from './privacy-policy';
+import * as company from './company';
 
 export const en: Translation = {
 	common: common.en,
@@ -16,7 +17,8 @@ export const en: Translation = {
 	challenges: challenges.en,
 	product: product.en,
 	howItWorks: howItWorks.en,
-	privacyPolicy: privacyPolicy.en
+	privacyPolicy: privacyPolicy.en,
+	company: company.en
 };
 
 export const ja: Translation = {
@@ -27,7 +29,8 @@ export const ja: Translation = {
 	challenges: challenges.ja,
 	product: product.ja,
 	howItWorks: howItWorks.ja,
-	privacyPolicy: privacyPolicy.ja
+	privacyPolicy: privacyPolicy.ja,
+	company: company.ja
 };
 
 export const translations = { en, ja };
