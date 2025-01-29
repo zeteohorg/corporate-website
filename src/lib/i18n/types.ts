@@ -42,7 +42,8 @@ export type HomeTranslation = {
 	hero: {
 		title: string;
 		subtitle: string;
-		cta: string;
+		getStarted: string;
+		learnMore: string;
 	};
 	useCases: {
 		title: string;

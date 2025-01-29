@@ -4,7 +4,8 @@ export const en: HomeTranslation = {
 	hero: {
 		title: 'Location Intelligence inside out',
 		subtitle: 'Transform your business with powerful location insights',
-		cta: 'Learn More'
+		getStarted: 'Get started',
+		learnMore: 'Learn More'
 	},
 	useCases: {
 		title: 'Use Cases',
@@ -29,7 +30,8 @@ export const ja: HomeTranslation = {
 	hero: {
 		title: 'ロケーションインテリジェンス',
 		subtitle: '位置情報の洞察であなたのビジネスを変革',
-		cta: '詳細を見る'
+		getStarted: '詳細を見る',
+		learnMore: 'Learn More'
 	},
 	useCases: {
 		title: 'ユースケース',
