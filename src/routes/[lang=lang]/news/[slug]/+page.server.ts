@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 export const load: PageServerLoad = async ({ params }) => {
 	try {
 		const { lang, slug } = params;
-		const cleanSlug = slug.replace(/\./g, '');
+		const cleanSlug = slug.replace(/\./g, '');  // Remove dots from slug
 
 		const modules = import.meta.glob('/src/content/news/**/*.{md,mdx}', {
 			eager: true,
@@ -17,9 +17,13 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 
 		let content;
+		let matchedPath;
 		for (const [path, moduleContent] of Object.entries(modules)) {
-			if (path.includes(`/${lang}/`) && path.includes(cleanSlug)) {
+			// Match either with or without dots to find the file
+			const fileSlug = path.split('/').pop()?.replace(/\.(md|mdx)$/, '');
+			if (path.includes(`/${lang}/`) && (fileSlug === slug || fileSlug === cleanSlug)) {
 				content = moduleContent;
+				matchedPath = path;
 				break;
 			}
 		}
@@ -81,11 +85,12 @@ export const load: PageServerLoad = async ({ params }) => {
 				const [, frontmatter] = (content as string).match(/---\n([\s\S]*?)\n---/) || [];
 				if (!frontmatter) return null;
 				const meta = YAML.parse(frontmatter);
+				const fileSlug = path
+					.split('/')
+					.pop()
+					?.replace(/\.(md|mdx)$/, '');
 				return {
-					slug: path
-						.split('/')
-						.pop()
-						?.replace(/\.(md|mdx)$/, ''),
+					slug: fileSlug?.replace(/\./g, ''),  // Clean the slug for consistency
 					...meta
 				};
 			})
@@ -109,7 +114,8 @@ export const load: PageServerLoad = async ({ params }) => {
 			content: cleanMarkdown,
 			html: processedHtml,
 			previousPost,
-			nextPost
+			nextPost,
+			slug: cleanSlug  // Return the clean slug for consistency
 		};
 	} catch (e) {
 		console.error('Error loading news post:', e);

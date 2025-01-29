@@ -6,13 +6,13 @@
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage]);
 
-	const infoItems = [
+	const infoItems = $derived([
 		t.company.info.companyName,
 		t.company.info.founded,
 		t.company.info.capital,
 		t.company.info.location,
 		t.company.info.business
-	];
+	]);
 </script>
 
 <div class="container mx-auto px-4 pb-24 pt-8">

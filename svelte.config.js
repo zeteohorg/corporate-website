@@ -11,7 +11,7 @@ const config = {
   kit: {
     adapter: adapter({
       edge: false,
-      split: false
+      split: true
     }),
     alias: {
       $lib: 'src/lib'
@@ -72,7 +72,9 @@ function getNewsEntries() {
       const match = file.match(/news\/(en|ja)\/(.+)\.mdx$/);
       if (!match) return null;
       const [, lang, slug] = match;
-      return `/${lang}/news/${slug}`;
+      // Remove any dots from the slug
+      const cleanSlug = slug.replace(/\./g, '');
+      return `/${lang}/news/${cleanSlug}`;
     })
     .filter(Boolean);
 }
