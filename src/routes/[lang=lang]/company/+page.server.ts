@@ -1,15 +1,16 @@
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
+import { translations } from '$lib/i18n/translations';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { lang } = params;
+	const lang = params.lang;
 
-	// Validate language parameter
 	if (lang !== 'en' && lang !== 'ja') {
 		throw error(404, 'Unsupported language');
 	}
 
 	return {
-		// Add any server-loaded data here if needed
+		lang,
+		translations: translations[lang]
 	};
 };

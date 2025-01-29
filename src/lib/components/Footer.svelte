@@ -17,16 +17,16 @@
 						<li>
 							<a href="/{currentLanguage}/company" class="hover:text-foreground">{t.links.about}</a>
 						</li>
-						<li>
-							<a href="/{currentLanguage}/careers" class="hover:text-foreground"
-								>{t.links.careers}</a
-							>
-						</li>
-						<li>
-							<a href="/{currentLanguage}/#contact" class="hover:text-foreground"
-								>{t.links.contact}</a
-							>
-						</li>
+						<!-- <li>
+								<a href="/{currentLanguage}/careers" class="hover:text-foreground"
+									>{t.links.careers}</a
+								>
+							</li>
+							<li>
+								<a href="/{currentLanguage}/#contact" class="hover:text-foreground"
+									>{t.links.contact}</a
+								>
+							</li> -->
 					</ul>
 				</div>
 
@@ -48,7 +48,7 @@
 						<li>
 							<a href="/privacy-policy" class="hover:text-foreground">{t.links.privacyPolicy}</a>
 						</li>
-						<li><a href="/terms" class="hover:text-foreground">{t.links.terms}</a></li>
+						<!-- <li><a href="/terms" class="hover:text-foreground">{t.links.terms}</a></li> -->
 					</ul>
 				</div>
 
@@ -57,7 +57,7 @@
 					<ul class="mt-4 flex justify-center space-x-4 text-muted-foreground">
 						<li>
 							<a
-								href="https://twitter.com/yourcompany"
+								href="https://x.com/zeteoh_ai"
 								target="_blank"
 								rel="noopener noreferrer"
 								class="hover:text-foreground"
@@ -79,7 +79,7 @@
 						</li>
 						<li>
 							<a
-								href="https://linkedin.com/company/yourcompany"
+								href="https://jp.linkedin.com/company/zeteoh"
 								target="_blank"
 								rel="noopener noreferrer"
 								class="hover:text-foreground"

@@ -16,7 +16,7 @@
 				<p class="mt-4 text-lg font-bold text-muted-foreground">
 					{t.subtitle}
 				</p>
-				<p class="mt-6 whitespace-pre-line leading-8 text-base text-muted-foreground">
+				<p class="mt-6 whitespace-pre-line text-base leading-8 text-muted-foreground">
 					{t.description}
 				</p>
 			</div>
