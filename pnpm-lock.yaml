@@ -1056,9 +1056,6 @@ packages:
       jiti:
         optional: true
 
-  esm-env@1.1.4:
-    resolution: {integrity: sha512-oO82nKPHKkzIj/hbtuDYy/JHqBHFlMIW36SDiPCVsj87ntDLcWN+sJ1erdVryd4NxODacFTsdrIE3b7IamqbOg==}
-
   esm-env@1.2.2:
     resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
 
@@ -2799,7 +2796,7 @@ snapshots:
       '@floating-ui/core': 1.6.8
       '@floating-ui/dom': 1.6.12
       '@internationalized/date': 3.5.6
-      esm-env: 1.1.4
+      esm-env: 1.2.2
       runed: 0.22.0(svelte@5.19.3)
       svelte: 5.19.3
       svelte-toolbelt: 0.7.0(svelte@5.19.3)
@@ -3095,8 +3092,6 @@ snapshots:
       jiti: 1.21.7
     transitivePeerDependencies:
       - supports-color
-
-  esm-env@1.1.4: {}
 
   esm-env@1.2.2: {}
 
@@ -3684,12 +3679,12 @@ snapshots:
 
   runed@0.20.0(svelte@5.19.3):
     dependencies:
-      esm-env: 1.1.4
+      esm-env: 1.2.2
       svelte: 5.19.3
 
   runed@0.22.0(svelte@5.19.3):
     dependencies:
-      esm-env: 1.1.4
+      esm-env: 1.2.2
       svelte: 5.19.3
 
   sade@1.8.1:
