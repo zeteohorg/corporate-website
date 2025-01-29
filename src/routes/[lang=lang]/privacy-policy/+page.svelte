@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PrivacyPolicy from '$lib/components/privacy-policy.svelte';
+	import PrivacyPolicy from '$lib/components/PrivacyPolicy.svelte';
 	import { translations } from '$lib/i18n/translations';
 	import type { PageData } from './$types';
 
