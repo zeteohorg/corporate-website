@@ -2,7 +2,6 @@ import { compile } from 'mdsvex';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import remarkGfm from 'remark-gfm';
-import rehypeSvelte from 'rehype-svelte';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
@@ -10,15 +9,6 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		const result = await compile(content, {
 			remarkPlugins: [remarkGfm],
-			rehypePlugins: [
-				[
-					rehypeSvelte,
-					{
-						preserveComments: true,
-						replaceComponents: true
-					}
-				]
-			],
 			extension: '.mdx'
 		});
 

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PrivacyPolicyTranslation } from '$lib/i18n/types';
-	import { cn } from '$lib/utils';
 
 	export let t: PrivacyPolicyTranslation;
 </script>
