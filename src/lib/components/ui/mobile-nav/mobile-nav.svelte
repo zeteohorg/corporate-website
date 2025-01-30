@@ -8,11 +8,13 @@
 
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	// Add default values to prevent undefined access
-	const t = $derived((translations[currentLanguage]?.common?.nav ?? {
-		blog: 'Blog',
-		news: 'News',
-		company: 'Company'
-	}));
+	const t = $derived(
+		translations[currentLanguage]?.common?.nav ?? {
+			blog: 'Blog',
+			news: 'News',
+			company: 'Company'
+		}
+	);
 
 	function switchLanguage() {
 		const currentLang = $page.params.lang;

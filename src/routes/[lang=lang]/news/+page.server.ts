@@ -21,15 +21,13 @@ export const load: PageServerLoad = async ({ params }) => {
 					.split('/')
 					.pop()
 					?.replace(/\.(md|mdx)$/, '')
-					?.replace(/\./g, '');  // Clean the slug
+					?.replace(/\./g, ''); // Clean the slug
 				return {
 					slug,
 					...meta
 				};
 			})
-			.filter((post): post is NonNullable<typeof post> => 
-				post !== null && post.published === true
-			)
+			.filter((post): post is NonNullable<typeof post> => post !== null && post.published === true)
 			.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 		return { posts };
