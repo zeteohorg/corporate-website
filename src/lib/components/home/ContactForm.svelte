@@ -25,6 +25,38 @@
 		if (!inquiryType) errors.inquiryType = t.errors.required;
 		return Object.keys(errors).length === 0;
 	}
+
+	const handleSubmit = async (event: Event) => {
+		event.preventDefault();
+
+		if (!validateForm()) {
+			return;
+		}
+
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+
+		try {
+			const response = await fetch('/', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: new URLSearchParams(formData).toString()
+			});
+			if (response.ok) {
+				submitted = true;
+				name = '';
+				email = '';
+				company = '';
+				jobTitle = '';
+				inquiryType = '';
+				message = '';
+			} else {
+				console.error('Form submission failed');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	};
 </script>
 
 <section class="py-12 sm:py-16 lg:py-20">
@@ -54,6 +86,32 @@
 					name="contact"
 					method="POST"
 					data-netlify="true"
+					onsubmit={async (event) => {
+						event.preventDefault();
+						const formData = new FormData(event.target as HTMLFormElement);
+
+						try {
+							const response = await fetch('/', {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+								body: new URLSearchParams(formData as any).toString()
+							});
+
+							if (response.ok) {
+								submitted = true;
+								name = '';
+								email = '';
+								company = '';
+								jobTitle = '';
+								inquiryType = '';
+								message = '';
+							} else {
+								console.error('Form submission failed');
+							}
+						} catch (error) {
+							console.error('Error submitting form:', error);
+						}
+					}}
 					netlify-honeypot="bot-field"
 					class="space-y-6 sm:space-y-8"
 				>
