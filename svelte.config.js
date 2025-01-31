@@ -26,6 +26,7 @@ const config = {
 				throw new Error(`${message} (${path})${referrer ? ` (linked from ${referrer})` : ''}`);
 			},
 			entries: [
+				'/',
 				'/en',
 				'/ja',
 				'/en/privacy-policy',

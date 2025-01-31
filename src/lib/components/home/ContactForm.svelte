@@ -25,47 +25,6 @@
 		if (!inquiryType) errors.inquiryType = t.errors.required;
 		return Object.keys(errors).length === 0;
 	}
-
-	async function handleSubmit(event: SubmitEvent) {
-		event.preventDefault();
-
-		if (!validateForm()) return;
-
-		try {
-			const form = event.target as HTMLFormElement;
-			const formData = new FormData(form);
-
-			// Netlify Forms用のエンドポイントにPOSTリクエストを送信
-			const response = await fetch(form.action || window.location.pathname, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					Accept: 'application/json'
-				},
-				body: new URLSearchParams(formData).toString()
-			});
-
-			if (!response.ok) {
-				throw new Error(`Form submission failed: ${response.statusText}`);
-			}
-
-			submitted = true;
-			// フォームをリセット
-			name = '';
-			email = '';
-			company = '';
-			jobTitle = '';
-			inquiryType = '';
-			message = '';
-			errors = {};
-		} catch (error) {
-			console.error('Form submission error:', error);
-			errors = {
-				...errors,
-				submit: 'Failed to submit form. Please try again.'
-			};
-		}
-	}
 </script>
 
 <section class="py-12 sm:py-16 lg:py-20">
@@ -74,6 +33,7 @@
 			<h2 class="mb-8 text-center text-2xl font-bold sm:mb-12 sm:text-3xl lg:text-4xl">
 				{t.title}
 			</h2>
+
 			{#if submitted}
 				<div
 					class="rounded-lg bg-green-100 p-4 text-center text-green-700 dark:bg-green-900 dark:text-green-100 sm:p-6"
@@ -81,36 +41,24 @@
 					{t.success}
 				</div>
 			{:else}
-				<!-- 隠しフォーム (Netlify用) -->
-				<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+				<form name="contact-hidden" netlify netlify-honeypot="bot-field" class="hidden">
 					<input type="text" name="name" />
 					<input type="email" name="email" />
 					<input type="text" name="company" />
 					<input type="text" name="job-title" />
-					<input type="text" name="inquiry-type" />
+					<select name="inquiry-type"></select>
 					<textarea name="message"></textarea>
-					<input name="bot-field" />
 				</form>
 
-				<!-- 実際のフォーム -->
 				<form
 					name="contact"
 					method="POST"
-					action={`/${lang}/contact`}
 					data-netlify="true"
 					netlify-honeypot="bot-field"
-					onsubmit={handleSubmit}
 					class="space-y-6 sm:space-y-8"
 				>
-					{#if errors.submit}
-						<div
-							class="rounded-lg bg-red-100 p-4 text-center text-red-700 dark:bg-red-900 dark:text-red-100 sm:p-6"
-						>
-							{errors.submit}
-						</div>
-					{/if}
-
 					<input type="hidden" name="form-name" value="contact" />
+
 					<p class="hidden">
 						<label>
 							Don't fill this out if you're human: <input name="bot-field" />
@@ -119,7 +67,8 @@
 
 					<div class="space-y-2">
 						<label for="name" class="text-sm font-medium leading-none">
-							{t.name} <span class="text-red-500">*</span>
+							{t.name}
+							<span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="text"
@@ -142,7 +91,8 @@
 
 					<div class="space-y-2">
 						<label for="email" class="text-sm font-medium leading-none">
-							{t.email} <span class="text-red-500">*</span>
+							{t.email}
+							<span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="email"
@@ -164,7 +114,8 @@
 
 					<div class="space-y-2">
 						<label for="company" class="text-sm font-medium leading-none">
-							{t.company} <span class="text-red-500">*</span>
+							{t.company}
+							<span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="text"
@@ -207,7 +158,8 @@
 
 					<div class="space-y-2">
 						<label for="inquiryType" class="text-sm font-medium leading-none">
-							{t.inquiryType.label} <span class="text-red-500">*</span>
+							{t.inquiryType.label}
+							<span class="text-red-500">*</span>
 						</label>
 						<select
 							id="inquiryType"
