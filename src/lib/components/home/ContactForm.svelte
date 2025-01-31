@@ -28,17 +28,21 @@
 
 	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
-		
+
 		if (!validateForm()) return;
 
 		try {
 			const form = event.target as HTMLFormElement;
 			const formData = new FormData(form);
 
-			const response = await fetch("/", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: new URLSearchParams(formData).toString(),
+			// Netlify Forms用のエンドポイントにPOSTリクエストを送信
+			const response = await fetch(form.action || window.location.pathname, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					Accept: 'application/json'
+				},
+				body: new URLSearchParams(formData).toString()
 			});
 
 			if (!response.ok) {
@@ -55,10 +59,10 @@
 			message = '';
 			errors = {};
 		} catch (error) {
-			console.error("Form submission error:", error);
+			console.error('Form submission error:', error);
 			errors = {
 				...errors,
-				submit: "Failed to submit form. Please try again."
+				submit: 'Failed to submit form. Please try again.'
 			};
 		}
 	}
@@ -92,13 +96,16 @@
 				<form
 					name="contact"
 					method="POST"
+					action={`/${lang}/contact`}
 					data-netlify="true"
 					netlify-honeypot="bot-field"
 					onsubmit={handleSubmit}
 					class="space-y-6 sm:space-y-8"
 				>
 					{#if errors.submit}
-						<div class="rounded-lg bg-red-100 p-4 text-center text-red-700 dark:bg-red-900 dark:text-red-100 sm:p-6">
+						<div
+							class="rounded-lg bg-red-100 p-4 text-center text-red-700 dark:bg-red-900 dark:text-red-100 sm:p-6"
+						>
 							{errors.submit}
 						</div>
 					{/if}
