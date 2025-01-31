@@ -26,7 +26,7 @@
 		return Object.keys(errors).length === 0;
 	}
 
-	const handleSubmit = async (event: Event) => {
+	async function handleSubmit(event: Event) {
 		event.preventDefault();
 
 		if (!validateForm()) {
@@ -34,14 +34,13 @@
 		}
 
 		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
-
 		try {
 			const response = await fetch('/', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				body: new URLSearchParams(formData).toString()
+				body: new URLSearchParams(new FormData(form) as any).toString()
 			});
+
 			if (response.ok) {
 				submitted = true;
 				name = '';
@@ -50,13 +49,11 @@
 				jobTitle = '';
 				inquiryType = '';
 				message = '';
-			} else {
-				console.error('Form submission failed');
 			}
 		} catch (error) {
-			console.error('Error:', error);
+			console.error('Error submitting form:', error);
 		}
-	};
+	}
 </script>
 
 <section class="py-12 sm:py-16 lg:py-20">
@@ -73,7 +70,8 @@
 					{t.success}
 				</div>
 			{:else}
-				<form name="contact-hidden" netlify netlify-honeypot="bot-field" class="hidden">
+				<!-- Hidden form for Netlify's bot -->
+				<form name="contact" netlify netlify-honeypot="bot-field" class="hidden">
 					<input type="text" name="name" />
 					<input type="email" name="email" />
 					<input type="text" name="company" />
@@ -85,35 +83,11 @@
 				<form
 					name="contact"
 					method="POST"
+					action="/?success=true"
 					data-netlify="true"
-					onsubmit={async (event) => {
-						event.preventDefault();
-						const formData = new FormData(event.target as HTMLFormElement);
-
-						try {
-							const response = await fetch('/', {
-								method: 'POST',
-								headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-								body: new URLSearchParams(formData as any).toString()
-							});
-
-							if (response.ok) {
-								submitted = true;
-								name = '';
-								email = '';
-								company = '';
-								jobTitle = '';
-								inquiryType = '';
-								message = '';
-							} else {
-								console.error('Form submission failed');
-							}
-						} catch (error) {
-							console.error('Error submitting form:', error);
-						}
-					}}
 					netlify-honeypot="bot-field"
 					class="space-y-6 sm:space-y-8"
+					onsubmit={handleSubmit}
 				>
 					<input type="hidden" name="form-name" value="contact" />
 
@@ -125,8 +99,7 @@
 
 					<div class="space-y-2">
 						<label for="name" class="text-sm font-medium leading-none">
-							{t.name}
-							<span class="text-red-500">*</span>
+							{t.name} <span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="text"
@@ -149,8 +122,7 @@
 
 					<div class="space-y-2">
 						<label for="email" class="text-sm font-medium leading-none">
-							{t.email}
-							<span class="text-red-500">*</span>
+							{t.email} <span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="email"
@@ -172,8 +144,7 @@
 
 					<div class="space-y-2">
 						<label for="company" class="text-sm font-medium leading-none">
-							{t.company}
-							<span class="text-red-500">*</span>
+							{t.company} <span class="text-red-500">*</span>
 						</label>
 						<Input
 							type="text"
@@ -216,8 +187,7 @@
 
 					<div class="space-y-2">
 						<label for="inquiryType" class="text-sm font-medium leading-none">
-							{t.inquiryType.label}
-							<span class="text-red-500">*</span>
+							{t.inquiryType.label} <span class="text-red-500">*</span>
 						</label>
 						<select
 							id="inquiryType"
