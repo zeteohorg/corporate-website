@@ -26,9 +26,41 @@
 		return Object.keys(errors).length === 0;
 	}
 
-	function handleSubmit() {
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+		
 		if (!validateForm()) return;
-		submitted = true;
+
+		try {
+			const form = event.target as HTMLFormElement;
+			const formData = new FormData(form);
+
+			const response = await fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: new URLSearchParams(formData).toString(),
+			});
+
+			if (!response.ok) {
+				throw new Error(`Form submission failed: ${response.statusText}`);
+			}
+
+			submitted = true;
+			// フォームをリセット
+			name = '';
+			email = '';
+			company = '';
+			jobTitle = '';
+			inquiryType = '';
+			message = '';
+			errors = {};
+		} catch (error) {
+			console.error("Form submission error:", error);
+			errors = {
+				...errors,
+				submit: "Failed to submit form. Please try again."
+			};
+		}
 	}
 </script>
 
@@ -45,6 +77,18 @@
 					{t.success}
 				</div>
 			{:else}
+				<!-- 隠しフォーム (Netlify用) -->
+				<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+					<input type="text" name="name" />
+					<input type="email" name="email" />
+					<input type="text" name="company" />
+					<input type="text" name="job-title" />
+					<input type="text" name="inquiry-type" />
+					<textarea name="message"></textarea>
+					<input name="bot-field" />
+				</form>
+
+				<!-- 実際のフォーム -->
 				<form
 					name="contact"
 					method="POST"
@@ -53,6 +97,12 @@
 					onsubmit={handleSubmit}
 					class="space-y-6 sm:space-y-8"
 				>
+					{#if errors.submit}
+						<div class="rounded-lg bg-red-100 p-4 text-center text-red-700 dark:bg-red-900 dark:text-red-100 sm:p-6">
+							{errors.submit}
+						</div>
+					{/if}
+
 					<input type="hidden" name="form-name" value="contact" />
 					<p class="hidden">
 						<label>
