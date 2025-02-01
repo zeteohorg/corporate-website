@@ -6,7 +6,7 @@
 </script>
 
 <section
-	class="relative flex h-[80vh] w-full flex-col items-center justify-center px-4 py-24 md:py-32"
+	class="relative flex min-h-[80vh] w-full flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-24"
 	aria-label="Hero section"
 >
 	<!-- Gradient halo background effect -->
@@ -19,27 +19,27 @@
 		></div>
 	</div>
 
-	<div class="relative z-10 mx-auto max-w-4xl space-y-16 text-center">
+	<div class="relative z-10 mx-auto max-w-4xl space-y-8 sm:space-y-12 md:space-y-16 text-center">
 		<div>
 			<h1
-				class="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-5xl"
+				class="mb-4 sm:mb-6 text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-normal sm:leading-tight text-white"
 				data-sveltekit-preload-data
 			>
 				{title}
 			</h1>
 			<p
-				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-200 md:text-base"
+				class="mx-auto max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed text-gray-200"
 				data-sveltekit-preload-data
 			>
 				{subtitle}
 			</p>
 		</div>
 
-		<div class="space-y-6">
-			<h2 class="text-2xl font-semibold text-white md:text-3xl">
+		<div class="space-y-4 sm:space-y-6">
+			<h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-white">
 				{wearableTitle}
 			</h2>
-			<p class="mx-auto max-w-3xl text-base leading-relaxed text-gray-200">
+			<p class="mx-auto max-w-3xl text-sm sm:text-base leading-relaxed text-gray-200">
 				{wearableDescription}
 			</p>
 		</div>
