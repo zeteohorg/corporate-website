@@ -43,73 +43,66 @@ Some beacons equipped with multiple antennas can estimate the angle at which a r
 Triangulation: using 2 beacons or more, we can locate a target. Bluetooth devices use an array of antennas to estimate the angle at which a signal is received.
 Beacons come with their pros and cons. The accuracy is usually good or great but at the cost of a complex deployment. Installing 1000+ beacons for tracking assets in multiple buildings is not uncommon. Inertial navigation offers an alternative to using beacons.
 
-### 慣性航法
+### Inertial Navigation
 
-慣性航法とは、自己完結型の航法技術であり、加速度計とジャイロスコープによる測定値を使用して、既知の開始点、方向、および速度に対する対象物の位置と方向を追跡する方法です。
-この方法は、自己完結型であるため、ビーコンを必要としないのが大きなポイントです。しかし、慣性航法を使ったシステムの多くは、コストが高かったり、精度が低かったりするのが課題となっています。
+Inertial navigation is a self-contained navigation technology that tracks an object's position and orientation relative to a known starting point, direction, and velocity using measurements from accelerometers and gyroscopes. A key advantage of this method is that it's self-contained and doesn't require beacons. However, many inertial navigation systems face challenges with high costs and limited accuracy.
 
-## どのような技術があるの？
+## What Technologies Are Available?
 
-屋内位置測位システムで最も知られている技術を 4 つの側面から検証していきます：
+Let's examine the four key aspects of the most well-known indoor positioning systems:
 
-- 導入コスト：そのソリューションを採用する場合、どれくらいのコストがかかるのか？
-- 精度：一般的にどの程度の精度が期待できるか？
-- 柔軟性：PoC（Proof Of Concept：概念実証）を行いたい場合、開始するのは難しいか？また、冶金や製鉄工場、船など、屋内環境がより複雑な場合はどうすればいいのでしょうか？
-- リアルタイムの人の位置測位（または追跡）には適しているか？
+- Implementation Cost: What are the costs associated with adopting this solution?
+- Accuracy: What level of accuracy can typically be expected?
+- Flexibility: How difficult is it to start a Proof of Concept (PoC)? And what about more complex indoor environments like metallurgy facilities, steel mills, or ships?
+- Suitability for real-time human positioning (or tracking)?
 
-さっそく始めてみましょう。
+Let's dive in.
 
 ## GNSS（Global Navigation Satellite System）
 
-アメリカの GPS や中国の BeiDou のような GNSS（Global Navigation Satellite System）は、屋外の位置測位に広く使われています。しかし、屋内で使用すると、その性能は著しく変化し、通常は屋内位置情報システムとして推奨されません。状況に応じて、GNSS を検討することができますが、ほとんどの場合、RTLS はより正確で信頼性の高い技術が求められます。
-
+While GNSS systems like American GPS and Chinese BeiDou are widely used for outdoor positioning, their performance changes dramatically when used indoors, making them generally not recommended for indoor positioning systems. While GNSS might be considered depending on the situation, in most cases, RTLS (Real-Time Location System) requires more accurate and reliable technologies.
 ![GNSS](/images/blog/tech/1.png)
 
 ## BLE (Bluetooth & Bluetooth Low Energy)
 
-Bluetooth は、デバイス間の通信に電波を使用します。BLEは、低消費電力で電池寿命が長いため、屋内位置情報システムで広く使用されている Bluetooth の一種です。さらに、BLE 対応の屋内位置測位システムは、リアルタイムの追跡、ジオフェンシング、（地図上にバーチャルなフェンスを設置し、その中に特定の人や物が出入りした時にシステムからメッセージを送るなど、あらかじめ決めた処理を自動的に行うシステム）や近接アラートを行うことができます。
+Bluetooth uses radio waves for communication between devices. BLE (Bluetooth Low Energy) is a type of Bluetooth that's widely used in indoor positioning systems due to its low power consumption and long battery life. Furthermore, BLE-enabled indoor positioning systems can perform real-time tracking, geofencing (a system that automatically executes predetermined actions, such as sending messages when specific people or objects enter or exit virtual fences set up on a map), and proximity alerts.
 
 ![BLE](/images/blog/tech/2.png)
 
-BLEはビーコンを必要とするため、設置にコストと時間がかかり、発電所や建設現場などの複雑な環境には不向きです。また、屋内と屋外をまたぐ場所を追跡する必要がある場合、セットアップがより複雑になることもあります。 さらに、Bluetooth は金属製の構造物やコンクリートの影響を受けます。また、通信距離も限られています。天井が高いと、ビーコンを配備できないこともあります。電源については、BLE ビーコンはバッテリーで数カ月間動作させることができます。しかし、それ以外では、精度 1.5m 未満で良好な受信範囲を確保できるなど、コストと精度のバランスに優れています。
-
+Since BLE requires beacons, it involves significant installation costs and time, making it less suitable for complex environments like power plants and construction sites. Additionally, when tracking is needed across both indoor and outdoor areas, the setup can become more complicated. Furthermore, Bluetooth signals are affected by metal structures and concrete, and their communication range is limited. High ceilings can also make beacon deployment challenging. Regarding power supply, BLE beacons can operate on batteries for several months. However, in terms of cost-performance balance, BLE offers good coverage with accuracy under 1.5 meters.
 ## Wifi
 
-Wifi は今やどこにでもあり、使いたいときに場所を選ばずに利用できるようになっています。そのため、この技術を活用した屋内位置測位システムは、BLE よりも導入障壁は低いですが、精度が低いという問題があります。
-
+WiFi is now ubiquitous and can be used anywhere, anytime. As a result, indoor positioning systems that utilize this technology have a lower barrier to entry compared to BLE. However, they face the challenge of lower accuracy.
 ![Wifi](/images/blog/tech/3.png)
 
-すでに既存の WiFi インフラがあり、～5m の精度が許容できるとしたら、WiFi は素晴らしい選択肢となるでしょう。Bluetooth よりも範囲が広いので、より柔軟な対応が可能です。しかし、金属構造物やコンクリートの影響を受けることもあります。また、ビーコンは外部電源に接続する必要があることを留意しなければいけません。 それ以外の場合は、ここに挙げている他の技術を検討した方が良いかもしれません。
-
+If you already have existing WiFi infrastructure and can accept accuracy within approximately 5 meters, WiFi becomes an excellent choice. It offers more flexibility than Bluetooth due to its wider range. However, it can still be affected by metal structures and concrete. Also, it's important to note that the beacons need to be connected to an external power source. In other cases, you might want to consider other technologies mentioned here.
 ## UWB(Ultra Wide Band)
 
-UWB は比較的新しい技術です。この無線技術は、3.1 ～ 10.6GHz の周波数帯で動作します。非常に短いパルスの電波と ToF を使用して、モノの位置を特定します。非常に高い精度を提供することができますが、これまで紹介した技術よりも高価です。
+UWB (Ultra-Wideband) is a relatively new technology. This wireless technology operates in the frequency band of 3.1 to 10.6 GHz. It uses very short radio pulses and ToF (Time of Flight) to determine the position of objects. While it can provide extremely high accuracy, it is more expensive than the technologies previously introduced.
 
 ![UWB](/images/blog/tech/4.png)
 
-UWBもビーコンを必要とし、Bluetoothと WiFiの中間的な距離感を持っています。また、金属製の構造物など、環境の影響を受けます。それでも、適切な受信範囲を確保すれば、1m 以下の精度で屋内位置測位ができます。ビーコンは通常、バッテリーで 10 カ月以上動作させることができます。コストよりも精度を優先し、屋内環境が適しているのであれば、UWB は最適な技術です。
+UWB also requires beacons and has an intermediate range between Bluetooth and WiFi. It is affected by environmental factors such as metal structures. Nevertheless, when proper coverage is ensured, it can achieve indoor positioning accuracy of less than 1 meter. The beacons typically can operate on batteries for over 10 months. If accuracy takes priority over cost and the indoor environment is suitable, UWB is the optimal technology.
 
 ## NFC (Near Field Communication)
 
-意外なことに、近距離無線通信（NFC）は非リアルタイムの屋内位置情報システムに使用することができます。NFC タグに触れるだけで、建物内のモノや人の位置を特定することができるのです。NFC は、シンプルかつ堅牢な非リアルタイムの位置情報システムに使用することができます。
+Surprisingly, Near Field Communication (NFC) can be used for non-real-time indoor positioning systems. Simply touching NFC tags allows you to identify the location of objects or people within a building. NFC can be utilized for simple and robust non-real-time positioning systems.
 
 ![NFC](/images/blog/tech/5.png)
 
-## PDR(Pedestrian Dead Reckoning)
+## INS(Inertial Navigation System)
 
-PDR は、加速度センサーとジャイロスコープを活用して、対象物の位置を追跡します。この技術は、ボート、潜水艦、飛行機などで一般的に使用されています。しかし、センサー（特に MEMS）やウェアラブルデバイスが安価で高精度になってきたため、PDR はビーコンベースの屋内位置情報システムの代替手段となっています。
+![INS](/images/blog/tech/6.png)
 
-![PDR](/images/blog/tech/6.png)
+INS (Inertial Navigation Systems) tracks object positions using accelerometers and gyroscopes. This technology is commonly used in boats, submarines, and aircraft. 
 
-高い精度が要求される場合、PDR では高価なウェアラブル端末が必要になります。ビーコンを使う余裕があれば、BLE や UWB がより良い選択肢となります。
+When high accuracy is required, INS needs expensive wearable devices. If you can afford to use beacons, BLE or UWB would be better options.
 
-## 次世代 RTLS
+## Next-Generation RTLS
 
-zeteoh TRAILS は、PDR と AI（人工知能）を組み合わせた柔軟なソリューションを提供します。これにより、数週間かかる屋内位置測位システムの導入を数時間で実現できます。また、TRAILS は屋内と屋外をまたぐ現場でも位置測位が可能です。
-
+Zeteoh TRAILS provides a flexible solution that combines INS and AI (Artificial Intelligence). This enables indoor positioning system deployment in just hours instead of weeks. Additionally, TRAILS can track positions across both indoor and outdoor spaces.
 ![次世代RTLS](/images/blog/tech/7.png)
 
-## まとめ
+## Summary
 
-屋内位置測位に適した技術を選択するのは大変な作業です。それぞれの技術の利点と欠点を正しく理解し、現場の環境や条件、必要な位置情報の精度に合わせて、適切な技術を選択することが必要です。
-一般的に、ビーコンを使ったソリューションは通常、精度は高いですが、柔軟性に欠け、莫大な導入コストがかかります。屋内位置測位技術を適切に活用することで、ビジネスに多くのメリットをもたらすことができます。
+Selecting the appropriate technology for indoor positioning is a challenging task. It requires a proper understanding of the advantages and disadvantages of each technology, and choosing the right one based on the site environment, conditions, and required positioning accuracy. Generally, beacon-based solutions offer high accuracy but lack flexibility and involve substantial implementation costs. When properly utilized, indoor positioning technology can bring numerous benefits to your business.
