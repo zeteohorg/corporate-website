@@ -3,6 +3,9 @@ import type { LayoutLoad } from './$types';
 import { browser } from '$app/environment';
 import { building } from '$app/environment';
 
+export const prerender = true;
+export const trailingSlash = 'always';
+
 export const load: LayoutLoad = ({ url }) => {
 	// Don't redirect for API routes or during prerendering of language-specific routes
 	if (url.pathname.startsWith('/sitemap.xml') || (building && url.pathname.match(/^\/(en|ja)/))) {

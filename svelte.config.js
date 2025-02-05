@@ -4,36 +4,30 @@ import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import adapter from '@sveltejs/adapter-netlify';
-import { glob } from 'glob';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
 		adapter: adapter({
 			edge: false,
 			split: true
 		}),
-		alias: {
-			$lib: 'src/lib'
-		},
 		prerender: {
-			handleMissingId: 'warn',
 			handleHttpError: ({ path, referrer, message }) => {
-				// Ignore 404s from non-language routes that will be redirected
-				if (message.includes('404') && !path.match(/^\/(en|ja)\//)) {
+				// Don't fail build on 404s for language paths
+				if (message.includes('404') && !path.match(/^\/(en|ja)/)) {
 					return;
 				}
 				throw new Error(`${message} (${path})${referrer ? ` (linked from ${referrer})` : ''}`);
 			},
-			entries: [
-				'/',
-				'/en',
-				'/ja',
-				'/en/privacy-policy',
-				'/ja/privacy-policy',
-				...getBlogEntries(),
-				...getNewsEntries()
-			]
+			// Prerender all pages
+			entries: ['*'],
+			// Enable crawling for dynamic routes
+			crawl: true,
+			// Handle all routes as static
+			handleMissingId: 'ignore'
+		},
+		alias: {
+			$lib: 'src/lib'
 		}
 	},
 	extensions: ['.svelte', '.md', '.mdx'],
@@ -53,31 +47,5 @@ const config = {
 		})
 	]
 };
-
-function getBlogEntries() {
-	const blogFiles = glob.sync('src/content/blog/**/*.mdx');
-	return blogFiles
-		.map((file) => {
-			const match = file.match(/blog\/(en|ja)\/(.+)\.mdx$/);
-			if (!match) return null;
-			const [, lang, slug] = match;
-			return `/${lang}/blog/${slug}`;
-		})
-		.filter(Boolean);
-}
-
-function getNewsEntries() {
-	const newsFiles = glob.sync('src/content/news/**/*.mdx');
-	return newsFiles
-		.map((file) => {
-			const match = file.match(/news\/(en|ja)\/(.+)\.mdx$/);
-			if (!match) return null;
-			const [, lang, slug] = match;
-			// Remove any dots from the slug
-			const cleanSlug = slug.replace(/\./g, '');
-			return `/${lang}/news/${cleanSlug}`;
-		})
-		.filter(Boolean);
-}
 
 export default config;

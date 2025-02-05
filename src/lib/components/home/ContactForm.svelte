@@ -1,209 +1,171 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input';
-	import { buttonVariants } from '$lib/components/ui/button';
+	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
+	import { browser } from '$app/environment';
 
-	let lang = $derived($page.params.lang ?? 'en');
-	let t = $derived(translations[lang].common.contact);
+	const currentLanguage = $derived($page.params.lang ?? 'en');
+	const t = $derived(translations[currentLanguage].common.contact);
 
-	let name = $state('');
-	let email = $state('');
-	let company = $state('');
-	let jobTitle = $state('');
-	let inquiryType = $state('');
-	let message = $state('');
-	let errors = $state<Record<string, string>>({});
+	let submitted = $state(false);
+	let formEl = $state<HTMLFormElement | null>(null);
 
-	function validateForm() {
-		errors = {};
-		if (!name) errors.name = t.errors.required;
-		if (!email) errors.email = t.errors.required;
-		else if (!/\S+@\S+\.\S+/.test(email)) errors.email = t.errors.invalidEmail;
-		if (!company) errors.company = t.errors.required;
-		if (!inquiryType) errors.inquiryType = t.errors.required;
-		return Object.keys(errors).length === 0;
-	}
+	function onSubmit(event: SubmitEvent) {
+		event.preventDefault();
 
-	function handleSubmit(event: SubmitEvent) {
-		if (!validateForm()) {
-			event.preventDefault();
-		}
+		if (!browser || !formEl) return;
+
+		const formData = new FormData(formEl);
+
+		fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: new URLSearchParams(formData as any).toString()
+		})
+			.then(() => {
+				submitted = true;
+				formEl.reset();
+			})
+			.catch((error) => {
+				console.error('Form submission error:', error);
+			});
 	}
 </script>
 
-<section class="py-12 sm:py-16 lg:py-20">
+<section class="py-12 sm:py-16 lg:py-20" id="contact" aria-labelledby="contact-heading">
 	<div class="container px-4 sm:px-6 lg:px-8">
 		<div class="mx-auto max-w-xl">
-			<h2 class="mb-8 text-center text-2xl font-bold sm:mb-12 sm:text-3xl lg:text-4xl">
+			<h2
+				id="contact-heading"
+				class="mb-8 text-center text-2xl font-bold sm:mb-12 sm:text-3xl lg:text-4xl"
+			>
 				{t.title}
 			</h2>
 
-			<form
-				name="contact"
-				method="POST"
-				data-netlify="true"
-				netlify-honeypot="bot-field"
-				onsubmit={handleSubmit}
-				class="space-y-6 sm:space-y-8"
-			>
-				<input type="hidden" name="form-name" value="contact" />
-				<input type="hidden" name="lang" value={lang} />
-				<p class="hidden">
-					<label>
-						Don't fill this out if you're human: <input name="bot-field" />
-					</label>
-				</p>
-
-				<!-- Rest of form fields stay the same -->
-				<div class="space-y-2">
-					<label for="name" class="text-sm font-medium leading-none">
-						{t.name} <span class="text-red-500">*</span>
-					</label>
-					<Input
-						type="text"
-						id="name"
-						name="name"
-						bind:value={name}
-						class={errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}
-						aria-invalid={errors.name ? 'true' : undefined}
-						aria-describedby={errors.name ? 'name-error' : undefined}
-						autocomplete="name"
-						minlength="2"
-						required
-					/>
-					{#if errors.name}
-						<p id="name-error" class="text-sm text-red-500">
-							{errors.name}
-						</p>
-					{/if}
+			{#if submitted}
+				<div class="rounded-md bg-primary/10 p-4 text-center" role="alert">
+					<p class="text-foreground">{t.success}</p>
 				</div>
-
-				<div class="space-y-2">
-					<label for="email" class="text-sm font-medium leading-none">
-						{t.email} <span class="text-red-500">*</span>
-					</label>
-					<Input
-						type="email"
-						id="email"
-						name="email"
-						bind:value={email}
-						class={errors.email ? 'border-red-500 focus-visible:ring-red-500' : ''}
-						aria-invalid={errors.email ? 'true' : undefined}
-						aria-describedby={errors.email ? 'email-error' : undefined}
-						autocomplete="email"
-						required
-					/>
-					{#if errors.email}
-						<p id="email-error" class="text-sm text-red-500">
-							{errors.email}
-						</p>
-					{/if}
-				</div>
-
-				<div class="space-y-2">
-					<label for="company" class="text-sm font-medium leading-none">
-						{t.company} <span class="text-red-500">*</span>
-					</label>
-					<Input
-						type="text"
-						id="company"
-						name="company"
-						bind:value={company}
-						class={errors.company ? 'border-red-500 focus-visible:ring-red-500' : ''}
-						aria-invalid={errors.company ? 'true' : undefined}
-						aria-describedby={errors.company ? 'company-error' : undefined}
-						autocomplete="organization"
-						required
-					/>
-					{#if errors.company}
-						<p id="company-error" class="text-sm text-red-500">
-							{errors.company}
-						</p>
-					{/if}
-				</div>
-
-				<div class="space-y-2">
-					<label for="jobTitle" class="text-sm font-medium leading-none">
-						{t.jobTitle}
-					</label>
-					<Input
-						type="text"
-						id="jobTitle"
-						name="job-title"
-						bind:value={jobTitle}
-						class={errors.jobTitle ? 'border-red-500 focus-visible:ring-red-500' : ''}
-						aria-invalid={errors.jobTitle ? 'true' : undefined}
-						aria-describedby={errors.jobTitle ? 'jobTitle-error' : undefined}
-						autocomplete="organization-title"
-					/>
-					{#if errors.jobTitle}
-						<p id="jobTitle-error" class="text-sm text-red-500">
-							{errors.jobTitle}
-						</p>
-					{/if}
-				</div>
-
-				<div class="space-y-2">
-					<label for="inquiryType" class="text-sm font-medium leading-none">
-						{t.inquiryType.label} <span class="text-red-500">*</span>
-					</label>
-					<select
-						id="inquiryType"
-						name="inquiry-type"
-						bind:value={inquiryType}
-						class={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-							errors.inquiryType ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'
-						}`}
-						required
-					>
-						<option value="">{t.inquiryType.placeholder}</option>
-						<option value="demo">{t.inquiryType.options.demo}</option>
-						<option value="vendor">{t.inquiryType.options.vendor}</option>
-						<option value="other">{t.inquiryType.options.other}</option>
-					</select>
-					{#if errors.inquiryType}
-						<p id="inquiryType-error" class="text-sm text-red-500">
-							{errors.inquiryType}
-						</p>
-					{/if}
-				</div>
-
-				<div class="space-y-2">
-					<label for="message" class="text-sm font-medium leading-none">
-						{t.message}
-					</label>
-					<textarea
-						id="message"
-						name="message"
-						bind:value={message}
-						class={`min-h-[120px] w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-							errors.message ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'
-						}`}
-						rows="4"
-					></textarea>
-					{#if errors.message}
-						<p id="message-error" class="text-sm text-red-500">
-							{errors.message}
-						</p>
-					{/if}
-				</div>
-
-				<div class="text-sm text-muted-foreground">
-					<span class="text-red-500">*</span>
-					{t.required}
-				</div>
-
-				<button
-					type="submit"
-					class={buttonVariants({
-						variant: 'default',
-						class: 'min-h-[44px] w-full text-base sm:min-h-[48px] sm:w-auto'
-					})}
+			{:else}
+				<form
+					bind:this={formEl}
+					onsubmit={onSubmit}
+					name="contact-form"
+					data-netlify="true"
+					netlify-honeypot="bot-field"
+					class="space-y-6 sm:space-y-8"
 				>
-					{t.submit}
-				</button>
-			</form>
+					<input type="hidden" name="form-name" value="contact-form" />
+					<input type="hidden" name="lang" value={currentLanguage} />
+
+					<div class="hidden" aria-hidden="true">
+						<label>
+							Don't fill this out if you're human:
+							<input name="bot-field" />
+						</label>
+					</div>
+
+					<!-- Name field -->
+					<div class="space-y-2">
+						<label for="name" class="text-sm font-medium leading-none">
+							{t.name} <span class="text-destructive">*</span>
+						</label>
+						<Input
+							type="text"
+							id="name"
+							name="name"
+							autocomplete="name"
+							minlength="2"
+							required
+							aria-required="true"
+						/>
+					</div>
+
+					<!-- Email field -->
+					<div class="space-y-2">
+						<label for="email" class="text-sm font-medium leading-none">
+							{t.email} <span class="text-destructive">*</span>
+						</label>
+						<Input
+							type="email"
+							id="email"
+							name="email"
+							autocomplete="email"
+							required
+							aria-required="true"
+						/>
+					</div>
+
+					<!-- Company field -->
+					<div class="space-y-2">
+						<label for="company" class="text-sm font-medium leading-none">
+							{t.company} <span class="text-destructive">*</span>
+						</label>
+						<Input
+							type="text"
+							id="company"
+							name="company"
+							autocomplete="organization"
+							required
+							aria-required="true"
+						/>
+					</div>
+
+					<!-- Job Title field -->
+					<div class="space-y-2">
+						<label for="jobTitle" class="text-sm font-medium leading-none">
+							{t.jobTitle}
+						</label>
+						<Input type="text" id="jobTitle" name="job-title" autocomplete="organization-title" />
+					</div>
+
+					<!-- Inquiry Type field -->
+					<div class="space-y-2">
+						<label for="inquiryType" class="text-sm font-medium leading-none">
+							{t.inquiryType.label} <span class="text-destructive">*</span>
+						</label>
+						<select
+							id="inquiryType"
+							name="inquiry-type"
+							class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+							required
+							aria-required="true"
+						>
+							<option value="">{t.inquiryType.placeholder}</option>
+							<option value="demo">{t.inquiryType.options.demo}</option>
+							<option value="vendor">{t.inquiryType.options.vendor}</option>
+							<option value="other">{t.inquiryType.options.other}</option>
+						</select>
+					</div>
+
+					<!-- Message field -->
+					<div class="space-y-2">
+						<label for="message" class="text-sm font-medium leading-none">
+							{t.message}
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							class="min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+							rows="4"
+						></textarea>
+					</div>
+
+					<div class="text-sm text-muted-foreground">
+						<span class="text-destructive">*</span>
+						{t.required}
+					</div>
+
+					<Button
+						type="submit"
+						class="min-h-[44px] w-full text-base sm:min-h-[48px] sm:w-auto"
+						disabled={submitted}
+					>
+						{t.submit}
+					</Button>
+				</form>
+			{/if}
 		</div>
 	</div>
 </section>
