@@ -27,26 +27,28 @@
 	}
 
 	async function handleSubmit(event: SubmitEvent) {
-		event.preventDefault();
+    event.preventDefault();
+    
+    if (!validateForm()) return;
 
-		if (!validateForm()) return;
+    const formData = new FormData(event.target as HTMLFormElement);
 
-		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
-
-		try {
-			await fetch(form.action, {
-				method: 'POST',
-				body: new URLSearchParams(formData as any).toString(),
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				}
-			});
-			submitted = true;
-		} catch (error) {
-			console.error('Form submission error:', error);
-		}
-	}
+    try {
+        const response = await fetch("/", {  // Changed to use root path
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData as any).toString()
+        });
+        
+        if (response.ok) {
+            submitted = true;
+        } else {
+            console.error('Form submission failed:', response.status);
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+    }
+}
 </script>
 
 <section class="py-12 sm:py-16 lg:py-20">
