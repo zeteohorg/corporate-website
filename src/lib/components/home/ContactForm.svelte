@@ -42,6 +42,7 @@
 			<form
 				name="contact"
 				method="POST"
+				action="/"
 				data-netlify="true"
 				netlify-honeypot="bot-field"
 				onsubmit={handleSubmit}
@@ -53,6 +54,8 @@
 						Don't fill this out if you're human: <input name="bot-field" />
 					</label>
 				</p>
+
+				<!-- Rest of your form inputs stay the same -->
 
 				<div class="space-y-2">
 					<label for="name" class="text-sm font-medium leading-none">
