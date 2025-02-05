@@ -42,21 +42,20 @@
 			<form
 				name="contact"
 				method="POST"
-				action="/"
 				data-netlify="true"
 				netlify-honeypot="bot-field"
 				onsubmit={handleSubmit}
 				class="space-y-6 sm:space-y-8"
 			>
 				<input type="hidden" name="form-name" value="contact" />
+				<input type="hidden" name="lang" value={lang} />
 				<p class="hidden">
 					<label>
 						Don't fill this out if you're human: <input name="bot-field" />
 					</label>
 				</p>
 
-				<!-- Rest of your form inputs stay the same -->
-
+				<!-- Rest of form fields stay the same -->
 				<div class="space-y-2">
 					<label for="name" class="text-sm font-medium leading-none">
 						{t.name} <span class="text-red-500">*</span>
