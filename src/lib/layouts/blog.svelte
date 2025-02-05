@@ -10,13 +10,7 @@
 	import type { TableOfContentsItem } from '$lib/types';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { cn } from '$lib/utils';
-	console.log('[blog.svelte] Props received:', $$props, 'Data property exists:', 'data' in $$props);
-	console.log('[blog.svelte] Raw props before destructure:', {
-		props: $$props,
-		metadata: $$props.metadata,
-		hasContent: 'content' in $$props,
-		contentLocation: $$props.content ? 'root' : $$props.metadata?.content ? 'metadata' : 'missing'
-	});
+
 	let { metadata, previousPost, nextPost, children } = $props<{
 		metadata: {
 			title: string;

@@ -19,16 +19,16 @@
 		></div>
 	</div>
 
-	<div class="relative z-10 mx-auto max-w-4xl space-y-8 sm:space-y-12 md:space-y-16 text-center">
+	<div class="relative z-10 mx-auto max-w-4xl space-y-8 text-center sm:space-y-12 md:space-y-16">
 		<div>
 			<h1
-				class="mb-4 sm:mb-6 text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-normal sm:leading-tight text-white"
+				class="mb-4 text-3xl font-bold leading-normal text-white sm:mb-6 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
 				data-sveltekit-preload-data
 			>
 				{title}
 			</h1>
 			<p
-				class="mx-auto max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed text-gray-200"
+				class="mx-auto max-w-3xl text-sm leading-relaxed text-gray-200 sm:text-base md:text-lg"
 				data-sveltekit-preload-data
 			>
 				{subtitle}
@@ -36,10 +36,10 @@
 		</div>
 
 		<div class="space-y-4 sm:space-y-6">
-			<h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-white">
+			<h2 class="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
 				{wearableTitle}
 			</h2>
-			<p class="mx-auto max-w-3xl text-sm sm:text-base leading-relaxed text-gray-200">
+			<p class="mx-auto max-w-3xl text-sm leading-relaxed text-gray-200 sm:text-base">
 				{wearableDescription}
 			</p>
 		</div>

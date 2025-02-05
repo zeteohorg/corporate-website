@@ -7,10 +7,6 @@
 
 	let { posts = [], type }: { posts: Post[]; type: 'blog' | 'news' } = $props();
 
-	$effect(() => {
-		console.log(`[LatestPosts] Rendering ${type} posts:`, posts);
-	});
-
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage][type]);
 	const latestPosts = $derived(posts?.slice(0, 3) || []);

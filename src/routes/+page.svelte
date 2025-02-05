@@ -1,4 +1,3 @@
-<!-- src/routes/+page.svelte -->
 <script lang="ts">
 	import Hero from '$lib/components/home/Hero.svelte';
 	import UseCases from '$lib/components/home/UseCases.svelte';

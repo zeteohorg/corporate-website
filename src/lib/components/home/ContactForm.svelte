@@ -26,9 +26,26 @@
 		return Object.keys(errors).length === 0;
 	}
 
-	function handleSubmit() {
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+
 		if (!validateForm()) return;
-		submitted = true;
+
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+
+		try {
+			await fetch(form.action, {
+				method: 'POST',
+				body: new URLSearchParams(formData as any).toString(),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				}
+			});
+			submitted = true;
+		} catch (error) {
+			console.error('Form submission error:', error);
+		}
 	}
 </script>
 
