@@ -84,7 +84,7 @@
 					{t.getStarted}
 				</a>
 				<a
-					href="/{currentLanguage}/learn-more"
+					href="https://meetings-eu1.hubspot.com/satomi-le-guilly"
 					class="flex items-center justify-center text-sm font-semibold leading-6 sm:justify-start"
 				>
 					{t.learnMore}

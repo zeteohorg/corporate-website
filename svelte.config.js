@@ -4,35 +4,48 @@ import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import adapter from '@sveltejs/adapter-netlify';
-import { glob } from 'glob';
 
-/** @type {import('@sveltejs/kit').Config} */
+const LANGUAGES = ['en', 'ja'];
+const ROUTES = ['', 'blog', 'news', 'company', 'privacy-policy'];
+
+function generateEntries() {
+	const entries = ['*'];
+
+	// Add language root paths
+	LANGUAGES.forEach((lang) => {
+		entries.push(`/${lang}`);
+	});
+
+	// Add all static routes with language prefixes
+	LANGUAGES.forEach((lang) => {
+		ROUTES.forEach((route) => {
+			entries.push(`/${lang}/${route}`);
+		});
+	});
+
+	return entries;
+}
+
 const config = {
 	kit: {
 		adapter: adapter({
 			edge: false,
 			split: true
 		}),
-		alias: {
-			$lib: 'src/lib'
-		},
 		prerender: {
-			handleMissingId: 'warn',
 			handleHttpError: ({ path, referrer, message }) => {
-				// Ignore 404s from non-language routes that will be redirected
-				if (message.includes('404') && !path.match(/^\/(en|ja)\//)) {
+				// Don't fail build on 404s for nested routes
+				if (message.includes('404') && path.includes('/[slug]')) {
 					return;
 				}
 				throw new Error(`${message} (${path})${referrer ? ` (linked from ${referrer})` : ''}`);
 			},
-			entries: [
-				'/en',
-				'/ja',
-				'/en/privacy-policy',
-				'/ja/privacy-policy',
-				...getBlogEntries(),
-				...getNewsEntries()
-			]
+			entries: generateEntries(),
+			crawl: true,
+			handleMissingId: 'ignore'
+		},
+		alias: {
+			$lib: 'src/lib'
 		}
 	},
 	extensions: ['.svelte', '.md', '.mdx'],
@@ -42,6 +55,10 @@ const config = {
 			extensions: ['.md', '.mdx'],
 			rehypePlugins: [rehypeSlug, rehypeUnwrapImages],
 			remarkPlugins: [remarkToc],
+			layout: {
+				blog: './src/lib/layouts/blog.svelte',
+				news: './src/lib/layouts/news.svelte'
+			},
 			smartypants: {
 				dashes: 'oldschool'
 			},
@@ -52,31 +69,5 @@ const config = {
 		})
 	]
 };
-
-function getBlogEntries() {
-	const blogFiles = glob.sync('src/content/blog/**/*.mdx');
-	return blogFiles
-		.map((file) => {
-			const match = file.match(/blog\/(en|ja)\/(.+)\.mdx$/);
-			if (!match) return null;
-			const [, lang, slug] = match;
-			return `/${lang}/blog/${slug}`;
-		})
-		.filter(Boolean);
-}
-
-function getNewsEntries() {
-	const newsFiles = glob.sync('src/content/news/**/*.mdx');
-	return newsFiles
-		.map((file) => {
-			const match = file.match(/news\/(en|ja)\/(.+)\.mdx$/);
-			if (!match) return null;
-			const [, lang, slug] = match;
-			// Remove any dots from the slug
-			const cleanSlug = slug.replace(/\./g, '');
-			return `/${lang}/news/${cleanSlug}`;
-		})
-		.filter(Boolean);
-}
 
 export default config;

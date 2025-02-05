@@ -10,10 +10,6 @@ export const load: PageServerLoad = async ({ params }) => {
 			loadMarkdownFiles(`news/${lang}`) // Remove /src/content/ prefix
 		]);
 
-		console.log(
-			`[page.server.ts] Loaded ${blogPosts.length} blog posts and ${newsPosts.length} news posts`
-		);
-
 		return {
 			blogPosts: blogPosts || [],
 			newsPosts: newsPosts || []

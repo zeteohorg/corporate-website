@@ -31,7 +31,7 @@
 				<picture>
 					<source srcset="/images/how_it_works.webp" type="image/webp" />
 					<img
-						src="/images/how_it_works.png"
+						src="/images/how_it_works.webp"
 						alt="How TRAILS works"
 						class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
 						width={800}
