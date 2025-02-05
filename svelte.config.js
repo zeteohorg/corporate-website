@@ -5,6 +5,27 @@ import remarkToc from 'remark-toc';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import adapter from '@sveltejs/adapter-netlify';
 
+const LANGUAGES = ['en', 'ja'];
+const ROUTES = ['', 'blog', 'news', 'company', 'privacy-policy'];
+
+function generateEntries() {
+	const entries = ['*'];
+
+	// Add language root paths
+	LANGUAGES.forEach((lang) => {
+		entries.push(`/${lang}`);
+	});
+
+	// Add all static routes with language prefixes
+	LANGUAGES.forEach((lang) => {
+		ROUTES.forEach((route) => {
+			entries.push(`/${lang}/${route}`);
+		});
+	});
+
+	return entries;
+}
+
 const config = {
 	kit: {
 		adapter: adapter({
@@ -13,17 +34,14 @@ const config = {
 		}),
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
-				// Don't fail build on 404s for language paths
-				if (message.includes('404') && !path.match(/^\/(en|ja)/)) {
+				// Don't fail build on 404s for nested routes
+				if (message.includes('404') && path.includes('/[slug]')) {
 					return;
 				}
 				throw new Error(`${message} (${path})${referrer ? ` (linked from ${referrer})` : ''}`);
 			},
-			// Prerender all pages
-			entries: ['*'],
-			// Enable crawling for dynamic routes
+			entries: generateEntries(),
 			crawl: true,
-			// Handle all routes as static
 			handleMissingId: 'ignore'
 		},
 		alias: {
@@ -37,6 +55,10 @@ const config = {
 			extensions: ['.md', '.mdx'],
 			rehypePlugins: [rehypeSlug, rehypeUnwrapImages],
 			remarkPlugins: [remarkToc],
+			layout: {
+				blog: './src/lib/layouts/blog.svelte',
+				news: './src/lib/layouts/news.svelte'
+			},
 			smartypants: {
 				dashes: 'oldschool'
 			},

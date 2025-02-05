@@ -1,40 +1,56 @@
-import { redirect } from '@sveltejs/kit';
 import type { LayoutLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { building } from '$app/environment';
 
 export const prerender = true;
 export const trailingSlash = 'always';
 
+const KNOWN_LANGUAGES = ['en', 'ja'] as const;
+type ValidLanguage = (typeof KNOWN_LANGUAGES)[number];
+
+function isValidLanguage(lang: string): lang is ValidLanguage {
+	return KNOWN_LANGUAGES.includes(lang as ValidLanguage);
+}
+
 export const load: LayoutLoad = ({ url }) => {
-	// Don't redirect for API routes or during prerendering of language-specific routes
+	// Don't redirect when building sitemap or prerendering known language routes
 	if (url.pathname.startsWith('/sitemap.xml') || (building && url.pathname.match(/^\/(en|ja)/))) {
 		return {};
 	}
 
-	// If we're not at the root and not a language route, redirect to language version
-	if (!url.pathname.match(/^\/(en|ja)/) && url.pathname !== '/') {
-		const preferredLang = getPreferredLang();
-		throw redirect(307, `/${preferredLang}${url.pathname}`);
+	// Skip redirect if we're already on a language route
+	if (url.pathname.match(/^\/(en|ja)/)) {
+		return {};
 	}
 
-	// If we're at the root, redirect based on language preference
+	// Handle root path
 	if (url.pathname === '/') {
 		const preferredLang = getPreferredLang();
-		throw redirect(307, `/${preferredLang}${url.pathname}`);
+		throw redirect(307, `/${preferredLang}`);
 	}
 
-	return {};
+	// Redirect all other routes to preferred language
+	const preferredLang = getPreferredLang();
+	throw redirect(307, `/${preferredLang}${url.pathname}`);
 };
 
-function getPreferredLang(): string {
+function getPreferredLang(): ValidLanguage {
 	if (!browser) return 'en';
 
+	// Check for stored preference
 	const storedLang = localStorage.getItem('preferredLanguage');
-	if (storedLang === 'ja' || storedLang === 'en') {
+	if (storedLang && isValidLanguage(storedLang)) {
 		return storedLang;
 	}
 
-	const browserLang = navigator.language.split('-')[0];
-	return browserLang === 'ja' ? 'ja' : 'en';
+	// Check browser languages
+	const browserLangs = navigator.languages || [navigator.language];
+	for (const lang of browserLangs) {
+		const primaryLang = lang.split('-')[0].toLowerCase();
+		if (primaryLang === 'ja') return 'ja';
+	}
+
+	// Default to English
+	return 'en';
 }
