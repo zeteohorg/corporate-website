@@ -18,7 +18,7 @@ export const en: CompanyTranslation = {
 				name: 'Yann Le Guilly',
 				title: 'Co-Founder / CEO',
 				location: 'Bretagne, France',
-				background: 'A technology leader with over 10 years of experience in the AI ​​field. He has served as a senior AI engineer and product manager at cutting-edge startups such as ABEJA. He is a graduate of the Tokyo Institute of Technology and has a background in physics and applied mathematics. He also has work experience in a chemical plant.',
+				background: 'A technology leader with over 10 years of experience in the AI ​​field. He has served as a senior AI engineer and product manager at cutting-edge startups such as ABEJA. He studied at the Tokyo Institute of Technology and has a background in physics and applied mathematics. He also has work experience in a chemical plant.',
 				image: '/images/team/yann.png',
 				alt: 'Yann in a T-shirt'
 			},
@@ -100,7 +100,7 @@ export const ja: CompanyTranslation = {
 				name: 'リギリ・ヤン',
 				title: '共同創業者 / CEO',
 				location: 'ブルターニュ、フランス',
-				background:'AI分野で10年以上の実績を持つテクノロジーリーダー。ABEJAなどの先進スタートアップ企業でシニアAIエンジニア・プロダクトマネージャーを歴任。東京工業大学出身で物理学および応用数学のバックグラウンド。化学工場での実務経験も併せ持つ。',
+				background:'AI分野で10年以上の実績を持つテクノロジーリーダー。ABEJAなどの先進スタートアップ企業でシニアAIエンジニア・プロダクトマネージャーを歴任。東京工業大学出身で物理学および応用数学を学ぶ。化学工場での実務経験も併せ持つ。',
 				image: '/images/team/yann.png',
 				alt: 'Tシャツを着たヤン'
 			},
@@ -134,7 +134,7 @@ export const ja: CompanyTranslation = {
 				location: '東京都、 日本 & パリ、 フランス',
 				background:'Microsoft、Googleで10年以上のエンジニアリング経験を持つテクノロジーリーダー。Google Mapsテクニカルプログラムマネージャーを経て、現在はユニコーン企業Molocoのグローバルカスタマーエンジニアリング責任者。クラウド、機械学習、アドテック領域に精通。',
 				image: '/images/team/samir.png',
-				alt: 'Samir in a T-shirt'
+				alt: 'Tシャツを着たサミア'
 			}
 		]
 	},
