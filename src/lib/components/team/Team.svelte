@@ -15,9 +15,11 @@
 				{translations.subtitle}
 			</p>
 		</div>
-		<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+		<div class="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-6">
 			{#each translations.members as member}
-				<Card class="overflow-hidden border-0 bg-transparent">
+				<Card
+					class="w-full overflow-hidden border-0 bg-transparent sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+				>
 					<CardContent class="p-6">
 						<div
 							class="relative mx-auto mb-6 aspect-square h-48 w-48 overflow-hidden rounded-full bg-[#FF4E4E]"
@@ -39,6 +41,9 @@
 							</p>
 							<p class="mt-1 text-sm text-gray-400">
 								{member.location}
+							</p>
+							<p class="mt-1 text-sm text-white">
+								{member.background}
 							</p>
 						</div>
 					</CardContent>

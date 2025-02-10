@@ -18,6 +18,7 @@ export const en: CompanyTranslation = {
 				name: 'Yann Le Guilly',
 				title: 'Co-Founder / CEO',
 				location: 'Bretagne, France',
+				background: 'A technology leader with over 10 years of experience in the AI ​​field. He has served as a senior AI engineer and product manager at cutting-edge startups such as ABEJA. He is a graduate of the Tokyo Institute of Technology and has a background in physics and applied mathematics. He also has work experience in a chemical plant.',
 				image: '/images/team/yann.png',
 				alt: 'Yann in a T-shirt'
 			},
@@ -25,6 +26,7 @@ export const en: CompanyTranslation = {
 				name: 'Satomi Le Guilly',
 				title: 'Co-Founder / COO',
 				location: 'Aomori, Japan',
+				background:'A marketing strategist with over 5 years of experience in the IoT and edge AI camera field, she was involved in product development and commercialization at an IoT company leading the market expansion of entrance and exit management, inventory management, congestion management, and indoor positioning solutions.',
 				image: '/images/team/satomi.png',
 				alt: 'Satomi in a white sweater'
 			},
@@ -32,15 +34,25 @@ export const en: CompanyTranslation = {
 				name: 'Toshio Takahashi',
 				title: 'Sales Manager',
 				location: 'Tokyo, Japan',
+				background:'A business leader with over 20 years of experience in the B2B software industry, he has worked as a senior sales representative at JBCC Co., Ltd. and served as CEO for over 7 years. He is well versed in enterprise sales and business growth strategies.',
 				image: '/images/team/takahashi.png',
 				alt: 'Takahashi in a suits'
 			},
 			{
 				name: 'Carl-Gustav Eklund',
-				title: 'Adviser',
+				title: 'Business / Industry Adviser',
 				location: 'Gothenburg, Sweden',
+				background: ' A business leader with over 40 years of experience in the manufacturing industry. After serving as President and CEO of Höganäs Japan, he is currently the Head of Financial Affairs for Asia. He also served as Chairman of the Swedish Chamber of Commerce and Industry, and has deep knowledge and an international network in the automotive and industrial equipment fields.',
 				image: '/images/team/carl.png',
 				alt: 'Carl in a suits'
+			},
+			{
+				name: 'Samia Hamoudi',
+				title: 'Technical Advisor',
+				location: 'Tokyo, Japan & Paris, France',
+				background:'A technology leader with over 10 years of engineering experience at Microsoft and Google. After working as a technical program manager for Google Maps, he is now the head of global customer engineering at unicorn company Molocco. He is knowledgeable in the cloud, machine learning, and adtech fields.',
+				image: '/images/team/samir.png',
+				alt: 'Samir in a T-shirt'
 			}
 		]
 	},
@@ -88,6 +100,7 @@ export const ja: CompanyTranslation = {
 				name: 'リギリ・ヤン',
 				title: '共同創業者 / CEO',
 				location: 'ブルターニュ、フランス',
+				background:'AI分野で10年以上の実績を持つテクノロジーリーダー。ABEJAなどの先進スタートアップ企業でシニアAIエンジニア・プロダクトマネージャーを歴任。東京工業大学出身で物理学および応用数学のバックグラウンド。化学工場での実務経験も併せ持つ。',
 				image: '/images/team/yann.png',
 				alt: 'Tシャツを着たヤン'
 			},
@@ -95,6 +108,7 @@ export const ja: CompanyTranslation = {
 				name: 'リギリ　聡美',
 				title: '共同創業者 / COO',
 				location: '青森県、日本',
+				background:'IoT・エッジAIカメラ領域で5年以上の実績を持つマーケティング戦略家。IoT企業にて製品開発から商品化まで携わり入退室管理、在庫管理、混雑度管理、屋内測位ソリューションの市場展開を牽引。',
 				image: '/images/team/satomi.png',
 				alt: '白いセーターを着た聡美'
 			},
@@ -102,15 +116,25 @@ export const ja: CompanyTranslation = {
 				name: '高橋　俊夫',
 				title: '販売マネージャー',
 				location: '東京都、日本',
+				background:'B2B ソフトウェア業界で20年以上の経営幹部として豊富な実績を持つビジネスリーダー。JBCC株式会社にて上級営業として活躍、CEOを7年以上務める。エンタープライズセールスとビジネス成長戦略に精通。',
 				image: '/images/team/takahashi.png',
 				alt: 'スーツを着た高橋'
 			},
 			{
 				name: 'カール=グスタフ・エクルンド',
-				title: 'アドバイザー',
+				title: '経営・工業アドバイザー',
 				location: 'ヨーテボリ、スゥエーデン',
+				background:' 製造業界で40年以上の豊富な経験を持つ経営者。ヘガネスジャパン代表取締役社長を経て、現在はアジア財務統括責任者として活躍。スウェーデン商工会議所会頭も務め、自動車・産業機器分野における深い知見と国際的なネットワークを保有。',
 				image: '/images/team/carl.png',
 				alt: 'スーツを着たカール'
+			},
+			{
+				name: 'サミア　ハムーディ',
+				title: 'Technical Advisor',
+				location: '東京都、 日本 & パリ、 フランス',
+				background:'Microsoft、Googleで10年以上のエンジニアリング経験を持つテクノロジーリーダー。Google Mapsテクニカルプログラムマネージャーを経て、現在はユニコーン企業Molocoのグローバルカスタマーエンジニアリング責任者。クラウド、機械学習、アドテック領域に精通。',
+				image: '/images/team/samir.png',
+				alt: 'Samir in a T-shirt'
 			}
 		]
 	},
