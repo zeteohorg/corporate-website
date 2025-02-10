@@ -162,6 +162,7 @@ export type CompanyTranslation = {
 			name: string;
 			title: string;
 			location: string;
+			background: string;
 			image: string;
 			alt: string;
 		}>;
