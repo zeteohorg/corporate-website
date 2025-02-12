@@ -16,19 +16,19 @@
 	>
 		<div
 			class="relative left-[calc(50%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[hsl(var(--destructive))] to-[hsl(var(--primary))] opacity-50"
-		></div>
+		/>
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-4xl space-y-8 text-center sm:space-y-12 md:space-y-16">
 		<div>
 			<h1
-				class="mb-4 text-3xl font-bold leading-normal text-white sm:mb-6 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
+				class="mb-4 text-3xl font-bold leading-normal text-foreground sm:mb-6 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
 				data-sveltekit-preload-data
 			>
 				{title}
 			</h1>
 			<p
-				class="mx-auto max-w-3xl text-sm leading-relaxed text-gray-200 sm:text-base md:text-lg"
+				class="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
 				data-sveltekit-preload-data
 			>
 				{subtitle}
@@ -36,10 +36,10 @@
 		</div>
 
 		<div class="space-y-4 sm:space-y-6">
-			<h2 class="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
+			<h2 class="text-xl font-semibold text-foreground sm:text-2xl md:text-3xl">
 				{wearableTitle}
 			</h2>
-			<p class="mx-auto max-w-3xl text-sm leading-relaxed text-gray-200 sm:text-base">
+			<p class="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
 				{wearableDescription}
 			</p>
 		</div>
