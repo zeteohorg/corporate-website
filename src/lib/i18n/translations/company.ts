@@ -102,7 +102,7 @@ export const ja: CompanyTranslation = {
 			'私たちは、情熱を持って仕事に取り組み、お客様に最高の結果を提供することに専念する多様な個性を持つチームです。',
 		members: [
 			{
-				name: 'リギリ・ヤン',
+				name: 'リギリ　ヤン',
 				title: '共同創業者 / CEO',
 				location: 'ブルターニュ、フランス',
 				background:
@@ -129,7 +129,7 @@ export const ja: CompanyTranslation = {
 				alt: 'スーツを着た高橋'
 			},
 			{
-				name: 'カール=グスタフ・エクルンド',
+				name: 'カール・グスタフ　エクルンド',
 				title: '経営・工業アドバイザー',
 				location: 'ヨーテボリ、スゥエーデン',
 				background:
