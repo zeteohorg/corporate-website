@@ -11,12 +11,12 @@
 >
 	<!-- Gradient halo background effect -->
 	<div
-		class="absolute left-1/2 -z-10 h-[100px] w-[100px] -translate-x-1/2 transform-gpu overflow-hidden blur-[96px] sm:top-[100px]"
+		class="absolute left-1/2 -z-10 h-[200px] w-[200px] -translate-x-1/2 transform-gpu overflow-hidden blur-[80px] sm:top-[100px]"
 		aria-hidden="true"
 	>
 		<div
-			class="relative left-[calc(50%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[hsl(var(--destructive))] to-[hsl(var(--primary))] opacity-50"
-		/>
+			class="relative left-[calc(50%)] aspect-[1155/678] w-[48rem] -translate-x-1/2 bg-gradient-to-tr from-[hsl(var(--destructive))] to-[hsl(var(--primary))] opacity-90"
+		></div>
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-4xl space-y-8 text-center sm:space-y-12 md:space-y-16">

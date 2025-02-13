@@ -29,13 +29,13 @@
 
 			<div class="order-1 md:order-2">
 				<picture>
-					<source srcset="/images/how_it_works.webp" type="image/webp" />
+					<source srcset="/images/how_it_works.png" type="image/png" />
 					<img
-						src="/images/how_it_works.webp"
+						src="/images/how_it_works.png"
 						alt="How TRAILS works"
 						class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
-						width={800}
-						height={600}
+						width={1174}
+						height={511}
 						loading="lazy"
 						decoding="async"
 					/>

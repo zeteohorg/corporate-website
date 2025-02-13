@@ -54,11 +54,11 @@
 <div class="relative min-h-[100vh] sm:min-h-0">
 	<!-- Top halo -->
 	<div
-		class="absolute left-1/2 -z-10 h-[100px] w-[100px] -translate-x-1/2 transform-gpu overflow-hidden blur-[96px] sm:top-[100px]"
+		class="absolute left-1/2 -z-10 h-[200px] w-[200px] -translate-x-1/2 transform-gpu overflow-hidden blur-[90px] sm:top-[100px]"
 		aria-hidden="true"
 	>
 		<div
-			class="relative left-[calc(50%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[hsl(var(--destructive))] to-[hsl(var(--primary))] opacity-50"
+			class="relative left-[calc(50%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[hsl(var(--destructive))] to-[hsl(var(--primary))] opacity-90"
 		></div>
 	</div>
 
@@ -72,7 +72,7 @@
 			<h1 class="mt-4 text-5xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
 				{t.title}
 			</h1>
-			<p class="mt-4 text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-8">
+			<p class="mt-4 text-base leading-7 text-muted-foreground sm:mt-6 sm:text-base sm:leading-8">
 				{t.subtitle}
 			</p>
 			<div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-x-6">

@@ -19,7 +19,7 @@ export const en: CompanyTranslation = {
 				title: 'Co-Founder / CEO',
 				location: 'Bretagne, France',
 				background:
-					'A technology leader with over 10 years of experience in the AI ​​field. He has served as a senior AI engineer and product manager at cutting-edge startups such as ABEJA. He studied at the Tokyo Institute of Technology and has a background in physics and applied mathematics. He also has work experience in a chemical plant.',
+					'A technology leader with over 10 years of experience in the AI ​field. He has served as a senior AI engineer and product manager at cutting-edge startups such as ABEJA. He studied at the Tokyo Institute of Technology and has a background in physics and applied mathematics. He also has work experience in a chemical plant.',
 				image: '/images/team/yann.png',
 				alt: 'Yann in a T-shirt'
 			},
@@ -28,7 +28,7 @@ export const en: CompanyTranslation = {
 				title: 'Co-Founder / COO',
 				location: 'Aomori, Japan',
 				background:
-					'A marketing strategist with over 5 years of experience in the IoT and edge AI camera field, she was involved in product development and commercialization at an IoT company leading the market expansion of entrance and exit management, inventory management, congestion management, and indoor positioning solutions.',
+					'A marketing strategist with over 5 years of experience in the IoT and edge AI camera field, she was involved in product development and commercialization at an IoT company leading the market expansion of entrance management, inventory management, congestion visualization, and indoor positioning solutions. In 2022, in the POWER Accelerator program, an initiative sponsored by the US Embassy (Tokyo, Seoul) to promote comprehensive economic growth. She finished second in the pitch contest in the same program.',
 				image: '/images/team/satomi.png',
 				alt: 'Satomi in a white sweater'
 			},
@@ -58,6 +58,14 @@ export const en: CompanyTranslation = {
 					'A technology leader with over 10 years of engineering experience at Microsoft and Google. After working as a technical program manager for Google Maps, he is now the head of global customer engineering at unicorn company Molocco. He is knowledgeable in the cloud, machine learning, and adtech fields.',
 				image: '/images/team/samir.png',
 				alt: 'Samir in a T-shirt'
+			},
+			{
+				name: 'Séverin Ferrand',
+				title: 'Technical Advisor',
+				location: 'Paris, France',
+				background:'After working in IT operations for the insurance industry and as a cloud pre-sales engineer at Google Japan, he now serves as a technical consultant specializing in private advertising technologies on Chrome. With over 15 years of experience in the IT industry, he has deep expertise in cloud infrastructure and advertising technology. In 2019, he co-founded a craft beer and restaurant business in Japan.',
+				image: '/images/team/severin.png',
+				alt: 'Severin in a suits'
 			}
 		]
 	},
@@ -82,7 +90,7 @@ export const en: CompanyTranslation = {
 		business: {
 			label: 'Business Description',
 			value:
-				'Development and sales of indoor positioning solutions\nApplication development using artificial intelligence'
+				'Development and sales of indoor positioning solutions\nSoftware development using artificial intelligence'
 		}
 	}
 };
@@ -102,7 +110,7 @@ export const ja: CompanyTranslation = {
 			'私たちは、情熱を持って仕事に取り組み、お客様に最高の結果を提供することに専念する多様な個性を持つチームです。',
 		members: [
 			{
-				name: 'リギリ　ヤン',
+				name: 'ヤン　リギリ',
 				title: '共同創業者 / CEO',
 				location: 'ブルターニュ、フランス',
 				background:
@@ -115,7 +123,7 @@ export const ja: CompanyTranslation = {
 				title: '共同創業者 / COO',
 				location: '青森県、日本',
 				background:
-					'IoT・エッジAIカメラ領域で5年以上の実績を持つマーケティング戦略家。IoT企業にて製品開発から商品化まで携わり入退室管理、在庫管理、混雑度管理、屋内測位ソリューションの市場展開を牽引。',
+					'IoT・エッジAIカメラ領域で5年以上の実績を持つマーケティング戦略家。IoT企業にて製品開発から商品化まで携わり入退室管理、在庫管理、混雑度可視化、屋内測位ソリューションの市場展開を牽引。2022年、米国大使館（東京、ソウル）主催の包括的な経済成長を促進する取り組みであるPOWER Acceleratorプログラムに選出。同ピッチコンテストにて準優勝。',
 				image: '/images/team/satomi.png',
 				alt: '白いセーターを着た聡美'
 			},
@@ -145,6 +153,15 @@ export const ja: CompanyTranslation = {
 					'Microsoft、Googleで10年以上のエンジニアリング経験を持つテクノロジーリーダー。Google Mapsテクニカルプログラムマネージャーを経て、現在はユニコーン企業Molocoのグローバルカスタマーエンジニアリング責任者。クラウド、機械学習、アドテック領域に精通。',
 				image: '/images/team/samir.png',
 				alt: 'Tシャツを着たサミール'
+			},
+			{
+				name: 'セブラン　フェラン',
+				title: 'Technical Advisor',
+				location: 'パリ、 フランス',
+				background:
+					'保険業界のITオペレーション、Google Japanでのクラウドプリセールスエンジニアを経て、現在はChromeのプライベート広告技術のテクニカルコンサルタントとして活躍。15年以上のIT業界経験を持ち、クラウドインフラストラクチャー、広告テクノロジーに精通。2019年には日本でクラフトビールとレストランのビジネスを共同創業。',
+				image: '/images/team/severin.png',
+				alt: 'スーツを着たセブラン'
 			}
 		]
 	},
@@ -168,7 +185,7 @@ export const ja: CompanyTranslation = {
 		},
 		business: {
 			label: '事業内容',
-			value: '屋内位置測位ソリューションの開発・販売\n人工知能を活用したアプリケーション開発'
+			value: '屋内位置測位ソリューションの開発・販売\n人工知能を活用したソフトウエア開発'
 		}
 	}
 };
