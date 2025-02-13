@@ -1,13 +1,13 @@
 <script lang="ts">
 	import * as Sheet from '$lib/components/ui/sheet';
-	import { Menu } from 'lucide-svelte';
+	import { Menu, ChevronDown } from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import ThemeToggle from '../../ThemeToggle.svelte';
 	import { translations } from '$lib/i18n/translations';
+	import { cn } from '$lib/utils';
 
 	const currentLanguage = $derived($page.params.lang ?? 'en');
-	// Add default values to prevent undefined access
 	const t = $derived(
 		translations[currentLanguage]?.common?.nav ?? {
 			blog: 'Blog',
@@ -15,6 +15,16 @@
 			company: 'Company'
 		}
 	);
+
+	const industries = [
+		'construction',
+		'healthcare',
+		'logistics',
+		'manufacturing',
+		'energy',
+		'retail'
+	] as const;
+	let industriesExpanded = $state(false);
 
 	function switchLanguage() {
 		const currentLang = $page.params.lang;
@@ -45,6 +55,43 @@
 			</Sheet.Header>
 
 			<nav class="mt-4 flex flex-col space-y-4">
+				<a
+					href="/{currentLanguage}/"
+					class={buttonVariants({ variant: 'ghost', class: 'w-full justify-start' })}
+				>
+					{t?.solutions || 'Solutions'}
+				</a>
+
+				<!-- Industries Section -->
+				<div>
+					<button
+						onclick={() => (industriesExpanded = !industriesExpanded)}
+						class={cn(buttonVariants({ variant: 'ghost' }), 'w-full justify-between')}
+						aria-expanded={industriesExpanded}
+					>
+						<span>{t?.industries?.title || 'Industries'}</span>
+						<ChevronDown
+							class={cn('h-4 w-4 transition-transform', industriesExpanded && 'rotate-180')}
+						/>
+					</button>
+
+					{#if industriesExpanded}
+						<div class="ml-4 mt-1 space-y-1">
+							{#each industries as industry}
+								<a
+									href="/{currentLanguage}/industries/{industry}"
+									class={buttonVariants({
+										variant: 'ghost',
+										class: 'w-full justify-start text-sm'
+									})}
+								>
+									{t?.industries?.[industry] || industry}
+								</a>
+							{/each}
+						</div>
+					{/if}
+				</div>
+
 				<a
 					href="/{currentLanguage}/blog"
 					class={buttonVariants({ variant: 'ghost', class: 'w-full justify-start' })}

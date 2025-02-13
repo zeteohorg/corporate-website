@@ -63,7 +63,8 @@ export const en: CompanyTranslation = {
 				name: 'Séverin Ferrand',
 				title: 'Technical Advisor',
 				location: 'Paris, France',
-				background:'After working in IT operations for the insurance industry and as a cloud pre-sales engineer at Google Japan, he now serves as a technical consultant specializing in private advertising technologies on Chrome. With over 15 years of experience in the IT industry, he has deep expertise in cloud infrastructure and advertising technology. In 2019, he co-founded a craft beer and restaurant business in Japan.',
+				background:
+					'After working in IT operations for the insurance industry and as a cloud pre-sales engineer at Google Japan, he now serves as a technical consultant specializing in private advertising technologies on Chrome. With over 15 years of experience in the IT industry, he has deep expertise in cloud infrastructure and advertising technology. In 2019, he co-founded a craft beer and restaurant business in Japan.',
 				image: '/images/team/severin.png',
 				alt: 'Severin in a suits'
 			}

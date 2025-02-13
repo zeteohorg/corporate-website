@@ -4,6 +4,10 @@
 	import { theme } from '$lib/stores/theme';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import { MobileNav } from './ui/mobile-nav';
+	import IndustriesDropdown from './navigation/IndustriesDropdown.svelte';
+	import { translations } from '$lib/i18n/translations';
+
+	const t = $derived(translations[$page.params.lang]);
 
 	const switchLanguage = () => {
 		const currentLang = $page.params.lang;
@@ -48,6 +52,8 @@
 
 			<!-- Desktop Navigation -->
 			<nav class="hidden items-center space-x-4 lg:flex">
+				<a href="/{$page.params.lang}/" class={buttonVariants({ variant: 'ghost' })}> Solutions </a>
+				<IndustriesDropdown lang={$page.params.lang} translations={t} />
 				<a href="/{$page.params.lang}/blog" class={buttonVariants({ variant: 'ghost' })}> Blog </a>
 				<a href="/{$page.params.lang}/news" class={buttonVariants({ variant: 'ghost' })}> News </a>
 				<a href="/{$page.params.lang}/company" class={buttonVariants({ variant: 'ghost' })}>

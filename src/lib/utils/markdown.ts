@@ -77,7 +77,5 @@ export async function loadMarkdownFiles(path: string) {
 			return isValid;
 		})
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-	console.log(`Final processed posts for ${path}:`, posts);
 	return posts;
 }

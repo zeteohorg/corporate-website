@@ -3,6 +3,16 @@ export type CommonTranslation = {
 		blog: string;
 		news: string;
 		company: string;
+		solutions: string;
+		industries: {
+			title: string;
+			construction: string;
+			healthcare: string;
+			logistics: string;
+			manufacturing: string;
+			energy: string;
+			retail: string;
+		};
 	};
 	contact: {
 		title: string;

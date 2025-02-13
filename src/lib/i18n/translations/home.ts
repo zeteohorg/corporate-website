@@ -3,7 +3,8 @@ import type { HomeTranslation } from '../types';
 export const en: HomeTranslation = {
 	hero: {
 		title: 'Location Intelligence, Inside out',
-		subtitle: 'Traditional indoor tracking demands complex hardware setups. Our groundbreaking infrastructure-free solution transforms any smartphone or wearable into an intelligent companion that understands how people move and interact, all while keeping data private through on-device AI. Discover new revenue streams for your business with zero additional investment.',
+		subtitle:
+			'Traditional indoor tracking demands complex hardware setups. Our groundbreaking infrastructure-free solution transforms any smartphone or wearable into an intelligent companion that understands how people move and interact, all while keeping data private through on-device AI. Discover new revenue streams for your business with zero additional investment.',
 		getStarted: 'Schedule a meeting',
 		learnMore: 'Contact us'
 	},
@@ -32,7 +33,8 @@ export const en: HomeTranslation = {
 export const ja: HomeTranslation = {
 	hero: {
 		title: 'Location Intelligence, Inside out',
-		subtitle: '従来の屋内トラッキングには複雑な機器の設置が必要でした。私たちの画期的なインフラレスソリューションは、スマートフォンやウェアラブル端末を、人々の動きや交流を理解するインテリジェントなパートナーへと変えます。端末内AIによってプライバシーを保護しながら、追加投資なしで新たな収益機会を見出すことができます。',
+		subtitle:
+			'従来の屋内トラッキングには複雑な機器の設置が必要でした。私たちの画期的なインフラレスソリューションは、スマートフォンやウェアラブル端末を、人々の動きや交流を理解するインテリジェントなパートナーへと変えます。端末内AIによってプライバシーを保護しながら、追加投資なしで新たな収益機会を見出すことができます。',
 		getStarted: 'お打ち合わせを設定する',
 		learnMore: 'お問い合わせをする'
 	},
