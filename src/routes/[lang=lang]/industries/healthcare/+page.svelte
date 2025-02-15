@@ -1,72 +1,74 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	let { translations, lang } = $props();
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+	const { translations, lang } = data;
 </script>
 
 <div class="container mx-auto px-4 py-12 md:px-6">
 	<div class="mb-12 space-y-4 text-center">
 		<h1 class="text-4xl font-bold tracking-tight">
-			{translations.common.nav.industries.construction}
+			{translations.common.nav.industries.healthcare}
 		</h1>
-
 		<p class="mx-auto max-w-[900px] text-xl text-muted-foreground">
 			{#if lang === 'en'}
-				Real-time indoor positioning for enhanced safety and efficiency in construction sites
+				Real-time indoor positioning for enhanced efficiency in healthcare facilities
 			{:else}
-				建設現場の安全性と効率性を向上させるリアルタイム屋内測位
+				医療施設の効率性を向上させるリアルタイム屋内測位
 			{/if}
 		</p>
 	</div>
 
 	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-		<!-- Safety Solution -->
+		<!-- Patient Tracking Solution -->
 		<Card.Root>
 			<Card.Header>
 				<Card.Title>
 					{#if lang === 'en'}
-						Worker Safety System
+						Patient Tracking System
 					{:else}
-						作業員安全システム
+						患者追跡システム
 					{/if}
 				</Card.Title>
 				<Card.Description>
 					{#if lang === 'en'}
-						Real-time tracking and safety monitoring for construction workers
+						Real-time tracking and monitoring for patient safety
 					{:else}
-						建設作業員のリアルタイム追跡と安全監視
+						患者の安全のためのリアルタイム追跡と監視
 					{/if}
 				</Card.Description>
 			</Card.Header>
 			<Card.Content>
 				<ul class="list-inside list-disc space-y-2 text-sm text-muted-foreground">
 					{#if lang === 'en'}
-						<li>Real-time personnel location tracking</li>
-						<li>Automatic danger zone alerts</li>
+						<li>Real-time patient location tracking</li>
 						<li>Emergency response coordination</li>
+						<li>Patient flow optimization</li>
 					{:else}
-						<li>作業員のリアルタイム位置追跡</li>
-						<li>危険区域の自動アラート</li>
+						<li>患者のリアルタイム位置追跡</li>
 						<li>緊急対応の連携</li>
+						<li>患者フローの最適化</li>
 					{/if}
 				</ul>
 			</Card.Content>
 		</Card.Root>
 
-		<!-- Equipment Solution -->
+		<!-- Asset Management -->
 		<Card.Root>
 			<Card.Header>
 				<Card.Title>
 					{#if lang === 'en'}
-						Equipment Management
+						Medical Equipment Management
 					{:else}
-						機器管理
+						医療機器管理
 					{/if}
 				</Card.Title>
 				<Card.Description>
 					{#if lang === 'en'}
-						Optimize equipment usage and track valuable assets
+						Track and manage critical medical equipment
 					{:else}
-						機器の使用状況の最適化と重要資産の追跡
+						重要な医療機器の追跡と管理
 					{/if}
 				</Card.Description>
 			</Card.Header>
@@ -74,45 +76,45 @@
 				<ul class="list-inside list-disc space-y-2 text-sm text-muted-foreground">
 					{#if lang === 'en'}
 						<li>Equipment location tracking</li>
-						<li>Usage optimization</li>
+						<li>Usage monitoring</li>
 						<li>Maintenance scheduling</li>
 					{:else}
 						<li>機器の位置追跡</li>
-						<li>使用状況の最適化</li>
+						<li>使用状況のモニタリング</li>
 						<li>メンテナンススケジュール</li>
 					{/if}
 				</ul>
 			</Card.Content>
 		</Card.Root>
 
-		<!-- Progress Solution -->
+		<!-- Staff Efficiency -->
 		<Card.Root>
 			<Card.Header>
 				<Card.Title>
 					{#if lang === 'en'}
-						Progress Monitoring
+						Staff Workflow Optimization
 					{:else}
-						進捗モニタリング
+						スタッフワークフロー最適化
 					{/if}
 				</Card.Title>
 				<Card.Description>
 					{#if lang === 'en'}
-						Track and visualize construction progress in real-time
+						Improve staff efficiency and response times
 					{:else}
-						建設の進捗状況をリアルタイムで追跡・可視化
+						スタッフの効率と対応時間の改善
 					{/if}
 				</Card.Description>
 			</Card.Header>
 			<Card.Content>
 				<ul class="list-inside list-disc space-y-2 text-sm text-muted-foreground">
 					{#if lang === 'en'}
-						<li>Real-time progress tracking</li>
-						<li>Visual progress reports</li>
-						<li>Schedule optimization</li>
+						<li>Staff location awareness</li>
+						<li>Workflow analysis</li>
+						<li>Resource optimization</li>
 					{:else}
-						<li>リアルタイムの進捗追跡</li>
-						<li>視覚的な進捗レポート</li>
-						<li>スケジュールの最適化</li>
+						<li>スタッフの位置把握</li>
+						<li>ワークフロー分析</li>
+						<li>リソースの最適化</li>
 					{/if}
 				</ul>
 			</Card.Content>
