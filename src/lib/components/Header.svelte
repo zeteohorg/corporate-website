@@ -60,7 +60,7 @@
 					Company
 				</a>
 				<ThemeToggle />
-				<button on:click={switchLanguage} class={buttonVariants({ variant: 'outline' })}>
+				<button onclick={switchLanguage} class={buttonVariants({ variant: 'outline' })}>
 					{$page.params.lang === 'ja' ? 'EN' : '日本語'}
 				</button>
 			</nav>

@@ -8,14 +8,7 @@ export async function loadMarkdownFiles(path: string) {
 		eager: true
 	});
 
-	console.log('Available module paths:', Object.keys(modules));
-
 	const filteredFiles = Object.entries(modules).filter(([filename]) => filename.includes(path));
-
-	console.log(
-		`Filtered files for ${path}:`,
-		filteredFiles.map(([f]) => f)
-	);
 
 	const posts = filteredFiles
 		.map(([filename, content]: [string, string]) => {
@@ -61,8 +54,6 @@ export async function loadMarkdownFiles(path: string) {
 					published: parsedMetadata.published === 'true',
 					thumbnail: parsedMetadata.thumbnail || undefined
 				};
-
-				console.log(`Processed post from ${filename}:`, post);
 				return post;
 			} catch (error) {
 				console.error(`Error processing ${filename}:`, error);
