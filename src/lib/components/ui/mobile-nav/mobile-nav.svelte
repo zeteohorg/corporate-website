@@ -17,12 +17,12 @@
 	);
 
 	const industries = [
+		'factory',
 		'construction',
-		'healthcare',
 		'logistics',
-		'manufacturing',
-		'energy',
-		'retail'
+		'plant',
+		'retail',
+		'healthcare'
 	] as const;
 	let industriesExpanded = $state(false);
 

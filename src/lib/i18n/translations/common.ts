@@ -55,8 +55,8 @@ export const en: CommonTranslation = {
 			construction: 'Construction',
 			healthcare: 'Healthcare',
 			logistics: 'Logistics',
-			manufacturing: 'Manufacturing',
-			energy: 'Energy',
+			factory: 'Factories',
+			plant: 'plant',
 			retail: 'Retail'
 		}
 	}
@@ -117,8 +117,8 @@ export const ja: CommonTranslation = {
 			construction: '建設',
 			healthcare: '医療',
 			logistics: '物流',
-			manufacturing: '製造',
-			energy: 'エネルギー',
+			factory: '工場',
+			plant: 'プラント',
 			retail: '小売'
 		}
 	}
