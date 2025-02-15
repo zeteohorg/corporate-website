@@ -8,6 +8,7 @@ import * as product from './product';
 import * as howItWorks from './how-it-works';
 import * as privacyPolicy from './privacy-policy';
 import * as company from './company';
+import * as factory from './factory';
 
 export const en: Translation = {
 	common: common.en,
@@ -18,7 +19,8 @@ export const en: Translation = {
 	product: product.en,
 	howItWorks: howItWorks.en,
 	privacyPolicy: privacyPolicy.en,
-	company: company.en
+	company: company.en,
+	factory: factory.en
 };
 
 export const ja: Translation = {
@@ -30,7 +32,8 @@ export const ja: Translation = {
 	product: product.ja,
 	howItWorks: howItWorks.ja,
 	privacyPolicy: privacyPolicy.ja,
-	company: company.ja
+	company: company.ja,
+	factory: factory.ja
 };
 
 export const translations = { en, ja };

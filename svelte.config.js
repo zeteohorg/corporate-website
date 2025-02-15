@@ -6,7 +6,16 @@ import rehypeUnwrapImages from 'rehype-unwrap-images';
 import adapter from '@sveltejs/adapter-netlify';
 
 const LANGUAGES = ['en', 'ja'];
-const ROUTES = ['', 'blog', 'news', 'company', 'privacy-policy'];
+const ROUTES = [
+	'',
+	'blog',
+	'news',
+	'company',
+	'privacy-policy',
+	'industries/construction',
+	'industries/factory',
+	'industries/healthcare'
+];
 
 function generateEntries() {
 	const entries = ['*'];

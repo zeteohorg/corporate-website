@@ -44,6 +44,21 @@ export const en: CommonTranslation = {
 			privacyPolicy: 'Privacy Policy',
 			terms: 'Terms of Service'
 		}
+	},
+	nav: {
+		blog: 'Blog',
+		news: 'News',
+		company: 'Company',
+		solutions: 'Solutions',
+		industries: {
+			title: 'Industries',
+			construction: 'Construction',
+			healthcare: 'Healthcare',
+			logistics: 'Logistics',
+			factory: 'Factories',
+			plant: 'plant',
+			retail: 'Retail'
+		}
 	}
 };
 
@@ -90,6 +105,21 @@ export const ja: CommonTranslation = {
 			news: 'ニュース',
 			privacyPolicy: 'プライバシーポリシー',
 			terms: '利用規約'
+		}
+	},
+	nav: {
+		blog: 'ブログ',
+		news: 'ニュース',
+		company: '会社情報',
+		solutions: 'ソリューション',
+		industries: {
+			title: '業界別',
+			construction: '建設',
+			healthcare: '医療',
+			logistics: '物流',
+			factory: '工場',
+			plant: 'プラント',
+			retail: '小売'
 		}
 	}
 };

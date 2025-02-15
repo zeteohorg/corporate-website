@@ -5,7 +5,7 @@
 </script>
 
 <button
-	on:click={() => theme.toggle()}
+	onclick={() => theme.toggle()}
 	class={buttonVariants({ variant: 'ghost', size: 'icon' })}
 	aria-label="Toggle theme"
 >

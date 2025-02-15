@@ -4,7 +4,7 @@
 	export let translations: CompanyTranslation['team'];
 </script>
 
-<section class="py-24 bg-violet-50 dark:bg-background">
+<section class="bg-violet-50 py-24 dark:bg-background">
 	<div class="container px-4 md:px-6">
 		<div class="flex flex-col items-center space-y-4 text-center">
 			<h2 class="text-3xl font-bold tracking-tighter text-foreground sm:text-4xl md:text-4xl">

@@ -3,6 +3,16 @@ export type CommonTranslation = {
 		blog: string;
 		news: string;
 		company: string;
+		solutions: string;
+		industries: {
+			title: string;
+			construction: string;
+			healthcare: string;
+			logistics: string;
+			factory: string;
+			plant: string;
+			retail: string;
+		};
 	};
 	contact: {
 		title: string;
@@ -190,4 +200,37 @@ export type CompanyTranslation = {
 			value: string;
 		};
 	};
+};
+export type FactoryTranslation = {
+	title: string;
+	subtitle: string;
+	challenges: {
+		title: string;
+		text: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+	solutions: {
+		title: string;
+		subtitle: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+};
+// Update the Translation interface to include factory
+export type Translation = {
+	common: CommonTranslation;
+	home: HomeTranslation;
+	blog: BlogTranslation;
+	news: NewsTranslation;
+	challenges: ChallengesTranslation;
+	product: ProductTranslation;
+	howItWorks: HowItWorksTranslation;
+	privacyPolicy: PrivacyPolicyTranslation;
+	company: CompanyTranslation;
+	factory: FactoryTranslation; // Add this line
 };
