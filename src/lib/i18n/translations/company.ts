@@ -46,13 +46,13 @@ export const en: CompanyTranslation = {
 				title: 'Business / Industry Adviser',
 				location: 'Gothenburg, Sweden',
 				background:
-					' A business leader with over 40 years of experience in the manufacturing industry. After serving as President and CEO of Höganäs Japan, he is currently the Head of Financial Affairs for Asia. He also served as Chairman of the Swedish Chamber of Commerce and Industry, and has deep knowledge and an international network in the automotive and industrial equipment fields.',
+					'A business leader with over 40 years of experience in the manufacturing industry. Latest serving as President of Höganäs Japan during 17 years. He is currently running his own Advisory company and works with several different industrial companies. He also served as Chairman of the Swedish Chamber of Commerce and Industry, and has deep knowledge and an international network in the automotive and industrial equipment fields.',
 				image: '/images/team/carl.png',
 				alt: 'Carl in a suits'
 			},
 			{
 				name: 'Samir Hammoudi',
-				title: 'Technical Advisor',
+				title: 'Engineering Scale Advisor',
 				location: 'Tokyo, Japan & Paris, France',
 				background:
 					'A technology leader with over 10 years of engineering experience at Microsoft and Google. After working as a technical program manager for Google Maps, he is now the head of global customer engineering at unicorn company Molocco. He is knowledgeable in the cloud, machine learning, and adtech fields.',
@@ -61,7 +61,7 @@ export const en: CompanyTranslation = {
 			},
 			{
 				name: 'Séverin Ferrand',
-				title: 'Technical Advisor',
+				title: 'Enterprise Solutions Advisor',
 				location: 'Paris, France',
 				background:
 					'After working in IT operations for the insurance industry and as a cloud pre-sales engineer at Google Japan, he now serves as a technical consultant specializing in private advertising technologies on Chrome. With over 15 years of experience in the IT industry, he has deep expertise in cloud infrastructure and advertising technology. In 2019, he co-founded a craft beer and restaurant business in Japan.',
@@ -142,13 +142,13 @@ export const ja: CompanyTranslation = {
 				title: '経営・工業アドバイザー',
 				location: 'ヨーテボリ、スゥエーデン',
 				background:
-					' 製造業界で40年以上の豊富な経験を持つ経営者。ヘガネスジャパン代表取締役社長を経て、現在はアジア財務統括責任者として活躍。スウェーデン商工会議所会頭も務め、自動車・産業機器分野における深い知見と国際的なネットワークを保有。',
+					'製造業界で40年以上の経験を持つビジネスリーダー。直近では17年間にわたりヘガネスジャパンの社長を務める。現在は自身のアドバイザリー会社を経営し、複数の異なる産業企業と協働している。またスウェーデン商工会議所の会頭も務め、自動車産業および産業機器分野において深い知見と国際的なネットワークを有している。',
 				image: '/images/team/carl.png',
 				alt: 'スーツを着たカール'
 			},
 			{
 				name: 'サミール　ハムーデイ',
-				title: 'Technical Advisor',
+				title: 'エンジニアリング スケール アドバイザー',
 				location: '東京都、 日本 & パリ、 フランス',
 				background:
 					'Microsoft、Googleで10年以上のエンジニアリング経験を持つテクノロジーリーダー。Google Mapsテクニカルプログラムマネージャーを経て、現在はユニコーン企業Molocoのグローバルカスタマーエンジニアリング責任者。クラウド、機械学習、アドテック領域に精通。',
@@ -157,7 +157,7 @@ export const ja: CompanyTranslation = {
 			},
 			{
 				name: 'セブラン　フェラン',
-				title: 'Technical Advisor',
+				title: 'エンタープライズソリューション　アドバイザー',
 				location: 'パリ、 フランス',
 				background:
 					'保険業界のITオペレーション、Google Japanでのクラウドプリセールスエンジニアを経て、現在はChromeのプライベート広告技術のテクニカルコンサルタントとして活躍。15年以上のIT業界経験を持ち、クラウドインフラストラクチャー、広告テクノロジーに精通。2019年には日本でクラフトビールとレストランのビジネスを共同創業。',
