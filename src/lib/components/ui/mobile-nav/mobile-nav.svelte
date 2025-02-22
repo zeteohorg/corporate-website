@@ -16,14 +16,7 @@
 		}
 	);
 
-	const industries = [
-		'factory',
-		'construction',
-		'logistics',
-		'plant',
-		'retail',
-		'healthcare'
-	] as const;
+	const industries = ['factory', 'construction', 'logistics', 'plant', 'retail'] as const;
 	let industriesExpanded = $state(false);
 
 	function switchLanguage() {

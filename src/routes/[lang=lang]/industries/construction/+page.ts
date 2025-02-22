@@ -6,6 +6,7 @@ export const prerender = true;
 export const load: PageLoad = ({ params }) => {
 	const lang = params.lang;
 	return {
+		lang,
 		translations: translations[lang]
 	};
 };

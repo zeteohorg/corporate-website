@@ -7,7 +7,6 @@ export type CommonTranslation = {
 		industries: {
 			title: string;
 			construction: string;
-			healthcare: string;
 			logistics: string;
 			factory: string;
 			plant: string;
@@ -109,6 +108,7 @@ export type HowItWorksTranslation = {
 	}>;
 };
 
+// Update the Translation interface to include factory
 export type Translation = {
 	common: CommonTranslation;
 	home: HomeTranslation;
@@ -119,6 +119,9 @@ export type Translation = {
 	howItWorks: HowItWorksTranslation;
 	privacyPolicy: PrivacyPolicyTranslation;
 	company: CompanyTranslation;
+	factory: FactoryTranslation;
+	construction: ConstructionTranslation;
+	logistics: LogisticsTranslation;
 };
 
 // Add to Translation interface
@@ -221,16 +224,43 @@ export type FactoryTranslation = {
 		}>;
 	};
 };
-// Update the Translation interface to include factory
-export type Translation = {
-	common: CommonTranslation;
-	home: HomeTranslation;
-	blog: BlogTranslation;
-	news: NewsTranslation;
-	challenges: ChallengesTranslation;
-	product: ProductTranslation;
-	howItWorks: HowItWorksTranslation;
-	privacyPolicy: PrivacyPolicyTranslation;
-	company: CompanyTranslation;
-	factory: FactoryTranslation; // Add this line
+export type ConstructionTranslation = {
+	title: string;
+	subtitle: string;
+	challenges: {
+		title: string;
+		text: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+	solutions: {
+		title: string;
+		subtitle: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+};
+export type LogisticsTranslation = {
+	title: string;
+	subtitle: string;
+	challenges: {
+		title: string;
+		text: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+	solutions: {
+		title: string;
+		subtitle: string;
+		items: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
 };
