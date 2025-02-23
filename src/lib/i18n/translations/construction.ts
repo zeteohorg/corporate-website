@@ -2,93 +2,92 @@ import type { ConstructionTranslation } from '../types';
 
 export const en: ConstructionTranslation = {
 	title: 'Construction Site Challenges and TRAILS Implementation',
-	subtitle: 'Real-time Indoor Positioning for Enhanced Construction Safety',
+	subtitle: 'Indoor Positioning System for Enhanced Tunnel Construction Safety',
 	challenges: {
-		title: 'Typical Challenges in Tunnel Construction Site',
-		text: 'In tunnel construction sites, operations involve simultaneous excavation at the front and concrete lining work at the rear, with heavy machinery including 25-ton dump trucks and concrete mixer trucks navigating through confined spaces. Visual contact alone is insufficient for maintaining safe distances between vehicles, forcing operators to rely on horns for position coordination. Additionally, with humidity levels reaching 100% and ongoing excavation progress, new positioning beacons must be continuously installed. Traditional solutions (cameras, SLAM, or geomagnetic sensors) are impractical due to the harsh environmental conditions.',
+		title: 'Current solutions cannot effectively track worker and vehicle positions to address:',
+		text: 'In tunnel construction sites, excavation and concrete lining work occur simultaneously, with 25-ton dump trucks and concrete mixer trucks operating in confined spaces. Visual monitoring alone is insufficient for maintaining safe distances between vehicles, forcing workers to rely on horns for position confirmation. The environment presents unique challenges: 100% humidity and the need to continuously install new positioning beacons as excavation progresses. Alternative solutions (cameras, SLAM, geomagnetic sensors) prove impractical under these harsh conditions.',
 		items: [
 			{
-				title: 'Enhanced Tunnel Safety',
+				title: '1. Safety Enhancement in Tunnels',
 				description:
-					'Need to prevent collision incidents between heavy machinery/dump trucks and workers. Require comprehensive safety management system'
+					' - Need to prevent collisions between heavy machinery/dump trucks and workers while ensuring comprehensive safety management.'
 			},
 			{
-				title: 'Delayed Response Due to Unknown Worker Location',
-				description:
-					'When quality issues or equipment malfunctions occur, time is wasted identifying and locating workers who can respond. This leads to extended line stoppage time and increased quality risks.'
+				title: '2. Reducing Vehicle Standby Time per Excavation Cycle',
+				description: ' - Goal to optimize vehicle operations and improve productivity.'
 			},
 			{
-				title: 'Difficulty in Fair Personnel Evaluation',
+				title: '3. Visualizing Construction Progress for Enhanced Productivity',
 				description:
-					"Worker operation status relies on managers' subjective observations, making accurate evaluation difficult. Especially for multi-skilled workers handling multiple processes, their contributions cannot be properly evaluated, hindering fair assessment and skill development opportunities."
+					' - Need to efficiently record and report when and where each worker performs their tasks.'
 			}
 		]
 	},
 	solutions: {
 		title: 'What TRAILS Can Do',
-		subtitle: 'Real-time indoor positioning to improve factory operations productivity',
+		subtitle:
+			'TRAILS is a next-generation location intelligence system that requires no infrastructure installation and enables:',
 		items: [
 			{
-				title: '1. Location Intelligence',
+				title: 'Worker Safety Through Location Management',
 				description:
-					'建設現場における労働者と重機・ダンプトラックとの接触事故を防止するため、包括的な安全管理システムの導入が必要とされている。'
+					'Using smartphones and smartwatches, TRAILS sends real-time alerts when vehicles approach workers. The system continuously monitors the relative positions of workers and vehicles in tunnels to prevent accidents.'
 			},
 			{
-				title: '2. AI-Powered Auto-Tasking',
+				title: 'Efficient Vehicle Navigation in Tunnels',
 				description:
-					'AI analyzes collected location and work data to automatically generate optimal work instructions. Workers receive automatic notifications about their next tasks through wearable devices. This enables efficient personnel allocation while reducing manager workload.'
+					'Through predictive analytics, TRAILS optimizes vehicle movement. This ensures smooth traffic flow while maintaining safety standards.'
 			},
 			{
-				title: '3. Data-Driven Human Resource Development',
+				title: 'Automated Work Documentation',
 				description:
-					'Automatically collect and analyze operational data by individual and process, providing objective evaluation metrics. This supports fair personnel evaluation and individual worker skill improvement.'
+					'The system automatically records worker locations and activities, streamlining daily report creation. This significantly reduces paperwork while maintaining accurate records.'
 			}
 		]
 	}
 };
 
 export const ja: ConstructionTranslation = {
-	title: '製造現場の課題とTRAILSの活用',
-	subtitle: '工場での作業の生産性を向上させるリアルタイム屋内測位',
+	title: '建設現場の課題とTRAILSの活用',
+	subtitle: 'トンネル建設現場での安全性を向上させる屋内位置測位',
 	challenges: {
-		title: '現場で起きている典型的な問題',
-		text: '製造業では、作業員の動きが生産性を大きく左右します。24時間稼働の製造ラインでは、時間帯による作業量の変動や個人の作業のばらつきにより、以下のような課題が発生しています。',
+		title:
+			'既存ソリューションでは作業員や車両の位置把握による以下のような取り組みを実施することができない',
+		text: 'トンネル建設現場では、前方での掘削作業と後方でのコンクリート内張り作業が同時に行われ、25トンダンプトラックやコンクリートミキサー車などの重機が狭い空間を走行しています。車両間の安全な距離を保つために目視だけでは不十分で、作業員はクラクションを使用して位置を確認せざるを得ません。さらに、湿度が100%に達し、掘削が進むにつれて、新しい位置測定用のビーコンを継続的に設置する必要があります。その他のソリューション（カメラ、SLAM、地磁気センサー等）は、過酷な環境条件のため実用的ではありません。',
 		items: [
 			{
-				title: '人員配置の問題',
-				description:
-					'人員不足の工程と人員過剰の工程が同時に発生 - 作業員100名規模の工場で、一日あたり数十万円の機会損失が発生。ある工程では作業者が待機している一方で、別の工程では人手が足りず生産性が低下するといった状況が日常的に起きています。シフト制による複雑な人員配置や、時間帯による作業量の変動が、この問題をより深刻にしています。'
+				title: '1.トンネル内の安全性の向上・・',
+				description: '重機やダンプカーとの接触事故を防止し、作業員の安全管理の徹底を図りたい。'
 			},
 			{
-				title: '作業員の所在が把握できず、緊急時の対応が遅れる',
-				description:
-					'品質トラブルや設備の不具合が発生した際、対応できる作業員の特定と位置の把握に時間がかかっています。これにより、ライン停止時間の延長や品質リスクの増大につながっています。'
+				title: '2. 掘削サイクルタイム当たりの車両待機時間の減少・・',
+				description: '車両の作業の効率化、生産性向上を図りたい。'
 			},
 			{
-				title: '客観的な稼働データがなく、適切な人事評価が困難',
-				description:
-					'作業者の稼働状況は、管理者の主観的な観察に依存しており、正確な評価が難しい状況です。特に、複数工程を担当する多能工作業員の場合、その貢献度を適切に評価することができず、公平な評価やスキル開発の機会創出につながっていません。'
+				title: '3. 工事進捗状況の見える化による生産性向上・・',
+				description: 'どの作業員がいつ、どこで作業していたかを記録、報告の効率化を実現したい。'
 			}
 		]
 	},
 	solutions: {
 		title: 'TRAILSでできること',
-		subtitle: '工場での作業の生産性を向上させるリアルタイム屋内測位',
+		subtitle:
+			'インフラ設備を必要としない「TRAILS」次世代位置情報インテリジェンスによって、以下を可能にします。',
 		items: [
 			{
-				title: '1. 位置情報インテリジェンス',
+				title: '作業員の安全を守る位置情報管理',
 				description:
-					'ウェアラブルデバイスを活用した位置測位技術により、作業員の動きを可視化。従来のビーコンやWi-Fiと比べて、初期コストを抑えながら安定した位置情報の取得を実現します。製造現場の状況をリアルタイムで把握し、迅速な意思決定をサポートします。'
+					'スマートフォンやスマートウォッチを活用し、車両接近時にリアルタイムで警告を発信。トンネル内での作業員と車両の位置関係を常時把握し、事故を未然に防ぎます。'
 			},
 			{
-				title: '2. AIを活用したオートタスキング',
+				title: 'トンネル内の効率的な車両誘導',
 				description:
-					'収集した位置情報と作業データをAIが分析し、最適な作業指示を自動で生成。作業員にはウェアラブルデバイスを通じて、次に行うべき作業が自動的に通知されます。これにより、管理者の負担を軽減しながら、効率的な人員配置を実現します。'
+					'予測分析技術により、車両の動きを最適化。渋滞を防ぎながら、安全で円滑な車両の運行を実現します。'
 			},
 			{
-				title: '3. データドリブンな人材育成を支援',
+				title: '作業記録の自動化で業務効率向上',
 				description:
-					'個人別・工程別の稼働データを自動で収集・分析し、客観的な評価指標を提供。これにより、公平な人事評価とともに、個々の作業員のスキル向上をサポートします。'
+					'作業員の位置情報や活動内容を自動的に記録し、日報作成を効率化。必要な書類作成の手間を大幅に削減しながら、正確な記録を維持します。'
 			}
 		]
 	}

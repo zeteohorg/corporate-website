@@ -1,94 +1,94 @@
 import type { LogisticsTranslation } from '../types';
 
 export const en: LogisticsTranslation = {
-	title: 'Construction Site Challenges and TRAILS Implementation',
-	subtitle: 'Real-time Indoor Positioning for Enhanced Construction Safety',
+	title: 'Logistics Industry Challenges and TRAILS Implementation',
+	subtitle: 'Real-time Indoor Positioning to Improve Productivity in Logistics Warehouses',
 	challenges: {
-		title: 'Typical Challenges in Tunnel Construction Site',
-		text: 'In tunnel construction sites, operations involve simultaneous excavation at the front and concrete lining work at the rear, with heavy machinery including 25-ton dump trucks and concrete mixer trucks navigating through confined spaces. Visual contact alone is insufficient for maintaining safe distances between vehicles, forcing operators to rely on horns for position coordination. Additionally, with humidity levels reaching 100% and ongoing excavation progress, new positioning beacons must be continuously installed. Traditional solutions (cameras, SLAM, or geomagnetic sensors) are impractical due to the harsh environmental conditions.',
+		title: 'Existing solutions cannot implement the following initiatives:',
+		text: 'A major logistics company with 50 operational centers and nearly 100 warehouses is currently using 200 beacons and smartphones to track approximately 50 workers out of every 100 warehouse staff. With stricter regulations on truck driver overtime implemented in 2024, reducing waiting times and improving logistics costs while maintaining worker engagement have become critical challenges. Warehouse operation efficiency and faster picking times are now essential priorities.',
 		items: [
 			{
-				title: 'Enhanced Tunnel Safety',
+				title: 'Maximizing Operational Efficiency Across All Facilities: ',
 				description:
-					'Need to prevent collision incidents between heavy machinery/dump trucks and workers. Require comprehensive safety management system'
+					'The current system installation of beacons time and cost make it difficult to deploy across all facilities. With limited worker movement analysis and required manual adjustments, the system cannot achieve efficient tracking and analysis across all locations.'
 			},
 			{
-				title: 'Delayed Response Due to Unknown Worker Location',
+				title: 'Worker Health Management and Vital Sign Monitoring:',
 				description:
-					'When quality issues or equipment malfunctions occur, time is wasted identifying and locating workers who can respond. This leads to extended line stoppage time and increased quality risks.'
+					'There is no suitable indoor positioning solution for tracking worker locations and monitoring health conditions in harsh environments such as refrigerated warehouses and containers.'
 			},
 			{
-				title: 'Difficulty in Fair Personnel Evaluation',
+				title: 'Additional Operational Challenges:',
 				description:
-					"Worker operation status relies on managers' subjective observations, making accurate evaluation difficult. Especially for multi-skilled workers handling multiple processes, their contributions cannot be properly evaluated, hindering fair assessment and skill development opportunities."
+					'in inventory management, while significant time is spent on manual visual product inspection, temperature control for refrigerated trucks and inventory location tracking are required. There is also a need to understand warehouse inventory movement patterns and optimize storage fee calculations.'
 			}
 		]
 	},
 	solutions: {
 		title: 'What TRAILS Can Do',
-		subtitle: 'Real-time indoor positioning to improve factory operations productivity',
+		subtitle: 'Real-time indoor positioning to improve logistics operations productivity',
 		items: [
 			{
-				title: '1. Location Intelligence',
+				title: '1. Real-time Location Tracking and Health Monitoring',
 				description:
-					'建設現場における労働者と重機・ダンプトラックとの接触事故を防止するため、包括的な安全管理システムの導入が必要とされている。'
+					'Using smartphones and smartwatches, TRAILS provides real-time tracking of worker locations and health conditions (heart rate, stress levels). This enables early detection of abnormalities and prevents injuries.'
 			},
 			{
-				title: '2. AI-Powered Auto-Tasking',
+				title: '2.AI-Powered Movement Analysis and Operations Optimization',
 				description:
-					'AI analyzes collected location and work data to automatically generate optimal work instructions. Workers receive automatic notifications about their next tasks through wearable devices. This enables efficient personnel allocation while reducing manager workload.'
+					'AI analyzes worker movements to suggest optimal picking routes. The system continuously improves warehouse layouts based on seasonal trends, product categories, and historical data patterns.'
 			},
 			{
-				title: '3. Data-Driven Human Resource Development',
+				title: '3. Facility-Wide Efficiency Enhancement',
 				description:
-					'Automatically collect and analyze operational data by individual and process, providing objective evaluation metrics. This supports fair personnel evaluation and individual worker skill improvement.'
+					'Centralized management of data across all facilities enables efficient space utilization and reduced picking times. This improves operational efficiency while enhancing worker safety and satisfaction.'
 			}
 		]
 	}
 };
 
 export const ja: LogisticsTranslation = {
-	title: '製造現場の課題とTRAILSの活用',
-	subtitle: '工場での作業の生産性を向上させるリアルタイム屋内測位',
+	title: '物流の現場での課題とTRAILSの活用',
+	subtitle: '物流倉庫での作業の生産性を向上させるリアルタイム屋内測位',
 	challenges: {
-		title: '現場で起きている典型的な問題',
-		text: '製造業では、作業員の動きが生産性を大きく左右します。24時間稼働の製造ラインでは、時間帯による作業量の変動や個人の作業のばらつきにより、以下のような課題が発生しています。',
+		title: '既存のソリューションでは以下のような取り組みを実施できない',
+		text: '運営拠点50カ所、倉庫約100カ所を持つ大手物流企業では、現在200個のビーコンとスマートフォンを使用して、倉庫スタッフ100人あたり約50人の作業員の追跡を行っています。2024年にトラック運転手の残業規制が強化されたことを受け、待機時間の削減と物流コストの改善を、作業員のモチベーションを維持しながら実現することが重要な課題となっており、倉庫運営の効率化とピッキング時間の短縮が、今や最優先事項となっています。',
 		items: [
 			{
-				title: '人員配置の問題',
+				title: '全施設での業務効率化の最大化：',
 				description:
-					'人員不足の工程と人員過剰の工程が同時に発生 - 作業員100名規模の工場で、一日あたり数十万円の機会損失が発生。ある工程では作業者が待機している一方で、別の工程では人手が足りず生産性が低下するといった状況が日常的に起きています。シフト制による複雑な人員配置や、時間帯による作業量の変動が、この問題をより深刻にしています。'
+					'現行のビーコンシステムでは、設置時間とコストの問題から全施設への展開が難しく、作業員の動き分析による業務改善が限定的となっており、手動での調整作業も必要なため、効率的な全施設の追跡・分析を実現できていません。'
 			},
 			{
-				title: '作業員の所在が把握できず、緊急時の対応が遅れる',
+				title: '作業員の健康管理とバイタルサイン監視：',
 				description:
-					'品質トラブルや設備の不具合が発生した際、対応できる作業員の特定と位置の把握に時間がかかっています。これにより、ライン停止時間の延長や品質リスクの増大につながっています。'
+					'冷蔵倉庫やコンテナなどの過酷な環境下での作業員の位置情報把握や、健康状態モニタリングが必要となっているが、適合する屋内位置測位ソリューションがない。'
 			},
 			{
-				title: '客観的な稼働データがなく、適切な人事評価が困難',
+				title: 'その他の運用課題:',
 				description:
-					'作業者の稼働状況は、管理者の主観的な観察に依存しており、正確な評価が難しい状況です。特に、複数工程を担当する多能工作業員の場合、その貢献度を適切に評価することができず、公平な評価やスキル開発の機会創出につながっていません。'
+					'在庫管理においては、商品画像の手動確認に時間を要し、冷蔵トラックの温度管理や在庫位置の追跡が必要とされる中、倉庫内での在庫移動パターンを把握し保管料金の最適化を図ることが求められています。'
 			}
 		]
 	},
 	solutions: {
 		title: 'TRAILSでできること',
-		subtitle: '工場での作業の生産性を向上させるリアルタイム屋内測位',
+		subtitle: '物流倉庫での作業の生産性を向上させるリアルタイム屋内測位',
 		items: [
 			{
-				title: '1. 位置情報インテリジェンス',
+				title: 'リアルタイムな位置情報と健康管理',
 				description:
-					'ウェアラブルデバイスを活用した位置測位技術により、作業員の動きを可視化。従来のビーコンやWi-Fiと比べて、初期コストを抑えながら安定した位置情報の取得を実現します。製造現場の状況をリアルタイムで把握し、迅速な意思決定をサポートします。'
+					'スマートフォンとスマートウォッチを活用し、作業員の位置情報と健康状態（心拍数、ストレスレベル）をリアルタイムで把握。異常の早期発見と事故防止を実現します。'
 			},
 			{
-				title: '2. AIを活用したオートタスキング',
+				title: 'AIによる動線分析と業務最適化',
 				description:
-					'収集した位置情報と作業データをAIが分析し、最適な作業指示を自動で生成。作業員にはウェアラブルデバイスを通じて、次に行うべき作業が自動的に通知されます。これにより、管理者の負担を軽減しながら、効率的な人員配置を実現します。'
+					'作業員の動きをAIで分析し、最適なピッキングルートを提案。季節トレンドや商品カテゴリー、過去のデータパターンに基づき、倉庫レイアウトを継続的に改善します。'
 			},
 			{
-				title: '3. データドリブンな人材育成を支援',
+				title: '施設全体の効率向上',
 				description:
-					'個人別・工程別の稼働データを自動で収集・分析し、客観的な評価指標を提供。これにより、公平な人事評価とともに、個々の作業員のスキル向上をサポートします。'
+					'全施設のデータを一元管理し、スペース活用の効率化とピッキング時間の短縮を実現。作業員の安全性と満足度を高めながら、運営効率を向上させます。'
 			}
 		]
 	}
