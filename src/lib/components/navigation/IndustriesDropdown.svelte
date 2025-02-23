@@ -10,9 +10,7 @@
 				title: 'Industries',
 				construction: 'Construction',
 				logistics: 'Logistics',
-				factory: 'Factory',
-				plant: 'Plant',
-				retail: 'Retail'
+				factory: 'Factory'
 			},
 			blog: 'Blog',
 			news: 'News',

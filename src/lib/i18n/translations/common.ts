@@ -54,9 +54,7 @@ export const en: CommonTranslation = {
 			title: 'Industries',
 			construction: 'Construction',
 			logistics: 'Logistics',
-			factory: 'Factories',
-			plant: 'plant',
-			retail: 'Retail'
+			factory: 'Factories'
 		}
 	}
 };
@@ -115,9 +113,7 @@ export const ja: CommonTranslation = {
 			title: '業界別',
 			construction: '建設',
 			logistics: '物流',
-			factory: '工場',
-			plant: 'プラント',
-			retail: '小売'
+			factory: '工場'
 		}
 	}
 };

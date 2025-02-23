@@ -9,8 +9,6 @@ export type CommonTranslation = {
 			construction: string;
 			logistics: string;
 			factory: string;
-			plant: string;
-			retail: string;
 		};
 	};
 	contact: {

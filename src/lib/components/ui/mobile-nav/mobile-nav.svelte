@@ -16,7 +16,7 @@
 		}
 	);
 
-	const industries = ['factory', 'construction', 'logistics', 'plant', 'retail'] as const;
+	const industries = ['factory', 'construction', 'logistics'] as const;
 	let industriesExpanded = $state(false);
 
 	function switchLanguage() {
