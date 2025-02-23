@@ -9,7 +9,6 @@
 			industries: {
 				title: 'Industries',
 				construction: 'Construction',
-				healthcare: 'Healthcare',
 				logistics: 'Logistics',
 				factory: 'Factory',
 				plant: 'Plant',

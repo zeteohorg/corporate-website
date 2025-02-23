@@ -53,7 +53,6 @@ export const en: CommonTranslation = {
 		industries: {
 			title: 'Industries',
 			construction: 'Construction',
-			healthcare: 'Healthcare',
 			logistics: 'Logistics',
 			factory: 'Factories',
 			plant: 'plant',
@@ -115,7 +114,6 @@ export const ja: CommonTranslation = {
 		industries: {
 			title: '業界別',
 			construction: '建設',
-			healthcare: '医療',
 			logistics: '物流',
 			factory: '工場',
 			plant: 'プラント',

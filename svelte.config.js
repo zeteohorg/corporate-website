@@ -14,7 +14,7 @@ const ROUTES = [
 	'privacy-policy',
 	'industries/construction',
 	'industries/factory',
-	'industries/healthcare'
+	'industries/logistics'
 ];
 
 function generateEntries() {

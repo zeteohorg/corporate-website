@@ -9,6 +9,8 @@ import * as howItWorks from './how-it-works';
 import * as privacyPolicy from './privacy-policy';
 import * as company from './company';
 import * as factory from './factory';
+import * as construction from './construction';
+import * as logistics from './logistics';
 
 export const en: Translation = {
 	common: common.en,
@@ -20,7 +22,9 @@ export const en: Translation = {
 	howItWorks: howItWorks.en,
 	privacyPolicy: privacyPolicy.en,
 	company: company.en,
-	factory: factory.en
+	factory: factory.en,
+	construction: construction.en,
+	logistics: logistics.en
 };
 
 export const ja: Translation = {
@@ -33,7 +37,9 @@ export const ja: Translation = {
 	howItWorks: howItWorks.ja,
 	privacyPolicy: privacyPolicy.ja,
 	company: company.ja,
-	factory: factory.ja
+	factory: factory.ja,
+	construction: construction.ja,
+	logistics: logistics.ja
 };
 
 export const translations = { en, ja };

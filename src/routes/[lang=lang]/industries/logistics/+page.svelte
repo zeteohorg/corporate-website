@@ -5,7 +5,7 @@
 
 	export let data: PageData;
 	const { translations, lang } = data;
-	const construction = translations.construction;
+	const logistics = translations.logistics;
 </script>
 
 <div
@@ -50,12 +50,12 @@
 		>
 			<div class="lg:pr-4">
 				<div class="lg:max-w-lg">
-					<p class="text-base/7 font-semibold text-red-500">{construction.title}</p>
+					<p class="text-base/7 font-semibold text-red-500">{logistics.title}</p>
 					<h1 class="text-prett mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
-						{construction.subtitle}
+						{logistics.subtitle}
 					</h1>
 					<p class="mt-6 text-base/8 text-muted-foreground">
-						{construction.challenges.text}
+						{logistics.challenges.text}
 					</p>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 			class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden"
 		>
 			<img
-				src="/images/usecase/construction.webp"
+				src="/images/usecase/logistics.webp"
 				alt="Construction site overview"
 				width="1024"
 				height="576"
@@ -78,9 +78,9 @@
 		>
 			<div class="lg:pr-4">
 				<div class="max-w-xl text-base/7 lg:max-w-lg">
-					<p>{construction.challenges.title}：</p>
+					<p>{logistics.challenges.title}：</p>
 					<ul role="list" class="mt-8 space-y-8">
-						{#each construction.challenges.items as item}
+						{#each logistics.challenges.items as item}
 							<li class="flex gap-x-3 text-muted-foreground">
 								<MapPin size={20} strokeWidth={2.5} class="h-6 w-6 flex-shrink-0 text-red-500" />
 								<span><strong class="font-semibold">{item.title}</strong> {item.description}</span>
@@ -96,15 +96,14 @@
 <div class="container mx-auto px-4 py-12 md:px-6">
 	<div class="container mx-auto px-4 md:px-6">
 		<div class="mb-12 space-y-4 text-center">
-			<h1 class="text-3xl font-bold tracking-tight">{construction.solutions.title}</h1>
+			<h1 class="text-3xl font-bold tracking-tight">{logistics.solutions.title}</h1>
 			<p class="mx-auto max-w-[900px] text-lg text-muted-foreground">
-				{construction.solutions.subtitle}
+				{logistics.solutions.subtitle}
 			</p>
 		</div>
 	</div>
-
 	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-		{#each construction.solutions.items as item}
+		{#each logistics.solutions.items as item}
 			<Card.Root>
 				<Card.Header>
 					<Card.Title>
