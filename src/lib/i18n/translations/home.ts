@@ -2,28 +2,24 @@ import type { HomeTranslation } from '../types';
 
 export const en: HomeTranslation = {
 	hero: {
-		title: 'Zeteoh\'s infrastructure-free spatial data eliminates factory bottlenecks and dramatically boosts productivity.',
-		subtitle: 'Visualize factory bottlenecks with data while keeping implementation costs low and maximizing productivity.',
+		title: 'See Where Your Factory Loses Time. Fix It in Days.',
+		subtitle: 'Visualize every workflow bottleneck using your team\'s phones—installed in 2 days at 1/10th the cost of traditional systems.',
 		getStarted: 'Start with PoC',
 		learnMore: 'Learn more'
 	},
 	useCases: {
-		title: 'Use Cases: Transforming Industries',
+		title: 'Beyond Efficiency: Strategic Advantages',
+		subtitle: 'Your positioning data does more than solve today\'s bottlenecks:',
 		items: [
 			{
-				title: 'Manufacturing & Energy',
+				title: 'Replicate Best Practices',
 				description:
-					'Enhance worker safety through real-time positioning. Enable immediate incident detection and response for improved operational efficiency in power plants and factories.'
+					'Identify your most efficient workflows and operators, then standardize excellence across teams through targeted training.'
 			},
 			{
-				title: 'Critical Infrastructure',
+				title: 'Future-Proof Investment',
 				description:
-					'Streamline maintenance operations in tunnels and underground facilities. Reduce maintenance costs and increase facility uptime through real-time progress visualization.'
-			},
-			{
-				title: 'Transportation Hubs',
-				description:
-					'Optimize airport and station operations. Improve visitor satisfaction through strategic staff placement and enhanced security. Enable seamless navigation with real-time positioning.'
+					'Build the digital foundation for tomorrow\'s smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later.'
 			}
 		]
 	}
@@ -31,28 +27,24 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: 'Zeteohは、高額な設備投資なしに、現場の非効率をデータで可視化し、生産性を最大化します。',
-		subtitle: '工場のボトルネックをデータで可視化。導入コストを抑えて生産性を最大化',
+		title: '現場のムダを「見える化」して、生産性を劇的に変える。',
+		subtitle: 'スマホだけで始められるから、導入はたった2日。従来の1/10のコストで、あなたの「勘」が「データ」に変わります。',
 		getStarted: 'PoCから始める',
 		learnMore: '詳しく見る'
 	},
 	useCases: {
-		title: 'ビジネス変革を加速するユースケース',
+		title: '効率化から戦略的優位性へ',
+		subtitle: '',
 		items: [
 			{
-				title: '産業施設',
+				title: '成功事例の横展開',
 				description:
-					'作業員の位置をリアルタイムで把握し、安全性を強化。プラントや工場での作業効率を向上。'
+					'最も効率的な働き方や優秀なオペレーターをデータで特定。その知見を基に、チーム全体のパフォーマンスを底上げし、組織としての強みを確立します。'
 			},
 			{
-				title: '重要インフラ施設',
+				title: '未来への布石となる投資',
 				description:
-					'トンネルや地下施設での保守点検作業を効率化。作業進捗の可視化により、メンテナンスコストを削減し、施設稼働率を向上。'
-			},
-			{
-				title: '交通ハブ',
-				description:
-					'空港・駅での施設運営を最適化。スタッフの適切な配置とセキュリティ強化により、利用者満足度を向上。リアルタイムのナビゲーションで、スムーズな導線を実現。'
+					'AIによる最適化や予測分析、自動化といった、将来のスマートファクトリーに不可欠なデジタル基盤を今から構築。後から大規模な設備投資をすることなく、未来を見据えた経営を実現します。'
 			}
 		]
 	}

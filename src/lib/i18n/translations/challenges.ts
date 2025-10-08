@@ -3,7 +3,7 @@ import type { ChallengesTranslation } from '../types';
 export const en: ChallengesTranslation = {
 	title: 'Do you face these challenges?',
 	subtitle:
-		'Manufacturing managers with 100-300 employees struggle daily with rising labor costs and staff shortages, carrying the heavy burden of increasing team productivity.',
+		'Manufacturers without enterprise budgets face a perfect storm: labor pressures, hidden inefficiencies, and out-of-reach traditional systems.',
 	items: [
 		{
 			title: 'Rising Labor Costs & Staff Shortages',
@@ -26,7 +26,7 @@ export const en: ChallengesTranslation = {
 export const ja: ChallengesTranslation = {
 	title: 'こんな課題はありませんか？',
 	subtitle:
-		'100人前後の従業員を抱える製造業のマネージャーは、日々人件費の高騰と人手不足に頭を悩ませながら、「どうすれば現場の生産性を上げられるか」という重い課題を背負っています。',
+		'潤沢な予算を持たない中小の製造業者は、人手不足、見えない非効率、そして高額な既存システムという『三重苦』に直面しています。',
 	items: [
 		{
 			title: '人件費の上昇と人手不足',

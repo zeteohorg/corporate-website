@@ -66,6 +66,7 @@ export type HomeTranslation = {
 	};
 	useCases: {
 		title: string;
+		subtitle: string;
 		items: Array<{
 			title: string;
 			description: string;
