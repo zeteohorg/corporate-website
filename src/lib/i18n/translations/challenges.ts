@@ -1,45 +1,47 @@
 import type { ChallengesTranslation } from '../types';
 
 export const en: ChallengesTranslation = {
-	title: 'Unlock the 90% of Business Data Hidden Indoors',
+	title: 'Do you face these challenges?',
 	subtitle:
-		'While 90% of critical business operations occur indoors - in manufacturing plants, warehouses, and commercial facilities - the movement of people and assets remains an untapped source of intelligence.',
+		'Manufacturing managers with 100-300 employees struggle daily with rising labor costs and staff shortages, carrying the heavy burden of increasing team productivity.',
 	items: [
 		{
-			title: 'High Implementation Costs',
+			title: 'Rising Labor Costs & Staff Shortages',
 			description:
-				'Specialized hardware installation, system integration, and calibration - traditional indoor positioning solutions require substantial upfront investment'
+				'Every day brings the challenge of how to increase productivity with existing staff while managing escalating labor costs'
 		},
 		{
-			title: 'Operational Burden',
+			title: 'Hidden Inefficiencies',
 			description:
-				'Rising maintenance costs from battery replacement and regular calibration of beacons'
+				'You sense there are inefficiencies but lack data to identify where time is being wasted and where improvements can be made'
 		},
 		{
-			title: 'Environmental Limitations',
+			title: 'Expensive Traditional Solutions',
 			description:
-				'Radio interference, metal surfaces, and ceiling heights often make implementation impossible'
+				'Traditional efficiency tools cost tens of millions of yen and require months of disruptive installation - completely out of reach'
 		}
 	]
 };
 
 export const ja: ChallengesTranslation = {
-	title: '未活用の屋内データが、ビジネスの90%を変える',
+	title: 'こんな課題はありませんか？',
 	subtitle:
-		'製造、インフラ、建設、交通、商業施設...。ビジネスの核となる空間の90%は屋内にありながら、そこでの人やモノの動きは「見えない資産」となっています。',
+		'100人前後の従業員を抱える製造業のマネージャーは、日々人件費の高騰と人手不足に頭を悩ませながら、「どうすれば現場の生産性を上げられるか」という重い課題を背負っています。',
 	items: [
 		{
-			title: '高コスト',
+			title: '人件費の上昇と人手不足',
 			description:
-				'専用機器の設置、システム構築、導入後の調整など - 既存の屋内位置測位システムの導入では大規模な初期投資が必要'
+				'既存のチームで生産性を向上させつつ、上昇し続ける人件費をどう管理するかという日々の課題'
 		},
 		{
-			title: '運用負担の現実',
-			description: 'ビーコンの電池交換、定期的な位置補正作業による保守コストの増大'
+			title: 'どこに無駄があるか分からない',
+			description:
+				'もっと効率化したいが、どこで時間が無駄になっているのか、どこを改善すべきかのデータがない漠然とした焦燥感'
 		},
 		{
-			title: '導入環境の制約',
-			description: '電波干渉、金属壁面、天井高など、施設特性による制約で導入を断念'
+			title: '従来の効率化ツールは高額',
+			description:
+				'従来の効率化ツールは数千万円かかり、数ヶ月にわたる工事で現場を混乱させる。とても手が出せない'
 		}
 	]
 };

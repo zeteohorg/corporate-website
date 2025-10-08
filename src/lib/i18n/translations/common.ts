@@ -2,20 +2,20 @@ import type { CommonTranslation } from '../types';
 
 export const en: CommonTranslation = {
 	contact: {
-		title: 'Contact Us',
+		title: 'Ready to start with a PoC (Proof of Concept)?',
 		name: 'Name',
 		email: 'Email',
 		company: 'Company Name',
 		jobTitle: 'Job Title',
 		message: 'Message',
-		submit: 'Send Message',
-		success: "Thank you for your message! We'll get back to you soon.",
+		submit: 'Request PoC',
+		success: "Thank you for your interest! We'll contact you soon to discuss your PoC implementation.",
 		required: 'Required fields',
 		inquiryType: {
 			label: 'Type of Inquiry',
 			placeholder: 'Select type of inquiry',
 			options: {
-				demo: 'Request a Demo',
+				demo: 'Request a PoC (Proof of Concept)',
 				vendor: 'Business Partnership Inquiry',
 				other: 'General Inquiry'
 			}
@@ -61,20 +61,20 @@ export const en: CommonTranslation = {
 
 export const ja: CommonTranslation = {
 	contact: {
-		title: 'お問い合わせ',
+		title: 'まずはPoC（実証実験）から始めませんか？',
 		name: '名前',
 		email: 'メールアドレス',
 		company: '会社名',
 		jobTitle: '役職',
 		message: 'メッセージ',
-		submit: '送信',
-		success: 'お問い合わせありがとうございます。担当者より連絡させていただきます。',
+		submit: 'PoCを依頼する',
+		success: 'お問い合わせありがとうございます。PoCの実施について担当者よりご連絡させていただきます。',
 		required: '必須項目',
 		inquiryType: {
 			label: 'お問い合わせ種別',
 			placeholder: 'お問い合わせ種別を選択してください',
 			options: {
-				demo: 'デモのご依頼',
+				demo: 'PoC（実証実験）のご依頼',
 				vendor: 'ビジネス提携に関するお問い合わせ',
 				other: 'その他のお問い合わせ'
 			}

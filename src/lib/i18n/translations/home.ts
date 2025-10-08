@@ -2,11 +2,10 @@ import type { HomeTranslation } from '../types';
 
 export const en: HomeTranslation = {
 	hero: {
-		title: 'Location Intelligence, Inside out',
-		subtitle:
-			'Traditional indoor tracking demands complex hardware setups. Our groundbreaking infrastructure-free solution transforms any smartphone or wearable into an intelligent companion that understands how people move and interact, all while keeping data private through on-device AI. Discover new revenue streams for your business with zero additional investment.',
-		getStarted: 'Schedule a meeting',
-		learnMore: 'Contact us'
+		title: 'Zeteoh\'s infrastructure-free spatial data eliminates factory bottlenecks and dramatically boosts productivity.',
+		subtitle: 'Visualize factory bottlenecks with data while keeping implementation costs low and maximizing productivity.',
+		getStarted: 'Start with PoC',
+		learnMore: 'Learn more'
 	},
 	useCases: {
 		title: 'Use Cases: Transforming Industries',
@@ -32,11 +31,10 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: 'Location Intelligence, Inside out',
-		subtitle:
-			'従来の屋内トラッキングには複雑な機器の設置が必要でした。私たちの画期的なインフラレスソリューションは、スマートフォンやウェアラブル端末を、人々の動きや交流を理解するインテリジェントなパートナーへと変えます。端末内AIによってプライバシーを保護しながら、追加投資なしで新たな収益機会を見出すことができます。',
-		getStarted: 'お打ち合わせを設定する',
-		learnMore: 'お問い合わせをする'
+		title: 'Zeteohは、高額な設備投資なしに、現場の非効率をデータで可視化し、生産性を最大化します。',
+		subtitle: '工場のボトルネックをデータで可視化。導入コストを抑えて生産性を最大化',
+		getStarted: 'PoCから始める',
+		learnMore: '詳しく見る'
 	},
 	useCases: {
 		title: 'ビジネス変革を加速するユースケース',
