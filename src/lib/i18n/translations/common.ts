@@ -51,7 +51,7 @@ export const en: CommonTranslation = {
 		company: 'Company',
 		solutions: 'Solutions',
 		industries: {
-			title: 'Industries',
+			title: 'Use Cases',
 			construction: 'Construction',
 			logistics: 'Logistics',
 			factory: 'Factories'
@@ -110,7 +110,7 @@ export const ja: CommonTranslation = {
 		company: '会社情報',
 		solutions: 'ソリューション',
 		industries: {
-			title: '業界別',
+			title: 'ユースケース',
 			construction: '建設',
 			logistics: '物流',
 			factory: '工場'
