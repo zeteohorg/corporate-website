@@ -2,12 +2,34 @@ import type { CompanyTranslation } from '../types';
 
 export const en: CompanyTranslation = {
 	hero: {
-		title: 'Elevate human potential with the power of AI.',
+		title: 'An "AI Eye" for Every Factory',
 		subtitle:
-			'Committed to leveraging the latest advancements in AI technology to improve various aspects of human life, we believe that this technology has the potential to transform the way we live, work, and interact with the world around us. By harnessing the power of AI, new possibilities can be unlocked to help individuals achieve their full potential.',
-		wearableTitle: 'AI × Wearable device',
+			'We are developing an AI that understands physical operations to eliminate the "invisible inefficiencies" plaguing manufacturing floors. Our vision is to bring AI to every factory—not just the large corporations—to break through the productivity wall.',
+		wearableTitle: 'The Problem: Invisible Waste Is Eroding Your Profits',
 		wearableDescription:
-			'As a means to achieve our mission, our primary focus is on wearable devices. These devices have the ability to collect a wealth of data on human behavior, physiology, and environmental factors. We bring value to society by extracting insights from this data using AI.'
+			'Manufacturing managers grappling with labor shortages and rising costs desperately want to be more efficient, but finding out where the waste lies and which workflows are optimal is a monumental challenge. Traditional efficiency tools are expensive and complex to implement, leading to a reliance on "gut feelings and experience"—a costly dilemma.'
+	},
+	solution: {
+		title: 'Zeteoh\'s Solution: Data from Your Team\'s Phones',
+		subtitle: 'Our platform, TRAILS, fundamentally solves this problem.',
+		features: [
+			{
+				title: 'Easy and Low-Cost',
+				description: 'Your employees\' smartphones become powerful sensors that capture the movements on the factory floor. No need for million-yen systems or months-long installations.'
+			},
+			{
+				title: '"See" to Fundamentally Improve',
+				description: 'We turn qualitative observations into objective data, visualizing who, when, where, and how your team moves. This allows you to identify bottlenecks and inefficient processes for science-based improvements.'
+			},
+			{
+				title: 'A Foundation for the Future',
+				description: 'The data we collect serves as the bedrock for future AI optimization, predictive analytics, and automation. You can start transforming your factory into a smart factory today.'
+			}
+		]
+	},
+	future: {
+		title: 'The Future Zeteoh is Building',
+		description: 'We are bringing this technology to factories worldwide to fundamentally change how the manufacturing industry operates. Our mission is to ensure that every factory, from small businesses to large enterprises, can reap the benefits of AI and achieve sustainable growth.'
 	},
 	team: {
 		title: 'Our team',
@@ -98,12 +120,34 @@ export const en: CompanyTranslation = {
 
 export const ja: CompanyTranslation = {
 	hero: {
-		title: 'AIの力で人の可能性を広げる',
+		title: 'すべての工場に「AIの眼」を',
 		subtitle:
-			'私たちは、最新のAI技術を活用して人々の生活のさまざまな側面を向上させることに取り組んでいます。この技術には、私たちの生活、仕事、そして周囲の世界との関わり方を変革する可能性があると信じています。AIの力を活用することで、個人が持つ可能性を最大限に引き出すための新たな可能性が開かれます。',
-		wearableTitle: 'AI × ウェアラブルデバイス',
+			'私たちは、製造業の現場が抱える「見えない非効率性」を解消するため、物理的なオペレーションを理解するAIを開発しています。これは、大企業だけのものではありません。すべての工場にAIを導入し、生産性の壁を打ち破ることを目指します。',
+		wearableTitle: '現場の課題：見えないムダが、あなたの利益を蝕む',
 		wearableDescription:
-			'ミッションを達成するための手段として、私たちはウェアラブルデバイスに注力しています。これらのデバイスは、人間の行動、生理学的データ、環境要因に関する豊富なデータを収集する能力を持っています。AIを用いてこのデータから洞察を抽出することで、社会に価値をもたらします。'
+			'人手不足とコスト高騰に悩む製造業の現場では、「もっと効率化したい」という思いがあっても、どこにムダがあるのか、誰の動きが最適なのか、把握するのは困難でした。従来の効率化ツールは、高額で導入も複雑。その結果、現場の「勘と経験」に頼るしかないという、ジレンマが生まれていました。'
+	},
+	solution: {
+		title: 'Zeteohのソリューション：スマホだけで、現場をデータ化',
+		subtitle: '私たちのプラットフォーム「TRAILS」は、この課題を根本から解決します。',
+		features: [
+			{
+				title: '簡単、低コスト',
+				description: '従業員が持つスマートフォンが、現場の動きを捉えるセンサーに。何百万円もする専用システムは不要で、導入にかかる期間もわずか数日です。'
+			},
+			{
+				title: '「見える化」で本質的な改善',
+				description: '誰が、いつ、どこで、どう動いているのかを客観的なデータで「見える化」。ボトルネックや非効率な動きを特定し、科学的な改善が可能になります。'
+			},
+			{
+				title: '未来への布石',
+				description: '収集されたデータは、将来的なAIによる自動化や予測分析の基盤となります。今から、あなたの工場を未来に備えた「スマートファクトリー」に変革できます。'
+			}
+		]
+	},
+	future: {
+		title: 'Zeteohが描く未来',
+		description: '私たちは、この技術を世界中の工場に届け、製造業のあり方を変革しています。中小企業から大企業まで、すべての現場がAIの恩恵を享受し、持続可能な成長を実現する。それが、私たちの使命です。'
 	},
 	team: {
 		title: 'チーム',

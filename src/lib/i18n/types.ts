@@ -66,6 +66,7 @@ export type HomeTranslation = {
 	};
 	useCases: {
 		title: string;
+		subtitle: string;
 		items: Array<{
 			title: string;
 			description: string;
@@ -165,6 +166,18 @@ export type CompanyTranslation = {
 		subtitle: string;
 		wearableTitle: string;
 		wearableDescription: string;
+	};
+	solution: {
+		title: string;
+		subtitle: string;
+		features: Array<{
+			title: string;
+			description: string;
+		}>;
+	};
+	future: {
+		title: string;
+		description: string;
 	};
 	team: {
 		title: string;
