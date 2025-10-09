@@ -16,7 +16,7 @@
 		}
 	);
 
-	const industries = ['factory', 'construction', 'logistics'] as const;
+	const industries = ['factory'] as const;
 	let industriesExpanded = $state(false);
 
 	function switchLanguage() {
@@ -62,7 +62,7 @@
 						class={cn(buttonVariants({ variant: 'ghost' }), 'w-full justify-between')}
 						aria-expanded={industriesExpanded}
 					>
-						<span>{t?.industries?.title || 'Industries'}</span>
+						<span>{t?.industries?.title || 'Use Cases'}</span>
 						<ChevronDown
 							class={cn('h-4 w-4 transition-transform', industriesExpanded && 'rotate-180')}
 						/>

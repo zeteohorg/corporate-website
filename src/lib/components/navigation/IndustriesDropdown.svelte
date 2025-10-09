@@ -7,7 +7,7 @@
 	const defaultTranslations: Translation['common'] = {
 		nav: {
 			industries: {
-				title: 'Industries',
+				title: 'Use Cases',
 				construction: 'Construction',
 				logistics: 'Logistics',
 				factory: 'Factory'
@@ -101,36 +101,12 @@
 				<ul class="relative grid gap-6 bg-background px-5 py-6 sm:gap-8 sm:p-8">
 					<li>
 						<a
-							href="/{$page.params.lang}/industries/construction"
-							class="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-accent"
-						>
-							<div class="ml-4">
-								<p class="text-base font-medium">
-									{safeTranslations.nav.industries.construction}
-								</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a
 							href="/{$page.params.lang}/industries/factory"
 							class="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-accent"
 						>
 							<div class="ml-4">
 								<p class="text-base font-medium">
 									{safeTranslations.nav.industries.factory}
-								</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a
-							href="/{$page.params.lang}/industries/logistics"
-							class="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-accent"
-						>
-							<div class="ml-4">
-								<p class="text-base font-medium">
-									{safeTranslations.nav.industries.logistics}
 								</p>
 							</div>
 						</a>
