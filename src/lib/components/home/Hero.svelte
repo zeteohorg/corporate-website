@@ -117,12 +117,9 @@
 	const t = $derived(translations[currentLanguage].home.hero);
 
 	let isContentVisible = $state(false);
-	let isMobile = $state(false);
 	let activeHotspot = $state<string | null>(null);
 	let resizeTick = $state(0);
-	let contentRef: HTMLDivElement;
 	let containerEl: HTMLDivElement | undefined = $state();
-	let observer: IntersectionObserver;
 	let pathEls: SVGPathElement[] = [];
 	let dotEls: SVGCircleElement[] = [];
 
@@ -180,42 +177,14 @@
 	});
 
 	// ── Lifecycle ────────────────────────────────────────────────────────────────
-	function checkMobile() {
-		isMobile = window.innerWidth < 640;
-		if (!isMobile) {
-			isContentVisible = true;
-		}
-	}
-
 	onMount(() => {
-		checkMobile();
+		isContentVisible = true;
 		const onResize = () => {
-			checkMobile();
 			resizeTick++;
 		};
 		window.addEventListener('resize', onResize);
-
-		observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						isContentVisible = true;
-						observer.disconnect();
-					}
-				});
-			},
-			{ threshold: 0.1 }
-		);
-
-		if (contentRef && isMobile) {
-			observer.observe(contentRef);
-		} else {
-			isContentVisible = true;
-		}
-
 		return () => {
 			window.removeEventListener('resize', onResize);
-			observer?.disconnect();
 		};
 	});
 
@@ -224,8 +193,10 @@
 		if (!containerEl) return {};
 		const px = (hotspot.x / 1920) * 100;
 		const py = (hotspot.y / 1072) * 100;
-		const cardWidthPct = (330 / containerEl.offsetWidth) * 100;
-		const left = px > 55 ? px - cardWidthPct - 3 : px + 3;
+		const cardWidth = Math.min(330, containerEl.offsetWidth - 32); // keep 16px margin each side
+		const cardWidthPct = (cardWidth / containerEl.offsetWidth) * 100;
+		const left =
+			px > 55 ? Math.max(2, px - cardWidthPct - 3) : Math.min(px + 3, 100 - cardWidthPct - 2);
 		const top = Math.max(2, Math.min(70, py - 5));
 		const originX = px > 55 ? '100%' : '0%';
 		const originY = top < 5 ? '0%' : top > 65 ? '80%' : '20%';
@@ -250,7 +221,7 @@
 		<!-- Hero Content -->
 		<div class="mx-auto max-w-2xl text-center">
 			<h1
-				class="mt-4 text-5xl font-bold tracking-tight whitespace-pre-line sm:text-4xl md:text-5xl lg:text-6xl"
+				class="mt-4 text-4xl font-bold tracking-tight whitespace-pre-line sm:text-4xl md:text-5xl lg:text-6xl"
 			>
 				{t.title}
 			</h1>
@@ -260,7 +231,7 @@
 		</div>
 
 		<!-- Factory Canvas Visualization -->
-		<div bind:this={contentRef} class="mt-6 hidden sm:mt-8 sm:block">
+		<div class="mt-6 sm:mt-8">
 			<div
 				bind:this={containerEl}
 				class="relative mx-auto w-full max-w-6xl overflow-hidden rounded-2xl"
@@ -357,22 +328,24 @@
 								d={operator.path}
 								fill="none"
 								stroke={operator.color}
-								stroke-width="4"
+								stroke-width="3"
 								opacity="0.9"
 								stroke-linecap="round"
 								stroke-linejoin="round"
+								vector-effect="non-scaling-stroke"
 							/>
 							<!-- 2. Trail main (animates drawing via stroke-dashoffset) -->
 							<path
 								d={operator.path}
 								fill="none"
 								stroke={operator.color}
-								stroke-width="5"
+								stroke-width="3"
 								stroke-linecap="round"
 								stroke-linejoin="round"
 								filter="url(#viz-glow)"
 								stroke-dasharray={operator.pathLength}
 								stroke-dashoffset={operator.pathLength}
+								vector-effect="non-scaling-stroke"
 								style="animation: drawPath {operator.drawDuration}s ease-out {operator.drawDelay}s forwards;"
 								use:pathRef={i}
 							/>
@@ -381,11 +354,12 @@
 								d={operator.path}
 								fill="none"
 								stroke={operator.trailAnimColor}
-								stroke-width="5"
+								stroke-width="3"
 								stroke-linecap="round"
 								stroke-linejoin="round"
 								stroke-dasharray="14 500"
 								opacity="0.85"
+								vector-effect="non-scaling-stroke"
 								style="animation: moveDash {(operator.animDuration / 1000) *
 									0.5}s linear {operator.drawDelay + operator.drawDuration}s infinite;"
 							/>
@@ -412,45 +386,48 @@
 								<!-- Ping ring (animated) - subtle like Tailwind -->
 								<circle class="hotspot-ping" r="21" fill={hotspot.accentColor} />
 
-								<!-- Static center circle -->
-								<circle r="21" fill={hotspot.accentColor} opacity="0.3" />
+								<g class="hotspot-icon">
+									<!-- Static center circle -->
+									<circle r="21" fill={hotspot.accentColor} opacity="0.3" />
 
-								<!-- Icon graphic (clean, minimal blur) - 40% larger -->
-								<g filter="url(#hotspot-glow)">
-									<circle
-										cx="0"
-										cy="0"
-										r="21"
-										fill="none"
-										stroke="white"
-										stroke-width="4"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-									<line
-										x1="0"
-										y1="-8"
-										x2="0"
-										y2="-1"
-										stroke="white"
-										stroke-width="4"
-										stroke-linecap="round"
-									/>
-									<circle cx="0" cy="5.6" r="2.1" fill="white" />
+									<!-- Icon graphic (clean, minimal blur) - 40% larger -->
+									<g filter="url(#hotspot-glow)">
+										<circle
+											cx="0"
+											cy="0"
+											r="21"
+											fill="none"
+											stroke="white"
+											stroke-width="4"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+										<line
+											x1="0"
+											y1="-8"
+											x2="0"
+											y2="-1"
+											stroke="white"
+											stroke-width="4"
+											stroke-linecap="round"
+										/>
+										<circle cx="0" cy="5.6" r="2.1" fill="white" />
+									</g>
+
+									<!-- 8. Label (existing) -->
+									<text
+										x="24"
+										y="4"
+										font-size="11"
+										font-weight="600"
+										fill="white"
+										stroke="#08080a"
+										stroke-width="3"
+										paint-order="stroke"
+										style="opacity: 0; animation: fadeIn .3s ease 5s forwards;"
+										>{hotspot.label}</text
+									>
 								</g>
-
-								<!-- 8. Label (existing) -->
-								<text
-									x="24"
-									y="4"
-									font-size="11"
-									font-weight="600"
-									fill="white"
-									stroke="#08080a"
-									stroke-width="3"
-									paint-order="stroke"
-									style="opacity: 0; animation: fadeIn .3s ease 5s forwards;">{hotspot.label}</text
-								>
 							</g>
 						{/each}
 					</svg>
@@ -643,5 +620,26 @@
 	}
 	.popup-card.popup-active .idle-bar-fill {
 		width: 80%;
+	}
+	@media (max-width: 639px) {
+		.hotspot-icon {
+			transform: scale(3);
+			transform-origin: 0px 0px;
+		}
+		.popup-card {
+			position: fixed;
+			bottom: 1rem;
+			left: 50%;
+			top: auto;
+			width: 110px;
+			transform: translateX(-50%) scale(0.3);
+			transform-origin: center bottom;
+			font-size: 0.7rem;
+			padding: 10px;
+			border-radius: 6px;
+		}
+		.popup-card.popup-active {
+			transform: translateX(-50%) scale(1);
+		}
 	}
 </style>
