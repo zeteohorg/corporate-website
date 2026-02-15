@@ -37,7 +37,7 @@
 		return url;
 	}
 
-	const embedUrl = getEmbedUrl(url);
+	const embedUrl = $derived(getEmbedUrl(url));
 </script>
 
 <div class={cn('my-6 overflow-hidden rounded-lg', className)}>
