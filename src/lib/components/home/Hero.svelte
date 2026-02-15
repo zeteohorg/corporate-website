@@ -260,14 +260,15 @@
 		</div>
 
 		<!-- Factory Canvas Visualization -->
-		<div bind:this={contentRef} class="mt-6 sm:mt-8 {isMobile ? 'hidden' : ''}">
-			{#if isContentVisible}
-				<div
-					bind:this={containerEl}
-					class="relative mx-auto w-full max-w-6xl overflow-hidden rounded-2xl"
-					style="box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 30px 90px -20px rgba(0,0,0,0.7), 0 0 140px -50px rgba(255,59,59,0.25);"
-				>
-					<!-- Base factory image -->
+		<div bind:this={contentRef} class="mt-6 hidden sm:mt-8 sm:block">
+			<div
+				bind:this={containerEl}
+				class="relative mx-auto w-full max-w-6xl overflow-hidden rounded-2xl"
+				style="box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 30px 90px -20px rgba(0,0,0,0.7), 0 0 140px -50px rgba(255,59,59,0.25);"
+			>
+				<!-- Base factory image (always rendered for SSR/LCP) -->
+				<picture>
+					<source srcset="/images/factory_digitaltwin.webp" type="image/webp" />
 					<img
 						src="/images/factory_digitaltwin.png"
 						alt="Factory digital twin"
@@ -275,9 +276,12 @@
 						height="1072"
 						class="block h-auto w-full"
 						loading="eager"
+						fetchpriority="high"
 						decoding="async"
 					/>
+				</picture>
 
+				{#if isContentVisible}
 					<!-- SVG trajectory overlay -->
 					<svg
 						class="absolute inset-0 h-full w-full"
@@ -498,8 +502,8 @@
 							{/if}
 						</div>
 					{/each}
-				</div>
-			{/if}
+				{/if}
+			</div>
 			<!-- CTAs -->
 			<div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-x-6">
 				<a
@@ -523,9 +527,7 @@
 
 	<!-- Bottom halo -->
 	<div
-		class="absolute bottom-[100px] left-1/2 -z-10 h-[100px] w-[300px] -translate-x-1/2 transform-gpu overflow-hidden blur-[64px] sm:bottom-[300px] {isMobile
-			? 'hidden'
-			: ''}"
+		class="absolute bottom-[100px] left-1/2 -z-10 hidden h-[100px] w-[300px] -translate-x-1/2 transform-gpu overflow-hidden blur-[64px] sm:bottom-[300px] sm:block"
 		aria-hidden="true"
 	>
 		<div
