@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/home/Hero.svelte';
+	import Stats from '$lib/components/home/Stats.svelte';
+	import Export from '$lib/components/home/Export.svelte';
 	import UseCases from '$lib/components/home/UseCases.svelte';
 	import Challenges from '$lib/components/home/Challenges.svelte';
 	import LatestPosts from '$lib/components/home/LatestPosts.svelte';
@@ -15,6 +17,8 @@
 </script>
 
 <Hero />
+<Stats />
+<Export />
 <Challenges />
 <Product />
 <HowItWorks />

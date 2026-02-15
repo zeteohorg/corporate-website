@@ -6,14 +6,31 @@ export const en: HomeTranslation = {
 		subtitle:
 			"Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. No environment constraints.",
 		getStarted: 'Request a Pilot',
-		learnMore: 'Learn more'
+		learnMore: 'Learn more',
+		stats: [
+			{
+				value: '23%',
+				label: 'Average reduction in non-value-added movement',
+				colorClass: 'text-[#ff3b3b]'
+			},
+			{
+				value: '< 3 days',
+				label: 'From install to first insights',
+				colorClass: 'text-[#3b8eff]'
+			},
+			{
+				value: '¥4.2M',
+				label: 'Avg. annual savings per factory',
+				colorClass: 'text-[#2dd4a0]'
+			}
+		]
 	},
 	useCases: {
 		title: 'Beyond Efficiency: Strategic Advantages',
 		subtitle: "Your positioning data does more than solve today's bottlenecks:",
 		items: [
 			{
-				title: 'Replicate Best Practices',
+				title: 'Standardize best methods',
 				description:
 					'Identify your most efficient workflows and operators, then standardize excellence across teams through targeted training.'
 			},
@@ -32,11 +49,28 @@ export const ja: HomeTranslation = {
 		subtitle:
 			'Spatial AI が現場を変える——スマートフォンだけでリアルタイムの動線分析を実現。センサー不要、インフラ不要、環境を選ばない。',
 		getStarted: 'PoCから始める',
-		learnMore: '詳しく見る'
+		learnMore: '詳しく見る',
+		stats: [
+			{
+				value: '23%',
+				label: '非付加価値動作の平均削減率',
+				colorClass: 'text-[#ff3b3b]'
+			},
+			{
+				value: '< 3日',
+				label: '設置から最初のインサイトまで',
+				colorClass: 'text-[#3b8eff]'
+			},
+			{
+				value: '¥4.2M',
+				label: '工場あたりの平均年間節約額',
+				colorClass: 'text-[#2dd4a0]'
+			}
+		]
 	},
 	useCases: {
 		title: '効率化から戦略的優位性へ',
-		subtitle: '',
+		subtitle: '位置データが解決するのは、今日のボトルネックだけではありません：',
 		items: [
 			{
 				title: '成功事例の横展開',

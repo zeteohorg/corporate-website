@@ -90,25 +90,25 @@
 	const HOTSPOTS: HotspotConfig[] = [
 		{
 			id: 'detour',
-			x: 1420,
-			y: 450,
-			label: 'Detour',
+			x: 1078,
+			y: 230,
+			label: 'Off-standard Routing',
 			accentColor: '#f5a623',
 			glowColor: 'rgba(245,166,35,0.15)',
 			pulseDelay: 4,
 			filterColor: 'orange',
-			card: { title: 'Detour Identified', titleColor: '#f5a623', type: 'detour' }
+			card: { title: 'Off-standard Routing Identified', titleColor: '#f5a623', type: 'detour' }
 		},
 		{
 			id: 'idle',
-			x: 420,
-			y: 780,
-			label: 'Idle Zone',
+			x: 787,
+			y: 702,
+			label: 'Dwell Zone',
 			accentColor: '#f5a623',
 			glowColor: 'rgba(245,166,35,0.15)',
 			pulseDelay: 4.5,
 			filterColor: 'orange',
-			card: { title: 'Idle Zone Detected', titleColor: '#f5a623', type: 'idle' }
+			card: { title: 'Dwell Zone Detected', titleColor: '#f5a623', type: 'idle' }
 		}
 	];
 
@@ -477,16 +477,16 @@
 							</div>
 							{#if hotspot.card?.type === 'detour'}
 								<p class="text-muted-foreground text-base leading-relaxed">
-									Operator A traveled <span class="font-semibold text-white">+47 m</span> beyond optimal
+									Operator A traveled <span class="font-semibold text-white">+17 m</span> beyond optimal
 									route.
 								</p>
 								<div class="text-muted-foreground mt-3 text-base">
 									Est. daily loss:
-									<span class="font-semibold" style:color={hotspot.card.titleColor}>~12 min</span>
+									<span class="font-semibold" style:color={hotspot.card.titleColor}>~7 min</span>
 								</div>
 							{:else if hotspot.card?.type === 'idle'}
 								<p class="text-muted-foreground mb-3 text-base leading-relaxed">
-									Avg. idle time in zone: <span class="font-semibold text-white">8.3 min/hr</span>
+									Avg. dwell time in zone: <span class="font-semibold text-white">8.3 min/hr</span>
 								</p>
 								<div class="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
 									<div
@@ -494,7 +494,7 @@
 										style:background={hotspot.card.titleColor}
 									></div>
 								</div>
-								<div class="text-muted-foreground mt-2 text-sm">80% of shift affected</div>
+								<div class="text-muted-foreground mt-2 text-sm">30% of shift affected</div>
 							{/if}
 						</div>
 					{/each}

@@ -63,6 +63,11 @@ export type HomeTranslation = {
 		subtitle: string;
 		getStarted: string;
 		learnMore: string;
+		stats: Array<{
+			value: string;
+			label: string;
+			colorClass?: string;
+		}>;
 	};
 	useCases: {
 		title: string;
@@ -121,6 +126,7 @@ export type Translation = {
 	factory: FactoryTranslation;
 	construction: ConstructionTranslation;
 	logistics: LogisticsTranslation;
+	export: ExportTranslation;
 };
 
 // Add to Translation interface
@@ -273,5 +279,38 @@ export type LogisticsTranslation = {
 			title: string;
 			description: string;
 		}>;
+	};
+};
+
+export type ExportTranslation = {
+	tag: string;
+	title: string;
+	description: string;
+	features: string[];
+	mockup: {
+		titlebar: string;
+		dateStart: string;
+		dateEnd: string;
+		columns: {
+			trajectory: string;
+			deviceId: string;
+			points: string;
+		};
+		workers: Array<{
+			name: string;
+			deviceId: string;
+			points: string;
+			color: 'red' | 'blue' | 'green';
+		}>;
+		footer: {
+			selected: string;
+			exportButton: string;
+			downloading: string;
+			ready: string;
+		};
+		toast: {
+			filename: string;
+			details: string;
+		};
 	};
 };
