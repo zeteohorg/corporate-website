@@ -36,7 +36,7 @@
 			'border-green-200 dark:border-green-800 [&>svg]:text-green-600 dark:[&>svg]:text-green-400'
 	};
 
-	const Icon = icons[type];
+	const Icon = $derived(icons[type]);
 </script>
 
 <Alert.Root variant={variants[type]} class={cn('my-6', styles[type])}>
