@@ -191,6 +191,7 @@
 	// ── Popup positioning ────────────────────────────────────────────────────────
 	function getCardPosition(hotspot: HotspotConfig, _tick: number) {
 		if (!containerEl) return {};
+		if (containerEl.offsetWidth < 640) return {}; // mobile: CSS fills the canvas
 		const px = (hotspot.x / 1920) * 100;
 		const py = (hotspot.y / 1072) * 100;
 		const cardWidth = Math.min(330, containerEl.offsetWidth - 32); // keep 16px margin each side
@@ -443,9 +444,9 @@
 							style:--origin-x={pos['--origin-x']}
 							style:--origin-y={pos['--origin-y']}
 						>
-							<div class="card-header mb-4 flex items-start justify-between gap-3">
+							<div class="card-header mb-2 flex items-start justify-between gap-2 sm:mb-4 sm:gap-3">
 								<span
-									class="flex items-center gap-2 text-lg font-bold"
+									class="flex items-center gap-1 text-lg font-bold sm:gap-2"
 									style:color={hotspot.card?.titleColor}
 								>
 									<AlertCircle size={20} />
@@ -457,16 +458,16 @@
 								>
 							</div>
 							{#if hotspot.card?.type === 'detour'}
-								<p class="text-muted-foreground text-base leading-relaxed">
+								<p class="text-muted-foreground text-base leading-snug sm:leading-relaxed">
 									Operator A traveled <span class="font-semibold text-white">+17 m</span> beyond optimal
 									route.
 								</p>
-								<div class="text-muted-foreground mt-3 text-base">
+								<div class="text-muted-foreground mt-1 text-base sm:mt-3">
 									Est. daily loss:
 									<span class="font-semibold" style:color={hotspot.card.titleColor}>~7 min</span>
 								</div>
 							{:else if hotspot.card?.type === 'idle'}
-								<p class="text-muted-foreground mb-3 text-base leading-relaxed">
+								<p class="text-muted-foreground mb-1 text-base leading-snug sm:mb-3 sm:leading-relaxed">
 									Avg. dwell time in zone: <span class="font-semibold text-white">8.3 min/hr</span>
 								</p>
 								<div class="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
@@ -627,19 +628,15 @@
 			transform-origin: 0px 0px;
 		}
 		.popup-card {
-			position: fixed;
-			bottom: 1rem;
-			left: 50%;
-			top: auto;
-			width: 110px;
-			transform: translateX(-50%) scale(0.3);
-			transform-origin: center bottom;
-			font-size: 0.7rem;
-			padding: 10px;
-			border-radius: 6px;
-		}
-		.popup-card.popup-active {
-			transform: translateX(-50%) scale(1);
+			position: absolute;
+			inset: 8px;
+			width: auto;
+			font-size: clamp(0.65rem, 3.2vw, 0.875rem);
+			padding: 16px;
+			border-radius: 12px;
+			overflow-y: auto;
+			word-break: break-word;
+			transform-origin: center center;
 		}
 	}
 </style>
