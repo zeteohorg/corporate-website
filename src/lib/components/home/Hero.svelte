@@ -467,7 +467,9 @@
 									<span class="font-semibold" style:color={hotspot.card.titleColor}>~7 min</span>
 								</div>
 							{:else if hotspot.card?.type === 'idle'}
-								<p class="text-muted-foreground mb-1 text-base leading-snug sm:mb-3 sm:leading-relaxed">
+								<p
+									class="text-muted-foreground mb-1 text-base leading-snug sm:mb-3 sm:leading-relaxed"
+								>
 									Avg. dwell time in zone: <span class="font-semibold text-white">8.3 min/hr</span>
 								</p>
 								<div class="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
