@@ -18,7 +18,7 @@
 		// YouTube
 		if (url.includes('youtube.com') || url.includes('youtu.be')) {
 			const youtubeRegex =
-				/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+				/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
 			videoId = url.match(youtubeRegex)?.[1] ?? null;
 			if (videoId) {
 				return `https://www.youtube-nocookie.com/embed/${videoId}`;
@@ -47,7 +47,7 @@
 			{title}
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen
-			class="absolute left-0 top-0 size-full"
+			class="absolute top-0 left-0 size-full"
 		></iframe>
 	</div>
 </div>

@@ -4,13 +4,13 @@
 	export let translations: CompanyTranslation['team'];
 </script>
 
-<section class="bg-violet-50 py-24 dark:bg-background">
+<section class="dark:bg-background bg-violet-50 py-24">
 	<div class="container px-4 md:px-6">
 		<div class="flex flex-col items-center space-y-4 text-center">
-			<h2 class="text-3xl font-bold tracking-tighter text-foreground sm:text-4xl md:text-4xl">
+			<h2 class="text-foreground text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl">
 				{translations.title}
 			</h2>
-			<p class="mx-auto max-w-[700px] text-muted-foreground md:text-base">
+			<p class="text-muted-foreground mx-auto max-w-[700px] md:text-base">
 				{translations.subtitle}
 			</p>
 		</div>
@@ -18,7 +18,7 @@
 		<div class="mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-6">
 			{#each translations.members as member}
 				<Card
-					class="w-full overflow-hidden border-0 bg-card sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+					class="bg-card w-full overflow-hidden border-0 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
 				>
 					<CardContent class="p-6">
 						<div
@@ -33,16 +33,16 @@
 							/>
 						</div>
 						<div class="text-center">
-							<h3 class="text-lg font-semibold text-foreground">
+							<h3 class="text-foreground text-lg font-semibold">
 								{member.name}
 							</h3>
-							<p class="mt-1 text-sm text-muted-foreground">
+							<p class="text-muted-foreground mt-1 text-sm">
 								{member.title}
 							</p>
-							<p class="mt-1 text-sm text-muted-foreground">
+							<p class="text-muted-foreground mt-1 text-sm">
 								{member.location}
 							</p>
-							<p class="mt-1 text-sm text-foreground">
+							<p class="text-foreground mt-1 text-sm">
 								{member.background}
 							</p>
 						</div>

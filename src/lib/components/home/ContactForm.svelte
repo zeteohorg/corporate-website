@@ -44,7 +44,7 @@
 			</h2>
 
 			{#if submitted}
-				<div class="rounded-md bg-primary/10 p-4 text-center" role="alert">
+				<div class="bg-primary/10 rounded-md p-4 text-center" role="alert">
 					<p class="text-foreground">{t.success}</p>
 				</div>
 			{:else}
@@ -68,7 +68,7 @@
 
 					<!-- Name field -->
 					<div class="space-y-2">
-						<label for="name" class="text-sm font-medium leading-none">
+						<label for="name" class="text-sm leading-none font-medium">
 							{t.name} <span class="text-destructive">*</span>
 						</label>
 						<Input
@@ -84,7 +84,7 @@
 
 					<!-- Email field -->
 					<div class="space-y-2">
-						<label for="email" class="text-sm font-medium leading-none">
+						<label for="email" class="text-sm leading-none font-medium">
 							{t.email} <span class="text-destructive">*</span>
 						</label>
 						<Input
@@ -99,7 +99,7 @@
 
 					<!-- Company field -->
 					<div class="space-y-2">
-						<label for="company" class="text-sm font-medium leading-none">
+						<label for="company" class="text-sm leading-none font-medium">
 							{t.company} <span class="text-destructive">*</span>
 						</label>
 						<Input
@@ -114,7 +114,7 @@
 
 					<!-- Job Title field -->
 					<div class="space-y-2">
-						<label for="jobTitle" class="text-sm font-medium leading-none">
+						<label for="jobTitle" class="text-sm leading-none font-medium">
 							{t.jobTitle}
 						</label>
 						<Input type="text" id="jobTitle" name="job-title" autocomplete="organization-title" />
@@ -122,13 +122,13 @@
 
 					<!-- Inquiry Type field -->
 					<div class="space-y-2">
-						<label for="inquiryType" class="text-sm font-medium leading-none">
+						<label for="inquiryType" class="text-sm leading-none font-medium">
 							{t.inquiryType.label} <span class="text-destructive">*</span>
 						</label>
 						<select
 							id="inquiryType"
 							name="inquiry-type"
-							class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+							class="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 							required
 							aria-required="true"
 						>
@@ -141,18 +141,18 @@
 
 					<!-- Message field -->
 					<div class="space-y-2">
-						<label for="message" class="text-sm font-medium leading-none">
+						<label for="message" class="text-sm leading-none font-medium">
 							{t.message}
 						</label>
 						<textarea
 							id="message"
 							name="message"
-							class="min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+							class="border-input bg-background ring-offset-background focus-visible:ring-ring min-h-[120px] w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 							rows="4"
 						></textarea>
 					</div>
 
-					<div class="text-sm text-muted-foreground">
+					<div class="text-muted-foreground text-sm">
 						<span class="text-destructive">*</span>
 						{t.required}
 					</div>

@@ -109,10 +109,10 @@
 	</Breadcrumb.Root>
 
 	<div class="mt-8 grid gap-8 lg:grid-cols-[1fr_280px]">
-		<article class="prose prose-slate mx-auto max-w-3xl dark:prose-invert lg:mx-0">
+		<article class="prose prose-slate dark:prose-invert mx-auto max-w-3xl lg:mx-0">
 			<header class="not-prose mb-8">
 				<h1 class="mb-4 text-4xl font-bold">{metadata.title}</h1>
-				<div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+				<div class="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
 					{#if metadata.author}
 						<div class="flex items-center gap-2">
 							<img

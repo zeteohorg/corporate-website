@@ -69,7 +69,7 @@
 					</button>
 
 					{#if industriesExpanded}
-						<div class="ml-4 mt-1 space-y-1">
+						<div class="mt-1 ml-4 space-y-1">
 							{#each industries as industry}
 								<a
 									href="/{currentLanguage}/industries/{industry}"

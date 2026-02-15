@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Trajectory Creator</title>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background: #0a0a0f;
+				color: #e0e0e0;
+				font-family: ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
+				font-size: 13px;
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			/* ── Toolbar ── */
+			#toolbar {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				padding: 8px 12px;
+				background: #12121a;
+				border-bottom: 1px solid #2a2a3a;
+				flex-shrink: 0;
+				flex-wrap: wrap;
+			}
+
+			#toolbar label {
+				color: #888;
+				font-size: 11px;
+				margin-right: 2px;
+			}
+
+			select,
+			button {
+				background: #1e1e2e;
+				color: #e0e0e0;
+				border: 1px solid #3a3a4a;
+				border-radius: 4px;
+				padding: 4px 10px;
+				font-family: inherit;
+				font-size: 13px;
+				cursor: pointer;
+				transition:
+					background 0.15s,
+					border-color 0.15s;
+			}
+
+			select:hover,
+			button:hover {
+				background: #2a2a3e;
+				border-color: #5a5a7a;
+			}
+
+			select:focus,
+			button:focus {
+				outline: 2px solid #5a5aff;
+				outline-offset: 1px;
+			}
+
+			#op-select {
+				min-width: 130px;
+			}
+
+			#op-dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				display: inline-block;
+				margin-right: 4px;
+				flex-shrink: 0;
+			}
+
+			#mode-btn {
+				min-width: 100px;
+			}
+
+			#mode-btn.smooth {
+				border-color: #5a9fff;
+				color: #7ab8ff;
+			}
+
+			#undo-btn {
+				color: #ffcc66;
+			}
+			#clear-btn {
+				color: #ff6666;
+			}
+
+			.sep {
+				width: 1px;
+				height: 20px;
+				background: #2a2a3a;
+				margin: 0 4px;
+			}
+
+			#point-count {
+				color: #666;
+				font-size: 11px;
+				margin-left: 4px;
+			}
+
+			/* ── Canvas area ── */
+			#canvas-wrapper {
+				flex: 1;
+				overflow: auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background: #06060d;
+			}
+
+			#drawing-area {
+				position: relative;
+				display: inline-block;
+				cursor: crosshair;
+				user-select: none;
+			}
+
+			#factory-img {
+				display: block;
+				max-width: 100%;
+				max-height: calc(100vh - 120px);
+				width: auto;
+				height: auto;
+			}
+
+			#svg-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+			}
+
+			/* ── Output bar ── */
+			#output-bar {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				padding: 8px 12px;
+				background: #12121a;
+				border-top: 1px solid #2a2a3a;
+				flex-shrink: 0;
+			}
+
+			.output-row {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.output-row label {
+				color: #888;
+				white-space: nowrap;
+				min-width: 80px;
+				font-size: 11px;
+			}
+
+			.output-row input {
+				flex: 1;
+				background: #0e0e1a;
+				color: #a0e0ff;
+				border: 1px solid #2a2a3a;
+				border-radius: 4px;
+				padding: 4px 8px;
+				font-family: inherit;
+				font-size: 12px;
+				cursor: text;
+			}
+
+			.output-row input:focus {
+				outline: 2px solid #5a5aff;
+				outline-offset: 1px;
+			}
+
+			.copy-btn {
+				min-width: 54px;
+				font-size: 12px;
+				padding: 4px 8px;
+				color: #80c0ff;
+			}
+
+			.copy-btn.copied {
+				color: #2dd4a0;
+				border-color: #2dd4a0;
+			}
+
+			/* Glow filter for path */
+			#glow-filter {
+				position: absolute;
+				width: 0;
+				height: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Hidden SVG for glow filter definition -->
+		<svg id="glow-filter" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+					<feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+					<feMerge>
+						<feMergeNode in="blur" />
+						<feMergeNode in="SourceGraphic" />
+					</feMerge>
+				</filter>
+			</defs>
+		</svg>
+
+		<!-- Toolbar -->
+		<div id="toolbar">
+			<div id="op-dot"></div>
+			<label for="op-select">Operator</label>
+			<select id="op-select"></select>
+
+			<div class="sep"></div>
+
+			<button id="mode-btn" title="Toggle line/smooth mode">Line</button>
+
+			<div class="sep"></div>
+
+			<button id="undo-btn" title="Undo last point (Z / Ctrl+Z)">Undo</button>
+			<button id="clear-btn" title="Clear all points (Escape)">Clear</button>
+
+			<span id="point-count">0 pts</span>
+		</div>
+
+		<!-- Drawing area -->
+		<div id="canvas-wrapper">
+			<div id="drawing-area">
+				<img
+					id="factory-img"
+					src="../../static/images/factory_digitaltwin.png"
+					alt="Factory"
+					draggable="false"
+				/>
+				<svg
+					id="svg-overlay"
+					viewBox="0 0 1920 1072"
+					preserveAspectRatio="xMidYMid meet"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<defs>
+						<filter id="path-glow" x="-20%" y="-20%" width="140%" height="140%">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+							<feMerge>
+								<feMergeNode in="blur" />
+								<feMergeNode in="SourceGraphic" />
+							</feMerge>
+						</filter>
+					</defs>
+					<path id="live-path" fill="none" stroke-width="3" filter="url(#path-glow)" />
+					<g id="points-group"></g>
+				</svg>
+			</div>
+		</div>
+
+		<!-- Output bar -->
+		<div id="output-bar">
+			<div class="output-row">
+				<label>path d=</label>
+				<input
+					id="path-input"
+					type="text"
+					readonly
+					placeholder="Click on image to start drawing…"
+				/>
+				<button class="copy-btn" id="copy-path-btn">Copy</button>
+			</div>
+			<div class="output-row">
+				<label>pathLength</label>
+				<input id="length-input" type="text" readonly placeholder="—" />
+				<button class="copy-btn" id="copy-length-btn">Copy</button>
+			</div>
+		</div>
+
+		<script>
+			// ── Config ──────────────────────────────────────────────────────────────────
+			const OPERATORS = [
+				{ label: 'Operator A', color: '#ff3b3b' },
+				{ label: 'Operator B', color: '#3b8eff' },
+				{ label: 'Operator C', color: '#2dd4a0' }
+			];
+
+			// ── State ────────────────────────────────────────────────────────────────────
+			let points = []; // [{x, y}] in 1920×1072 space
+			let mode = 'line';
+			let currentOp = 0;
+
+			// ── DOM refs ─────────────────────────────────────────────────────────────────
+			const img = document.getElementById('factory-img');
+			const svgOverlay = document.getElementById('svg-overlay');
+			const livePath = document.getElementById('live-path');
+			const pointsGroup = document.getElementById('points-group');
+			const opSelect = document.getElementById('op-select');
+			const opDot = document.getElementById('op-dot');
+			const modeBtn = document.getElementById('mode-btn');
+			const undoBtn = document.getElementById('undo-btn');
+			const clearBtn = document.getElementById('clear-btn');
+			const pointCount = document.getElementById('point-count');
+			const pathInput = document.getElementById('path-input');
+			const lengthInput = document.getElementById('length-input');
+			const copyPathBtn = document.getElementById('copy-path-btn');
+			const copyLenBtn = document.getElementById('copy-length-btn');
+			const drawingArea = document.getElementById('drawing-area');
+
+			// ── Init operator dropdown ────────────────────────────────────────────────────
+			OPERATORS.forEach((op, i) => {
+				const opt = document.createElement('option');
+				opt.value = i;
+				opt.textContent = op.label;
+				opSelect.appendChild(opt);
+			});
+			updateOpColor();
+
+			// ── Coordinate conversion ─────────────────────────────────────────────────────
+			function clientToSVG(e) {
+				const rect = img.getBoundingClientRect();
+				const x = Math.round(((e.clientX - rect.left) / rect.width) * 1920);
+				const y = Math.round(((e.clientY - rect.top) / rect.height) * 1072);
+				return { x, y };
+			}
+
+			// ── Path building ─────────────────────────────────────────────────────────────
+			function buildLinePath(pts) {
+				if (pts.length === 0) return '';
+				let d = `M ${pts[0].x} ${pts[0].y}`;
+				for (let i = 1; i < pts.length; i++) {
+					d += ` L ${pts[i].x} ${pts[i].y}`;
+				}
+				return d;
+			}
+
+			function buildSmoothPath(pts) {
+				if (pts.length === 0) return '';
+				if (pts.length === 1) return `M ${pts[0].x} ${pts[0].y}`;
+				if (pts.length === 2) return `M ${pts[0].x} ${pts[0].y} L ${pts[1].x} ${pts[1].y}`;
+
+				let d = `M ${pts[0].x} ${pts[0].y}`;
+				for (let i = 0; i < pts.length - 1; i++) {
+					const P0 = pts[i - 1] ?? pts[i];
+					const P1 = pts[i];
+					const P2 = pts[i + 1];
+					const P3 = pts[i + 2] ?? pts[i + 1];
+
+					const cp1x = Math.round(P1.x + (P2.x - P0.x) / 6);
+					const cp1y = Math.round(P1.y + (P2.y - P0.y) / 6);
+					const cp2x = Math.round(P2.x - (P3.x - P1.x) / 6);
+					const cp2y = Math.round(P2.y - (P3.y - P1.y) / 6);
+
+					d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${P2.x} ${P2.y}`;
+				}
+				return d;
+			}
+
+			function buildPath(pts) {
+				return mode === 'smooth' ? buildSmoothPath(pts) : buildLinePath(pts);
+			}
+
+			// ── Render ────────────────────────────────────────────────────────────────────
+			function render() {
+				const color = OPERATORS[currentOp].color;
+
+				// Path
+				const d = buildPath(points);
+				livePath.setAttribute('d', d);
+				livePath.setAttribute('stroke', color);
+
+				// PathLength
+				if (d) {
+					lengthInput.value = Math.round(livePath.getTotalLength());
+					pathInput.value = d;
+				} else {
+					lengthInput.value = '';
+					pathInput.value = '';
+					pathInput.placeholder = 'Click on image to start drawing…';
+				}
+
+				// Point markers
+				pointsGroup.innerHTML = '';
+				points.forEach((p, i) => {
+					const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+					circle.setAttribute('cx', p.x);
+					circle.setAttribute('cy', p.y);
+					circle.setAttribute('r', i === 0 ? 7 : 5);
+					circle.setAttribute('fill', color);
+					circle.setAttribute('opacity', '0.85');
+					pointsGroup.appendChild(circle);
+				});
+
+				// Count
+				pointCount.textContent = `${points.length} pt${points.length !== 1 ? 's' : ''}`;
+			}
+
+			// ── Op color ──────────────────────────────────────────────────────────────────
+			function updateOpColor() {
+				opDot.style.background = OPERATORS[currentOp].color;
+				livePath.setAttribute('stroke', OPERATORS[currentOp].color);
+			}
+
+			// ── Event handlers ────────────────────────────────────────────────────────────
+
+			// Click to add point
+			drawingArea.addEventListener('click', (e) => {
+				if (
+					e.target === drawingArea ||
+					e.target === img ||
+					e.target === svgOverlay ||
+					e.target.closest('#svg-overlay')
+				) {
+					const pt = clientToSVG(e);
+					// Clamp to valid range
+					pt.x = Math.max(0, Math.min(1920, pt.x));
+					pt.y = Math.max(0, Math.min(1072, pt.y));
+					points.push(pt);
+					render();
+				}
+			});
+
+			// Operator select
+			opSelect.addEventListener('change', () => {
+				currentOp = parseInt(opSelect.value, 10);
+				updateOpColor();
+				render();
+			});
+
+			// Mode toggle
+			modeBtn.addEventListener('click', () => {
+				mode = mode === 'line' ? 'smooth' : 'line';
+				modeBtn.textContent = mode === 'smooth' ? 'Smooth' : 'Line';
+				modeBtn.classList.toggle('smooth', mode === 'smooth');
+				render();
+			});
+
+			// Undo
+			undoBtn.addEventListener('click', () => {
+				points.pop();
+				render();
+			});
+
+			// Clear
+			clearBtn.addEventListener('click', () => {
+				points = [];
+				render();
+			});
+
+			// Keyboard shortcuts
+			document.addEventListener('keydown', (e) => {
+				// Ignore when typing in an input
+				if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+				if (e.key === 'z' || e.key === 'Z' || (e.ctrlKey && e.key === 'z')) {
+					e.preventDefault();
+					points.pop();
+					render();
+				}
+				if (e.key === 'Escape') {
+					points = [];
+					render();
+				}
+			});
+
+			// Copy buttons
+			function flashCopied(btn) {
+				btn.textContent = 'Copied!';
+				btn.classList.add('copied');
+				setTimeout(() => {
+					btn.textContent = 'Copy';
+					btn.classList.remove('copied');
+				}, 1500);
+			}
+
+			copyPathBtn.addEventListener('click', () => {
+				if (!pathInput.value) return;
+				navigator.clipboard.writeText(pathInput.value).then(() => flashCopied(copyPathBtn));
+			});
+
+			copyLenBtn.addEventListener('click', () => {
+				if (!lengthInput.value) return;
+				navigator.clipboard.writeText(lengthInput.value).then(() => flashCopied(copyLenBtn));
+			});
+
+			// ── Image load guard ──────────────────────────────────────────────────────────
+			img.addEventListener('error', () => {
+				console.warn('Factory image not found at ../../static/images/factory_digitaltwin.png');
+				img.style.border = '2px dashed #ff3b3b';
+				img.style.minWidth = '400px';
+				img.style.minHeight = '225px';
+				img.style.background = '#1a0a0a';
+				img.alt = '⚠ Image not found — expected at ../../static/images/factory_digitaltwin.png';
+			});
+
+			// Initial render
+			render();
+		</script>
+	</body>
+</html>

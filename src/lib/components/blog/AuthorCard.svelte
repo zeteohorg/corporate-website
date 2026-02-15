@@ -27,7 +27,7 @@
 				<div>
 					<Card.Title>{author.name}</Card.Title>
 					{#if title}
-						<p class="mt-1 text-sm text-muted-foreground">{title}</p>
+						<p class="text-muted-foreground mt-1 text-sm">{title}</p>
 					{/if}
 				</div>
 				{#if author.social}

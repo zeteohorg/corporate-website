@@ -15,8 +15,8 @@
 	]);
 </script>
 
-<div class="container mx-auto px-4 pb-24 pt-8">
-	<Card class="mx-auto max-w-4xl bg-background">
+<div class="container mx-auto px-4 pt-8 pb-24">
+	<Card class="bg-background mx-auto max-w-4xl">
 		<CardHeader>
 			<CardTitle class="text-center text-3xl font-bold">
 				{t.company.info.title}
@@ -25,11 +25,11 @@
 		<CardContent>
 			<div class="grid gap-4 md:grid-cols-2">
 				{#each infoItems as item}
-					<div class="border-b border-border pb-4 last:border-0 last:pb-0">
-						<div class="mb-1 font-medium text-foreground/80">
+					<div class="border-border border-b pb-4 last:border-0 last:pb-0">
+						<div class="text-foreground/80 mb-1 font-medium">
 							{item.label}
 						</div>
-						<div class="whitespace-pre-line text-foreground">
+						<div class="text-foreground whitespace-pre-line">
 							{item.value}
 						</div>
 					</div>

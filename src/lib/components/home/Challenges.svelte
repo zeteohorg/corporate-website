@@ -19,10 +19,10 @@
 		<div class="mt-16 grid gap-8 md:grid-cols-3">
 			{#each t.items as item, i}
 				<div
-					class="group relative rounded-lg bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+					class="group bg-card relative rounded-lg p-6 shadow-sm transition-shadow hover:shadow-md"
 				>
 					<div
-						class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
+						class="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground mb-4 flex h-12 w-12 items-center justify-center rounded-lg"
 					>
 						{#if i === 0}
 							<DollarSign class="size-6" />

@@ -2,14 +2,15 @@ import type { HomeTranslation } from '../types';
 
 export const en: HomeTranslation = {
 	hero: {
-		title: 'See Where Your Factory Loses Time. Fix It in Days.',
-		subtitle: 'Visualize every workflow bottleneck using your team\'s phones—installed in 2 days at 1/10th the cost of traditional systems.',
-		getStarted: 'Start with PoC',
+		title: 'See every step.\nReduce every waste. Results in days.',
+		subtitle:
+			"Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. No environment constraints.",
+		getStarted: 'Request a Pilot',
 		learnMore: 'Learn more'
 	},
 	useCases: {
 		title: 'Beyond Efficiency: Strategic Advantages',
-		subtitle: 'Your positioning data does more than solve today\'s bottlenecks:',
+		subtitle: "Your positioning data does more than solve today's bottlenecks:",
 		items: [
 			{
 				title: 'Replicate Best Practices',
@@ -19,7 +20,7 @@ export const en: HomeTranslation = {
 			{
 				title: 'Future-Proof Investment',
 				description:
-					'Build the digital foundation for tomorrow\'s smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later.'
+					"Build the digital foundation for tomorrow's smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later."
 			}
 		]
 	}
@@ -27,8 +28,9 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: '現場のムダを「見える化」して、生産性を劇的に変える。',
-		subtitle: 'スマホだけで始められるから、導入はたった2日。従来の1/10のコストで、あなたの「勘」が「データ」に変わります。',
+		title: 'すべての動きを見える化。\nあらゆる無駄を削減。結果は数日で。',
+		subtitle:
+			'Spatial AI が現場を変える——スマートフォンだけでリアルタイムの動線分析を実現。センサー不要、インフラ不要、環境を選ばない。',
 		getStarted: 'PoCから始める',
 		learnMore: '詳しく見る'
 	},

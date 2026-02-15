@@ -9,7 +9,8 @@ export const en: CommonTranslation = {
 		jobTitle: 'Job Title',
 		message: 'Message',
 		submit: 'Request PoC',
-		success: "Thank you for your interest! We'll contact you soon to discuss your PoC implementation.",
+		success:
+			"Thank you for your interest! We'll contact you soon to discuss your PoC implementation.",
 		required: 'Required fields',
 		inquiryType: {
 			label: 'Type of Inquiry',
@@ -68,7 +69,8 @@ export const ja: CommonTranslation = {
 		jobTitle: '役職',
 		message: 'メッセージ',
 		submit: 'PoCを依頼する',
-		success: 'お問い合わせありがとうございます。PoCの実施について担当者よりご連絡させていただきます。',
+		success:
+			'お問い合わせありがとうございます。PoCの実施について担当者よりご連絡させていただきます。',
 		required: '必須項目',
 		inquiryType: {
 			label: 'お問い合わせ種別',

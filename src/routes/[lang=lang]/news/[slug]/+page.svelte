@@ -57,7 +57,7 @@
 	<article class="mx-auto mt-8 max-w-4xl">
 		<header class="mb-8">
 			<h1 class="mb-4 text-4xl font-bold">{metadata.title}</h1>
-			<div class="mb-4 flex items-center text-sm text-muted-foreground">
+			<div class="text-muted-foreground mb-4 flex items-center text-sm">
 				<Calendar class="mr-2 h-4 w-4" />
 				<time datetime={metadata.date}>
 					{new Date(metadata.date).toLocaleDateString(lang, {
@@ -80,7 +80,7 @@
 			{/if}
 		</header>
 
-		<div class="article-content prose prose-lg max-w-none text-base dark:prose-invert">
+		<div class="article-content prose prose-lg dark:prose-invert max-w-none text-base">
 			{@html html}
 		</div>
 

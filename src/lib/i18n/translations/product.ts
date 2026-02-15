@@ -4,7 +4,7 @@ export const en: ProductTranslation = {
 	title: 'Results You Can Achieve',
 	subtitle: '',
 	description:
-		"✅ See Where Time Disappears\nIdentify which processes create bottlenecks, when delays happen, and where workflow breaks down—all with objective data.\n\n✅ Eliminate Inefficiencies Fast\nUse real movement data to redesign workflows, remove bottlenecks, and establish SOPs based on what actually works.\n\n✅ Maximize Your Current Team\nIncrease output without new hires by optimizing how your existing workforce moves and operates.\n\n✅ Deploy for a Fraction of Traditional Costs\nGet enterprise-level insights without enterprise budgets—no million-yen systems, no months-long installations."
+		'✅ See Where Time Disappears\nIdentify which processes create bottlenecks, when delays happen, and where workflow breaks down—all with objective data.\n\n✅ Eliminate Inefficiencies Fast\nUse real movement data to redesign workflows, remove bottlenecks, and establish SOPs based on what actually works.\n\n✅ Maximize Your Current Team\nIncrease output without new hires by optimizing how your existing workforce moves and operates.\n\n✅ Deploy for a Fraction of Traditional Costs\nGet enterprise-level insights without enterprise budgets—no million-yen systems, no months-long installations.'
 };
 
 export const ja: ProductTranslation = {

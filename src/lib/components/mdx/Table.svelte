@@ -10,7 +10,7 @@
 <div class="my-6 w-full overflow-y-auto">
 	<table
 		class={cn(
-			'w-full border-collapse text-sm [&_td]:p-2 [&_th]:p-2 [&_tr:nth-child(even)]:bg-muted',
+			'[&_tr:nth-child(even)]:bg-muted w-full border-collapse text-sm [&_td]:p-2 [&_th]:p-2',
 			className
 		)}
 	>

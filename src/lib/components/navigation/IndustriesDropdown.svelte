@@ -74,7 +74,7 @@
 
 <div class="relative" role="navigation" aria-label="Industries navigation">
 	<button
-		class="flex items-center gap-x-1 text-sm font-semibold leading-6"
+		class="flex items-center gap-x-1 text-sm leading-6 font-semibold"
 		onclick={() => (isOpen = !isOpen)}
 		aria-expanded={isOpen}
 		aria-haspopup="true"
@@ -97,12 +97,12 @@
 			transition:fade={{ duration: 100 }}
 			onmouseleave={() => (isOpen = false)}
 		>
-			<div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-				<ul class="relative grid gap-6 bg-background px-5 py-6 sm:gap-8 sm:p-8">
+			<div class="ring-opacity-5 overflow-hidden rounded-lg shadow-lg ring-1 ring-black">
+				<ul class="bg-background relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
 					<li>
 						<a
 							href="/{$page.params.lang}/industries/factory"
-							class="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-accent"
+							class="hover:bg-accent -m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out"
 						>
 							<div class="ml-4">
 								<p class="text-base font-medium">

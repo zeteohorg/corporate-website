@@ -10,26 +10,30 @@ export const en: CompanyTranslation = {
 			'Manufacturing managers grappling with labor shortages and rising costs desperately want to be more efficient, but finding out where the waste lies and which workflows are optimal is a monumental challenge. Traditional efficiency tools are expensive and complex to implement, leading to a reliance on "gut feelings and experience"—a costly dilemma.'
 	},
 	solution: {
-		title: 'Zeteoh\'s Solution: Data from Your Team\'s Phones',
+		title: "Zeteoh's Solution: Data from Your Team's Phones",
 		subtitle: 'Our platform, TRAILS, fundamentally solves this problem.',
 		features: [
 			{
 				title: 'Easy and Low-Cost',
-				description: 'Your employees\' smartphones become powerful sensors that capture the movements on the factory floor. No need for million-yen systems or months-long installations.'
+				description:
+					"Your employees' smartphones become powerful sensors that capture the movements on the factory floor. No need for million-yen systems or months-long installations."
 			},
 			{
 				title: '"See" to Fundamentally Improve',
-				description: 'We turn qualitative observations into objective data, visualizing who, when, where, and how your team moves. This allows you to identify bottlenecks and inefficient processes for science-based improvements.'
+				description:
+					'We turn qualitative observations into objective data, visualizing who, when, where, and how your team moves. This allows you to identify bottlenecks and inefficient processes for science-based improvements.'
 			},
 			{
 				title: 'A Foundation for the Future',
-				description: 'The data we collect serves as the bedrock for future AI optimization, predictive analytics, and automation. You can start transforming your factory into a smart factory today.'
+				description:
+					'The data we collect serves as the bedrock for future AI optimization, predictive analytics, and automation. You can start transforming your factory into a smart factory today.'
 			}
 		]
 	},
 	future: {
 		title: 'The Future Zeteoh is Building',
-		description: 'We are bringing this technology to factories worldwide to fundamentally change how the manufacturing industry operates. Our mission is to ensure that every factory, from small businesses to large enterprises, can reap the benefits of AI and achieve sustainable growth.'
+		description:
+			'We are bringing this technology to factories worldwide to fundamentally change how the manufacturing industry operates. Our mission is to ensure that every factory, from small businesses to large enterprises, can reap the benefits of AI and achieve sustainable growth.'
 	},
 	team: {
 		title: 'Our team',
@@ -133,21 +137,25 @@ export const ja: CompanyTranslation = {
 		features: [
 			{
 				title: '簡単、低コスト',
-				description: '従業員が持つスマートフォンが、現場の動きを捉えるセンサーに。何百万円もする専用システムは不要で、導入にかかる期間もわずか数日です。'
+				description:
+					'従業員が持つスマートフォンが、現場の動きを捉えるセンサーに。何百万円もする専用システムは不要で、導入にかかる期間もわずか数日です。'
 			},
 			{
 				title: '「見える化」で本質的な改善',
-				description: '誰が、いつ、どこで、どう動いているのかを客観的なデータで「見える化」。ボトルネックや非効率な動きを特定し、科学的な改善が可能になります。'
+				description:
+					'誰が、いつ、どこで、どう動いているのかを客観的なデータで「見える化」。ボトルネックや非効率な動きを特定し、科学的な改善が可能になります。'
 			},
 			{
 				title: '未来への布石',
-				description: '収集されたデータは、将来的なAIによる自動化や予測分析の基盤となります。今から、あなたの工場を未来に備えた「スマートファクトリー」に変革できます。'
+				description:
+					'収集されたデータは、将来的なAIによる自動化や予測分析の基盤となります。今から、あなたの工場を未来に備えた「スマートファクトリー」に変革できます。'
 			}
 		]
 	},
 	future: {
 		title: 'Zeteohが描く未来',
-		description: '私たちは、この技術を世界中の工場に届け、製造業のあり方を変革しています。中小企業から大企業まで、すべての現場がAIの恩恵を享受し、持続可能な成長を実現する。それが、私たちの使命です。'
+		description:
+			'私たちは、この技術を世界中の工場に届け、製造業のあり方を変革しています。中小企業から大企業まで、すべての現場がAIの恩恵を享受し、持続可能な成長を実現する。それが、私たちの使命です。'
 	},
 	team: {
 		title: 'チーム',
