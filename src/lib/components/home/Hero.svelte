@@ -240,7 +240,13 @@
 			>
 				<!-- Base factory image (always rendered for SSR/LCP) -->
 				<picture>
-					<source srcset="/images/factory_digitaltwin.webp" type="image/webp" />
+					<source
+						srcset="/images/factory_digitaltwin-800.webp 800w,
+                /images/factory_digitaltwin-1280.webp 1280w,
+                /images/factory_digitaltwin.webp 1920w"
+						type="image/webp"
+						sizes="(max-width: 800px) 100vw, (max-width: 1280px) 90vw, 1280px"
+					/>
 					<img
 						src="/images/factory_digitaltwin.png"
 						alt="Factory digital twin"

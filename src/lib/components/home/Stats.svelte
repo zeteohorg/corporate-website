@@ -18,7 +18,7 @@
 						<div class="mb-2 text-3xl font-bold sm:text-4xl {stat.colorClass ?? 'text-primary'}">
 							{stat.value}
 						</div>
-						<p class="text-muted-foreground text-sm leading-relaxed">
+						<p class="text-sm leading-relaxed text-white/65">
 							{stat.label}
 						</p>
 					</div>
