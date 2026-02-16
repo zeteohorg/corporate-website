@@ -148,6 +148,25 @@ The site supports English and Japanese with dynamic language switching. Content 
 2. Create translation files in `src/lib/i18n/translations/`
 3. Add content folders in `src/content/{blog,news}/`
 
+## 🛠️ Developer Tools
+
+### Trajectory Creator (`tools/traj_creator/index.html`)
+
+A standalone browser tool for drawing hero section trajectories directly on the factory image and exporting the correct `path` and `pathLength` values.
+
+**Usage:**
+
+1. Open `tools/traj_creator/index.html` directly in your browser (no server needed)
+2. Click on the factory image to place waypoints — the path draws live
+3. Toggle **Line** / **Smooth** mode (Smooth uses Catmull-Rom → Cubic Bezier splines)
+4. Use **Undo** (`Z` / `Ctrl+Z`) or **Clear** (`Escape`) to edit points
+5. Select the target operator from the dropdown to preview in the correct color
+6. Copy the generated `path d=` and `pathLength` values into `OPERATORS[n]` in `src/lib/components/home/Hero.svelte`
+
+All coordinates are output in the 1920×1072 SVG viewBox space used by the hero overlay.
+
+---
+
 ## 📄 License
 
 Copyright © 2024 Zeteoh, Inc. All rights reserved.

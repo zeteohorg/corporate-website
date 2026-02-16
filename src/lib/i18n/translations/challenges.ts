@@ -3,7 +3,7 @@ import type { ChallengesTranslation } from '../types';
 export const en: ChallengesTranslation = {
 	title: 'Do you face these challenges?',
 	subtitle:
-		'Manufacturers without enterprise budgets face a perfect storm: labor pressures, hidden inefficiencies, and out-of-reach traditional systems.',
+		'Manufacturers without enterprise budgets face a perfect storm: labor pressures, unquantified waste, and out-of-reach traditional systems.',
 	items: [
 		{
 			title: 'Rising Labor Costs & Staff Shortages',
@@ -11,7 +11,7 @@ export const en: ChallengesTranslation = {
 				'Every day brings the challenge of how to increase productivity with existing staff while managing escalating labor costs'
 		},
 		{
-			title: 'Hidden Inefficiencies',
+			title: 'Hidden Motion Waste',
 			description:
 				'You sense there are inefficiencies but lack data to identify where time is being wasted and where improvements can be made'
 		},

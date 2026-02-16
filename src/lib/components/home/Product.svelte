@@ -6,17 +6,17 @@
 	const t = $derived(translations[currentLanguage].product);
 </script>
 
-<section class="bg-gradient-to-b from-background to-muted/50 py-20">
+<section class="from-background to-muted/50 bg-gradient-to-b py-20">
 	<div class="container mx-auto px-4">
 		<div class="grid items-center gap-12 lg:grid-cols-2">
 			<div>
-				<h2 class="whitespace-pre-line text-4xl font-bold tracking-tight lg:text-3xl">
+				<h2 class="text-4xl font-bold tracking-tight whitespace-pre-line lg:text-3xl">
 					{t.title}
 				</h2>
-				<p class="mt-4 text-lg font-bold text-muted-foreground">
+				<p class="text-muted-foreground mt-4 text-lg font-bold">
 					{t.subtitle}
 				</p>
-				<p class="mt-6 whitespace-pre-line text-base leading-8 text-muted-foreground">
+				<p class="text-muted-foreground mt-6 text-base leading-8 whitespace-pre-line">
 					{t.description}
 				</p>
 			</div>

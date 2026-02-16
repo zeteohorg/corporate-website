@@ -16,7 +16,7 @@
 					{#each t.steps as step, i}
 						<div class="relative pl-9">
 							<div
-								class="absolute left-0 top-0 flex size-6 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
+								class="bg-primary text-primary-foreground absolute top-0 left-0 flex size-6 items-center justify-center rounded-full text-sm font-bold"
 							>
 								{i + 1}
 							</div>

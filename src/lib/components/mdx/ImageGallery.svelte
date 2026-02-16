@@ -52,7 +52,7 @@
 				currentIndex = i;
 				dialogOpen = true;
 			}}
-			class="group relative aspect-square overflow-hidden rounded-lg bg-muted"
+			class="group bg-muted relative aspect-square overflow-hidden rounded-lg"
 		>
 			<img
 				src={image.url}
@@ -75,7 +75,7 @@
 
 			<button
 				onclick={() => (dialogOpen = false)}
-				class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'absolute right-2 top-2')}
+				class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'absolute top-2 right-2')}
 			>
 				<X class="size-4" />
 			</button>
@@ -84,7 +84,7 @@
 				onclick={previous}
 				class={cn(
 					buttonVariants({ variant: 'ghost', size: 'icon' }),
-					'absolute left-2 top-1/2 -translate-y-1/2'
+					'absolute top-1/2 left-2 -translate-y-1/2'
 				)}
 			>
 				<ChevronLeft class="size-4" />
@@ -94,7 +94,7 @@
 				onclick={next}
 				class={cn(
 					buttonVariants({ variant: 'ghost', size: 'icon' }),
-					'absolute right-2 top-1/2 -translate-y-1/2'
+					'absolute top-1/2 right-2 -translate-y-1/2'
 				)}
 			>
 				<ChevronRight class="size-4" />
@@ -102,7 +102,7 @@
 		</div>
 
 		{#if images[currentIndex].caption}
-			<p class="mt-2 text-center text-sm text-muted-foreground">
+			<p class="text-muted-foreground mt-2 text-center text-sm">
 				{images[currentIndex].caption}
 			</p>
 		{/if}

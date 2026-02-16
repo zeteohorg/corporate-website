@@ -11,6 +11,7 @@ import * as company from './company';
 import * as factory from './factory';
 import * as construction from './construction';
 import * as logistics from './logistics';
+import * as exportTranslations from './export';
 
 export const en: Translation = {
 	common: common.en,
@@ -24,7 +25,8 @@ export const en: Translation = {
 	company: company.en,
 	factory: factory.en,
 	construction: construction.en,
-	logistics: logistics.en
+	logistics: logistics.en,
+	export: exportTranslations.en
 };
 
 export const ja: Translation = {
@@ -39,7 +41,8 @@ export const ja: Translation = {
 	company: company.ja,
 	factory: factory.ja,
 	construction: construction.ja,
-	logistics: logistics.ja
+	logistics: logistics.ja,
+	export: exportTranslations.ja
 };
 
 export const translations = { en, ja };

@@ -13,7 +13,7 @@
 
 <div
 	bind:this={ref}
-	class={cn('rounded-lg border bg-card py-8 text-card-foreground shadow-sm', className)}
+	class={cn('bg-card text-card-foreground rounded-lg border py-8 shadow-sm', className)}
 	{...restProps}
 >
 	{@render children?.()}

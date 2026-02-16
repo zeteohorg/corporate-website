@@ -13,7 +13,7 @@
 			<div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.company}</h2>
-					<ul class="space-y-2 text-sm text-muted-foreground">
+					<ul class="text-muted-foreground space-y-2 text-sm">
 						<li>
 							<a href="/{currentLanguage}/company" class="hover:text-foreground">{t.links.about}</a>
 						</li>
@@ -32,7 +32,7 @@
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.resources}</h2>
-					<ul class="space-y-2 text-sm text-muted-foreground">
+					<ul class="text-muted-foreground space-y-2 text-sm">
 						<li>
 							<a href="/{currentLanguage}/blog" class="hover:text-foreground">{t.links.blog}</a>
 						</li>
@@ -44,7 +44,7 @@
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.legal}</h2>
-					<ul class="space-y-2 text-sm text-muted-foreground">
+					<ul class="text-muted-foreground space-y-2 text-sm">
 						<li>
 							<a href="/privacy-policy" class="hover:text-foreground">{t.links.privacyPolicy}</a>
 						</li>
@@ -54,7 +54,7 @@
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.social}</h2>
-					<ul class="mt-4 flex justify-center space-x-4 text-muted-foreground">
+					<ul class="text-muted-foreground mt-4 flex justify-center space-x-4">
 						<li>
 							<a
 								href="https://x.com/zeteoh_ai"
@@ -94,7 +94,7 @@
 		</div>
 
 		<div class="mt-12 border-t pt-8">
-			<p class="text-center text-sm text-muted-foreground">{t.copyright}</p>
+			<p class="text-muted-foreground text-center text-sm">{t.copyright}</p>
 		</div>
 	</div>
 </footer>

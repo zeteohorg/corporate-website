@@ -18,14 +18,17 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur"
 >
 	<div class="container mx-auto px-4">
 		<div class="flex h-16 items-center justify-between">
 			<a href="/{$page.params.lang}" class="flex items-center space-x-2">
 				<picture>
 					{#if $theme === 'dark'}
-						<source srcset="/images/kana-logo-white.webp" type="image/webp" />
+						<source
+							srcset="/images/kana-logo-white-400.webp 2x, /images/kana-logo-white.webp 1x"
+							type="image/webp"
+						/>
 						<img
 							src="/images/kana-logo-white.png"
 							alt="Kana"
@@ -36,7 +39,10 @@
 							decoding="async"
 						/>
 					{:else}
-						<source srcset="/images/kana-logo-bl.webp" type="image/webp" />
+						<source
+							srcset="/images/kana-logo-bl-400.webp 2x, /images/kana-logo-bl.webp 1x"
+							type="image/webp"
+						/>
 						<img
 							src="/images/kana-logo-bl.png"
 							alt="Kana"

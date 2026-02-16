@@ -9,10 +9,10 @@
 </script>
 
 <blockquote
-	class={cn('my-6 border-l-4 border-primary pl-6 italic [&>*]:text-muted-foreground', className)}
+	class={cn('border-primary [&>*]:text-muted-foreground my-6 border-l-4 pl-6 italic', className)}
 >
 	<div class="flex gap-2">
-		<Quote class="size-5 text-primary" />
+		<Quote class="text-primary size-5" />
 		{@html children}
 	</div>
 </blockquote>

@@ -10,12 +10,12 @@
 	<div class="container mx-auto px-4">
 		<h2 class="mb-4 text-center text-3xl font-bold">{t.home.useCases.title}</h2>
 		{#if t.home.useCases.subtitle}
-			<p class="mb-12 text-center text-lg text-muted-foreground">{t.home.useCases.subtitle}</p>
+			<p class="text-muted-foreground mb-12 text-center text-lg">{t.home.useCases.subtitle}</p>
 		{/if}
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 			{#each t.home.useCases.items as useCase}
-				<div class="rounded-lg bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
-					<h3 class="mb-4 text-xl font-semibold text-card-foreground">{useCase.title}</h3>
+				<div class="bg-card rounded-lg p-6 shadow-sm transition-shadow hover:shadow-md">
+					<h3 class="text-card-foreground mb-4 text-xl font-semibold">{useCase.title}</h3>
 					<p class="text-muted-foreground">{useCase.description}</p>
 				</div>
 			{/each}

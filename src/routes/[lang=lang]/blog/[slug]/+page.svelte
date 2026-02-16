@@ -54,7 +54,7 @@ rendered directly in the page. -->
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8">
-	<div class="pb-8 pt-4">
+	<div class="pt-4 pb-8">
 		<Breadcrumb.Root>
 			<Breadcrumb.List>
 				<Breadcrumb.Item>
@@ -71,10 +71,10 @@ rendered directly in the page. -->
 			</Breadcrumb.List>
 		</Breadcrumb.Root>
 	</div>
-	<article class="prose prose-slate mx-auto max-w-3xl dark:prose-invert">
+	<article class="prose prose-slate dark:prose-invert mx-auto max-w-3xl">
 		<header class="not-prose mb-8">
 			<h1 class="mb-4 text-4xl font-bold">{data.metadata.title}</h1>
-			<div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+			<div class="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
 				{#if data.metadata.author}
 					<div class="flex items-center gap-2">
 						<img
@@ -122,7 +122,7 @@ rendered directly in the page. -->
 					{#each data.metadata.tags as tag}
 						<a
 							href="/{currentLanguage}/blog/tag/{tag}"
-							class="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground hover:bg-secondary/80"
+							class="bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-full px-3 py-1 text-sm"
 						>
 							{tag}
 						</a>
@@ -132,7 +132,7 @@ rendered directly in the page. -->
 		{/if}
 
 		{#if data.metadata.author}
-			<div class="not-prose mt-12 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+			<div class="not-prose bg-card text-card-foreground mt-12 rounded-lg border p-6 shadow-sm">
 				<div class="flex gap-4">
 					<img
 						src={data.metadata.author.avatar}
@@ -144,7 +144,7 @@ rendered directly in the page. -->
 					<div>
 						<h2 class="text-lg font-semibold">{data.metadata.author.name}</h2>
 						{#if data.metadata.author.bio?.[currentLanguage]}
-							<p class="mt-2 text-sm text-muted-foreground">
+							<p class="text-muted-foreground mt-2 text-sm">
 								{data.metadata.author.bio[currentLanguage]}
 							</p>
 						{/if}

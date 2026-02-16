@@ -28,7 +28,7 @@
 		{#each data.posts as post}
 			<a
 				href="/{currentLanguage}/news/{post.slug}"
-				class="block overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md"
+				class="bg-card block overflow-hidden rounded-lg shadow-sm transition-all hover:shadow-md"
 			>
 				{#if post.thumbnail}
 					<div class="relative aspect-video overflow-hidden">
@@ -45,8 +45,8 @@
 				{/if}
 				<div class="p-6">
 					<h2 class="mb-2 text-2xl font-semibold">{post.title}</h2>
-					<p class="mb-4 text-muted-foreground">{post.description}</p>
-					<time class="text-sm text-muted-foreground">
+					<p class="text-muted-foreground mb-4">{post.description}</p>
+					<time class="text-muted-foreground text-sm">
 						{new Date(post.date).toLocaleDateString(currentLanguage)}
 					</time>
 				</div>

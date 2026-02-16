@@ -46,10 +46,10 @@
 	});
 </script>
 
-<div class="relative my-6 overflow-hidden rounded-lg bg-muted">
+<div class="bg-muted relative my-6 overflow-hidden rounded-lg">
 	{#if filename}
 		<div
-			class="flex items-center justify-between border-b bg-muted px-4 py-2 text-sm text-muted-foreground"
+			class="bg-muted text-muted-foreground flex items-center justify-between border-b px-4 py-2 text-sm"
 		>
 			<span>{filename}</span>
 		</div>
@@ -59,7 +59,7 @@
 			onclick={copyCode}
 			class={cn(
 				buttonVariants({ variant: 'ghost', size: 'icon' }),
-				'absolute right-4 top-4 opacity-0 transition-opacity group-hover:opacity-100'
+				'absolute top-4 right-4 opacity-0 transition-opacity group-hover:opacity-100'
 			)}
 			aria-label="Copy code"
 		>

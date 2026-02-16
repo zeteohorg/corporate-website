@@ -2,24 +2,42 @@ import type { HomeTranslation } from '../types';
 
 export const en: HomeTranslation = {
 	hero: {
-		title: 'See Where Your Factory Loses Time. Fix It in Days.',
-		subtitle: 'Visualize every workflow bottleneck using your team\'s phones—installed in 2 days at 1/10th the cost of traditional systems.',
-		getStarted: 'Start with PoC',
-		learnMore: 'Learn more'
+		title: 'See every step.\nReduce every waste. Results in days.',
+		subtitle:
+			"Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. No environment constraints.",
+		getStarted: 'Request a Pilot',
+		learnMore: 'Learn more',
+		stats: [
+			{
+				value: '30%',
+				label: 'McKinsey research shows 30% of frontline time is wasted on "muda" like searching and walking.',
+				colorClass: 'text-[#ff3b3b]'
+			},
+			{
+				value: '< 3 days',
+				label: 'Zero downtime. Start visualizing trajectories within days using only smartphones.',
+				colorClass: 'text-[#3b8eff]'
+			},
+			{
+				value: '¥160M',
+				label: 'For a 100-worker facility, "wasteful movement" translates to over ¥160M in lost productivity annually.',
+				colorClass: 'text-[#2dd4a0]'
+			}
+		]
 	},
 	useCases: {
 		title: 'Beyond Efficiency: Strategic Advantages',
-		subtitle: 'Your positioning data does more than solve today\'s bottlenecks:',
+		subtitle: "Your positioning data does more than solve today's bottlenecks:",
 		items: [
 			{
-				title: 'Replicate Best Practices',
+				title: 'Standardize best methods',
 				description:
 					'Identify your most efficient workflows and operators, then standardize excellence across teams through targeted training.'
 			},
 			{
 				title: 'Future-Proof Investment',
 				description:
-					'Build the digital foundation for tomorrow\'s smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later.'
+					"Build the digital foundation for tomorrow's smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later."
 			}
 		]
 	}
@@ -27,14 +45,32 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: '現場のムダを「見える化」して、生産性を劇的に変える。',
-		subtitle: 'スマホだけで始められるから、導入はたった2日。従来の1/10のコストで、あなたの「勘」が「データ」に変わります。',
+		title: '現場のムダを「見える化」して、\n生産性を劇的に変える。',
+		subtitle:
+			'空間AIが、従業員のスマートフォンだけで動線を可視化します。\n設備投資ゼロ、設置工事不要。\n現場を止めることなく、数日で動線分析を開始することができます。',
 		getStarted: 'PoCから始める',
-		learnMore: '詳しく見る'
+		learnMore: '詳しく見る',
+		stats: [
+			{
+				value: '30%',
+				label: '現場の時間の3割が移動や探索などの「ムダ」に消えています。\n※マッキンゼーの調査による',
+				colorClass: 'text-[#ff3b3b]'
+			},
+			{
+				value: '最短3日',
+				label: '現場を止めず、スマートフォンのみで数日以内に動線の可視化をスタート。',
+				colorClass: 'text-[#3b8eff]'
+			},
+			{
+				value: '年間1.6億円',
+				label: '100人規模の工場では、この「ムダな動き」が年間約1.65億円もの損失に相当します。',
+				colorClass: 'text-[#2dd4a0]'
+			}
+		]
 	},
 	useCases: {
 		title: '効率化から戦略的優位性へ',
-		subtitle: '',
+		subtitle: '位置データが解決するのは、今日のボトルネックだけではありません：',
 		items: [
 			{
 				title: '成功事例の横展開',

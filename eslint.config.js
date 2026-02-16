@@ -28,6 +28,38 @@ export default [
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
+		rules: {
+			// Relax overly strict rules for SvelteKit
+			'svelte/no-navigation-without-resolve': 'off',
+			'svelte/no-at-html-tags': 'warn',
+			'svelte/require-each-key': 'warn',
+			'@typescript-eslint/no-unused-vars': [
+				'warn',
+				{
+					argsIgnorePattern: '^_',
+					varsIgnorePattern: '^_|^\\$\\$(props|restProps|slots|events)'
+				}
+			],
+			'@typescript-eslint/no-explicit-any': 'warn'
+		}
+	},
+	{
+		files: ['**/*.d.ts', 'src/lib/types/**'],
+		rules: {
+			'@typescript-eslint/no-explicit-any': 'off'
+		}
+	},
+	{
+		ignores: [
+			'build/',
+			'.svelte-kit/',
+			'dist/',
+			'.netlify/',
+			'node_modules/',
+			'*.config.js',
+			'*.config.ts',
+			'playwright-report/',
+			'test-results/'
+		]
 	}
 ];

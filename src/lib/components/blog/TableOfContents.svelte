@@ -31,7 +31,7 @@
 </script>
 
 {#if items.length > 0}
-	<nav class="rounded-lg border bg-card p-4 text-card-foreground">
+	<nav class="bg-card text-card-foreground rounded-lg border p-4">
 		<h2 class="mb-4 text-sm font-semibold">On this page</h2>
 		<ul class="space-y-2.5 text-sm">
 			{#each items as item}
@@ -39,8 +39,8 @@
 					<a
 						href={`#${item.id}`}
 						class={cn(
-							'inline-block transition-colors hover:text-foreground',
-							activeId === item.id ? 'font-medium text-foreground' : 'text-muted-foreground'
+							'hover:text-foreground inline-block transition-colors',
+							activeId === item.id ? 'text-foreground font-medium' : 'text-muted-foreground'
 						)}
 					>
 						{item.title}

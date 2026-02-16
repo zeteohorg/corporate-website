@@ -2,34 +2,38 @@ import type { CompanyTranslation } from '../types';
 
 export const en: CompanyTranslation = {
 	hero: {
-		title: 'An "AI Eye" for Every Factory',
+		title: 'We transform real-world spatial data into the intelligence that powers autonomous physical spaces.',
 		subtitle:
-			'We are developing an AI that understands physical operations to eliminate the "invisible inefficiencies" plaguing manufacturing floors. Our vision is to bring AI to every factory—not just the large corporations—to break through the productivity wall.',
-		wearableTitle: 'The Problem: Invisible Waste Is Eroding Your Profits',
+			' ',
+		wearableTitle: 'Our vision: Every physical space sees, reasons, and acts autonomously to help humanity thrive.',
 		wearableDescription:
-			'Manufacturing managers grappling with labor shortages and rising costs desperately want to be more efficient, but finding out where the waste lies and which workflows are optimal is a monumental challenge. Traditional efficiency tools are expensive and complex to implement, leading to a reliance on "gut feelings and experience"—a costly dilemma.'
+			'By leveraging our patented infrastructure-free technology, we unlock hidden operational insights from the physical world. Our platform empowers industries to automate complex workflows, ensuring every movement is captured, analyzed, and optimized in real-time.'
 	},
 	solution: {
-		title: 'Zeteoh\'s Solution: Data from Your Team\'s Phones',
+		title: "zeteoh's Solution: Data from Your Team's Phones",
 		subtitle: 'Our platform, TRAILS, fundamentally solves this problem.',
 		features: [
 			{
 				title: 'Easy and Low-Cost',
-				description: 'Your employees\' smartphones become powerful sensors that capture the movements on the factory floor. No need for million-yen systems or months-long installations.'
+				description:
+					"Your employees' smartphones become powerful sensors that capture the movements on the factory floor. No need for million-yen systems or months-long installations."
 			},
 			{
 				title: '"See" to Fundamentally Improve',
-				description: 'We turn qualitative observations into objective data, visualizing who, when, where, and how your team moves. This allows you to identify bottlenecks and inefficient processes for science-based improvements.'
+				description:
+					'We turn qualitative observations into objective data, visualizing who, when, where, and how your team moves. This allows you to identify bottlenecks and inefficient processes for science-based improvements.'
 			},
 			{
 				title: 'A Foundation for the Future',
-				description: 'The data we collect serves as the bedrock for future AI optimization, predictive analytics, and automation. You can start transforming your factory into a smart factory today.'
+				description:
+					'The data we collect serves as the bedrock for future AI optimization, predictive analytics, and automation. You can start transforming your factory into a smart factory today.'
 			}
 		]
 	},
 	future: {
-		title: 'The Future Zeteoh is Building',
-		description: 'We are bringing this technology to factories worldwide to fundamentally change how the manufacturing industry operates. Our mission is to ensure that every factory, from small businesses to large enterprises, can reap the benefits of AI and achieve sustainable growth.'
+		title: 'About zeteoh',
+		description:
+			'At zeteoh, we believe the physical world should be as intelligent and programmable as the digital one. While industrial operations have long relied on manual oversight and costly infrastructure, we are breaking these boundaries. Through our infrastructure-free AI platform, TRAILS, we leverage proprietary algorithms to turn existing mobile devices into high-precision spatial sensors. By enabling spaces to understand human and asset flow in real-time, we are building the "Operating System" for autonomous industrial environments. Our journey begins with manufacturing, but our goal is universal: to embed intelligence into every square meter of the physical world, unlocking a new era of human productivity and prosperity.'
 	},
 	team: {
 		title: 'Our team',
@@ -120,34 +124,38 @@ export const en: CompanyTranslation = {
 
 export const ja: CompanyTranslation = {
 	hero: {
-		title: 'すべての工場に「AIの眼」を',
+		title: '現実の動きを、進化し続ける知能へ。',
 		subtitle:
-			'私たちは、製造業の現場が抱える「見えない非効率性」を解消するため、物理的なオペレーションを理解するAIを開発しています。これは、大企業だけのものではありません。すべての工場にAIを導入し、生産性の壁を打ち破ることを目指します。',
-		wearableTitle: '現場の課題：見えないムダが、あなたの利益を蝕む',
+			'私たちの使命は、現実世界のあらゆる空間データを、自律的な物理空間を動かす「知能」へと変換することです。',
+		wearableTitle: '目指す世界：あらゆる空間が、自ら考え、人類を支える未来。',
 		wearableDescription:
-			'人手不足とコスト高騰に悩む製造業の現場では、「もっと効率化したい」という思いがあっても、どこにムダがあるのか、誰の動きが最適なのか、把握するのは困難でした。従来の効率化ツールは、高額で導入も複雑。その結果、現場の「勘と経験」に頼るしかないという、ジレンマが生まれていました。'
+			'zeteohが独自に開発した『空間AI』により、建物や工場、都市といったすべての物理空間が、状況を自律的に理解・判断する世界を実現します。私たちは物理空間を「知能化」することで、産業の限界を超え、人類のさらなる繁栄に寄与します。'
 	},
 	solution: {
-		title: 'Zeteohのソリューション：スマホだけで、現場をデータ化',
+		title: 'ソリューション：スマホだけで、現場をデータ化',
 		subtitle: '私たちのプラットフォーム「TRAILS」は、この課題を根本から解決します。',
 		features: [
 			{
 				title: '簡単、低コスト',
-				description: '従業員が持つスマートフォンが、現場の動きを捉えるセンサーに。何百万円もする専用システムは不要で、導入にかかる期間もわずか数日です。'
+				description:
+					'従業員が持つスマートフォンが、現場の動きを捉えるセンサーに。何百万円もする専用システムは不要で、導入にかかる期間もわずか数日です。'
 			},
 			{
 				title: '「見える化」で本質的な改善',
-				description: '誰が、いつ、どこで、どう動いているのかを客観的なデータで「見える化」。ボトルネックや非効率な動きを特定し、科学的な改善が可能になります。'
+				description:
+					'誰が、いつ、どこで、どう動いているのかを客観的なデータで「見える化」。ボトルネックや非効率な動きを特定し、科学的な改善が可能になります。'
 			},
 			{
 				title: '未来への布石',
-				description: '収集されたデータは、将来的なAIによる自動化や予測分析の基盤となります。今から、あなたの工場を未来に備えた「スマートファクトリー」に変革できます。'
+				description:
+					'収集されたデータは、将来的なAIによる自動化や予測分析の基盤となります。今から、あなたの工場を未来に備えた「スマートファクトリー」に変革できます。'
 			}
 		]
 	},
 	future: {
-		title: 'Zeteohが描く未来',
-		description: '私たちは、この技術を世界中の工場に届け、製造業のあり方を変革しています。中小企業から大企業まで、すべての現場がAIの恩恵を享受し、持続可能な成長を実現する。それが、私たちの使命です。'
+		title: '私たちについて',
+		description:
+			'私たちは、産業の未来を空間の知能化で再定義します。現在、多くの産業現場では「何が、どこで、どう起きているか」という物理的な状況把握を、いまだに人の目や高価なインフラに頼っています。zeteohは、特許技術を駆使したインフラフリーの空間AIプラットフォーム『TRAILS』を通じて、この常識を打ち破ります。既存のデバイスのみでセンチメートル単位の動態を捉え、物理空間そのものを「思考するOS」へと進化させます。私たちは、製造現場の自律化を皮切りに、あらゆる空間に知能を実装し、産業のあり方を根本から変革するAIスタートアップです。'
 	},
 	team: {
 		title: 'チーム',

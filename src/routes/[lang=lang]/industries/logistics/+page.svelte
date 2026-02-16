@@ -9,11 +9,11 @@
 </script>
 
 <div
-	class="relative isolate overflow-hidden bg-background px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0"
+	class="bg-background relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0"
 >
 	<div class="absolute inset-0 -z-10 overflow-hidden">
 		<svg
-			class="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+			class="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)] stroke-gray-200"
 			aria-hidden="true"
 		>
 			<defs>
@@ -54,14 +54,14 @@
 					<h1 class="text-prett mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
 						{logistics.subtitle}
 					</h1>
-					<p class="mt-6 text-base/8 text-muted-foreground">
+					<p class="text-muted-foreground mt-6 text-base/8">
 						{logistics.challenges.text}
 					</p>
 				</div>
 			</div>
 		</div>
 		<div
-			class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden"
+			class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden"
 		>
 			<img
 				src="/images/usecase/logistics.webp"
@@ -81,7 +81,7 @@
 					<p>{logistics.challenges.title}：</p>
 					<ul role="list" class="mt-8 space-y-8">
 						{#each logistics.challenges.items as item}
-							<li class="flex gap-x-3 text-muted-foreground">
+							<li class="text-muted-foreground flex gap-x-3">
 								<MapPin size={20} strokeWidth={2.5} class="h-6 w-6 flex-shrink-0 text-red-500" />
 								<span><strong class="font-semibold">{item.title}</strong> {item.description}</span>
 							</li>
@@ -97,7 +97,7 @@
 	<div class="container mx-auto px-4 md:px-6">
 		<div class="mb-12 space-y-4 text-center">
 			<h1 class="text-3xl font-bold tracking-tight">{logistics.solutions.title}</h1>
-			<p class="mx-auto max-w-[900px] text-lg text-muted-foreground">
+			<p class="text-muted-foreground mx-auto max-w-[900px] text-lg">
 				{logistics.solutions.subtitle}
 			</p>
 		</div>
@@ -110,7 +110,7 @@
 						<span class="text-2xl font-bold tracking-tight">{item.title}</span>
 					</Card.Title>
 					<Card.Description>
-						<span class="inline-block pt-4 text-sm text-muted-foreground">{item.description}</span>
+						<span class="text-muted-foreground inline-block pt-4 text-sm">{item.description}</span>
 					</Card.Description>
 				</Card.Header>
 			</Card.Root>

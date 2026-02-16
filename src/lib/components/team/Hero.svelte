@@ -22,13 +22,13 @@
 	<div class="relative z-10 mx-auto max-w-4xl space-y-8 text-center sm:space-y-12 md:space-y-16">
 		<div>
 			<h1
-				class="mb-4 text-3xl font-bold leading-normal text-foreground sm:mb-6 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
+				class="text-foreground mb-4 text-3xl leading-normal font-bold sm:mb-6 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
 				data-sveltekit-preload-data
 			>
 				{title}
 			</h1>
 			<p
-				class="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
+				class="text-muted-foreground mx-auto max-w-3xl text-sm leading-relaxed sm:text-base md:text-lg"
 				data-sveltekit-preload-data
 			>
 				{subtitle}
@@ -36,10 +36,10 @@
 		</div>
 
 		<div class="space-y-4 sm:space-y-6">
-			<h2 class="text-xl font-semibold text-foreground sm:text-2xl md:text-3xl">
+			<h2 class="text-foreground text-xl font-semibold sm:text-2xl md:text-3xl">
 				{wearableTitle}
 			</h2>
-			<p class="mx-auto max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+			<p class="text-muted-foreground mx-auto max-w-3xl text-sm leading-relaxed sm:text-base">
 				{wearableDescription}
 			</p>
 		</div>
