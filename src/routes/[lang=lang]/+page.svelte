@@ -56,10 +56,10 @@
 <Product />
 <HowItWorks />
 <UseCases />
+<ContactForm />
 {#if data.blogPosts?.length > 0}
 	<LatestPosts posts={data.blogPosts} type="blog" />
 {/if}
 {#if data.newsPosts?.length > 0}
 	<LatestPosts posts={data.newsPosts} type="news" />
 {/if}
-<ContactForm />

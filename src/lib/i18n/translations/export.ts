@@ -2,13 +2,13 @@ import type { ExportTranslation } from '../types';
 
 export const en: ExportTranslation = {
 	tag: 'Export',
-	title: 'Own Your Operational Data.Seamless CSV Export for Custom Analysis.',
+	title: 'Own Your Operational Data. Seamless CSV Export for Workflow Analysis.',
 	description:
-		'Access the ground truth of your facility. Filter by operator, date range, or specific zones to download clean trajectory datasets. With spatial precision optimized for operational PDCA cycles, you have the flexibility to power your own internal analysis workflows and BI tools with confidence.',
+		'Access a clear, unfiltered view of your facility’s operations. Filter by team roles, date range, or specific work zones to download high-fidelity trajectory datasets. With spatial precision designed for optimizing operational safety and efficiency, you gain the clarity needed to improve the work environment using your existing analysis tools.',
 	features: [
-		'Narrow down data by worker, device, zone, or specific time windows.',
-		'Direct access to timestamped coordinates for deep-dive spatial analysis.',
-		'Ready to use with Excel, Tableau, Python, R, and other standard platforms.',
+		'Narrow down data by functional area, specific role, or time window to focus on high-impact zones.',
+		'Direct access to timestamped coordinates, providing the insights required for effective safety auditing and motion optimization.',
+		'Ready to use with Excel, Tableau, Python, R, and other standard analysis platforms.',
 	],
 	mockup: {
 		titlebar: 'Export Trajectories',
@@ -56,10 +56,10 @@ export const ja: ExportTranslation = {
 	tag: 'エクスポート',
 	title: '動線の生データをCSV出力。自社の分析フローに、そのまま組み込む。',
 	description:
-		'現場のありのままの動きを、加工しやすいデータ形式で。\n作業員、デバイス、期間、エリアを自由に組み合わせて、軌跡データを一括ダウンロード。現場改善のPDCAを回すために十分な精度を備えた位置データにアクセスできるため、自社独自の分析手法や既存のツールを最大限に活用できます。',
+		'現場全体の動きを、プライバシーと実用性のバランスを保ったデータ形式で。役割、期間、エリアを組み合わせて、軌跡データを一括ダウンロード。安全性の向上やプロセスの改善に十分な精度を備えた位置データを提供するため、自社独自の分析手法や既存のツールを最大限に活用できます。',
 	features: [
-		'作業員・デバイス・エリア・時間帯で、必要なデータだけをピンポイントに抽出',
-		'タイムスタンプに紐づいた詳細な位置情報をCSV形式で提供',
+		'役割、エリア、時間帯ごとにデータを抽出し、現場のボトルネックを特定',
+		'動線分析や安全対策のシミュレーションに十分な精度の座標データをCSVで提供',
 		'Excel、Tableau、Pythonなど、使い慣れた環境ですぐに分析可能',
 
 	],

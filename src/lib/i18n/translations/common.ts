@@ -62,7 +62,7 @@ export const en: CommonTranslation = {
 
 export const ja: CommonTranslation = {
 	contact: {
-		title: 'まずはPoC（実証実験）から始めませんか？',
+		title: 'まずはPoCから始めませんか？',
 		name: '名前',
 		email: 'メールアドレス',
 		company: '会社名',

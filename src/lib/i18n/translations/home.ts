@@ -19,7 +19,7 @@ export const en: HomeTranslation = {
 				colorClass: 'text-[#3b8eff]'
 			},
 			{
-				value: '¥1.6M',
+				value: '¥160M',
 				label: 'For a 100-worker facility, "wasteful movement" translates to over $1.1M in lost productivity annually.',
 				colorClass: 'text-[#2dd4a0]'
 			}
