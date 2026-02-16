@@ -9,18 +9,18 @@ export const en: HomeTranslation = {
 		learnMore: 'Learn more',
 		stats: [
 			{
-				value: '23%',
-				label: 'Average reduction in non-value-added movement',
+				value: '30%',
+				label: 'McKinsey research shows 30% of frontline time is wasted on "muda" like searching and walking.',
 				colorClass: 'text-[#ff3b3b]'
 			},
 			{
 				value: '< 3 days',
-				label: 'From install to first insights',
+				label: 'Zero downtime. Start visualizing trajectories within days using only smartphones.',
 				colorClass: 'text-[#3b8eff]'
 			},
 			{
-				value: '¥4.2M',
-				label: 'Avg. annual savings per factory',
+				value: '¥1.6M',
+				label: 'For a 100-worker facility, "wasteful movement" translates to over $1.1M in lost productivity annually.',
 				colorClass: 'text-[#2dd4a0]'
 			}
 		]
@@ -45,25 +45,25 @@ export const en: HomeTranslation = {
 
 export const ja: HomeTranslation = {
 	hero: {
-		title: 'すべての動きを見える化。\nあらゆる無駄を削減。結果は数日で。',
+		title: '現場のムダを「見える化」して、\n生産性を劇的に変える。',
 		subtitle:
-			'Spatial AI が現場を変える——スマートフォンだけでリアルタイムの動線分析を実現。センサー不要、インフラ不要、環境を選ばない。',
+			'空間AIが、従業員のスマートフォンだけで動線を可視化します。\n設備投資ゼロ、設置工事不要。\n現場を止めることなく、数日で動線分析を開始することができます。',
 		getStarted: 'PoCから始める',
 		learnMore: '詳しく見る',
 		stats: [
 			{
-				value: '23%',
-				label: '非付加価値動作の平均削減率',
+				value: '30%',
+				label: '現場の時間の3割が移動や探索などの「ムダ」に消えています。\n※マッキンゼーの調査による',
 				colorClass: 'text-[#ff3b3b]'
 			},
 			{
-				value: '< 3日',
-				label: '設置から最初のインサイトまで',
+				value: '最短3日',
+				label: '現場を止めず、スマートフォンのみで数日以内に動線の可視化をスタート。',
 				colorClass: 'text-[#3b8eff]'
 			},
 			{
-				value: '¥4.2M',
-				label: '工場あたりの平均年間節約額',
+				value: '年間1.6億円',
+				label: '100人規模の工場では、この「ムダな動き」が年間約1.65億円もの損失に相当します。',
 				colorClass: 'text-[#2dd4a0]'
 			}
 		]

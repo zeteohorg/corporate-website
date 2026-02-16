@@ -220,9 +220,9 @@
 		class="container mx-auto px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20 lg:px-8 lg:pt-12 lg:pb-24"
 	>
 		<!-- Hero Content -->
-		<div class="mx-auto max-w-2xl text-center">
+		<div class="mx-auto max-w-4xl text-center">
 			<h1
-				class="mt-4 text-4xl font-bold tracking-tight whitespace-pre-line sm:text-4xl md:text-5xl lg:text-6xl"
+				class="mt-10 text-4xl font-bold tracking-tight whitespace-pre-line sm:text-4xl md:text-5xl lg:text-6xl"
 			>
 				{t.title}
 			</h1>

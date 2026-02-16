@@ -2,14 +2,13 @@ import type { ExportTranslation } from '../types';
 
 export const en: ExportTranslation = {
 	tag: 'Export',
-	title: 'Export Raw Trajectory Data as CSV',
+	title: 'Own Your Operational Data.Seamless CSV Export for Custom Analysis.',
 	description:
-		'Select any combination of Assigned operators, pick a date range, and download the full trajectory dataset — timestamps, coordinates, device IDs, and computed metrics — as a clean CSV ready for your own analysis tools.',
+		'Access the ground truth of your facility. Filter by operator, date range, or specific zones to download clean trajectory datasets. With spatial precision optimized for operational PDCA cycles, you have the flexibility to power your own internal analysis workflows and BI tools with confidence.',
 	features: [
-		'Filter by worker, device, zone, or time window',
-		'Includes raw coordinates + derived metrics',
-		'Compatible with Excel, Python, R, Tableau',
-		'Scheduled automated exports available'
+		'Narrow down data by worker, device, zone, or specific time windows.',
+		'Direct access to timestamped coordinates for deep-dive spatial analysis.',
+		'Ready to use with Excel, Tableau, Python, R, and other standard platforms.',
 	],
 	mockup: {
 		titlebar: 'Export Trajectories',
@@ -55,14 +54,14 @@ export const en: ExportTranslation = {
 
 export const ja: ExportTranslation = {
 	tag: 'エクスポート',
-	title: 'CSV形式で動線データをエクスポート',
+	title: '動線の生データをCSV出力。自社の分析フローに、そのまま組み込む。',
 	description:
-		'追跡対象者の任意の組み合わせを選択し、期間を指定して、完全な動線データセット（タイムスタンプ、座標、デバイスID、計算されたメトリクス）を、分析ツールですぐに使えるクリーンなCSVとしてダウンロードできます。',
+		'現場のありのままの動きを、加工しやすいデータ形式で。\n作業員、デバイス、期間、エリアを自由に組み合わせて、軌跡データを一括ダウンロード。現場改善のPDCAを回すために十分な精度を備えた位置データにアクセスできるため、自社独自の分析手法や既存のツールを最大限に活用できます。',
 	features: [
-		'作業者、デバイス、ゾーン、時間枠でフィルタリング',
-		'生の座標と派生メトリクスを含む',
-		'Excel、Python、R、Tableauと互換性あり',
-		'スケジュール化された自動エクスポートが利用可能'
+		'作業員・デバイス・エリア・時間帯で、必要なデータだけをピンポイントに抽出',
+		'タイムスタンプに紐づいた詳細な位置情報をCSV形式で提供',
+		'Excel、Tableau、Pythonなど、使い慣れた環境ですぐに分析可能',
+
 	],
 	mockup: {
 		titlebar: '動線データのエクスポート',
