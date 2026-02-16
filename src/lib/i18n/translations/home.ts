@@ -20,7 +20,7 @@ export const en: HomeTranslation = {
 			},
 			{
 				value: '¥160M',
-				label: 'For a 100-worker facility, "wasteful movement" translates to over $1.1M in lost productivity annually.',
+				label: 'For a 100-worker facility, "wasteful movement" translates to over ¥160M in lost productivity annually.',
 				colorClass: 'text-[#2dd4a0]'
 			}
 		]
