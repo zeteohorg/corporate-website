@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/home/Hero.svelte';
 	import Stats from '$lib/components/home/Stats.svelte';
+	import BackedBy from '$lib/components/home/BackedBy.svelte';
 	import Export from '$lib/components/home/Export.svelte';
 	import UseCases from '$lib/components/home/UseCases.svelte';
 	import Challenges from '$lib/components/home/Challenges.svelte';
@@ -51,6 +52,7 @@
 
 <Hero />
 <Stats />
+<BackedBy />
 <Export />
 <Challenges />
 <Product />

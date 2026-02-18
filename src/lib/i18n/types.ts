@@ -77,6 +77,9 @@ export type HomeTranslation = {
 			description: string;
 		}>;
 	};
+	backedBy: {
+		title: string;
+	};
 };
 
 export type BlogTranslation = {
