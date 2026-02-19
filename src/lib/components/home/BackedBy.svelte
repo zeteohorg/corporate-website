@@ -29,7 +29,6 @@
 				name: 'Station F',
 				dark: '/images/supports/dark/station_f_dark.png',
 				light: '/images/supports/white/station_f_white.png',
-				height: 80
 			},
 			{
 				name: 'Tokyo5G',
