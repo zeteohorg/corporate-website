@@ -11,7 +11,7 @@
 			{
 				name: 'Industrie 4.0',
 				dark: '/images/supports/dark/industrie4.0_dark.png',
-				light: '/images/supports/white/industrie4.0_white.jpeg'
+				light: '/images/supports/white/industrie4.0_white.png'
 			},
 			{
 				name: 'Deep Tech Pioneers',
@@ -20,19 +20,23 @@
 			},
 			{
 				name: 'HEC CDL',
-				dark: '/images/supports/dark/hec_cdl.png',
+				dark: '/images/supports/dark/hec_cdl_dark.png',
 				light: '/images/supports/white/hec_cdl.png'
 			}
 		],
 		[
-			null,
 			{
 				name: 'Station F',
 				dark: '/images/supports/dark/station_f_dark.png',
 				light: '/images/supports/white/station_f_white.png',
 				height: 80
 			},
-			null
+			{
+				name: 'Tokyo5G',
+				dark: '/images/supports/dark/Tokyo5G_dark.png',
+				light: '/images/supports/white/Tokyo5G_white.png'
+			},
+
 		]
 	];
 </script>

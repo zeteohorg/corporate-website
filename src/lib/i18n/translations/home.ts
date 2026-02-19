@@ -88,6 +88,6 @@ export const ja: HomeTranslation = {
 		]
 	},
 	backedBy: {
-		title: '支援・認定機関'
+		title: '支援・採択実績'
 	}
 };
