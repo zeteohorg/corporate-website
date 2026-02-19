@@ -10,7 +10,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tomin.asuscomm.com:9058; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:; font-src 'self' fonts.gstatic.com; connect-src 'self' https://tomin.asuscomm.com:9058; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analyticsz42.duckdns.org:9058/; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:; font-src 'self' fonts.gstatic.com; connect-src 'self' https://analyticsz42.duckdns.org:9058/; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com"
 
 # Immutable versioned assets (JS, CSS bundles with hash in filename)
 [[headers]]
