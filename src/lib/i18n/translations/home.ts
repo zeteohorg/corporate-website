@@ -40,6 +40,9 @@ export const en: HomeTranslation = {
 					"Build the digital foundation for tomorrow's smart factory—AI optimization, predictive analytics, and automation—without ripping out infrastructure later."
 			}
 		]
+	},
+	backedBy: {
+		title: 'Backed & Recognized By'
 	}
 };
 
@@ -83,5 +86,8 @@ export const ja: HomeTranslation = {
 					'AIによる最適化や予測分析、自動化といった、将来のスマートファクトリーに不可欠なデジタル基盤を今から構築。後から大規模な設備投資をすることなく、未来を見据えた経営を実現します。'
 			}
 		]
+	},
+	backedBy: {
+		title: '支援・採択実績'
 	}
 };
