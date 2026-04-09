@@ -5,7 +5,7 @@
   "org.matrix.msc4143.rtc_foci": [
     {
       "type": "livekit",
-      "livekit_service_url": "https://auth.zeteoh.com"
+      "livekit_service_url": "https://auth1.zeteoh.com"
     }
   ]
 }
