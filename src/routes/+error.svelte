@@ -1,5 +1,11 @@
 <script>
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import { trackEvent } from '$lib/analytics';
+
+	onMount(() => {
+		if ($page.status === 404) trackEvent('404');
+	});
 </script>
 
 <main class="container grid min-h-full place-items-center px-6 py-24 sm:py-32">

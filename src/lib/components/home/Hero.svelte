@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 	import { buttonVariants } from '$lib/components/ui/button';
+	import { trackClick } from '$lib/analytics';
 	import { AlertCircle } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
@@ -497,12 +498,14 @@
 					target="_blank"
 					class="{buttonVariants({ size: 'lg' })} !h-18 !px-14 !text-xl !text-white"
 					style="box-shadow: 0 4px 24px -4px rgba(255,59,59,0.45);"
+					use:trackClick={{ name: 'CTA: Request Pilot', props: { location: 'hero' } }}
 				>
 					{t.getStarted}
 				</a>
 				<a
 					href="https://meetings-eu1.hubspot.com/satomi-le-guilly"
 					class="flex items-center justify-center text-xl leading-6 font-semibold"
+					use:trackClick={{ name: 'CTA: Learn More', props: { location: 'hero' } }}
 				>
 					{t.learnMore}
 					<span aria-hidden="true" class="ml-1">→</span>
