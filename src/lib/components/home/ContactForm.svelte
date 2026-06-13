@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 	import { browser } from '$app/environment';
+	import { trackEvent } from '$lib/analytics';
 
 	const currentLanguage = $derived($page.params.lang ?? 'en');
 	const t = $derived(translations[currentLanguage].common.contact);
@@ -25,6 +26,9 @@
 		})
 			.then(() => {
 				submitted = true;
+				trackEvent('Contact Form: Submit', {
+					inquiry_type: String(formData.get('inquiry-type') ?? '')
+				});
 				formEl.reset();
 			})
 			.catch((error) => {
