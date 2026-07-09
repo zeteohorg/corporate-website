@@ -13,9 +13,12 @@
 			<div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.company}</h2>
-					<ul class="text-muted-foreground space-y-2 text-sm">
+					<ul class="text-muted-foreground text-sm">
 						<li>
-							<a href="/{currentLanguage}/company" class="hover:text-foreground">{t.links.about}</a>
+							<a
+								href="/{currentLanguage}/company"
+								class="hover:text-foreground inline-block px-2 py-2">{t.links.about}</a
+							>
 						</li>
 						<!-- <li>
 								<a href="/{currentLanguage}/careers" class="hover:text-foreground"
@@ -32,21 +35,27 @@
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.resources}</h2>
-					<ul class="text-muted-foreground space-y-2 text-sm">
+					<ul class="text-muted-foreground text-sm">
 						<li>
-							<a href="/{currentLanguage}/blog" class="hover:text-foreground">{t.links.blog}</a>
+							<a href="/{currentLanguage}/blog" class="hover:text-foreground inline-block px-2 py-2"
+								>{t.links.blog}</a
+							>
 						</li>
 						<li>
-							<a href="/{currentLanguage}/news" class="hover:text-foreground">{t.links.news}</a>
+							<a href="/{currentLanguage}/news" class="hover:text-foreground inline-block px-2 py-2"
+								>{t.links.news}</a
+							>
 						</li>
 					</ul>
 				</div>
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.legal}</h2>
-					<ul class="text-muted-foreground space-y-2 text-sm">
+					<ul class="text-muted-foreground text-sm">
 						<li>
-							<a href="/privacy-policy" class="hover:text-foreground">{t.links.privacyPolicy}</a>
+							<a href="/privacy-policy" class="hover:text-foreground inline-block px-2 py-2"
+								>{t.links.privacyPolicy}</a
+							>
 						</li>
 						<!-- <li><a href="/terms" class="hover:text-foreground">{t.links.terms}</a></li> -->
 					</ul>
@@ -54,13 +63,13 @@
 
 				<div class="space-y-4 text-center">
 					<h2 class="text-sm font-medium">{t.social}</h2>
-					<ul class="text-muted-foreground mt-4 flex justify-center space-x-4">
+					<ul class="text-muted-foreground mt-4 flex justify-center">
 						<li>
 							<a
 								href="https://x.com/zeteoh_ai"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="hover:text-foreground"
+								class="hover:text-foreground inline-flex p-2"
 								aria-label="Twitter"
 							>
 								<Twitter class="h-5 w-5" />
@@ -71,7 +80,7 @@
 								href="https://github.com/yourcompany"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="hover:text-foreground"
+								class="hover:text-foreground inline-flex p-2"
 								aria-label="GitHub"
 							>
 								<Github class="h-5 w-5" />
@@ -82,7 +91,7 @@
 								href="https://jp.linkedin.com/company/zeteoh"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="hover:text-foreground"
+								class="hover:text-foreground inline-flex p-2"
 								aria-label="LinkedIn"
 							>
 								<Linkedin class="h-5 w-5" />
