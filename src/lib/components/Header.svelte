@@ -31,7 +31,7 @@
 						/>
 						<img
 							src="/images/kana-logo-white.png"
-							alt="Kana"
+							alt="Zeteoh"
 							class="h-8 w-auto"
 							height="32"
 							width="100"
@@ -45,7 +45,7 @@
 						/>
 						<img
 							src="/images/kana-logo-bl.png"
-							alt="Kana"
+							alt="Zeteoh"
 							class="h-8 w-auto"
 							height="32"
 							width="100"
