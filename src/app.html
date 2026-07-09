@@ -21,33 +21,11 @@
 		<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-		<!-- DNS/TLS preconnect for Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-		<!-- Preload variable font (single request for all weights) -->
-		<link
-			rel="preload"
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..700&display=swap"
-			as="style"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..700&display=swap"
-			media="print"
-			onload="
-				this.onload = null;
-				this.media = 'all';
-			"
-		/>
-
-		<!-- Fallback for no-JS -->
-		<noscript>
-			<link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..700&display=swap"
-			/>
-		</noscript>
+		<!-- Noto Sans JP web font — injected by hooks.server.ts on Japanese pages
+		     only. English pages render Latin text with system fonts (Noto Sans JP
+		     is a fallback for JP glyphs) and don't download any of it, so loading
+		     the ~30 KiB CJK font CSS + its origins there is pure waste. -->
+		%fonthead%
 
 		<!-- Plausible Analytics -->
 		<script>
