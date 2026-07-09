@@ -3,11 +3,28 @@
 	import { page } from '$app/stores';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import { translations } from '$lib/i18n/translations';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	let { data } = $props<{ data: PageData }>();
 	const currentLanguage = $derived($page.params.lang);
 	const t = $derived(translations[currentLanguage]);
+	const canonicalUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/news`);
+	const description = $derived(
+		currentLanguage === 'ja'
+			? 'zeteohのプレスリリースとニュース一覧。'
+			: 'Press releases and company news from zeteoh.'
+	);
 </script>
+
+<svelte:head>
+	<title>{t.news.title} | Zeteoh</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={t.news.title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalUrl} />
+	<link rel="canonical" href={canonicalUrl} />
+</svelte:head>
 
 <div class="container mx-auto px-4 py-8">
 	<Breadcrumb.Root>
