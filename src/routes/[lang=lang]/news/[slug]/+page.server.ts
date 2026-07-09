@@ -104,21 +104,39 @@ export const load: PageServerLoad = async ({ params }) => {
 		const previousPost = posts[currentIndex + 1];
 		const nextPost = posts[currentIndex - 1];
 
+		const otherLang = lang === 'en' ? 'ja' : 'en';
+		const alternateLangExists = Object.keys(modules).some((path) => {
+			const fileSlug = path
+				.split('/')
+				.pop()
+				?.replace(/\.(md|mdx)$/, '')
+				.replace(/\./g, '');
+			return path.includes(`/${otherLang}/`) && fileSlug === cleanSlug;
+		});
+
 		return {
 			metadata: {
 				title: metadata.title || cleanSlug,
 				date: metadata.date || new Date().toISOString(),
+				updated: metadata.updated || metadata.date || new Date().toISOString(),
 				description: metadata.description || '',
 				published: metadata.published ?? false,
 				author: metadata.author,
 				tags: metadata.tags,
 				thumbnail: metadata.thumbnail
 			},
+			meta: {
+				title: metadata.title || cleanSlug,
+				description: metadata.description || '',
+				ogType: 'article' as const,
+				ogImage: metadata.thumbnail?.url
+			},
 			content: cleanMarkdown,
 			html: processedHtml,
 			previousPost,
 			nextPost,
-			slug: cleanSlug // Return the clean slug for consistency
+			slug: cleanSlug, // Return the clean slug for consistency
+			alternateLang: alternateLangExists ? otherLang : null
 		};
 	} catch (e) {
 		console.error('Error loading news post:', e);

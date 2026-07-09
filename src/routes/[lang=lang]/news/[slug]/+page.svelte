@@ -8,11 +8,56 @@
 	import { ChevronLeft, ChevronRight, Calendar } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { translations } from '$lib/i18n/translations';
+	import { getMeta } from '$lib/meta';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	export let data;
-	const { metadata, html, content, previousPost, nextPost } = data;
+	const { metadata, html, content, previousPost, nextPost, alternateLang } = data;
 	const lang = $page.params.lang;
 	const t = translations[lang];
+	$: pageUrl = `${SITE_ORIGIN}/${lang}/news/${$page.params.slug}`;
+
+	$: fullMeta = getMeta({
+		defaultTitle: 'Zeteoh',
+		defaultDescription:
+			"Powered by Spatial AI — real-time motion analytics from your team's smartphones.",
+		defaultOGImage: '/socialcard.jpeg',
+		routeMeta: data.meta,
+		pageParam: undefined,
+		url: $page.url
+	});
+
+	$: articleSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: metadata.title,
+		description: metadata.description,
+		image: fullMeta.ogImage,
+		datePublished: metadata.date,
+		dateModified: metadata.updated ?? metadata.date,
+		...(metadata.author ? { author: { '@type': 'Person', name: metadata.author.name } } : {}),
+		publisher: {
+			'@type': 'Organization',
+			name: 'Zeteoh, Inc.',
+			logo: { '@type': 'ImageObject', url: `${SITE_ORIGIN}/images/kana-logo-bl.png` }
+		}
+	};
+
+	$: breadcrumbSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/${lang}` },
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: t.news.title,
+				item: `${SITE_ORIGIN}/${lang}/news`
+			},
+			{ '@type': 'ListItem', position: 3, name: metadata.title, item: pageUrl }
+		]
+	};
 
 	onMount(() => {
 		// Mount MDX components
@@ -26,13 +71,25 @@
 </script>
 
 <svelte:head>
-	<title>{metadata.title}</title>
-	<meta name="description" content={metadata.description} />
-	<meta property="og:title" content={metadata.title} />
-	<meta property="og:description" content={metadata.description} />
-	{#if metadata.thumbnail}
-		<meta property="og:image" content={metadata.thumbnail.url} />
+	<title>{fullMeta.title}</title>
+	<meta name="description" content={fullMeta.description} />
+	<meta property="og:title" content={fullMeta.ogTitle} />
+	<meta property="og:description" content={fullMeta.ogDescription} />
+	<meta property="og:image" content={fullMeta.ogImage} />
+	<meta property="og:type" content={fullMeta.ogType} />
+	<meta property="og:url" content={fullMeta.ogUrl} />
+	<link rel="canonical" href={fullMeta.canonicalUrl} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="alternate" hreflang={lang} href={pageUrl} />
+	{#if alternateLang}
+		<link
+			rel="alternate"
+			hreflang={alternateLang}
+			href={`${SITE_ORIGIN}/${alternateLang}/news/${$page.params.slug}`}
+		/>
 	{/if}
+	<JsonLd schema={articleSchema} />
+	<JsonLd schema={breadcrumbSchema} />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8">
@@ -66,6 +123,17 @@
 						day: 'numeric'
 					})}
 				</time>
+				{#if metadata.updated && metadata.updated !== metadata.date}
+					<span class="mx-2">·</span>
+					<time datetime={metadata.updated}>
+						{lang === 'ja' ? '更新: ' : 'Updated '}
+						{new Date(metadata.updated).toLocaleDateString(lang, {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</time>
+				{/if}
 				<span class="mx-2">·</span>
 				<span>{formatReadingTime(content, lang)}</span>
 			</div>
