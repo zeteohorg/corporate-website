@@ -24,17 +24,20 @@ export const load: LayoutLoad = ({ url }) => {
 		return {};
 	}
 
-	// Handle root path
+	const preferredLang = getPreferredLang();
+
+	// Redirect straight to a trailing-slash URL (trailingSlash = 'always' above
+	// would otherwise immediately issue a second redirect to add it, costing an
+	// extra round trip on every first visit).
 	if (url.pathname === '/') {
-		const preferredLang = getPreferredLang();
-		throw redirect(307, `/${preferredLang}${url.search}`);
+		throw redirect(307, `/${preferredLang}/${url.search}`);
 	}
 
 	// Redirect all other routes to preferred language
 	// (url.search isn't read here: these routes stay prerendered, and SvelteKit
 	// forbids accessing the query string on a prerendered page.)
-	const preferredLang = getPreferredLang();
-	throw redirect(307, `/${preferredLang}${url.pathname}`);
+	const path = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
+	throw redirect(307, `/${preferredLang}${path}`);
 };
 
 function getPreferredLang(): ValidLanguage {
