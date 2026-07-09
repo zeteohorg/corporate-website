@@ -30,6 +30,18 @@ export type CommonTranslation = {
 				other: string;
 			};
 		};
+		hearAboutUs: {
+			label: string;
+			placeholder: string;
+			options: {
+				search: string;
+				socialMedia: string;
+				aiAssistant: string;
+				referral: string;
+				event: string;
+				other: string;
+			};
+		};
 		errors: {
 			required: string;
 			invalidEmail: string;

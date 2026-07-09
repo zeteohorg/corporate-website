@@ -3,11 +3,28 @@
 	import { page } from '$app/stores';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import { translations } from '$lib/i18n/translations';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	let { data } = $props<{ data: PageData }>();
 	const currentLanguage = $derived($page.params.lang);
 	const t = $derived(translations[currentLanguage]);
+	const canonicalUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog`);
+	const description = $derived(
+		currentLanguage === 'ja'
+			? 'Spatial AIと屋内位置測位に関するzeteohのブログ記事一覧。'
+			: "zeteoh's blog on Spatial AI, indoor positioning, and manufacturing motion analytics."
+	);
 </script>
+
+<svelte:head>
+	<title>{t.blog.title} | Zeteoh</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={t.blog.title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalUrl} />
+	<link rel="canonical" href={canonicalUrl} />
+</svelte:head>
 
 <div class="container mx-auto px-4 py-8">
 	<Breadcrumb.Root>

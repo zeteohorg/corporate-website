@@ -3,6 +3,7 @@
  * - Convention: your paginated routes are expected to use a param name of `page` for the page like
  *  `/blog/[page]`.
  */
+import { SITE_ORIGIN } from '$lib/origin';
 
 /**
  * Meta - Route metadata specified by the developer.
@@ -69,13 +70,14 @@ export function formatTitle({ title, pageParam }: { title: string; pageParam: st
  *   like `/blog/[page]`.
  * - Absolute URL is preferred for canonical, though Google can handle relative URLs. But since this
  *   is also our `og:url` it needs to be absolute.
- * - Disregard that a relative URL is shown in the HTML during `npm run dev`; SvelteKit will make it
- *   absolute in production.
+ * - Uses `SITE_ORIGIN` rather than `url.origin`: this site prerenders every route, and
+ *   SvelteKit bakes `url.origin` as the placeholder host `http://sveltekit-prerender` at build
+ *   time for prerendered pages, not the real production origin.
  */
 export function getCanonicalUrl(url: URL, pageParam: string | undefined) {
-	const { origin, pathname } = url;
+	const { pathname } = url;
 	const path = pageParam ? pathname.replace(/\/\d+$/, '') : pathname;
-	return origin + path;
+	return SITE_ORIGIN + path;
 }
 
 export type GetMetaParms = {
@@ -121,6 +123,8 @@ export function getMeta({
 	});
 
 	const canonicalUrl = getCanonicalUrl(url, pageParam);
+	const rawOgImage = routeMeta?.ogImage ?? defaultOGImage ?? '';
+	const ogImage = rawOgImage.startsWith('http') ? rawOgImage : `${SITE_ORIGIN}${rawOgImage}`;
 
 	const meta: FullMeta = {
 		title,
@@ -128,7 +132,7 @@ export function getMeta({
 		canonicalUrl,
 		ogTitle: routeMeta?.ogTitle ?? routeMeta?.title ?? defaultTitle ?? '',
 		ogDescription: routeMeta?.ogDescription ?? routeMeta?.description ?? defaultDescription ?? '',
-		ogImage: routeMeta?.ogImage ?? defaultOGImage ?? '',
+		ogImage,
 		ogUrl: canonicalUrl,
 		ogType: routeMeta?.ogType ?? 'website'
 	};

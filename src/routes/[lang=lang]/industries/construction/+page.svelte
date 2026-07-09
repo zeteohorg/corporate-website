@@ -2,11 +2,23 @@
 	import * as Card from '$lib/components/ui/card';
 	import type { PageData } from './$types';
 	import { MapPin } from 'lucide-svelte';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	export let data: PageData;
 	const { translations, lang } = data;
 	const construction = translations.construction;
+	const canonicalUrl = `${SITE_ORIGIN}/${lang}/industries/construction`;
 </script>
+
+<svelte:head>
+	<title>{construction.title} | Zeteoh</title>
+	<meta name="description" content={construction.subtitle} />
+	<meta property="og:title" content={construction.title} />
+	<meta property="og:description" content={construction.subtitle} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalUrl} />
+	<link rel="canonical" href={canonicalUrl} />
+</svelte:head>
 
 <div
 	class="bg-background relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0"
