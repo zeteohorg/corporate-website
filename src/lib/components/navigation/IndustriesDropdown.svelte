@@ -36,6 +36,18 @@
 					other: ''
 				}
 			},
+			hearAboutUs: {
+				label: '',
+				placeholder: '',
+				options: {
+					search: '',
+					socialMedia: '',
+					aiAssistant: '',
+					referral: '',
+					event: '',
+					other: ''
+				}
+			},
 			errors: {
 				required: '',
 				invalidEmail: ''

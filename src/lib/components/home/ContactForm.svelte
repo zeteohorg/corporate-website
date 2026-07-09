@@ -27,7 +27,8 @@
 			.then(() => {
 				submitted = true;
 				trackEvent('Contact Form: Submit', {
-					inquiry_type: String(formData.get('inquiry-type') ?? '')
+					inquiry_type: String(formData.get('inquiry-type') ?? ''),
+					hear_about_us: String(formData.get('hear-about-us') ?? '')
 				});
 				formEl.reset();
 			})
@@ -140,6 +141,26 @@
 							<option value="demo">{t.inquiryType.options.demo}</option>
 							<option value="vendor">{t.inquiryType.options.vendor}</option>
 							<option value="other">{t.inquiryType.options.other}</option>
+						</select>
+					</div>
+
+					<!-- How did you hear about us? field -->
+					<div class="space-y-2">
+						<label for="hearAboutUs" class="text-sm leading-none font-medium">
+							{t.hearAboutUs.label}
+						</label>
+						<select
+							id="hearAboutUs"
+							name="hear-about-us"
+							class="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+						>
+							<option value="">{t.hearAboutUs.placeholder}</option>
+							<option value="search">{t.hearAboutUs.options.search}</option>
+							<option value="social-media">{t.hearAboutUs.options.socialMedia}</option>
+							<option value="ai-assistant">{t.hearAboutUs.options.aiAssistant}</option>
+							<option value="referral">{t.hearAboutUs.options.referral}</option>
+							<option value="event">{t.hearAboutUs.options.event}</option>
+							<option value="other">{t.hearAboutUs.options.other}</option>
 						</select>
 					</div>
 

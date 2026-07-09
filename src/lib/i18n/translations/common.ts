@@ -21,6 +21,18 @@ export const en: CommonTranslation = {
 				other: 'General Inquiry'
 			}
 		},
+		hearAboutUs: {
+			label: 'How did you hear about us?',
+			placeholder: 'Select an option',
+			options: {
+				search: 'Search Engine',
+				socialMedia: 'Social Media',
+				aiAssistant: 'ChatGPT / AI Assistant',
+				referral: 'Referral',
+				event: 'Event or Conference',
+				other: 'Other'
+			}
+		},
 		errors: {
 			required: 'This field is required',
 			invalidEmail: 'Please enter a valid email address'
@@ -79,6 +91,18 @@ export const ja: CommonTranslation = {
 				demo: 'PoC（実証実験）のご依頼',
 				vendor: 'ビジネス提携に関するお問い合わせ',
 				other: 'その他のお問い合わせ'
+			}
+		},
+		hearAboutUs: {
+			label: '当社をどこでお知りになりましたか？',
+			placeholder: '選択してください',
+			options: {
+				search: '検索エンジン',
+				socialMedia: 'SNS',
+				aiAssistant: 'ChatGPT / AIアシスタント',
+				referral: '紹介',
+				event: 'イベント・展示会',
+				other: 'その他'
 			}
 		},
 		errors: {
