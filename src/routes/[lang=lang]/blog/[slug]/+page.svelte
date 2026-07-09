@@ -21,6 +21,9 @@ rendered directly in the page. -->
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { cn } from '$lib/utils';
 	import { ArrowLeft, ArrowRight } from 'lucide-svelte';
+	import { getMeta } from '$lib/meta';
+	import JsonLd from '$lib/components/JsonLd.svelte';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	let { data } = $props<{ data: PageData }>();
 	const currentLanguage = $derived($page.params.lang);
@@ -28,6 +31,57 @@ rendered directly in the page. -->
 	const readingTime = $derived(
 		data.content ? formatReadingTime(data.content, currentLanguage) : ''
 	);
+	const pageUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog/${$page.params.slug}`);
+
+	const fullMeta = $derived(
+		getMeta({
+			defaultTitle: 'Zeteoh',
+			defaultDescription:
+				"Powered by Spatial AI — real-time motion analytics from your team's smartphones.",
+			defaultOGImage: '/socialcard.jpeg',
+			routeMeta: data.meta,
+			pageParam: undefined,
+			url: $page.url
+		})
+	);
+
+	const articleSchema = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: data.metadata.title,
+		description: data.metadata.description,
+		image: fullMeta.ogImage,
+		datePublished: data.metadata.date,
+		dateModified: data.metadata.updated ?? data.metadata.date,
+		...(data.metadata.author
+			? { author: { '@type': 'Person', name: data.metadata.author.name } }
+			: {}),
+		publisher: {
+			'@type': 'Organization',
+			name: 'Zeteoh, Inc.',
+			logo: { '@type': 'ImageObject', url: `${SITE_ORIGIN}/images/kana-logo-bl.png` }
+		}
+	});
+
+	const breadcrumbSchema = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: `${SITE_ORIGIN}/${currentLanguage}`
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: t.blog.title,
+				item: `${SITE_ORIGIN}/${currentLanguage}/blog`
+			},
+			{ '@type': 'ListItem', position: 3, name: data.metadata.title, item: pageUrl }
+		]
+	});
 
 	const mdxComponents = {
 		CodeBlock,
@@ -49,8 +103,25 @@ rendered directly in the page. -->
 </script>
 
 <svelte:head>
-	<title>{data.metadata.title}</title>
-	<meta name="description" content={data.metadata.description} />
+	<title>{fullMeta.title}</title>
+	<meta name="description" content={fullMeta.description} />
+	<meta property="og:title" content={fullMeta.ogTitle} />
+	<meta property="og:description" content={fullMeta.ogDescription} />
+	<meta property="og:image" content={fullMeta.ogImage} />
+	<meta property="og:type" content={fullMeta.ogType} />
+	<meta property="og:url" content={fullMeta.ogUrl} />
+	<link rel="canonical" href={fullMeta.canonicalUrl} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="alternate" hreflang={currentLanguage} href={pageUrl} />
+	{#if data.alternateLang}
+		<link
+			rel="alternate"
+			hreflang={data.alternateLang}
+			href={`${SITE_ORIGIN}/${data.alternateLang}/blog/${$page.params.slug}`}
+		/>
+	{/if}
+	<JsonLd schema={articleSchema} />
+	<JsonLd schema={breadcrumbSchema} />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8">
@@ -94,6 +165,17 @@ rendered directly in the page. -->
 						day: 'numeric'
 					})}
 				</time>
+				{#if data.metadata.updated && data.metadata.updated !== data.metadata.date}
+					<div>·</div>
+					<time datetime={data.metadata.updated}>
+						{currentLanguage === 'ja' ? '更新: ' : 'Updated '}
+						{new Date(data.metadata.updated).toLocaleDateString(currentLanguage, {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</time>
+				{/if}
 				{#if readingTime}
 					<div>·</div>
 					<div>{readingTime}</div>
