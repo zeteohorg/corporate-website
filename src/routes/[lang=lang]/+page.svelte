@@ -11,12 +11,12 @@
 	import HowItWorks from '$lib/components/home/HowItWorks.svelte';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
+	import { SITE_ORIGIN } from '$lib/origin';
 
 	let { data } = $props();
 	const currentLanguage = $derived($page.params.lang);
 	const t = $derived(translations[currentLanguage]);
-	const origin = $derived($page.url.origin);
-	const canonicalUrl = $derived(`${origin}/${currentLanguage}/`);
+	const canonicalUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/`);
 </script>
 
 <svelte:head>
@@ -44,7 +44,7 @@
 		/>
 	{/if}
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="{origin}/socialcard.jpeg" />
+	<meta property="og:image" content="{SITE_ORIGIN}/socialcard.jpeg" />
 	<meta property="og:url" content={canonicalUrl} />
 	<link rel="canonical" href={canonicalUrl} />
 	<meta name="twitter:card" content="summary_large_image" />
