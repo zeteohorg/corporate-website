@@ -27,10 +27,12 @@ export const load: LayoutLoad = ({ url }) => {
 	// Handle root path
 	if (url.pathname === '/') {
 		const preferredLang = getPreferredLang();
-		throw redirect(307, `/${preferredLang}`);
+		throw redirect(307, `/${preferredLang}${url.search}`);
 	}
 
 	// Redirect all other routes to preferred language
+	// (url.search isn't read here: these routes stay prerendered, and SvelteKit
+	// forbids accessing the query string on a prerendered page.)
 	const preferredLang = getPreferredLang();
 	throw redirect(307, `/${preferredLang}${url.pathname}`);
 };
