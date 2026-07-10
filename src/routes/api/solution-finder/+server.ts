@@ -168,7 +168,12 @@ export const POST: RequestHandler = async ({ request, url }) => {
 	let emailSent = false;
 	if (env.RESEND_API_KEY) {
 		try {
-			const from = env.REPORT_FROM_EMAIL || 'zeteoh <reports@zeteoh.com>';
+			// Strip wrapping quotes/whitespace — a common env-var paste mistake that
+			// Resend rejects with a 422 "invalid from" error.
+			const from = (env.REPORT_FROM_EMAIL || 'zeteoh <reports@zeteoh.com>')
+				.trim()
+				.replace(/^["']|["']$/g, '')
+				.trim();
 			const subject = translations[lang].solutionFinder.report.title;
 			await sendReportEmail(
 				env.RESEND_API_KEY,
