@@ -101,4 +101,21 @@ describe('recommend — shape guarantees', () => {
 		expect(v.primary.tech).toBeTruthy();
 		expect(v.alternatives.length).toBeLessThanOrEqual(2);
 	});
+
+	it('never repeats a tech across primary + alternatives (keyed-list safety)', () => {
+		// Covers every branch, incl. the people+vehicles hybrid overlay that used
+		// to reintroduce the primary tech as an alternative (each_key_duplicate).
+		const cases: Partial<Answers>[] = [
+			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '1_3m', constraints: ['metal'] },
+			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '1_3m', constraints: ['no_install'] },
+			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: 'zone' },
+			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '30cm' },
+			{ targets: ['workers'], accuracy: '1_3m', constraints: ['metal'] }
+		];
+		for (const c of cases) {
+			const v = recommend(answers(c));
+			const techs = [v.primary.tech, ...v.alternatives.map((a) => a.tech)];
+			expect(new Set(techs).size).toBe(techs.length);
+		}
+	});
 });

@@ -100,6 +100,16 @@ export function recommend(a: Answers): Verdict {
 		alternatives = [vehicleAlt, ...alternatives].slice(0, 2);
 	}
 
+	// Guarantee primary + alternatives are all distinct techs. The UI renders
+	// them as keyed lists (by tech id), and the hybrid overlay above can otherwise
+	// reintroduce the primary tech as an alternative → duplicate keys → crash.
+	const seenTechs = new Set<TechId>([primary.tech]);
+	alternatives = alternatives.filter((alt) => {
+		if (seenTechs.has(alt.tech)) return false;
+		seenTechs.add(alt.tech);
+		return true;
+	});
+
 	return {
 		primary,
 		alternatives: alternatives.slice(0, 2),
