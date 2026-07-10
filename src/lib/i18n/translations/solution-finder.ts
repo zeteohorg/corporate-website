@@ -26,6 +26,12 @@ export const ja: SolutionFinderTranslation = {
 		restart: '最初からやり直す'
 	},
 	progress: { stepOf: '質問 {n} / {m}' },
+	card: {
+		heading: '最適な屋内測位ソリューションは？',
+		text: '2分の無料診断で、最適な技術と概算コストがわかります。',
+		button: '2分で診断する',
+		dismiss: '閉じる'
+	},
 	questions: {
 		facility: {
 			title: '対象となる施設は？',
@@ -346,6 +352,12 @@ export const en: SolutionFinderTranslation = {
 		restart: 'Start over'
 	},
 	progress: { stepOf: 'Question {n} / {m}' },
+	card: {
+		heading: 'Which positioning solution fits your site?',
+		text: 'A free 2-minute check gives you the best-fit tech and a cost estimate.',
+		button: 'Take the 2-min check',
+		dismiss: 'Dismiss'
+	},
 	questions: {
 		facility: {
 			title: 'What kind of facility?',

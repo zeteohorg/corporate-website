@@ -194,6 +194,7 @@ export type SolutionFinderTranslation = {
 	};
 	nav: { back: string; next: string; skip: string; seeResult: string; restart: string };
 	progress: { stepOf: string }; // "Step {n} / {m}"
+	card: { heading: string; text: string; button: string; dismiss: string };
 	// Keyed by question id; options keyed by option value id.
 	questions: Record<
 		string,
