@@ -9,6 +9,7 @@
 	import ContactForm from '$lib/components/home/ContactForm.svelte';
 	import Product from '$lib/components/home/Product.svelte';
 	import HowItWorks from '$lib/components/home/HowItWorks.svelte';
+	import FinderCta from '$lib/components/solution-finder/FinderCta.svelte';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 	import { SITE_ORIGIN } from '$lib/origin';
@@ -55,6 +56,15 @@
 <BackedBy />
 <Export />
 <Challenges />
+<div class="container mx-auto max-w-4xl px-4 sm:px-6">
+	<FinderCta
+		lang={currentLanguage as 'en' | 'ja'}
+		heading={t.positioning.ctaHeading}
+		text={t.positioning.ctaText}
+		button={t.positioning.ctaButton}
+		location="home_challenges"
+	/>
+</div>
 <Product />
 <HowItWorks />
 <UseCases />
