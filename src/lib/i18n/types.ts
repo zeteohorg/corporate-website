@@ -143,6 +143,44 @@ export type Translation = {
 	logistics: LogisticsTranslation;
 	export: ExportTranslation;
 	solutionFinder: SolutionFinderTranslation;
+	positioning: PositioningTranslation;
+};
+
+export type PositioningTranslation = {
+	// Shared
+	updatedLabel: string;
+	ctaHeading: string;
+	ctaText: string;
+	ctaButton: string;
+	crossToVendors: string;
+	crossToComparison: string;
+	// Pillar comparison page
+	pillar: {
+		metaTitle: string;
+		metaDescription: string;
+		h1: string;
+		intro: string;
+		tableCaption: string;
+		headers: {
+			tech: string;
+			accuracy: string;
+			infra: string;
+			capex: string;
+			opex: string;
+			reject: string;
+		};
+		capexNote: string;
+		faqHeading: string;
+		faq: Array<{ q: string; a: string }>;
+	};
+	// Vendor directory page
+	directory: {
+		metaTitle: string;
+		metaDescription: string;
+		h1: string;
+		intro: string;
+		headers: { vendor: string; tech: string; niche: string; bestWhen: string };
+	};
 };
 
 export type SolutionFinderTranslation = {
