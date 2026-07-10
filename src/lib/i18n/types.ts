@@ -142,6 +142,95 @@ export type Translation = {
 	construction: ConstructionTranslation;
 	logistics: LogisticsTranslation;
 	export: ExportTranslation;
+	solutionFinder: SolutionFinderTranslation;
+};
+
+export type SolutionFinderTranslation = {
+	meta: { title: string; description: string };
+	intro: {
+		eyebrow: string;
+		title: string;
+		subtitle: string;
+		start: string;
+		time: string;
+	};
+	nav: { back: string; next: string; skip: string; seeResult: string; restart: string };
+	progress: { stepOf: string }; // "Step {n} / {m}"
+	// Keyed by question id; options keyed by option value id.
+	questions: Record<
+		string,
+		{
+			title: string;
+			hint?: string;
+			options: Record<string, string>;
+			examples?: Record<string, string>;
+		}
+	>;
+	verdict: {
+		title: string;
+		recommended: string;
+		alternative: string;
+		notRecommendedTitle: string;
+		fitLabel: string;
+		tco3yr: string;
+		hybridNote: string;
+		floorNote: string;
+		unlockCta: string;
+		hotCta: string;
+	};
+	waste: { headline: string; note: string }; // headline contains {amount}
+	reasons: Record<string, string>;
+	tech: Record<
+		string,
+		{ name: string; accuracy: string; infra: string; opex: string; killCriteria: string }
+	>;
+	cost: {
+		rangeNote: string;
+		disclaimer: string;
+		capex: string;
+		opex: string;
+		total: string;
+		quoteBased: string;
+		lines: Record<string, string>;
+	};
+	gate: {
+		title: string;
+		subtitle: string;
+		email: string;
+		name: string;
+		phone: string;
+		company: string;
+		companyFreemailHint: string;
+		consent: string;
+		newsletter: string;
+		submit: string;
+		submitting: string;
+		success: string;
+		error: string;
+		retry: string;
+		invalidEmail: string;
+		requiredField: string;
+	};
+	report: {
+		title: string;
+		inputsHeading: string;
+		recommendationHeading: string;
+		tcoHeading: string;
+		vendorsHeading: string;
+		vendorBestWhen: string;
+		timelineHeading: string;
+		nextStepsHeading: string;
+		print: string;
+		champion: {
+			badge: string;
+			summaryHeading: string;
+			alternativesHeading: string;
+			costHeading: string;
+			risksHeading: string;
+			proposalHeading: string;
+		};
+		pocCta: string;
+	};
 };
 
 // Add to Translation interface

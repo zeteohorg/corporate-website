@@ -6,7 +6,7 @@ export const en: HomeTranslation = {
 		subtitle:
 			"Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. No environment constraints.",
 		getStarted: 'Request a Pilot',
-		learnMore: 'Learn more',
+		learnMore: 'Which tech fits your site? 2-min check',
 		stats: [
 			{
 				value: '30%',
@@ -52,7 +52,7 @@ export const ja: HomeTranslation = {
 		subtitle:
 			'空間AIが、スマートフォンだけで動線を可視化します。\n設備投資ゼロ、設置工事不要。\n現場を止めることなく、数日で動線分析を開始することができます。',
 		getStarted: 'PoCから始める',
-		learnMore: '詳しく見る',
+		learnMore: '自社に最適な測位技術は？2分で無料診断',
 		stats: [
 			{
 				value: '30%',

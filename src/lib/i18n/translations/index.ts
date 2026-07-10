@@ -12,6 +12,7 @@ import * as factory from './factory';
 import * as construction from './construction';
 import * as logistics from './logistics';
 import * as exportTranslations from './export';
+import * as solutionFinder from './solution-finder';
 
 export const en: Translation = {
 	common: common.en,
@@ -26,7 +27,8 @@ export const en: Translation = {
 	factory: factory.en,
 	construction: construction.en,
 	logistics: logistics.en,
-	export: exportTranslations.en
+	export: exportTranslations.en,
+	solutionFinder: solutionFinder.en
 };
 
 export const ja: Translation = {
@@ -42,7 +44,8 @@ export const ja: Translation = {
 	factory: factory.ja,
 	construction: construction.ja,
 	logistics: logistics.ja,
-	export: exportTranslations.ja
+	export: exportTranslations.ja,
+	solutionFinder: solutionFinder.ja
 };
 
 export const translations = { en, ja };

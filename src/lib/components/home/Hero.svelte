@@ -503,7 +503,7 @@
 					{t.getStarted}
 				</a>
 				<a
-					href="https://meetings-eu1.hubspot.com/satomi-le-guilly"
+					href={`/${currentLanguage}/solution-finder/`}
 					class="flex items-center justify-center text-xl leading-6 font-semibold"
 					use:trackClick={{ name: 'CTA: Learn More', props: { location: 'hero' } }}
 				>

@@ -12,6 +12,7 @@ const ROUTES = [
 	'news',
 	'company',
 	'privacy-policy',
+	'solution-finder',
 	'industries/construction',
 	'industries/factory',
 	'industries/logistics'
