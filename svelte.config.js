@@ -14,7 +14,6 @@ const ROUTES = [
 	'privacy-policy',
 	'solution-finder',
 	'indoor-positioning-comparison',
-	'indoor-positioning-vendors',
 	'industries/construction',
 	'industries/factory',
 	'industries/logistics'
