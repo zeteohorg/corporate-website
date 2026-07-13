@@ -4,8 +4,7 @@ import type { SolutionFinderTranslation } from '../types';
 // `src/lib/data/solution-finder/*` (question ids, option values, reason keys,
 // tech ids) so the engine output maps straight onto copy. This is the
 // Technology Fit Calculator: judged on citable deployment criteria, never on
-// cost — the only ¥ figures anywhere are zeteoh's own TRAILS pricing and the
-// visitor's own waste-loss estimate.
+// cost — the only ¥ figures anywhere are zeteoh's own TRAILS pricing.
 
 export const ja: SolutionFinderTranslation = {
 	meta: {
@@ -160,10 +159,6 @@ export const ja: SolutionFinderTranslation = {
 		floorNote: '複数フロア構成のため、固定インフラ型の技術は各フロアへの設置対応が必要になります。',
 		unlockCta: 'この診断結果をもとにした社内検討用スライドパックを無料で受け取る',
 		hotCta: '今すぐ相談したい → PoCのご相談'
-	},
-	waste: {
-		headline: '貴社の規模では、ムダな移動による損失は年間 約{amount} と推計されます。',
-		note: '作業者数 × 平均人件費 × 30%（非付加価値移動）× 稼働係数 に基づく概算です。'
 	},
 	reasons: {
 		trailsNotCmLevel:
@@ -331,8 +326,7 @@ export const ja: SolutionFinderTranslation = {
 		heading: 'TRAILS導入費用（zeteoh公表価格）',
 		setup: '初期費用',
 		perDevice: '月額（1台あたり）',
-		handsetNote: '端末を支給できない場合、1台あたり¥30,000でハンドセットの貸与・購入も可能です。',
-		payback: '回収目安'
+		handsetNote: '端末を支給できない場合、1台あたり¥30,000でハンドセットの貸与・購入も可能です。'
 	},
 	noFit: {
 		title: '現時点では、要件を完全に満たす技術がありません',
@@ -589,10 +583,6 @@ export const en: SolutionFinderTranslation = {
 		unlockCta: 'Get the internal-review slide pack based on this result — free',
 		hotCta: 'Prefer to talk now? → Discuss a PoC'
 	},
-	waste: {
-		headline: 'At your scale, wasted movement is costing an estimated {amount} per year.',
-		note: 'Estimate: workers × average wage × 30% (non-value-add movement) × on-floor factor.'
-	},
 	reasons: {
 		trailsNotCmLevel:
 			'You need cm-level accuracy, so smartphone inertial positioning (TRAILS) is not the fit — we honestly recommend UWB.',
@@ -762,8 +752,7 @@ export const en: SolutionFinderTranslation = {
 		setup: 'Setup',
 		perDevice: 'Monthly (per device)',
 		handsetNote:
-			'If you cannot issue your own devices, handsets can be rented or purchased at ¥30,000 each.',
-		payback: 'Estimated payback'
+			'If you cannot issue your own devices, handsets can be rented or purchased at ¥30,000 each.'
 	},
 	noFit: {
 		title: 'No technology fully satisfies your requirements right now',

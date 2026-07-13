@@ -1,5 +1,5 @@
 // Type layer for the Technology Fit Calculator engine. Everything here is
-// pure data — no Svelte/Kit imports — so rules/waste stay unit-testable.
+// pure data — no Svelte/Kit imports — so the rules engine stays unit-testable.
 
 export type Lang = 'en' | 'ja';
 
@@ -80,9 +80,4 @@ export interface Verdict {
 	 * requirements. UI renders the no-fit explainer; primary is the closest
 	 * degenerate option (always `fitLabel === 'weak'`). */
 	noFit?: { conflictKeys: [string, string] };
-}
-
-export interface WasteLoss {
-	people: number;
-	annualLoss: number; // JPY/year
 }

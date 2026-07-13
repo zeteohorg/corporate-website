@@ -210,7 +210,6 @@ export type SolutionFinderTranslation = {
 		unlockCta: string;
 		hotCta: string;
 	};
-	waste: { headline: string; note: string }; // headline contains {amount}
 	reasons: Record<string, string>;
 	tech: Record<
 		string,
@@ -243,8 +242,8 @@ export type SolutionFinderTranslation = {
 	};
 	/** Shared none/low/medium/high labels for infraCost/hardwareCost chips. */
 	costTiers: { none: string; low: string; medium: string; high: string; note: string };
-	/** TRAILS pricing card — the only ¥ figures anywhere but the waste banner. */
-	pricing: { heading: string; setup: string; perDevice: string; handsetNote: string; payback: string };
+	/** TRAILS pricing card — the only ¥ figures anywhere in the tool. */
+	pricing: { heading: string; setup: string; perDevice: string; handsetNote: string };
 	/** The no-fit explainer (spec §4.5) — honest, never a dead end. */
 	noFit: {
 		title: string;

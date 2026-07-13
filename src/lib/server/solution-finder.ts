@@ -2,10 +2,10 @@
 // imports so the mapping + email builder are unit-testable; the +server.ts
 // endpoint owns the network calls (HubSpot, Netlify Forms, Resend) and secrets.
 
-import { recommend, verdictTechs, computeWasteLoss, techById, TRAILS_PRICING } from '$lib/data/solution-finder';
-import type { Answers, Lang, TechId, Verdict, WasteLoss } from '$lib/data/solution-finder/types';
+import { recommend, techById, TRAILS_PRICING } from '$lib/data/solution-finder';
+import type { Answers, Lang, TechId, Verdict } from '$lib/data/solution-finder/types';
 import { translations } from '$lib/i18n/translations';
-import { formatJpy, interpolate } from '$lib/components/solution-finder/format';
+import { formatJpy } from '$lib/components/solution-finder/format';
 
 export interface Lead {
 	email: string;
@@ -19,13 +19,11 @@ export interface Lead {
 
 export interface Computed {
 	verdict: Verdict;
-	wasteLoss: WasteLoss;
 }
 
 /** Re-run the engine server-side (never trust the client for CRM data). */
 export function computeServer(answers: Answers): Computed {
-	const verdict = recommend(answers);
-	return { verdict, wasteLoss: computeWasteLoss(answers) };
+	return { verdict: recommend(answers) };
 }
 
 /** Flat sf_* property set for HubSpot + the Netlify Forms fallback. */
@@ -75,11 +73,11 @@ export function scoreLead(lead: Lead, answers: Answers): number {
 }
 
 /** Bilingual HTML email: verdict + honest exclusions + deployment profile +
- * waste banner + TRAILS pricing (champion mode only) + slide-pack + CTA. */
+ * TRAILS pricing (champion mode only) + slide-pack attribution + CTA. */
 export function reportEmailHtml(answers: Answers, c: Computed, lang: Lang): string {
 	const t = translations[lang].solutionFinder;
 	const name = (id: TechId) => t.tech[id]?.name ?? id;
-	const { verdict, wasteLoss } = c;
+	const { verdict } = c;
 
 	const deployRow = (label: string, value: string) =>
 		`<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;color:#666">${label}</td><td style="padding:6px 12px;border-bottom:1px solid #eee">${value}</td></tr>`;
@@ -103,8 +101,6 @@ export function reportEmailHtml(answers: Answers, c: Computed, lang: Lang): stri
 		)
 		.join('');
 
-	const waste = interpolate(t.waste.headline, { amount: formatJpy(wasteLoss.annualLoss, lang) });
-
 	const pricingBlock = verdict.championMode
 		? `<p style="background:#f5f8ff;border:1px solid #d5e0ff;border-radius:8px;padding:12px">
 			<strong>${t.pricing.heading}</strong><br/>
@@ -118,7 +114,6 @@ export function reportEmailHtml(answers: Answers, c: Computed, lang: Lang): stri
 		<h1 style="font-size:20px">${t.report.title}</h1>
 		<h2 style="font-size:16px;color:#ff3b3b">${name(verdict.primary.tech)}</h2>
 		<p style="color:#555">${t.reasons[verdict.primary.reasonKey]}</p>
-		<p style="background:#fff5f5;border:1px solid #ffd5d5;border-radius:8px;padding:12px;font-weight:600">${waste}</p>
 		${deployTable}
 		${pricingBlock}
 		${

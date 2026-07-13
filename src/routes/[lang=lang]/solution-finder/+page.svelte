@@ -8,7 +8,6 @@
 	import QuestionStep from '$lib/components/solution-finder/QuestionStep.svelte';
 	import VerdictCard from '$lib/components/solution-finder/VerdictCard.svelte';
 	import NoFitCard from '$lib/components/solution-finder/NoFitCard.svelte';
-	import WasteBanner from '$lib/components/solution-finder/WasteBanner.svelte';
 	import LeadGate from '$lib/components/solution-finder/LeadGate.svelte';
 	import SlidePack from '$lib/components/solution-finder/SlidePack.svelte';
 	import { captureUtm, type Utm } from '$lib/components/solution-finder/attribution';
@@ -16,12 +15,10 @@
 
 	import {
 		recommend,
-		computeWasteLoss,
 		activeSteps,
 		isAnswered,
 		type Answers,
-		type Verdict,
-		type WasteLoss
+		type Verdict
 	} from '$lib/data/solution-finder';
 	import type { QuestionDef } from '$lib/data/solution-finder/questions';
 
@@ -36,7 +33,6 @@
 	let utm = $state<Utm>({});
 
 	let verdict = $state<Verdict | null>(null);
-	let wasteLoss = $state<WasteLoss | null>(null);
 	let unlocked = $state(false);
 	let deliveryFailed = $state(false);
 
@@ -122,7 +118,6 @@
 	function finish() {
 		const v = recommend(answers);
 		verdict = v;
-		wasteLoss = computeWasteLoss(answers);
 		phase = 'result';
 		trackEvent('Finder: Verdict', { tech: v.primary.tech });
 		trackEvent('Finder: Gate Viewed');
@@ -207,7 +202,7 @@
 				{/if}
 			</div>
 		</div>
-	{:else if phase === 'result' && verdict && wasteLoss}
+	{:else if phase === 'result' && verdict}
 		<div class="flex items-center justify-between">
 			<h1 class="text-2xl font-bold sm:text-3xl">{t.verdict.title}</h1>
 			<Button variant="ghost" size="sm" onclick={restart}>
@@ -222,12 +217,6 @@
 			{:else}
 				<VerdictCard {verdict} {t} {lang} />
 			{/if}
-			<WasteBanner
-				annualLoss={wasteLoss.annualLoss}
-				{lang}
-				headline={t.waste.headline}
-				note={t.waste.note}
-			/>
 
 			{#if unlocked}
 				{#if deliveryFailed}
@@ -238,7 +227,7 @@
 						{t.gate.error}
 					</p>
 				{/if}
-				<SlidePack {verdict} {answers} {wasteLoss} {t} {lang} />
+				<SlidePack {verdict} {answers} {t} {lang} />
 			{:else}
 				<LeadGate
 					{t}

@@ -4,7 +4,7 @@
 	// window.print() download; a discreet attribution line on every slide.
 
 	import type { SolutionFinderTranslation } from '$lib/i18n/types';
-	import type { Answers, Lang, TechId, Verdict, WasteLoss } from '$lib/data/solution-finder/types';
+	import type { Answers, Lang, TechId, Verdict } from '$lib/data/solution-finder/types';
 	import { fitLabel } from '$lib/data/solution-finder/types';
 	import { TECHS, techById } from '$lib/data/solution-finder/tech';
 	import { CITATIONS, citationById } from '$lib/data/solution-finder/citations';
@@ -17,11 +17,10 @@
 	interface Props {
 		verdict: Verdict;
 		answers: Answers;
-		wasteLoss: WasteLoss;
 		t: SolutionFinderTranslation;
 		lang: Lang;
 	}
-	let { verdict, answers, wasteLoss, t, lang }: Props = $props();
+	let { verdict, answers, t, lang }: Props = $props();
 
 	const techName = (id: TechId) => t.tech[id]?.name ?? id;
 
@@ -108,15 +107,6 @@
 	const checklistFamily = $derived(CHECKLIST_FAMILY[verdict.primary.tech] ?? 'smartphone');
 	const checklistQuestions = $derived(t.checklist[checklistFamily] ?? t.checklist.smartphone);
 
-	// Champion-mode payback: TRAILS first-year cost vs. the visitor's own
-	// waste-loss estimate. `wasteLoss.people` stands in for tracked-device count.
-	const firstYearCost = $derived(
-		TRAILS_PRICING.setup + TRAILS_PRICING.perDeviceMo * wasteLoss.people * 12
-	);
-	const paybackMonths = $derived(
-		wasteLoss.annualLoss > 0 ? Math.max(1, Math.round(firstYearCost / (wasteLoss.annualLoss / 12))) : null
-	);
-
 	const titleSlot = $derived(
 		interpolate(t.slides.title, { company: lang === 'ja' ? '貴社' : 'Your Company' })
 	);
@@ -163,17 +153,14 @@
 		<h3 class="text-muted-foreground text-sm font-semibold tracking-wide uppercase">
 			{t.slides.execSummary}
 		</h3>
-		<p class="text-lg font-semibold">{interpolate(t.waste.headline, { amount: formatJpy(wasteLoss.annualLoss, lang) })}</p>
 		<p class="text-base">
 			<span class="font-bold">{techName(verdict.primary.tech)}</span> — {t.reasons[verdict.primary.reasonKey]}
 		</p>
 		{#if verdict.championMode}
 			<p class="text-sm">
 				{t.pricing.heading}: {formatJpy(TRAILS_PRICING.setup, lang)} + {formatJpy(TRAILS_PRICING.perDeviceMo, lang)}/{lang === 'ja' ? '台/月' : 'device/mo'}
-				{#if paybackMonths}
-					· {t.pricing.payback}: {lang === 'ja' ? `約${paybackMonths}ヶ月` : `~${paybackMonths} month${paybackMonths === 1 ? '' : 's'}`}
-				{/if}
 			</p>
+			<p class="text-muted-foreground text-xs">{t.pricing.handsetNote}</p>
 		{/if}
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>

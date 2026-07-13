@@ -9,6 +9,5 @@ export { TECHS, techById } from './tech';
 export type { TechMeta } from './tech';
 export { CITATIONS, citationById } from './citations';
 export type { Citation } from './citations';
-export { PEOPLE_N, computeWasteLoss } from './waste';
 export { TRAILS_PRICING } from './pricing';
 export { recommend, verdictTechs } from './rules';
