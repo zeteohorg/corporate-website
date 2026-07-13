@@ -40,13 +40,19 @@ export const STEPS: QuestionDef[] = [
 	{
 		id: 'constraints',
 		kind: 'multi',
-		options: ['metal', 'no_install', 'frequent_layout', 'multi_floor', 'harsh', 'none']
+		options: ['metal', 'no_install', 'frequent_layout', 'multi_floor', 'harsh', 'temporary', 'none']
 	},
 	{
 		id: 'floors',
 		kind: 'single',
 		options: ['two', 'three_five', 'six_plus'],
 		visibleWhen: (a) => a.constraints.includes('multi_floor')
+	},
+	{
+		id: 'device',
+		kind: 'single',
+		options: ['company_phones', 'can_issue', 'tag_only', 'nothing'],
+		visibleWhen: hasWorkers
 	},
 	{ id: 'timeline', kind: 'single', options: ['1mo', '3mo', '6mo_plus'] },
 	{ id: 'budget', kind: 'single', options: ['lt1m', '1_5m', 'gt5m', 'undecided'] },
