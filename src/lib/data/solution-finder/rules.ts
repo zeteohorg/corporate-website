@@ -56,7 +56,7 @@ export function recommend(a: Answers): Verdict {
 	let isVehicleBranch = false;
 
 	// Surface honest exclusions for the techs buyers actually meet in the market.
-	for (const id of ['trails', 'pdr', 'geomag_phone', 'geomag_infra', 'wifi'] as TechId[]) {
+	for (const id of ['trails', 'pdr', 'geomag_phone', 'geomag_infra', 'wifi', 'acoustic'] as TechId[]) {
 		const reason = blocked.get(id);
 		if (reason) excluded.push({ tech: id, reasonKey: reason });
 	}
