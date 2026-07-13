@@ -1,15 +1,11 @@
-// Recommendation engine — deterministic, priority-ordered rules over the truth
-// table (§5.3 / §5.3a). Pure function, no side effects, fully unit-tested. The
-// full rule set is published on the pillar page for auditable honesty: the
-// engine will explicitly exclude TRAILS when it is not the right answer.
+// Recommendation engine — deterministic, priority-ordered rules over the
+// attribute matrix (spec §4). Pure function, budget-blind, published on the
+// methodology page. Honest exclusions (incl. TRAILS) are the trust mechanic.
 
+import { TECHS } from './tech';
 import type { Answers, Recommendation, TechId, Verdict } from './types';
 
-const rec = (tech: TechId, reasonKey: string, fit: number): Recommendation => ({
-	tech,
-	reasonKey,
-	fit
-});
+const rec = (tech: TechId, reasonKey: string, fit: number): Recommendation => ({ tech, reasonKey, fit });
 
 function derive(a: Answers) {
 	const t = a.targets;
@@ -21,88 +17,134 @@ function derive(a: Answers) {
 	return { hasWorkers, hasVehicles, toolsOnly, vehiclesOnly, has };
 }
 
-/** Core engine: returns a first choice + up to two alternatives + exclusions. */
+type Blocked = Map<TechId, string>;
+
+/** Structural exclusions from the device and temporary answers (spec §4.2/4.3). */
+function gateExclusions(a: Answers, hasWorkers: boolean, temporary: boolean): Blocked {
+	const blocked: Blocked = new Map();
+	if (hasWorkers && (a.device === 'tag_only' || a.device === 'nothing')) {
+		for (const t of TECHS)
+			if (t.carrier === 'smartphone')
+				blocked.set(t.id, t.id === 'trails' ? 'trailsNeedsDevice' : 'needsSmartphone');
+	}
+	if (hasWorkers && a.device === 'nothing') {
+		for (const t of TECHS)
+			if (t.carrier === 'tag') blocked.set(t.id, 'needsCarriedDevice');
+	}
+	if (temporary) {
+		for (const t of TECHS)
+			if (!t.temporaryViable && !blocked.has(t.id)) blocked.set(t.id, 'notTemporary');
+	}
+	// Office/retail techs degrade badly where metal, moving steel and layout
+	// churn dominate (magnetic-survey 2022; Wi-Fi fingerprint decay studies).
+	const industrialSite =
+		a.facility === 'factory' || a.facility === 'warehouse' || a.facility === 'construction';
+	if (industrialSite) {
+		for (const t of TECHS)
+			if (t.industrial === 'unsuited' && !blocked.has(t.id)) blocked.set(t.id, 'notIndustrial');
+	}
+	return blocked;
+}
+
 export function recommend(a: Answers): Verdict {
 	const d = derive(a);
 	const floorNote = d.has('multi_floor');
-
-	let primary: Recommendation;
-	let alternatives: Recommendation[] = [];
+	const temporary = d.has('temporary');
+	const blocked = gateExclusions(a, d.hasWorkers, temporary);
 	const excluded: Verdict['excluded'] = [];
+	let noFit: Verdict['noFit'];
 	let isVehicleBranch = false;
 
-	// 1 — cm-level precision is the highest-priority technical requirement.
-	if (a.accuracy === '30cm') {
-		excluded.push({ tech: 'trails', reasonKey: 'trailsNotCmLevel' });
-		if (d.vehiclesOnly) {
-			isVehicleBranch = true;
-			primary = rec('visual_slam', 'vehicleSlam', 94);
-			alternatives = [rec('uwb', 'collisionUwb', 78), rec('ble_aoa', 'aoaBalance', 64)];
-		} else {
-			const smallCheapAoa = a.budget === 'lt1m' && a.area === 'lt2000';
-			primary = smallCheapAoa ? rec('ble_aoa', 'aoaBalance', 88) : rec('uwb', 'cmLevelUwb', 92);
-			alternatives = smallCheapAoa
-				? [rec('uwb', 'cmLevelUwb', 82)]
-				: [rec('ble_aoa', 'aoaBalance', 76)];
-		}
-	}
-	// 2 — no-install / harsh-mount constraint, or a sub-1-month start → TRAILS.
-	else if (d.has('no_install') || a.timeline === '1mo') {
-		primary = rec('trails', 'noInstallTrails', 93);
-		alternatives = [rec('geomagnetic', 'geomagAlt', 58)];
-		if (a.accuracy === 'zone') alternatives.push(rec('wifi', 'wifiAlt', 52));
-		else alternatives.push(rec('ble_aoa', 'aoaBalance', 60));
-	}
-	// 3 — zone-level, low budget, materials-only → checkpoints; TRAILS is overkill.
-	else if (a.accuracy === 'zone' && a.budget === 'lt1m' && d.toolsOnly) {
-		primary = rec('qr_nfc', 'zoneQr', 85);
-		alternatives = [rec('ble_rssi', 'zoneBle', 68)];
-		excluded.push({ tech: 'trails', reasonKey: 'trailsOverkill' });
-	}
-	// 4 — metallic/harsh environment at 1–3 m: RF degrades → TRAILS wins.
-	else if (d.has('metal') && a.accuracy === '1_3m') {
-		primary = rec('trails', 'metalDegradesRssi', 91);
-		alternatives = [rec('ble_aoa', 'aoaBalance', 66), rec('uwb', 'cmLevelUwb', 60)];
-	}
-	// 5 — vehicles only, non-cm (utilization / flow analysis).
-	else if (d.vehiclesOnly) {
-		isVehicleBranch = true;
-		if (a.accuracy === '1_3m') {
-			primary = rec('trails', 'vehicleTrails', 90);
-			alternatives = [rec('visual_slam', 'vehicleSlam', 72)];
-		} else {
-			primary = rec('trails', 'vehicleTrails', 84);
-			alternatives = [rec('ble_rssi', 'zoneBle', 60)];
-		}
-	}
-	// 6 — untagged things (tools/materials) are the primary target → tag-based.
-	else if (d.toolsOnly) {
-		primary = rec('ble_rssi', 'toolsBleTags', 82);
-		alternatives = [rec('qr_nfc', 'zoneQr', 64)];
-		if (d.hasWorkers) alternatives.push(rec('trails', 'peopleTrails', 70));
-	}
-	// 7 — weighted default: infra-free 1–3 m people/flow tracking → TRAILS.
-	else {
-		primary = rec('trails', 'weightedBest', 88);
-		alternatives = [rec('ble_aoa', 'aoaBalance', 66), rec('ble_rssi', 'zoneBle', 58)];
+	// Surface honest exclusions for the techs buyers actually meet in the market.
+	for (const id of ['trails', 'pdr', 'geomag_phone', 'geomag_infra', 'wifi'] as TechId[]) {
+		const reason = blocked.get(id);
+		if (reason) excluded.push({ tech: id, reasonKey: reason });
 	}
 
-	// Vehicle sub-branch overlay: people + vehicles is the common factory case →
-	// hybrid verdict (workforce flow + a vehicle-precision option).
+	const allowed = (id: TechId) => !blocked.has(id);
+	/** First unblocked candidate wins; used by every branch below. */
+	const pick = (cands: [TechId, string, number][]): Recommendation | null => {
+		for (const [tech, reason, fit] of cands) if (allowed(tech)) return rec(tech, reason, fit);
+		return null;
+	};
+
+	let primary: Recommendation | null = null;
+	let alternatives: Recommendation[] = [];
+
+	// 1 — cm-level precision (highest-priority technical requirement).
+	if (a.accuracy === '30cm') {
+		if (allowed('trails')) excluded.push({ tech: 'trails', reasonKey: 'trailsNotCmLevel' });
+		if (d.vehiclesOnly) {
+			isVehicleBranch = true;
+			primary = pick([['visual_slam', 'vehicleSlam', 94], ['uwb', 'collisionUwb', 78]]);
+			alternatives = [pick([['uwb', 'collisionUwb', 78]]), pick([['ble_aoa', 'aoaBalance', 64]])].filter(Boolean) as Recommendation[];
+		} else {
+			const small = a.area === 'lt2000';
+			primary = small
+				? pick([['ble_aoa', 'aoaBalance', 88], ['uwb', 'cmLevelUwb', 82]])
+				: pick([['uwb', 'cmLevelUwb', 92], ['ble_aoa', 'aoaBalance', 76]]);
+			alternatives = [pick(small ? [['uwb', 'cmLevelUwb', 82]] : [['ble_aoa', 'aoaBalance', 76]])].filter(Boolean) as Recommendation[];
+		}
+		if (!primary) noFit = { conflictKeys: ['needCmLevel', temporary ? 'temporaryProject' : 'noCarriedDevice'] };
+	}
+	// 2 — nothing carried + real-time tracking of people.
+	else if (d.hasWorkers && a.device === 'nothing' && a.accuracy !== 'zone') {
+		noFit = { conflictKeys: ['noCarriedDevice', 'realtimeTracking'] };
+	}
+	// 3 — no-install / fast start → infra-free family.
+	else if (d.has('no_install') || a.timeline === '1mo') {
+		primary = pick([['trails', 'noInstallTrails', 93], ['ble_rssi', 'zoneBle', 62], ['qr_nfc', 'zoneQr', 55]]);
+		alternatives = [pick([['geomag_phone', 'geomagAlt', 58]]), pick([[a.accuracy === 'zone' ? 'wifi' : 'ble_aoa', a.accuracy === 'zone' ? 'wifiAlt' : 'aoaBalance', 55]])].filter(Boolean) as Recommendation[];
+	}
+	// 4 — zone-level, materials only → checkpoints.
+	else if (a.accuracy === 'zone' && d.toolsOnly) {
+		primary = pick([['qr_nfc', 'zoneQr', 85], ['ble_rssi', 'zoneBle', 68]]);
+		alternatives = [pick([['ble_rssi', 'zoneBle', 68]])].filter(Boolean) as Recommendation[];
+		if (allowed('trails')) excluded.push({ tech: 'trails', reasonKey: 'trailsOverkill' });
+	}
+	// 5 — metallic/harsh at 1–3 m: RF degrades → inertial wins.
+	else if (d.has('metal') && a.accuracy === '1_3m') {
+		primary = pick([['trails', 'metalDegradesRssi', 91], ['ble_aoa', 'aoaBalance', 66], ['uwb', 'cmLevelUwb', 60]]);
+		alternatives = [pick([['ble_aoa', 'aoaBalance', 66]]), pick([['uwb', 'cmLevelUwb', 60]])].filter(Boolean) as Recommendation[];
+		if (allowed('pdr')) excluded.push({ tech: 'pdr', reasonKey: 'pdrDrifts' });
+		if (allowed('geomag_phone')) excluded.push({ tech: 'geomag_phone', reasonKey: 'geomagUnstable' });
+	}
+	// 6 — vehicles only, non-cm.
+	else if (d.vehiclesOnly) {
+		isVehicleBranch = true;
+		primary = pick([['trails', 'vehicleTrails', a.accuracy === '1_3m' ? 90 : 84], ['visual_slam', 'vehicleSlam', 72]]);
+		alternatives = [pick([['visual_slam', 'vehicleSlam', 72]]), pick([['ble_rssi', 'zoneBle', 58]])].filter(Boolean) as Recommendation[];
+	}
+	// 7 — tools/materials primary → tag-based.
+	else if (d.toolsOnly) {
+		primary = pick([['ble_rssi', 'toolsBleTags', 82], ['qr_nfc', 'zoneQr', 64]]);
+		alternatives = [pick([['qr_nfc', 'zoneQr', 64]])].filter(Boolean) as Recommendation[];
+	}
+	// 8 — weighted default: 1–3 m people/flow tracking.
+	else {
+		primary = pick([['trails', 'weightedBest', 88], ['ble_aoa', 'aoaBalance', 70], ['ble_rssi', 'zoneBle', 60]]);
+		alternatives = [pick([['ble_aoa', 'aoaBalance', 66]]), pick([['ble_rssi', 'zoneBle', 58]])].filter(Boolean) as Recommendation[];
+		if (primary?.tech === 'trails' && allowed('pdr')) excluded.push({ tech: 'pdr', reasonKey: 'pdrDrifts' });
+	}
+
+	// No-fit fallback: render the closest degenerate option as a weak primary.
+	if (!primary) {
+		noFit = noFit ?? { conflictKeys: ['requirementsConflict', temporary ? 'temporaryProject' : 'noCarriedDevice'] };
+		primary = a.device === 'nothing' ? rec('camera', 'cameraZonesOnly', 45) : rec('qr_nfc', 'zoneQr', 45);
+		alternatives = [rec('qr_nfc', 'checkpointFallback', 40)].filter((r) => r.tech !== primary!.tech);
+	}
+	if (noFit && primary.fit >= 60) primary = { ...primary, fit: 45 };
+
+	// Hybrid overlay (people + vehicles) — unchanged behavior from v1.
 	let isHybrid = false;
-	if (d.hasWorkers && d.hasVehicles && !isVehicleBranch) {
+	if (d.hasWorkers && d.hasVehicles && !isVehicleBranch && !noFit) {
 		isHybrid = true;
 		const vehicleAlt =
-			a.accuracy === '30cm'
-				? rec('visual_slam', 'vehicleSlam', 74)
-				: rec('trails', 'vehicleTrails', 80);
-		// Surface the vehicle option as the first alternative, keep list ≤ 2.
+			a.accuracy === '30cm' ? rec('visual_slam', 'vehicleSlam', 74) : rec('trails', 'vehicleTrails', 80);
 		alternatives = [vehicleAlt, ...alternatives].slice(0, 2);
 	}
 
-	// Guarantee primary + alternatives are all distinct techs. The UI renders
-	// them as keyed lists (by tech id), and the hybrid overlay above can otherwise
-	// reintroduce the primary tech as an alternative → duplicate keys → crash.
+	// Guarantee primary + alternatives are distinct techs (keyed-list crash fix).
 	const seenTechs = new Set<TechId>([primary.tech]);
 	alternatives = alternatives.filter((alt) => {
 		if (seenTechs.has(alt.tech)) return false;
@@ -110,18 +152,22 @@ export function recommend(a: Answers): Verdict {
 		return true;
 	});
 
+	// Dedupe exclusions by tech (a tech may be gate-blocked and branch-excluded).
+	const seenEx = new Set<TechId>();
+	const dedupedEx = excluded.filter((e) => (seenEx.has(e.tech) ? false : (seenEx.add(e.tech), true)));
+
 	return {
 		primary,
 		alternatives: alternatives.slice(0, 2),
-		excluded,
+		excluded: dedupedEx,
 		isHybrid,
 		isVehicleBranch,
 		floorNote,
-		championMode: primary.tech === 'trails'
+		championMode: primary.tech === 'trails' && !noFit,
+		noFit
 	};
 }
 
-/** Techs shown in the verdict (primary + alternatives), for TCO + fit bars. */
 export function verdictTechs(v: Verdict): TechId[] {
 	return [v.primary.tech, ...v.alternatives.map((r) => r.tech)];
 }

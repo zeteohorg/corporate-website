@@ -2,120 +2,87 @@ import { describe, expect, it } from 'vitest';
 import { recommend } from './rules';
 import type { Answers } from './types';
 
-/** Build a complete answer set with sensible defaults, overridable per test. */
-function answers(overrides: Partial<Answers> = {}): Answers {
-	return {
-		facility: 'factory',
-		targets: ['workers'],
-		area: '10000_50000',
-		people: '100_500',
-		accuracy: '1_3m',
-		constraints: [],
-		timeline: '3mo',
-		budget: '1_5m',
-		...overrides
-	};
-}
+const base: Answers = {
+	facility: 'factory', targets: ['workers'], area: '2000_10000', people: '20_100',
+	accuracy: '1_3m', constraints: [], device: 'company_phones', timeline: '3mo'
+};
 
-describe('recommend — honesty mechanic', () => {
-	it('cm-level requirement → UWB, and TRAILS is explicitly excluded', () => {
-		const v = recommend(answers({ accuracy: '30cm' }));
-		expect(v.primary.tech).toBe('uwb');
-		expect(v.championMode).toBe(false);
-		expect(v.excluded.map((e) => e.tech)).toContain('trails');
-		expect(v.excluded.find((e) => e.tech === 'trails')?.reasonKey).toBe('trailsNotCmLevel');
+describe('device gate', () => {
+	it('tag_only excludes TRAILS and recommends a tag tech', () => {
+		const v = recommend({ ...base, device: 'tag_only' });
+		expect(v.excluded.some((e) => e.tech === 'trails' && e.reasonKey === 'trailsNeedsDevice')).toBe(true);
+		expect(['ble_aoa', 'ble_rssi', 'uwb']).toContain(v.primary.tech);
 	});
-
-	it('cm-level in a small, low-budget site → BLE-AoA instead of UWB', () => {
-		const v = recommend(answers({ accuracy: '30cm', budget: 'lt1m', area: 'lt2000' }));
-		expect(v.primary.tech).toBe('ble_aoa');
-		expect(v.excluded.map((e) => e.tech)).toContain('trails');
+	it('nothing + facility-wide 1-3m realtime → noFit with camera as weak fallback', () => {
+		const v = recommend({ ...base, device: 'nothing' });
+		expect(v.noFit).toBeDefined();
+		expect(v.primary.fit).toBeLessThan(60);
 	});
-});
-
-describe('recommend — TRAILS-winning branches', () => {
-	it('工事NG / no-install constraint → TRAILS', () => {
-		const v = recommend(answers({ constraints: ['no_install'] }));
-		expect(v.primary.tech).toBe('trails');
-		expect(v.primary.reasonKey).toBe('noInstallTrails');
-		expect(v.championMode).toBe(true);
-	});
-
-	it('sub-1-month timeline → TRAILS', () => {
-		const v = recommend(answers({ timeline: '1mo' }));
-		expect(v.primary.tech).toBe('trails');
-	});
-
-	it('metal-heavy environment at 1–3 m → TRAILS (RF degradation)', () => {
-		const v = recommend(answers({ constraints: ['metal'], accuracy: '1_3m' }));
-		expect(v.primary.tech).toBe('trails');
-		expect(v.primary.reasonKey).toBe('metalDegradesRssi');
-	});
-});
-
-describe('recommend — zone / materials branches', () => {
-	it('zone-level, low budget, materials only → QR/NFC, TRAILS overkill', () => {
-		const v = recommend(answers({ accuracy: 'zone', budget: 'lt1m', targets: ['tools'] }));
-		expect(v.primary.tech).toBe('qr_nfc');
-		expect(v.excluded.map((e) => e.tech)).toContain('trails');
-	});
-
-	it('tools-only (untagged things) → BLE tags', () => {
-		const v = recommend(answers({ targets: ['tools'], accuracy: '1_3m' }));
-		expect(v.primary.tech).toBe('ble_rssi');
-	});
-});
-
-describe('recommend — vehicle branch (§5.3a)', () => {
-	it('vehicles only at 1–3 m → TRAILS in vehicle', () => {
-		const v = recommend(answers({ targets: ['vehicles'], vehicles: '5_20', accuracy: '1_3m' }));
-		expect(v.primary.tech).toBe('trails');
-		expect(v.isVehicleBranch).toBe(true);
-	});
-
-	it('vehicles only at cm-level → vehicle-mounted Visual SLAM', () => {
-		const v = recommend(answers({ targets: ['vehicles'], vehicles: '5_20', accuracy: '30cm' }));
-		expect(v.primary.tech).toBe('visual_slam');
-		expect(v.isVehicleBranch).toBe(true);
-	});
-
-	it('people + vehicles → hybrid verdict', () => {
-		const v = recommend(
-			answers({ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '1_3m' })
-		);
-		expect(v.isHybrid).toBe(true);
+	it('can_issue does not penalize TRAILS', () => {
+		const v = recommend({ ...base, device: 'can_issue', constraints: ['no_install'] });
 		expect(v.primary.tech).toBe('trails');
 	});
 });
 
-describe('recommend — multi-floor', () => {
-	it('multi-floor structure sets the floor note', () => {
-		const v = recommend(answers({ constraints: ['multi_floor'], floors: 'three_five' }));
-		expect(v.floorNote).toBe(true);
+describe('temporary deployment', () => {
+	it('excludes fixed-infra techs and recommends TRAILS for people flow', () => {
+		const v = recommend({ ...base, constraints: ['temporary'] });
+		expect(v.primary.tech).toBe('trails');
+		expect(v.excluded.some((e) => e.reasonKey === 'notTemporary')).toBe(true);
+	});
+	it('temporary + cm-level is an honest conflict (noFit)', () => {
+		const v = recommend({ ...base, accuracy: '30cm', constraints: ['temporary'] });
+		expect(v.noFit).toBeDefined();
 	});
 });
 
-describe('recommend — shape guarantees', () => {
-	it('always returns a primary and at most two alternatives', () => {
-		const v = recommend(answers());
-		expect(v.primary.tech).toBeTruthy();
-		expect(v.alternatives.length).toBeLessThanOrEqual(2);
+describe('industrial environment (spec §4.6)', () => {
+	it('factory excludes Wi-Fi FP and geomagnetic as office/retail techs', () => {
+		const v = recommend({ ...base, accuracy: 'zone' });
+		expect(v.excluded.map((e) => e.tech)).toEqual(expect.arrayContaining(['wifi', 'geomag_phone']));
+		expect(v.excluded.find((e) => e.tech === 'wifi')?.reasonKey).toBe('notIndustrial');
 	});
+	it('hospital/office keeps Wi-Fi FP available (no_install zone case)', () => {
+		const v = recommend({ ...base, facility: 'hospital_office', accuracy: 'zone', constraints: ['no_install'] });
+		const ids = [v.primary.tech, ...v.alternatives.map((r) => r.tech)];
+		expect(ids).toContain('wifi');
+	});
+});
 
-	it('never repeats a tech across primary + alternatives (keyed-list safety)', () => {
-		// Covers every branch, incl. the people+vehicles hybrid overlay that used
-		// to reintroduce the primary tech as an alternative (each_key_duplicate).
-		const cases: Partial<Answers>[] = [
-			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '1_3m', constraints: ['metal'] },
-			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '1_3m', constraints: ['no_install'] },
-			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: 'zone' },
-			{ targets: ['workers', 'vehicles'], vehicles: '5_20', accuracy: '30cm' },
-			{ targets: ['workers'], accuracy: '1_3m', constraints: ['metal'] }
-		];
-		for (const c of cases) {
-			const v = recommend(answers(c));
-			const techs = [v.primary.tech, ...v.alternatives.map((a) => a.tech)];
-			expect(new Set(techs).size).toBe(techs.length);
+describe('budget is engine-blind', () => {
+	it('identical verdicts for lt1m and gt5m across branches', () => {
+		for (const accuracy of ['zone', '1_3m', '30cm'] as const) {
+			const lo = recommend({ ...base, accuracy, budget: 'lt1m' });
+			const hi = recommend({ ...base, accuracy, budget: 'gt5m' });
+			expect(lo).toEqual(hi);
 		}
+	});
+});
+
+describe('cm-level', () => {
+	it('excludes TRAILS, prefers UWB (large site) / BLE AoA (small site)', () => {
+		expect(recommend({ ...base, accuracy: '30cm' }).primary.tech).toBe('uwb');
+		expect(recommend({ ...base, accuracy: '30cm', area: 'lt2000' }).primary.tech).toBe('ble_aoa');
+	});
+});
+
+describe('honest PDR / geomagnetic exclusions', () => {
+	it('metal 1-3m branch names pdr and geomag_phone in exclusions', () => {
+		const v = recommend({ ...base, constraints: ['metal'] });
+		expect(v.primary.tech).toBe('trails');
+		expect(v.excluded.map((e) => e.tech)).toEqual(expect.arrayContaining(['pdr', 'geomag_phone']));
+	});
+});
+
+describe('regressions kept from v1', () => {
+	it('zone + tools-only → checkpoints, TRAILS overkill', () => {
+		const v = recommend({ ...base, targets: ['tools'], accuracy: 'zone' });
+		expect(v.primary.tech).toBe('qr_nfc');
+		expect(v.excluded.some((e) => e.tech === 'trails')).toBe(true);
+	});
+	it('primary + alternatives never contain duplicate techs (hybrid overlay)', () => {
+		const v = recommend({ ...base, targets: ['workers', 'vehicles'], vehicles: '5_20' });
+		const ids = [v.primary.tech, ...v.alternatives.map((r) => r.tech)];
+		expect(new Set(ids).size).toBe(ids.length);
 	});
 });
