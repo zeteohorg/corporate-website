@@ -50,9 +50,7 @@ export function buildLeadFields(
 		sf_timeline: answers.timeline ?? '',
 		sf_budget_band: answers.budget ?? '',
 		sf_recommended_tech: c.verdict.primary.tech,
-		sf_department_title: lead.department ?? '',
-		sf_privacy_concern:
-			answers.privacyConcern === undefined ? '' : answers.privacyConcern ? 'yes' : 'no'
+		sf_department_title: lead.department ?? ''
 	};
 }
 

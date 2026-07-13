@@ -31,8 +31,7 @@ const answersSchema = z.object({
 	floors: z.enum(['one', 'two', 'three_five', 'six_plus']).optional(),
 	device: z.enum(['company_phones', 'can_issue', 'tag_only', 'nothing']).optional(),
 	timeline: z.enum(['1mo', '3mo', '6mo_plus']).optional(),
-	budget: z.enum(['lt1m', '1_5m', 'gt5m', 'undecided']).optional(),
-	privacyConcern: z.boolean().optional()
+	budget: z.enum(['lt1m', '1_5m', 'gt5m', 'undecided']).optional()
 });
 
 const payloadSchema = z.object({

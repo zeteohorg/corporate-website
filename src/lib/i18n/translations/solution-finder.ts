@@ -148,11 +148,6 @@ export const ja: SolutionFinderTranslation = {
 				gt5m: '500万円以上',
 				undecided: '未定'
 			}
-		},
-		privacyConcern: {
-			title: '作業者のプライバシーへの配慮は検討課題ですか？',
-			hint: '任意',
-			options: { yes: 'はい、重要な検討事項です', no: 'いいえ、特に問題ありません' }
 		}
 	},
 	verdict: {
@@ -581,11 +576,6 @@ export const en: SolutionFinderTranslation = {
 				gt5m: 'Over ¥5M',
 				undecided: 'Undecided'
 			}
-		},
-		privacyConcern: {
-			title: 'Is worker privacy a consideration for you?',
-			hint: 'Optional',
-			options: { yes: 'Yes, it matters to us', no: 'No, not a concern' }
 		}
 	},
 	verdict: {

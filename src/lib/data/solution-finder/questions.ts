@@ -55,14 +55,7 @@ export const STEPS: QuestionDef[] = [
 		visibleWhen: hasWorkers
 	},
 	{ id: 'timeline', kind: 'single', options: ['1mo', '3mo', '6mo_plus'] },
-	{ id: 'budget', kind: 'single', options: ['lt1m', '1_5m', 'gt5m', 'undecided'] },
-	{
-		id: 'privacyConcern',
-		kind: 'single',
-		options: ['yes', 'no'],
-		optional: true,
-		visibleWhen: (a) => a.facility === 'factory' || a.facility === 'warehouse'
-	}
+	{ id: 'budget', kind: 'single', options: ['lt1m', '1_5m', 'gt5m', 'undecided'] }
 ];
 
 /** The ordered steps currently applicable given the answers so far. */

@@ -51,7 +51,6 @@ export interface Answers {
 	device?: DeviceAvailability;
 	timeline?: Timeline;
 	budget?: Budget;
-	privacyConcern?: boolean;
 }
 
 export interface Recommendation {

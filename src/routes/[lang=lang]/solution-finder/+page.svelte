@@ -51,13 +51,6 @@
 	// --- helpers -----------------------------------------------------------
 
 	function stepValue(step: QuestionDef): string | string[] | undefined {
-		if (step.id === 'privacyConcern') {
-			return answers.privacyConcern === undefined
-				? undefined
-				: answers.privacyConcern
-					? 'yes'
-					: 'no';
-		}
 		return answers[step.id] as string | string[] | undefined;
 	}
 
@@ -87,11 +80,7 @@
 			toggleMulti(step, value);
 			return;
 		}
-		if (step.id === 'privacyConcern') {
-			answers.privacyConcern = value === 'yes';
-		} else {
-			(answers as unknown as Record<string, unknown>)[step.id] = value;
-		}
+		(answers as unknown as Record<string, unknown>)[step.id] = value;
 		trackStep(step, value);
 		// Tap-only fast flow: single-select auto-advances after brief feedback.
 		setTimeout(next, 220);
