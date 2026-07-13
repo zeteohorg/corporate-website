@@ -388,7 +388,100 @@ export const ja: SolutionFinderTranslation = {
 		attribution: '出典: zeteoh 屋内測位技術診断 (zeteoh.com)',
 		reDiagnoseInvite: '要件が変わった場合は、再度診断をお試しください。',
 		notApplicable: '—',
-		deployTimeGroups: { days: '数日〜1週間', weeks: '数週間', months: '数ヶ月' }
+		deployTimeGroups: { days: '数日〜1週間', weeks: '数週間', months: '数ヶ月' },
+		useCasesHeading: 'この診断結果でできること（{facility}向けユースケース）',
+		useCases: {
+			factory: [
+				{
+					title: '動線分析によるレイアウト・工程改善',
+					desc: '作業者の歩行距離を定量化し、レイアウト変更前後の削減効果を比較できます。'
+				},
+				{
+					title: '工程間の滞留・ボトルネック検出',
+					desc: 'どの工程間で人の滞留が発生しているかをデータで特定できます。'
+				},
+				{
+					title: 'エリア別の稼働状況の見える化',
+					desc: 'エリアごとの滞在時間・通過人数を集計し、稼働の偏りを把握できます。'
+				},
+				{
+					title: 'フォークリフト・台車の稼働率と交差リスク地点の把握',
+					desc: '車両の走行ルートから稼働率と、人との交差が多い地点を可視化できます。'
+				}
+			],
+			warehouse: [
+				{
+					title: 'ピッキング動線の短縮と棚配置の最適化',
+					desc: 'ピッキング経路の実測データから棚配置の改善候補を特定できます。'
+				},
+				{
+					title: '入出荷ピーク時の混雑エリア検出',
+					desc: '時間帯別の人の密度から、混雑が発生するエリアと時間を特定できます。'
+				},
+				{
+					title: '作業者の歩行距離・作業時間の定量化',
+					desc: '1日あたりの歩行距離と、作業エリア別の時間配分を計測できます。'
+				},
+				{
+					title: 'フォークリフト動線と接近ヒヤリハット地点の分析',
+					desc: '車両と作業者の動線が交差する地点を特定し、安全対策に活かせます。'
+				}
+			],
+			construction: [
+				{
+					title: '作業員の所在把握と立入禁止区域の安全管理',
+					desc: '現場内の所在をリアルタイムに把握し、危険区域への接近を検知できます。'
+				},
+				{
+					title: '職種別の作業エリア滞在時間分析',
+					desc: '職種ごとに、どのエリアで何時間作業したかを記録・集計できます。'
+				},
+				{
+					title: '仮設計画・資材動線の検証',
+					desc: '実際の移動データにもとづいて、仮設配置や資材置き場の位置を検証できます。'
+				},
+				{
+					title: '入退場・作業実績の自動記録',
+					desc: '入退場時刻とエリア別の作業実績を、手作業なしで記録できます。'
+				}
+			],
+			hospital_office: [
+				{
+					title: 'スタッフ動線の分析と移動負担の軽減',
+					desc: 'スタッフの移動距離・頻度を計測し、配置や動線の改善につなげられます。'
+				},
+				{
+					title: '部屋・設備の利用率の見える化',
+					desc: '会議室・診察室・共用設備の実際の利用状況をデータで把握できます。'
+				},
+				{
+					title: '来訪者動線の把握',
+					desc: '来訪者がどの経路を通り、どこに滞在したかを把握できます。'
+				},
+				{
+					title: '緊急時の所在確認',
+					desc: '災害・緊急時に、スタッフや来訪者の所在を迅速に確認できます。'
+				}
+			],
+			other: [
+				{
+					title: '動線の見える化による改善点の発見',
+					desc: '人やモノの実際の動きを可視化し、改善の起点となる事実を得られます。'
+				},
+				{
+					title: 'エリア別の滞在・混雑分析',
+					desc: 'エリアごとの滞在時間と、混雑の発生パターンを分析できます。'
+				},
+				{
+					title: '稼働率の定量化',
+					desc: '人・設備・スペースの稼働状況を数値で把握できます。'
+				},
+				{
+					title: '安全管理・所在確認',
+					desc: '対象者の所在把握や、危険区域の管理に活用できます。'
+				}
+			]
+		}
 	},
 	checklist: {
 		uwb: [
@@ -813,7 +906,100 @@ export const en: SolutionFinderTranslation = {
 		attribution: 'Source: zeteoh Indoor Positioning Technology Selector (zeteoh.com)',
 		reDiagnoseInvite: 'If your requirements change, re-run the assessment any time.',
 		notApplicable: '—',
-		deployTimeGroups: { days: 'Days to 1 week', weeks: 'Weeks', months: 'Months' }
+		deployTimeGroups: { days: 'Days to 1 week', weeks: 'Weeks', months: 'Months' },
+		useCasesHeading: 'What you can do with this result (use cases for {facility})',
+		useCases: {
+			factory: [
+				{
+					title: 'Layout and process improvement through flow analysis',
+					desc: 'Quantify walking distances and compare the reduction before and after a layout change.'
+				},
+				{
+					title: 'Detecting dwell and bottlenecks between processes',
+					desc: 'Identify where people pile up between process steps, backed by data.'
+				},
+				{
+					title: 'Visualizing utilization by area',
+					desc: 'Aggregate dwell time and foot traffic per area to spot uneven utilization.'
+				},
+				{
+					title: 'Forklift and cart utilization, and crossing-risk hotspots',
+					desc: 'Use vehicle routes to visualize utilization and the spots where vehicles and people cross most.'
+				}
+			],
+			warehouse: [
+				{
+					title: 'Shorter picking routes and optimized shelf placement',
+					desc: 'Identify shelf-layout improvements from measured picking paths.'
+				},
+				{
+					title: 'Detecting congestion areas at inbound/outbound peaks',
+					desc: 'Pinpoint where and when congestion builds from time-of-day density.'
+				},
+				{
+					title: 'Quantifying walking distance and task time',
+					desc: 'Measure daily walking distance and the time split across work areas.'
+				},
+				{
+					title: 'Forklift flow and near-miss hotspot analysis',
+					desc: 'Identify where vehicle and worker paths cross to target safety measures.'
+				}
+			],
+			construction: [
+				{
+					title: 'Worker location awareness and no-go zone safety',
+					desc: 'Track on-site presence in real time and detect approaches to restricted zones.'
+				},
+				{
+					title: 'Dwell-time analysis by trade',
+					desc: 'Record how long each trade works in each area of the site.'
+				},
+				{
+					title: 'Validating temporary-works and material-flow plans',
+					desc: 'Verify site layout and material staging against actual movement data.'
+				},
+				{
+					title: 'Automatic entry/exit and work-record logging',
+					desc: 'Log entry/exit times and per-area work records without manual effort.'
+				}
+			],
+			hospital_office: [
+				{
+					title: 'Staff flow analysis and reduced walking burden',
+					desc: 'Measure staff movement distance and frequency to improve placement and routes.'
+				},
+				{
+					title: 'Visualizing room and equipment utilization',
+					desc: 'See the actual usage of meeting rooms, consultation rooms and shared equipment.'
+				},
+				{
+					title: 'Understanding visitor flow',
+					desc: 'See which routes visitors take and where they spend time.'
+				},
+				{
+					title: 'Locating people in an emergency',
+					desc: 'Quickly confirm where staff and visitors are in a disaster or emergency.'
+				}
+			],
+			other: [
+				{
+					title: 'Finding improvement opportunities by visualizing flow',
+					desc: 'Visualize how people and goods actually move to ground improvements in facts.'
+				},
+				{
+					title: 'Dwell and congestion analysis by area',
+					desc: 'Analyze dwell time and congestion patterns for each area.'
+				},
+				{
+					title: 'Quantifying utilization',
+					desc: 'Put numbers on how people, equipment and space are actually used.'
+				},
+				{
+					title: 'Safety management and locating people',
+					desc: 'Track whereabouts and manage restricted areas.'
+				}
+			]
+		}
 	},
 	checklist: {
 		uwb: [

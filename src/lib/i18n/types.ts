@@ -292,6 +292,10 @@ export type SolutionFinderTranslation = {
 		reDiagnoseInvite: string;
 		notApplicable: string;
 		deployTimeGroups: { days: string; weeks: string; months: string };
+		/** Heading contains {facility}; arrays keyed by facility id. For
+		 * factory/warehouse the 4th item is vehicle-specific (see use-cases.ts). */
+		useCasesHeading: string;
+		useCases: Record<string, Array<{ title: string; desc: string }>>;
 	};
 	/** Provider-evaluation checklist (spec §6/§7), 3 questions per tech family. */
 	checklist: Record<string, [string, string, string]>;

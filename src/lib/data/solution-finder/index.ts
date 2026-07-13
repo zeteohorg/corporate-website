@@ -10,4 +10,5 @@ export type { TechMeta } from './tech';
 export { CITATIONS, citationById } from './citations';
 export type { Citation } from './citations';
 export { TRAILS_PRICING } from './pricing';
+export { selectUseCases } from './use-cases';
 export { recommend, verdictTechs } from './rules';

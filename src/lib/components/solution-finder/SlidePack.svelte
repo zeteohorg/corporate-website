@@ -1,14 +1,15 @@
 <script lang="ts">
-	// Gated deliverable (spec §7): eight neutral, print/PDF-optimized slides the
+	// Gated deliverable (spec §7): nine neutral, print/PDF-optimized slides the
 	// visitor can circulate internally as-is. Per-section copy buttons + a
 	// window.print() download; a discreet attribution line on every slide.
 
 	import type { SolutionFinderTranslation } from '$lib/i18n/types';
-	import type { Answers, Lang, TechId, Verdict } from '$lib/data/solution-finder/types';
+	import type { Answers, Facility, Lang, TechId, Verdict } from '$lib/data/solution-finder/types';
 	import { fitLabel } from '$lib/data/solution-finder/types';
 	import { TECHS, techById } from '$lib/data/solution-finder/tech';
 	import { CITATIONS, citationById } from '$lib/data/solution-finder/citations';
 	import { TRAILS_PRICING } from '$lib/data/solution-finder/pricing';
+	import { selectUseCases } from '$lib/data/solution-finder/use-cases';
 	import { formatJpy, interpolate } from './format';
 	import { Button } from '$lib/components/ui/button';
 	import { trackEvent } from '$lib/analytics';
@@ -111,6 +112,17 @@
 		interpolate(t.slides.title, { company: lang === 'ja' ? '貴社' : 'Your Company' })
 	);
 
+	// Facility-specific use cases (slide 2): the concrete-value story that
+	// replaced the waste-loss estimate. Selection logic lives in the data layer.
+	const useCases = $derived(
+		selectUseCases(answers, t.slides.useCases as Record<Facility, { title: string; desc: string }[]>)
+	);
+	const useCasesHeading = $derived(
+		interpolate(t.slides.useCasesHeading, {
+			facility: t.questions.facility.options[answers.facility ?? 'other']
+		})
+	);
+
 	let sectionEls: Record<number, HTMLElement> = $state({});
 
 	function copySection(i: number) {
@@ -165,17 +177,44 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 2. Requirements -->
+	<!-- 2. Facility-specific use cases -->
 	<section
 		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
 		bind:this={sectionEls[1]}
+	>
+		<div class="flex items-start justify-between">
+			<h3 class="text-lg font-bold">{useCasesHeading}</h3>
+			<button
+				type="button"
+				class="text-muted-foreground hover:text-foreground print:hidden"
+				onclick={() => copySection(1)}
+				aria-label={t.slides.copySection}
+			>
+				<Copy class="size-4" />
+			</button>
+		</div>
+		<ul class="space-y-3 text-sm">
+			{#each useCases as uc (uc.title)}
+				<li>
+					<div class="font-semibold">{uc.title}</div>
+					<div class="text-muted-foreground">{uc.desc}</div>
+				</li>
+			{/each}
+		</ul>
+		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
+	</section>
+
+	<!-- 3. Requirements -->
+	<section
+		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
+		bind:this={sectionEls[2]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.requirements}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(1)}
+				onclick={() => copySection(2)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -189,17 +228,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 3. Alternatives considered (full matrix, honest exclusions + citations) -->
+	<!-- 4. Alternatives considered (full matrix, honest exclusions + citations) -->
 	<section
 		class="slide w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[2]}
+		bind:this={sectionEls[3]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.alternatives}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(2)}
+				onclick={() => copySection(3)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -238,17 +277,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 4. Deployment timeline -->
+	<!-- 5. Deployment timeline -->
 	<section
 		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[3]}
+		bind:this={sectionEls[4]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.timelineComparison}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(3)}
+				onclick={() => copySection(4)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -265,17 +304,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 5. Risks & mitigations -->
+	<!-- 6. Risks & mitigations -->
 	<section
 		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[4]}
+		bind:this={sectionEls[5]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.risks}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(4)}
+				onclick={() => copySection(5)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -289,17 +328,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 6. Provider-evaluation checklist -->
+	<!-- 7. Provider-evaluation checklist -->
 	<section
 		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[5]}
+		bind:this={sectionEls[6]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.checklist}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(5)}
+				onclick={() => copySection(6)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -313,17 +352,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 7. Proposal (championMode) / re-diagnosis invitation -->
+	<!-- 8. Proposal (championMode) / re-diagnosis invitation -->
 	<section
 		class="slide aspect-[297/210] w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[6]}
+		bind:this={sectionEls[7]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.proposal}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(6)}
+				onclick={() => copySection(7)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />
@@ -335,17 +374,17 @@
 		<p class="text-muted-foreground mt-auto pt-6 text-xs">{t.slides.attribution}</p>
 	</section>
 
-	<!-- 8. Methodology & sources appendix -->
+	<!-- 9. Methodology & sources appendix -->
 	<section
 		class="slide w-full space-y-3 rounded-lg border bg-card p-8 print:break-after-page"
-		bind:this={sectionEls[7]}
+		bind:this={sectionEls[8]}
 	>
 		<div class="flex items-start justify-between">
 			<h3 class="text-lg font-bold">{t.slides.sources}</h3>
 			<button
 				type="button"
 				class="text-muted-foreground hover:text-foreground print:hidden"
-				onclick={() => copySection(7)}
+				onclick={() => copySection(8)}
 				aria-label={t.slides.copySection}
 			>
 				<Copy class="size-4" />

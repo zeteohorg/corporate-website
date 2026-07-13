@@ -6,6 +6,8 @@ import type { Lang } from '$lib/data/solution-finder/types';
 /** Human-readable JPY. JA uses 万/億 units; EN uses ¥…M. */
 export function formatJpy(n: number, lang: Lang): string {
 	if (lang === 'ja') {
+		// Below ¥10,000 the 万 unit would round to nonsense (¥5,000 → 1万円).
+		if (n < 10_000) return `${Math.round(n).toLocaleString('ja-JP')}円`;
 		const man = Math.round(n / 10_000);
 		if (man >= 10_000) {
 			const oku = Math.floor(man / 10_000);

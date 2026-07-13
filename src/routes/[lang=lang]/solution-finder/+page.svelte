@@ -17,7 +17,9 @@
 		recommend,
 		activeSteps,
 		isAnswered,
+		selectUseCases,
 		type Answers,
+		type Facility,
 		type Verdict
 	} from '$lib/data/solution-finder';
 	import type { QuestionDef } from '$lib/data/solution-finder/questions';
@@ -132,6 +134,22 @@
 		phase = 'intro';
 	}
 
+	// Free-tier value hook: the first two facility-specific use cases render on
+	// the verdict screen (the slide pack carries the full list).
+	const verdictUseCases = $derived(
+		phase === 'result'
+			? selectUseCases(
+					answers,
+					t.slides.useCases as Record<Facility, { title: string; desc: string }[]>
+				).slice(0, 2)
+			: []
+	);
+	const useCasesHeading = $derived(
+		interpolate(t.slides.useCasesHeading, {
+			facility: t.questions.facility.options[answers.facility ?? 'other']
+		})
+	);
+
 	// Abandonment: fire once if the user leaves mid-quiz.
 	$effect(() => {
 		if (phase !== 'quiz') return;
@@ -216,6 +234,20 @@
 				<NoFitCard {verdict} {t} />
 			{:else}
 				<VerdictCard {verdict} {t} {lang} />
+			{/if}
+
+			{#if verdictUseCases.length}
+				<div class="border-primary/30 bg-primary/5 rounded-lg border p-5">
+					<p class="text-sm font-semibold">{useCasesHeading}</p>
+					<ul class="mt-2 space-y-1 text-sm">
+						{#each verdictUseCases as uc (uc.title)}
+							<li>
+								<span class="font-medium">{uc.title}</span>
+								<span class="text-muted-foreground"> — {uc.desc}</span>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			{/if}
 
 			{#if unlocked}
