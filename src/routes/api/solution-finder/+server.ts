@@ -24,9 +24,12 @@ const answersSchema = z.object({
 	vehicles: z.enum(['lt5', '5_20', 'gt20']).optional(),
 	accuracy: z.enum(['zone', '1_3m', '30cm']).optional(),
 	constraints: z
-		.array(z.enum(['metal', 'no_install', 'frequent_layout', 'multi_floor', 'harsh', 'none']))
+		.array(
+			z.enum(['metal', 'no_install', 'frequent_layout', 'multi_floor', 'harsh', 'temporary', 'none'])
+		)
 		.default([]),
 	floors: z.enum(['one', 'two', 'three_five', 'six_plus']).optional(),
+	device: z.enum(['company_phones', 'can_issue', 'tag_only', 'nothing']).optional(),
 	timeline: z.enum(['1mo', '3mo', '6mo_plus']).optional(),
 	budget: z.enum(['lt1m', '1_5m', 'gt5m', 'undecided']).optional(),
 	privacyConcern: z.boolean().optional()
@@ -38,6 +41,7 @@ const payloadSchema = z.object({
 		name: z.string().min(1),
 		phone: z.string().optional(),
 		company: z.string().optional(),
+		department: z.string().optional(),
 		consent: z.literal(true),
 		newsletter: z.boolean().optional()
 	}),
