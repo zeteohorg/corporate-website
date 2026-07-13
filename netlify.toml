@@ -41,3 +41,5 @@
 [forms]
   [forms."contact-form"]
     name = "Contact Form"
+  [forms."solution-finder"]
+    name = "Solution Finder"

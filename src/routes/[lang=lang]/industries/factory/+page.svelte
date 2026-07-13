@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import { MapPin } from 'lucide-svelte';
 	import { SITE_ORIGIN } from '$lib/origin';
+	import FinderCta from '$lib/components/solution-finder/FinderCta.svelte';
 
 	export let data: PageData;
 	const { translations, lang } = data;
@@ -126,4 +127,12 @@
 			</Card.Root>
 		{/each}
 	</div>
+
+	<FinderCta
+		lang={lang as 'en' | 'ja'}
+		heading={translations.positioning.ctaHeading}
+		text={translations.positioning.ctaText}
+		button={translations.positioning.ctaButton}
+		location="industry_factory"
+	/>
 </div>

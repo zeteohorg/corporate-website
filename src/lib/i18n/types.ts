@@ -142,6 +142,163 @@ export type Translation = {
 	construction: ConstructionTranslation;
 	logistics: LogisticsTranslation;
 	export: ExportTranslation;
+	solutionFinder: SolutionFinderTranslation;
+	positioning: PositioningTranslation;
+};
+
+export type PositioningTranslation = {
+	// Shared
+	updatedLabel: string;
+	ctaHeading: string;
+	ctaText: string;
+	ctaButton: string;
+	crossToComparison: string;
+	// Pillar comparison / methodology page
+	pillar: {
+		metaTitle: string;
+		metaDescription: string;
+		h1: string;
+		intro: string;
+		tableCaption: string;
+		headers: {
+			tech: string;
+			accuracy: string;
+			install: string;
+			deployTime: string;
+			maintenance: string;
+			reject: string;
+		};
+		capexNote: string;
+		pdrVsNeural: { heading: string; body: string };
+		faqHeading: string;
+		faq: Array<{ q: string; a: string }>;
+	};
+};
+
+export type SolutionFinderTranslation = {
+	meta: { title: string; description: string };
+	intro: {
+		eyebrow: string;
+		title: string;
+		subtitle: string;
+		start: string;
+		time: string;
+	};
+	nav: { back: string; next: string; skip: string; seeResult: string; restart: string };
+	progress: { stepOf: string }; // "Step {n} / {m}"
+	card: { heading: string; text: string; button: string; dismiss: string };
+	// Keyed by question id; options keyed by option value id.
+	questions: Record<
+		string,
+		{
+			title: string;
+			hint?: string;
+			options: Record<string, string>;
+			examples?: Record<string, string>;
+			/** Shown under the title only for `budget` (engine-blind trust note). */
+			trustNote?: string;
+		}
+	>;
+	verdict: {
+		title: string;
+		recommended: string;
+		alternative: string;
+		notRecommendedTitle: string;
+		fitLabel: string;
+		hybridNote: string;
+		floorNote: string;
+		unlockCta: string;
+		hotCta: string;
+	};
+	reasons: Record<string, string>;
+	tech: Record<
+		string,
+		{ name: string; accuracy: string; infra: string; opex: string; killCriteria: string }
+	>;
+	/** Qualitative fit-bar labels — never a bare percentage (spec §4). */
+	fitLabels: { best: string; conditional: string; weak: string };
+	/** Deployment-profile chip labels (spec §7) — structural, never ¥. */
+	deploy: {
+		infra: string;
+		deployTime: string;
+		maintenance: string;
+		carrier: string;
+		infraCost: string;
+		hardwareCost: string;
+		/** Moved from the deleted `cost.disclaimer` — general estimate caution. */
+		note: string;
+		values: {
+			infra: { none: string; light: string; heavy: string };
+			deployTime: { days: string; weeks: string; months: string };
+			maintenance: { low: string; medium: string; high: string };
+			carrier: {
+				smartphone: string;
+				tag: string;
+				vehicle_kit: string;
+				fixed_sensor: string;
+				none: string;
+			};
+		};
+	};
+	/** Shared none/low/medium/high labels for infraCost/hardwareCost chips. */
+	costTiers: { none: string; low: string; medium: string; high: string; note: string };
+	/** TRAILS pricing card — the only ¥ figures anywhere in the tool. */
+	pricing: { heading: string; setup: string; perDevice: string; handsetNote: string };
+	/** The no-fit explainer (spec §4.5) — honest, never a dead end. */
+	noFit: {
+		title: string;
+		intro: string;
+		conflicts: Record<string, string>;
+		relaxHint: string;
+		/** Label above the weak degenerate-option primary shown underneath. */
+		referenceLabel: string;
+	};
+	gate: {
+		title: string;
+		subtitle: string;
+		email: string;
+		name: string;
+		phone: string;
+		company: string;
+		companyFreemailHint: string;
+		department: { label: string; placeholder: string };
+		consent: string;
+		newsletter: string;
+		submit: string;
+		submitting: string;
+		success: string;
+		error: string;
+		retry: string;
+		invalidEmail: string;
+		requiredField: string;
+	};
+	report: { title: string; pocCta: string };
+	/** Gated slide-pack deliverable (spec §7). */
+	slides: {
+		title: string; // contains {company}
+		execSummary: string;
+		requirements: string;
+		alternatives: string;
+		timelineComparison: string;
+		risks: string;
+		risksBody: [string, string, string]; // privacy, IT security, PoC-risk
+		checklist: string;
+		proposal: string;
+		proposalBody: string;
+		sources: string;
+		copySection: string;
+		download: string;
+		attribution: string;
+		reDiagnoseInvite: string;
+		notApplicable: string;
+		deployTimeGroups: { days: string; weeks: string; months: string };
+		/** Heading contains {facility}; arrays keyed by facility id. For
+		 * factory/warehouse the 4th item is vehicle-specific (see use-cases.ts). */
+		useCasesHeading: string;
+		useCases: Record<string, Array<{ title: string; desc: string }>>;
+	};
+	/** Provider-evaluation checklist (spec §6/§7), 3 questions per tech family. */
+	checklist: Record<string, [string, string, string]>;
 };
 
 // Add to Translation interface

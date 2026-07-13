@@ -1,1 +1,9 @@
 /.well-known/matrix/* /.well-known/matrix/:splat 200!
+
+# Event vanity URLs → Solution Finder with UTM prefilled (turn booth QR scans
+# into structured leads). Add one line per event; JA is the default for JP events.
+/ceatec   /ja/indoor-positioning-selector/?utm_source=ceatec&utm_medium=event&utm_campaign=ceatec   302
+/event    /ja/indoor-positioning-selector/?utm_source=event&utm_medium=event&utm_campaign=generic   302
+# Old finder path (pre-launch rename) → new slug
+/ja/solution-finder/* /ja/indoor-positioning-selector/:splat 301
+/en/solution-finder/* /en/indoor-positioning-selector/:splat 301
