@@ -152,9 +152,8 @@ export type PositioningTranslation = {
 	ctaHeading: string;
 	ctaText: string;
 	ctaButton: string;
-	crossToVendors: string;
 	crossToComparison: string;
-	// Pillar comparison page
+	// Pillar comparison / methodology page
 	pillar: {
 		metaTitle: string;
 		metaDescription: string;
@@ -164,22 +163,15 @@ export type PositioningTranslation = {
 		headers: {
 			tech: string;
 			accuracy: string;
-			infra: string;
-			capex: string;
-			opex: string;
+			install: string;
+			deployTime: string;
+			maintenance: string;
 			reject: string;
 		};
 		capexNote: string;
+		pdrVsNeural: { heading: string; body: string };
 		faqHeading: string;
 		faq: Array<{ q: string; a: string }>;
-	};
-	// Vendor directory page
-	directory: {
-		metaTitle: string;
-		metaDescription: string;
-		h1: string;
-		intro: string;
-		headers: { vendor: string; tech: string; niche: string; bestWhen: string };
 	};
 };
 
@@ -203,6 +195,8 @@ export type SolutionFinderTranslation = {
 			hint?: string;
 			options: Record<string, string>;
 			examples?: Record<string, string>;
+			/** Shown under the title only for `budget` (engine-blind trust note). */
+			trustNote?: string;
 		}
 	>;
 	verdict: {
@@ -211,7 +205,6 @@ export type SolutionFinderTranslation = {
 		alternative: string;
 		notRecommendedTitle: string;
 		fitLabel: string;
-		tco3yr: string;
 		hybridNote: string;
 		floorNote: string;
 		unlockCta: string;
@@ -223,14 +216,41 @@ export type SolutionFinderTranslation = {
 		string,
 		{ name: string; accuracy: string; infra: string; opex: string; killCriteria: string }
 	>;
-	cost: {
-		rangeNote: string;
-		disclaimer: string;
-		capex: string;
-		opex: string;
-		total: string;
-		quoteBased: string;
-		lines: Record<string, string>;
+	/** Qualitative fit-bar labels — never a bare percentage (spec §4). */
+	fitLabels: { best: string; conditional: string; weak: string };
+	/** Deployment-profile chip labels (spec §7) — structural, never ¥. */
+	deploy: {
+		infra: string;
+		deployTime: string;
+		maintenance: string;
+		carrier: string;
+		infraCost: string;
+		hardwareCost: string;
+		/** Moved from the deleted `cost.disclaimer` — general estimate caution. */
+		note: string;
+		values: {
+			infra: { none: string; light: string; heavy: string };
+			deployTime: { days: string; weeks: string; months: string };
+			maintenance: { low: string; medium: string; high: string };
+			carrier: {
+				smartphone: string;
+				tag: string;
+				vehicle_kit: string;
+				fixed_sensor: string;
+				none: string;
+			};
+		};
+	};
+	/** Shared none/low/medium/high labels for infraCost/hardwareCost chips. */
+	costTiers: { none: string; low: string; medium: string; high: string; note: string };
+	/** TRAILS pricing card — the only ¥ figures anywhere but the waste banner. */
+	pricing: { heading: string; setup: string; perDevice: string; handsetNote: string; payback: string };
+	/** The no-fit explainer (spec §4.5) — honest, never a dead end. */
+	noFit: {
+		title: string;
+		intro: string;
+		conflicts: Record<string, string>;
+		relaxHint: string;
 	};
 	gate: {
 		title: string;
@@ -240,6 +260,7 @@ export type SolutionFinderTranslation = {
 		phone: string;
 		company: string;
 		companyFreemailHint: string;
+		department: { label: string; placeholder: string };
 		consent: string;
 		newsletter: string;
 		submit: string;
@@ -250,26 +271,25 @@ export type SolutionFinderTranslation = {
 		invalidEmail: string;
 		requiredField: string;
 	};
-	report: {
+	report: { title: string; pocCta: string };
+	/** Gated slide-pack deliverable (spec §7). */
+	slides: {
 		title: string;
-		inputsHeading: string;
-		recommendationHeading: string;
-		tcoHeading: string;
-		vendorsHeading: string;
-		vendorBestWhen: string;
-		timelineHeading: string;
-		nextStepsHeading: string;
-		print: string;
-		champion: {
-			badge: string;
-			summaryHeading: string;
-			alternativesHeading: string;
-			costHeading: string;
-			risksHeading: string;
-			proposalHeading: string;
-		};
-		pocCta: string;
+		execSummary: string;
+		requirements: string;
+		alternatives: string;
+		timelineComparison: string;
+		risks: string;
+		checklist: string;
+		proposal: string;
+		sources: string;
+		copySection: string;
+		download: string;
+		attribution: string;
+		reDiagnoseInvite: string;
 	};
+	/** Provider-evaluation checklist (spec §6/§7), 3 questions per tech family. */
+	checklist: Record<string, [string, string, string]>;
 };
 
 // Add to Translation interface
