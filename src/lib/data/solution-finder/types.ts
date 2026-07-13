@@ -1,6 +1,5 @@
-// Type layer for the Solution Finder engine. Everything here is pure data — no
-// Svelte/Kit imports — so `rules.ts` and `cost.ts` stay unit-testable in the
-// Vitest `node` environment.
+// Type layer for the Technology Fit Calculator engine. Everything here is
+// pure data — no Svelte/Kit imports — so rules/waste stay unit-testable.
 
 export type Lang = 'en' | 'ja';
 
@@ -13,12 +12,12 @@ export type TechId =
 	| 'uwb'
 	| 'acoustic'
 	| 'camera'
-	| 'geomagnetic'
+	| 'geomag_phone'
+	| 'geomag_infra'
+	| 'pdr'
 	| 'qr_nfc'
 	| 'trails'
 	| 'visual_slam';
-
-// --- Answer option unions (mirror the §5.2 question flow) -------------------
 
 export type Facility = 'factory' | 'warehouse' | 'construction' | 'hospital_office' | 'other';
 export type Target = 'workers' | 'vehicles' | 'tools' | 'visitors';
@@ -32,12 +31,14 @@ export type Constraint =
 	| 'frequent_layout'
 	| 'multi_floor'
 	| 'harsh'
+	| 'temporary'
 	| 'none';
 export type FloorBand = 'one' | 'two' | 'three_five' | 'six_plus';
+export type DeviceAvailability = 'company_phones' | 'can_issue' | 'tag_only' | 'nothing';
 export type Timeline = '1mo' | '3mo' | '6mo_plus';
+/** Engine-blind: read only by lead scoring/CRM, never by rules.ts. */
 export type Budget = 'lt1m' | '1_5m' | 'gt5m' | 'undecided';
 
-/** The full quiz answer set. Later steps may be undefined mid-flow. */
 export interface Answers {
 	facility?: Facility;
 	targets: Target[];
@@ -47,33 +48,12 @@ export interface Answers {
 	accuracy?: Accuracy;
 	constraints: Constraint[];
 	floors?: FloorBand;
+	device?: DeviceAvailability;
 	timeline?: Timeline;
 	budget?: Budget;
 	privacyConcern?: boolean;
 }
 
-/** A single cost line rendered in the report TCO table. */
-export interface CostLine {
-	/** i18n key under `solutionFinder.cost.lines` */
-	labelKey: string;
-	amount: number; // JPY
-}
-
-/** 3-year total cost of ownership for one technology. */
-export interface TcoResult {
-	tech: TechId;
-	capex: number;
-	opex3yr: number;
-	total: number;
-	/** −20% / +30% band around `total`. */
-	low: number;
-	high: number;
-	/** True when the number is indicative only and needs a vendor quote. */
-	quoteBased: boolean;
-	lines: CostLine[];
-}
-
-/** A technology shown in the verdict, with its reason phrase and fit score. */
 export interface Recommendation {
 	tech: TechId;
 	/** i18n key under `solutionFinder.reasons` */
@@ -82,7 +62,11 @@ export interface Recommendation {
 	fit: number;
 }
 
-/** Output of `recommend()` — deterministic, auditable. */
+/** Qualitative label rendered with every fit bar — never a bare number. */
+export type FitLabel = 'best' | 'conditional' | 'weak';
+export const fitLabel = (fit: number): FitLabel =>
+	fit >= 85 ? 'best' : fit >= 60 ? 'conditional' : 'weak';
+
 export interface Verdict {
 	primary: Recommendation;
 	alternatives: Recommendation[];
@@ -90,13 +74,15 @@ export interface Verdict {
 	excluded: { tech: TechId; reasonKey: string }[];
 	isHybrid: boolean;
 	isVehicleBranch: boolean;
-	/** Multi-floor structure detected → report adds the フロア判定 explainer. */
 	floorNote: boolean;
-	/** primary === 'trails' → report ships in champion (ringi) mode. */
+	/** primary === 'trails' → slide pack ships in champion (ringi) mode. */
 	championMode: boolean;
+	/** Set when requirements conflict: i18n keys naming the two clashing
+	 * requirements. UI renders the no-fit explainer; primary is the closest
+	 * degenerate option (always `fitLabel === 'weak'`). */
+	noFit?: { conflictKeys: [string, string] };
 }
 
-/** Annual waste-loss estimate shown alongside the verdict. */
 export interface WasteLoss {
 	people: number;
 	annualLoss: number; // JPY/year
