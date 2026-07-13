@@ -19,7 +19,7 @@ export const ja: SolutionFinderTranslation = {
 		subtitle:
 			'8つの質問に答えるだけで、現場の条件から最適な技術を判定します。費用ではなく、精度・設置環境・導入期間などの技術要件にもとづいて正直に判定し、該当する技術がない場合はその理由も明示します。',
 		start: '診断をはじめる',
-		time: '約90秒・8問・メール登録不要で結果表示'
+		time: '約2分・タップのみ・メール登録不要で結果表示'
 	},
 	nav: {
 		back: '戻る',
@@ -447,7 +447,7 @@ export const en: SolutionFinderTranslation = {
 		subtitle:
 			'Answer 8 questions and we judge the right technology from your site conditions — accuracy, environment, and deployment constraints, never cost. If nothing fits, we say so and explain why.',
 		start: 'Start the assessment',
-		time: '~90 seconds · 8 questions · results shown without signing up'
+		time: '~2 minutes · tap-only · results shown without signing up'
 	},
 	nav: {
 		back: 'Back',
