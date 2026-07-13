@@ -350,7 +350,8 @@ export const ja: SolutionFinderTranslation = {
 			temporaryProject: '短期間のみの計測プロジェクトという制約'
 		},
 		relaxHint:
-			'いずれかの条件を緩和いただければ（例：一部エリアのみデバイス携帯を許可する、精度要件をエリア単位に緩和するなど）、現実的な選択肢をご提案できます。まずはお気軽にご相談ください。'
+			'いずれかの条件を緩和いただければ（例：一部エリアのみデバイス携帯を許可する、精度要件をエリア単位に緩和するなど）、現実的な選択肢をご提案できます。まずはお気軽にご相談ください。',
+		referenceLabel: '参考（最も近い選択肢）'
 	},
 	gate: {
 		title: '社内検討用スライドパックを無料で受け取る',
@@ -766,7 +767,8 @@ export const en: SolutionFinderTranslation = {
 			temporaryProject: 'the constraint of a short-term-only measurement project'
 		},
 		relaxHint:
-			'If you can relax one of these (e.g. allow a device in part of the facility, or accept zone-level accuracy), we can suggest a realistic option — feel free to reach out.'
+			'If you can relax one of these (e.g. allow a device in part of the facility, or accept zone-level accuracy), we can suggest a realistic option — feel free to reach out.',
+		referenceLabel: 'For reference (closest option)'
 	},
 	gate: {
 		title: 'Get the internal-review slide pack — free',

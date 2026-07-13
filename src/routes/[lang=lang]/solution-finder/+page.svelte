@@ -7,6 +7,7 @@
 	import ProgressBar from '$lib/components/solution-finder/ProgressBar.svelte';
 	import QuestionStep from '$lib/components/solution-finder/QuestionStep.svelte';
 	import VerdictCard from '$lib/components/solution-finder/VerdictCard.svelte';
+	import NoFitCard from '$lib/components/solution-finder/NoFitCard.svelte';
 	import WasteBanner from '$lib/components/solution-finder/WasteBanner.svelte';
 	import LeadGate from '$lib/components/solution-finder/LeadGate.svelte';
 	import Report from '$lib/components/solution-finder/Report.svelte';
@@ -15,15 +16,10 @@
 
 	import {
 		recommend,
-		verdictTechs,
-		computeTco,
 		computeWasteLoss,
 		activeSteps,
 		isAnswered,
-		vendorsForTechs,
 		type Answers,
-		type TcoResult,
-		type TechId,
 		type Verdict,
 		type WasteLoss
 	} from '$lib/data/solution-finder';
@@ -40,7 +36,6 @@
 	let utm = $state<Utm>({});
 
 	let verdict = $state<Verdict | null>(null);
-	let tco = $state<Partial<Record<TechId, TcoResult>>>({});
 	let wasteLoss = $state<WasteLoss | null>(null);
 	let unlocked = $state(false);
 	let deliveryFailed = $state(false);
@@ -139,9 +134,6 @@
 		const v = recommend(answers);
 		verdict = v;
 		wasteLoss = computeWasteLoss(answers);
-		const map: Partial<Record<TechId, TcoResult>> = {};
-		for (const id of verdictTechs(v)) map[id] = computeTco(id, answers);
-		tco = map;
 		phase = 'result';
 		trackEvent('Finder: Verdict', { tech: v.primary.tech });
 		trackEvent('Finder: Gate Viewed');
@@ -163,8 +155,6 @@
 		window.addEventListener('beforeunload', handler);
 		return () => window.removeEventListener('beforeunload', handler);
 	});
-
-	const vendors = $derived(verdict ? vendorsForTechs(verdictTechs(verdict)) : []);
 </script>
 
 <svelte:head>
@@ -237,7 +227,11 @@
 		</div>
 
 		<div class="mt-6 space-y-8">
-			<VerdictCard {verdict} {tco} {t} {lang} />
+			{#if verdict.noFit}
+				<NoFitCard {verdict} {t} />
+			{:else}
+				<VerdictCard {verdict} {t} {lang} />
+			{/if}
 			<WasteBanner
 				annualLoss={wasteLoss.annualLoss}
 				{lang}
@@ -254,7 +248,7 @@
 						{t.gate.error}
 					</p>
 				{/if}
-				<Report {verdict} {tco} {answers} {vendors} {wasteLoss} {t} {lang} />
+				<Report {verdict} {answers} {wasteLoss} {t} {lang} />
 			{:else}
 				<LeadGate
 					{t}

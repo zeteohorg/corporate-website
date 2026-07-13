@@ -251,6 +251,8 @@ export type SolutionFinderTranslation = {
 		intro: string;
 		conflicts: Record<string, string>;
 		relaxHint: string;
+		/** Label above the weak degenerate-option primary shown underneath. */
+		referenceLabel: string;
 	};
 	gate: {
 		title: string;
