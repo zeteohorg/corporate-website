@@ -37,6 +37,7 @@
 	let name = $state('');
 	let phone = $state('');
 	let company = $state('');
+	let department = $state('');
 	let consent = $state(false);
 	let newsletter = $state(false);
 
@@ -66,7 +67,7 @@
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					lead: { email, name, phone, company, consent, newsletter },
+					lead: { email, name, phone, company, department, consent, newsletter },
 					answers,
 					utm,
 					lang
@@ -120,6 +121,17 @@
 		<div class="space-y-1.5">
 			<label for="sf-phone" class="text-sm font-medium">{t.gate.phone}</label>
 			<Input id="sf-phone" type="tel" bind:value={phone} autocomplete="tel" />
+		</div>
+
+		<div class="space-y-1.5">
+			<label for="sf-department" class="text-sm font-medium">{t.gate.department.label}</label>
+			<Input
+				id="sf-department"
+				type="text"
+				bind:value={department}
+				autocomplete="organization-title"
+				placeholder={t.gate.department.placeholder}
+			/>
 		</div>
 
 		<label class="flex items-start gap-2 text-sm">

@@ -384,13 +384,22 @@ export const ja: SolutionFinderTranslation = {
 		alternatives: '検討経緯（比較検討した技術）',
 		timelineComparison: '導入期間の比較',
 		risks: 'リスクと対策',
+		risksBody: [
+			'プライバシー：役職・権限に応じたデータ閲覧範囲を設計し、個人情報保護法に沿った運用を行います。',
+			'ITセキュリティ：データの保存場所・アクセス制御・既存システムとの連携方式を事前に確認します。',
+			'「期待通り機能しなかったら」：小規模・固定費用・成功指標を定めた2週間のPoCから開始し、リスクを限定します。'
+		],
 		checklist: '導入時の確認事項（ベンダー評価チェックリスト）',
 		proposal: '提案（承認いただきたい内容）',
+		proposalBody:
+			'2週間のPoC（小規模・固定費用・3つの成功指標）の承認をご提案します。',
 		sources: '出典・参考文献',
 		copySection: 'このセクションをコピー',
 		download: 'PDFとして保存／印刷',
 		attribution: '出典: zeteoh 屋内測位技術診断 (zeteoh.com)',
-		reDiagnoseInvite: '要件が変わった場合は、再度診断をお試しください。'
+		reDiagnoseInvite: '要件が変わった場合は、再度診断をお試しください。',
+		notApplicable: '—',
+		deployTimeGroups: { days: '数日〜1週間', weeks: '数週間', months: '数ヶ月' }
 	},
 	checklist: {
 		uwb: [
@@ -417,6 +426,16 @@ export const ja: SolutionFinderTranslation = {
 			'施設全体を被覆できない場合の追跡継続性は？',
 			'映像データの保管期間・アクセス権限・プライバシー統制は？',
 			'照明変化・遮蔽物によるトラッキング精度への影響は？'
+		],
+		qr: [
+			'スキャン漏れ・不正打刻の防止策と運用ルールは？',
+			'タグの耐久性・交換頻度と印刷・運用コストの扱いは？',
+			'リアルタイム性が必要になった場合の移行パスはあるか？'
+		],
+		slam: [
+			'マーカー設置密度と再マッピングが必要になる条件は？',
+			'複数フロア・エレベーター移動時のハンドオフはどう機能するか？',
+			'照明変化・棚の配置変更に対する耐性はどの程度か？'
 		]
 	}
 };
@@ -801,13 +820,21 @@ export const en: SolutionFinderTranslation = {
 		alternatives: 'Alternatives considered',
 		timelineComparison: 'Deployment timeline',
 		risks: 'Risks & mitigations',
+		risksBody: [
+			'Privacy: design role-based data visibility and operate in line with Japan’s APPI (personal information protection law).',
+			'IT security: confirm data storage location, access controls, and the integration path with existing systems up front.',
+			'"What if it doesn’t deliver": start with a small, fixed-price, 2-week PoC with defined success criteria to bound the risk.'
+		],
 		checklist: 'Provider-evaluation checklist',
 		proposal: 'The proposal',
+		proposalBody: 'We propose approving a 2-week PoC — small scope, fixed price, three success criteria.',
 		sources: 'Sources',
 		copySection: 'Copy this section',
 		download: 'Save / print as PDF',
 		attribution: 'Source: zeteoh Indoor Positioning Technology Selector (zeteoh.com)',
-		reDiagnoseInvite: 'If your requirements change, re-run the assessment any time.'
+		reDiagnoseInvite: 'If your requirements change, re-run the assessment any time.',
+		notApplicable: '—',
+		deployTimeGroups: { days: 'Days to 1 week', weeks: 'Weeks', months: 'Months' }
 	},
 	checklist: {
 		uwb: [
@@ -834,6 +861,16 @@ export const en: SolutionFinderTranslation = {
 			'What happens to tracking continuity outside covered zones?',
 			'What are the retention period, access controls, and privacy governance for video data?',
 			'How do lighting changes and occlusion affect tracking accuracy?'
+		],
+		qr: [
+			'What prevents missed scans or fraudulent check-ins, and what is the operating discipline?',
+			'What is tag durability, replacement frequency, and printing/labor overhead?',
+			'Is there a migration path if real-time tracking becomes a requirement later?'
+		],
+		slam: [
+			'What marker density is required, and when does re-mapping become necessary?',
+			'How does handoff work across multiple floors or elevator transitions?',
+			'How robust is it to lighting changes or rack/shelf rearrangement?'
 		]
 	}
 };

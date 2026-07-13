@@ -276,19 +276,23 @@ export type SolutionFinderTranslation = {
 	report: { title: string; pocCta: string };
 	/** Gated slide-pack deliverable (spec §7). */
 	slides: {
-		title: string;
+		title: string; // contains {company}
 		execSummary: string;
 		requirements: string;
 		alternatives: string;
 		timelineComparison: string;
 		risks: string;
+		risksBody: [string, string, string]; // privacy, IT security, PoC-risk
 		checklist: string;
 		proposal: string;
+		proposalBody: string;
 		sources: string;
 		copySection: string;
 		download: string;
 		attribution: string;
 		reDiagnoseInvite: string;
+		notApplicable: string;
+		deployTimeGroups: { days: string; weeks: string; months: string };
 	};
 	/** Provider-evaluation checklist (spec §6/§7), 3 questions per tech family. */
 	checklist: Record<string, [string, string, string]>;

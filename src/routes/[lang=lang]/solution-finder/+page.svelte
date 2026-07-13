@@ -10,7 +10,7 @@
 	import NoFitCard from '$lib/components/solution-finder/NoFitCard.svelte';
 	import WasteBanner from '$lib/components/solution-finder/WasteBanner.svelte';
 	import LeadGate from '$lib/components/solution-finder/LeadGate.svelte';
-	import Report from '$lib/components/solution-finder/Report.svelte';
+	import SlidePack from '$lib/components/solution-finder/SlidePack.svelte';
 	import { captureUtm, type Utm } from '$lib/components/solution-finder/attribution';
 	import { interpolate } from '$lib/components/solution-finder/format';
 
@@ -248,7 +248,7 @@
 						{t.gate.error}
 					</p>
 				{/if}
-				<Report {verdict} {answers} {wasteLoss} {t} {lang} />
+				<SlidePack {verdict} {answers} {wasteLoss} {t} {lang} />
 			{:else}
 				<LeadGate
 					{t}
