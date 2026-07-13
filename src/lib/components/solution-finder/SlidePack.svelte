@@ -171,7 +171,7 @@
 			<p class="text-sm">
 				{t.pricing.heading}: {formatJpy(TRAILS_PRICING.setup, lang)} + {formatJpy(TRAILS_PRICING.perDeviceMo, lang)}/{lang === 'ja' ? '台/月' : 'device/mo'}
 				{#if paybackMonths}
-					· {t.pricing.payback}: {lang === 'ja' ? `約${paybackMonths}ヶ月` : `~${paybackMonths} months`}
+					· {t.pricing.payback}: {lang === 'ja' ? `約${paybackMonths}ヶ月` : `~${paybackMonths} month${paybackMonths === 1 ? '' : 's'}`}
 				{/if}
 			</p>
 		{/if}

@@ -192,6 +192,7 @@
 		<QuestionStep
 			title={t.questions[current.id].title}
 			hint={t.questions[current.id].hint}
+			trustNote={t.questions[current.id].trustNote}
 			options={optionsFor(current)}
 			value={stepValue(current)}
 			multi={current.kind === 'multi'}
