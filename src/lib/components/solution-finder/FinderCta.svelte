@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { trackClick } from '$lib/analytics';
-	import type { Lang } from '$lib/data/solution-finder/types';
+	import type { Lang } from '$lib/data/indoor-positioning-selector/types';
 	import { ArrowRight } from 'lucide-svelte';
 
 	interface Props {
@@ -23,7 +23,7 @@
 		<p class="text-muted-foreground mt-1 text-sm">{text}</p>
 	</div>
 	<a
-		href={`/${lang}/solution-finder/?utm_source=site&utm_medium=cta&utm_campaign=${location}`}
+		href={`/${lang}/indoor-positioning-selector/?utm_source=site&utm_medium=cta&utm_campaign=${location}`}
 		class={`${buttonVariants({ size: 'lg' })} shrink-0`}
 		use:trackClick={{ name: 'Finder: CTA', props: { location } }}
 	>

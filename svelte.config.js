@@ -12,7 +12,7 @@ const ROUTES = [
 	'news',
 	'company',
 	'privacy-policy',
-	'solution-finder',
+	'indoor-positioning-selector',
 	'indoor-positioning-comparison',
 	'industries/construction',
 	'industries/factory',

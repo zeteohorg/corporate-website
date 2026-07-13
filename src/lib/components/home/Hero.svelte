@@ -503,7 +503,7 @@
 					{t.getStarted}
 				</a>
 				<a
-					href={`/${currentLanguage}/solution-finder/`}
+					href={`/${currentLanguage}/indoor-positioning-selector/`}
 					class="flex items-center justify-center text-xl leading-6 font-semibold"
 					use:trackClick={{ name: 'CTA: Learn More', props: { location: 'hero' } }}
 				>

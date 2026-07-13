@@ -14,7 +14,7 @@
 	const lang = $derived(($page.params.lang ?? 'en') as keyof typeof translations);
 	const t = $derived(translations[lang].solutionFinder.card);
 	// Invitational, not interruptive — never on the finder itself.
-	const onFinder = $derived($page.route.id?.includes('/solution-finder') ?? false);
+	const onFinder = $derived($page.route.id?.includes('/indoor-positioning-selector') ?? false);
 
 	let visible = $state(false);
 
@@ -92,7 +92,7 @@
 		<h2 class="pr-6 text-base font-bold">{t.heading}</h2>
 		<p class="text-muted-foreground mt-1 text-sm">{t.text}</p>
 		<a
-			href={`/${lang}/solution-finder/?utm_source=site&utm_medium=slidein&utm_campaign=slide_in_card`}
+			href={`/${lang}/indoor-positioning-selector/?utm_source=site&utm_medium=slidein&utm_campaign=slide_in_card`}
 			class={`${buttonVariants({ size: 'sm' })} mt-4 w-full`}
 			onclick={() => trackEvent('Finder: Card Clicked')}
 		>
