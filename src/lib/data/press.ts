@@ -13,19 +13,23 @@ export type PressRelease = {
 	id: string;
 	/** ISO date, shown as YYYY.MM.DD */
 	date: string;
-	pdf: string;
+	/** Press release per page language; images are shared */
+	pdf: Record<PressLang, string>;
 	images: string[];
-	zip: string;
+	/** "Download all": that language's PDF + the images */
+	zip: Record<PressLang, string>;
 };
+
+export type PressLang = 'ja' | 'en';
 
 /** Newest first */
 export const PRESS_RELEASES: PressRelease[] = [
 	{
 		id: '2026-10-06-ceatec-award',
 		date: '2026-10-06',
-		pdf: '2026-10-06_press-release.pdf',
+		pdf: { ja: '2026-10-06_press-release.pdf', en: '2026-10-06_press-release-en.pdf' },
 		images: ['2026-10-06_trails-positioning-image.png', '2026-10-06_astra-usage-image.png'],
-		zip: '2026-10-06_press-kit.zip'
+		zip: { ja: '2026-10-06_press-kit.zip', en: '2026-10-06_press-kit-en.zip' }
 	}
 ];
 
@@ -51,12 +55,12 @@ export function pressFile(id: string, name: string): PressFile | null {
 }
 
 /** Everything the page needs for one release */
-export function releaseDownloads(release: PressRelease) {
+export function releaseDownloads(release: PressRelease, lang: PressLang) {
 	return {
 		id: release.id,
 		date: release.date,
-		pdf: pressFile(release.id, release.pdf),
-		zip: pressFile(release.id, release.zip),
+		pdf: pressFile(release.id, release.pdf[lang]),
+		zip: pressFile(release.id, release.zip[lang]),
 		images: release.images.map((name) => ({
 			name,
 			file: pressFile(release.id, name),

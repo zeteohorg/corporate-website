@@ -31,20 +31,25 @@ for f in *.png *.jpg *.jpeg *.webp; do
 	echo "thumbnail: $thumb"
 done
 
-pdfs=(*.pdf)
-
-# The ZIP bundles the PDF and the original images, so only build it once both exist;
-# until then the page shows "download all" as coming soon.
-zip_file="${release:0:10}_press-kit.zip" # 2026-10-06-ceatec-award -> 2026-10-06_press-kit.zip
-rm -f "$zip_file"
-if [ ${#pdfs[@]} -gt 0 ] && [ ${#originals[@]} -gt 0 ]; then
+# One ZIP per language: "<name>-en.pdf" goes into "<date>_press-kit-en.zip" with the
+# images; any other PDF goes into "<date>_press-kit.zip". Built only once a PDF and
+# the images exist; until then the page shows "download all" as coming soon.
+date="${release:0:10}"
+rm -f "${date}"_press-kit*.zip
+built=0
+for pdf in *.pdf; do
+	case "$pdf" in
+	*-en.pdf) zip_file="${date}_press-kit-en.zip" ;;
+	*) zip_file="${date}_press-kit.zip" ;;
+	esac
+	[ ${#originals[@]} -gt 0 ] || break
 	# -X: no extra file attributes, -j: flat (no folders), -q: quiet
-	zip -X -j -q "$zip_file" "${pdfs[@]}" "${originals[@]}"
+	zip -X -j -q "$zip_file" "$pdf" "${originals[@]}"
 	echo "zip: $zip_file"
 	unzip -l "$zip_file"
-else
-	echo "zip: skipped (needs the PDF and the images; run again once all files are in place)" >&2
-fi
+	built=1
+done
+[ "$built" = 1 ] || echo "zip: skipped (needs a PDF and the images; run again once all files are in place)" >&2
 
 # Record the files present (name -> bytes) for this release
 manifest="$root/src/lib/data/press-manifest.json"

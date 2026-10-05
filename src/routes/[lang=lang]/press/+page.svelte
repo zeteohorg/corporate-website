@@ -13,7 +13,7 @@
 	const canonicalUrl = $derived(`${SITE_ORIGIN}/${lang}/press/`);
 
 	const DOWNLOAD_EVENT = 'Press Kit: Download';
-	const releases = PRESS_RELEASES.map(releaseDownloads);
+	const releases = $derived(PRESS_RELEASES.map((release) => releaseDownloads(release, lang)));
 
 	const formatDate = (iso: string) => iso.replaceAll('-', '.');
 

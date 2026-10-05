@@ -1,7 +1,7 @@
 import type { PressTranslation } from '../types';
 
-// Japanese copy is as specified. English is a draft pending confirmation
-// (incl. the award's official English name).
+// Japanese copy is as specified. English follows the English press release PDF
+// (2026-10-06_press-release-en.pdf) for titles, names and the company profile.
 export const en: PressTranslation = {
 	meta: {
 		title: 'Press Kit',
@@ -13,10 +13,10 @@ export const en: PressTranslation = {
 	releases: {
 		'2026-10-06-ceatec-award': {
 			title:
-				"TRAILS, spatial AI that locates people indoors where GPS can't reach using a single smartphone, wins the CEATEC AWARD 2026 Next Generation Award",
+				'Zeteoh\'s Spatial AI "TRAILS," Which Locates People Indoors Beyond GPS Using Only a Smartphone, Wins the CEATEC AWARD 2026 Next Generation Award',
 			images: [
-				'Image: Indoor positioning with the TRAILS spatial AI',
-				'Image: How the Astra spatial AI camera (prototype) can be used'
+				'Image: Illustration of indoor positioning with the spatial AI "TRAILS"',
+				'Image: Usage illustration of the spatial AI camera "Astra" (prototype)'
 			]
 		}
 	},
@@ -29,20 +29,20 @@ export const en: PressTranslation = {
 	companyTitle: 'Company profile',
 	company: [
 		{ label: 'Company name', value: 'Zeteoh, Inc.' },
-		{ label: 'Representative', value: 'Yann Le Guilly, Representative Director' },
+		{ label: 'Representative', value: 'Yann Le Guilly, Representative Director, CEO' },
 		{
 			label: 'Address',
-			value: '12th floor YANMAR TOKYO, 2-1-1 Yaesu, Chuo-ku, Tokyo 104-0028, Japan'
+			value: 'YANMAR TOKYO 12F, 2-1-1 Yaesu, Chuo-ku, Tokyo 104-0028, Japan'
 		},
-		{ label: 'Founded', value: 'September, 2020' },
+		{ label: 'Founded', value: 'September 2020' },
 		{
 			label: 'Business',
 			value:
-				'Development and sales of indoor positioning solutions\nSoftware development using artificial intelligence'
+				'Development and sales of indoor positioning solutions; software development using artificial intelligence'
 		}
 	],
 	contactTitle: 'Media inquiries',
-	contact: 'PR: Satomi Le Guilly',
+	contact: 'Satomi Le Guilly, Public Relations',
 	email: 'satomi@zeteoh.com',
 	usage: 'Images on this page may be used for press purposes only.'
 };
