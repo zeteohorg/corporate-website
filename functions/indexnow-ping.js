@@ -1,5 +1,6 @@
 const INDEXNOW_KEY = 'ab8027dbe005483c9d5ed852e3fb576d';
-const HOST = 'www.zeteoh.com';
+// The site's primary domain (www.zeteoh.com redirects here)
+const HOST = 'zeteoh.com';
 
 // Netlify build event handler: pings IndexNow (Bing/Yandex/etc.) with the
 // sitemap URL after every successful deploy so newly published/updated pages

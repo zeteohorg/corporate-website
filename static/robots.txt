@@ -27,4 +27,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://www.zeteoh.com/sitemap.xml
+Sitemap: https://zeteoh.com/sitemap.xml
