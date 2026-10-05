@@ -44,7 +44,9 @@
 		/>
 	{/if}
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="{SITE_ORIGIN}/socialcard.jpeg" />
+	<meta property="og:image" content="{SITE_ORIGIN}/og/og-default.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 	<meta property="og:url" content={canonicalUrl} />
 	<link rel="canonical" href={canonicalUrl} />
 	<meta name="twitter:card" content="summary_large_image" />

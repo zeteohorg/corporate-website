@@ -16,13 +16,13 @@
 	const { metadata, html, content, previousPost, nextPost, alternateLang } = data;
 	const lang = $page.params.lang;
 	const t = translations[lang];
-	$: pageUrl = `${SITE_ORIGIN}/${lang}/news/${$page.params.slug}`;
+	$: pageUrl = `${SITE_ORIGIN}/${lang}/news/${$page.params.slug}/`;
 
 	$: fullMeta = getMeta({
 		defaultTitle: 'Zeteoh',
 		defaultDescription:
-			"Powered by Spatial AI — real-time motion analytics from your team's smartphones.",
-		defaultOGImage: '/socialcard.jpeg',
+			'zeteoh builds spatial AI that records how people move indoors, using only smartphones.',
+		defaultOGImage: '/og/og-default.jpg',
 		routeMeta: data.meta,
 		pageParam: undefined,
 		url: $page.url
@@ -48,12 +48,12 @@
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
 		itemListElement: [
-			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/${lang}` },
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/${lang}/` },
 			{
 				'@type': 'ListItem',
 				position: 2,
 				name: t.news.title,
-				item: `${SITE_ORIGIN}/${lang}/news`
+				item: `${SITE_ORIGIN}/${lang}/news/`
 			},
 			{ '@type': 'ListItem', position: 3, name: metadata.title, item: pageUrl }
 		]
@@ -85,7 +85,7 @@
 		<link
 			rel="alternate"
 			hreflang={alternateLang}
-			href={`${SITE_ORIGIN}/${alternateLang}/news/${$page.params.slug}`}
+			href={`${SITE_ORIGIN}/${alternateLang}/news/${$page.params.slug}/`}
 		/>
 	{/if}
 	<JsonLd schema={articleSchema} />

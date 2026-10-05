@@ -31,14 +31,14 @@ rendered directly in the page. -->
 	const readingTime = $derived(
 		data.content ? formatReadingTime(data.content, currentLanguage) : ''
 	);
-	const pageUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog/${$page.params.slug}`);
+	const pageUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog/${$page.params.slug}/`);
 
 	const fullMeta = $derived(
 		getMeta({
 			defaultTitle: 'Zeteoh',
 			defaultDescription:
-				"Powered by Spatial AI — real-time motion analytics from your team's smartphones.",
-			defaultOGImage: '/socialcard.jpeg',
+				'zeteoh builds spatial AI that records how people move indoors, using only smartphones.',
+			defaultOGImage: '/og/og-default.jpg',
 			routeMeta: data.meta,
 			pageParam: undefined,
 			url: $page.url
@@ -71,13 +71,13 @@ rendered directly in the page. -->
 				'@type': 'ListItem',
 				position: 1,
 				name: 'Home',
-				item: `${SITE_ORIGIN}/${currentLanguage}`
+				item: `${SITE_ORIGIN}/${currentLanguage}/`
 			},
 			{
 				'@type': 'ListItem',
 				position: 2,
 				name: t.blog.title,
-				item: `${SITE_ORIGIN}/${currentLanguage}/blog`
+				item: `${SITE_ORIGIN}/${currentLanguage}/blog/`
 			},
 			{ '@type': 'ListItem', position: 3, name: data.metadata.title, item: pageUrl }
 		]
@@ -117,7 +117,7 @@ rendered directly in the page. -->
 		<link
 			rel="alternate"
 			hreflang={data.alternateLang}
-			href={`${SITE_ORIGIN}/${data.alternateLang}/blog/${$page.params.slug}`}
+			href={`${SITE_ORIGIN}/${data.alternateLang}/blog/${$page.params.slug}/`}
 		/>
 	{/if}
 	<JsonLd schema={articleSchema} />

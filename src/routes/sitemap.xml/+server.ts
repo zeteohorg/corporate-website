@@ -5,6 +5,8 @@ import * as YAML from 'yaml';
 
 type ParsedPost = { slug: string; lang: string; lastmod: string };
 
+const withSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`);
+
 function parseModules(modules: Record<string, unknown>): ParsedPost[] {
 	const posts: ParsedPost[] = [];
 
@@ -70,6 +72,13 @@ export const GET: RequestHandler = async () => {
 	for (const { slug, lang } of blogPosts) blog.validPaths.add(`/${lang}/blog/${slug}`);
 	for (const { slug, lang } of newsPosts) news.validPaths.add(`/${lang}/news/${slug}`);
 
+	// Blog/news paths exist only for the languages the post was written in.
+	const exists = (path: string) => {
+		if (/^\/(en|ja)\/blog\/.+$/.test(path)) return blog.validPaths.has(path);
+		if (/^\/(en|ja)\/news\/.+$/.test(path)) return news.validPaths.has(path);
+		return true;
+	};
+
 	return await sitemap.response({
 		origin: SITE_ORIGIN,
 		excludeRoutePatterns: ['^/stripe/.*', '.*\\(login\\).*'],
@@ -85,12 +94,21 @@ export const GET: RequestHandler = async () => {
 			}))
 		},
 		processPaths: (paths) =>
-			paths.filter((p) => {
-				const blogMatch = p.path.match(/^\/(en|ja)\/blog\/(.+)$/);
-				if (blogMatch) return blog.validPaths.has(p.path);
-				const newsMatch = p.path.match(/^\/(en|ja)\/news\/(.+)$/);
-				if (newsMatch) return news.validPaths.has(p.path);
-				return true;
-			})
+			paths
+				.filter((p) => p.path !== '/' && exists(p.path)) // "/" only redirects to a language root
+				.map((p) => {
+					// Only point hreflang at pages that exist (some posts are in one language only),
+					// and use trailing slashes: the site uses trailingSlash: 'always'.
+					const alternates = p.alternates
+						?.filter((a) => exists(a.path))
+						.map((a) => ({ ...a, path: withSlash(a.path) }));
+					const en = alternates?.find((a) => a.lang === 'en');
+					return {
+						...p,
+						path: withSlash(p.path),
+						alternates:
+							alternates && en ? [...alternates, { lang: 'x-default', path: en.path }] : alternates
+					};
+				})
 	});
 };

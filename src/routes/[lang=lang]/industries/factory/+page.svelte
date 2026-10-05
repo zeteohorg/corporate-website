@@ -7,7 +7,7 @@
 	export let data: PageData;
 	const { translations, lang } = data;
 	const factory = translations.factory;
-	const canonicalUrl = `${SITE_ORIGIN}/${lang}/industries/factory`;
+	const canonicalUrl = `${SITE_ORIGIN}/${lang}/industries/factory/`;
 </script>
 
 <svelte:head>
@@ -16,6 +16,10 @@
 	<meta property="og:title" content={factory.title} />
 	<meta property="og:description" content={factory.subtitle} />
 	<meta property="og:type" content="website" />
+	<meta property="og:image" content="{SITE_ORIGIN}/og/og-default.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta property="og:url" content={canonicalUrl} />
 	<link rel="canonical" href={canonicalUrl} />
 </svelte:head>
@@ -106,7 +110,7 @@
 </div>
 <div class="container mx-auto px-4 py-12 md:px-6">
 	<div class="mb-12 space-y-4 text-center">
-		<h1 class="text-3xl font-bold tracking-tight">{factory.solutions.title}</h1>
+		<h2 class="text-3xl font-bold tracking-tight">{factory.solutions.title}</h2>
 		<p class="text-muted-foreground mx-auto max-w-[900px] text-lg">
 			{factory.solutions.subtitle}
 		</p>
