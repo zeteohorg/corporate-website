@@ -20,6 +20,12 @@
 								class="hover:text-foreground inline-block px-2 py-2">{t.links.about}</a
 							>
 						</li>
+						<li>
+							<a
+								href="/{currentLanguage}/press/"
+								class="hover:text-foreground inline-block px-2 py-2">{t.links.press}</a
+							>
+						</li>
 						<!-- <li>
 								<a href="/{currentLanguage}/careers" class="hover:text-foreground"
 									>{t.links.careers}</a
