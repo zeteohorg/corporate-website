@@ -182,6 +182,11 @@ export type PrivacyPolicyTranslation = {
 };
 
 export type CompanyTranslation = {
+	/** <head> only; the page's own headings stay as they are */
+	meta: {
+		title: string;
+		description: string;
+	};
 	hero: {
 		title: string;
 		subtitle: string;

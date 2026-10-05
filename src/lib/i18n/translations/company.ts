@@ -1,6 +1,11 @@
 import type { CompanyTranslation } from '../types';
 
 export const en: CompanyTranslation = {
+	meta: {
+		title: 'About us | Spatial AI for physical spaces',
+		description:
+			'zeteoh is a spatial AI startup. Our infrastructure-free platform, TRAILS, captures how people move indoors using existing devices. Meet our vision and team.'
+	},
 	hero: {
 		title: 'We transform real-world spatial data into the intelligence that powers autonomous physical spaces.',
 		subtitle:
@@ -123,6 +128,11 @@ export const en: CompanyTranslation = {
 };
 
 export const ja: CompanyTranslation = {
+	meta: {
+		title: '会社概要｜空間AIで物理空間を知能化する',
+		description:
+			'zeteohは、既存のデバイスだけで屋内の人の動きを捉える空間AIのスタートアップです。インフラ不要の空間AI「TRAILS」を開発しています。ビジョン、チーム、会社情報を紹介します。'
+	},
 	hero: {
 		title: '現実の動きを、進化し続ける知能へ。',
 		subtitle:

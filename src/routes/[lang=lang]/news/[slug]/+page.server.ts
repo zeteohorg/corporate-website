@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { excerptFromMarkdown } from '$lib/utils/excerpt';
 import type { PageServerLoad } from './$types';
 import * as YAML from 'yaml';
 import { compile } from 'mdsvex';
@@ -114,12 +115,15 @@ export const load: PageServerLoad = async ({ params }) => {
 			return path.includes(`/${otherLang}/`) && fileSlug === cleanSlug;
 		});
 
+		// Posts without a frontmatter description get one from the body (meta description / JSON-LD)
+		const description = metadata.description || excerptFromMarkdown(cleanMarkdown, lang);
+
 		return {
 			metadata: {
 				title: metadata.title || cleanSlug,
 				date: metadata.date || new Date().toISOString(),
 				updated: metadata.updated || metadata.date || new Date().toISOString(),
-				description: metadata.description || '',
+				description,
 				published: metadata.published ?? false,
 				author: metadata.author,
 				tags: metadata.tags,
@@ -127,7 +131,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			},
 			meta: {
 				title: metadata.title || cleanSlug,
-				description: metadata.description || '',
+				description,
 				ogType: 'article' as const,
 				ogImage: metadata.thumbnail?.url
 			},

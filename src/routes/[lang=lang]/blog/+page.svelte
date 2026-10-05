@@ -8,7 +8,7 @@
 	let { data } = $props<{ data: PageData }>();
 	const currentLanguage = $derived($page.params.lang);
 	const t = $derived(translations[currentLanguage]);
-	const canonicalUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog`);
+	const canonicalUrl = $derived(`${SITE_ORIGIN}/${currentLanguage}/blog/`);
 	const description = $derived(
 		currentLanguage === 'ja'
 			? 'Spatial AIと屋内位置測位に関するzeteohのブログ記事一覧。'
@@ -22,6 +22,10 @@
 	<meta property="og:title" content={t.blog.title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content="website" />
+	<meta property="og:image" content="{SITE_ORIGIN}/og/og-default.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta property="og:url" content={canonicalUrl} />
 	<link rel="canonical" href={canonicalUrl} />
 </svelte:head>
