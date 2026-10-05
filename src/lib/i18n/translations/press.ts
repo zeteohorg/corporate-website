@@ -43,7 +43,7 @@ export const en: PressTranslation = {
 	],
 	contactTitle: 'Media inquiries',
 	contact: 'PR: Satomi Le Guilly',
-	email: 'info@zeteoh.com',
+	email: 'satomi@zeteoh.com',
 	usage: 'Images on this page may be used for press purposes only.'
 };
 
@@ -84,6 +84,6 @@ export const ja: PressTranslation = {
 	],
 	contactTitle: '報道関係者のお問い合わせ先',
 	contact: '広報担当 リギリ 聡美',
-	email: 'info@zeteoh.com',
+	email: 'satomi@zeteoh.com',
 	usage: '掲載画像は報道目的に限りご利用いただけます。'
 };
