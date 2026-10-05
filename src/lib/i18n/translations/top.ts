@@ -273,7 +273,7 @@ export const ja: TopTranslation = {
 			items: [
 				{
 					caption: '作業者の手の動きを3Dで捉え、作業手順の記録・分析に生かす',
-					image: { alt: '3Dハンドポーズ推定の例' }
+					image: { alt: '作業者の手の骨格を推定し、作業手順の進み具合を記録する画面の例' }
 				},
 				{
 					caption: '歩いて撮影した映像から、現場の3Dモデルを再構成する',
@@ -521,7 +521,7 @@ export const en: TopTranslation = {
 			items: [
 				{
 					caption: 'Capture hand motion in 3D to document and analyze work procedures',
-					image: { alt: 'An example of 3D hand pose estimation' }
+					image: { alt: 'Example screen that estimates a worker’s hand pose and records progress through the work steps' }
 				},
 				{
 					caption: 'Rebuild a 3D model of the site from walkthrough footage',
