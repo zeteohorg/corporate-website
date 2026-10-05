@@ -32,16 +32,19 @@ for f in *.png *.jpg *.jpeg *.webp; do
 done
 
 pdfs=(*.pdf)
-[ ${#pdfs[@]} -gt 0 ] || echo "warning: no PDF in $dir (ZIP will contain images only)" >&2
-[ ${#originals[@]} -gt 0 ] || { echo "No images in $dir" >&2; exit 1; }
 
-# Name from the release date: 2026-10-06-ceatec-award -> 2026-10-06_press-kit.zip
-zip_file="${release:0:10}_press-kit.zip"
+# The ZIP bundles the PDF and the original images, so only build it once both exist;
+# until then the page shows "download all" as coming soon.
+zip_file="${release:0:10}_press-kit.zip" # 2026-10-06-ceatec-award -> 2026-10-06_press-kit.zip
 rm -f "$zip_file"
-# -X: no extra file attributes, -j: flat (no folders), -q: quiet
-zip -X -j -q "$zip_file" "${pdfs[@]}" "${originals[@]}"
-echo "zip: $zip_file"
-unzip -l "$zip_file"
+if [ ${#pdfs[@]} -gt 0 ] && [ ${#originals[@]} -gt 0 ]; then
+	# -X: no extra file attributes, -j: flat (no folders), -q: quiet
+	zip -X -j -q "$zip_file" "${pdfs[@]}" "${originals[@]}"
+	echo "zip: $zip_file"
+	unzip -l "$zip_file"
+else
+	echo "zip: skipped (needs the PDF and the images; run again once all files are in place)" >&2
+fi
 
 # Record the files present (name -> bytes) for this release
 manifest="$root/src/lib/data/press-manifest.json"

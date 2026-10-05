@@ -10,7 +10,8 @@ Files for `/ja/press/` and `/en/press/` live in `static/press/<release-id>/` and
    - `2026-10-06_astra-usage-image.jpg` (1920×1080)
 2. Run `tools/press/build-assets.sh <release-id>` (macOS). It writes:
    - `*-thumb.jpg` thumbnails shown on the page
-   - `<date>_press-kit.zip` with the PDF and the original images
+   - `<date>_press-kit.zip` with the PDF and the original images (only once both the PDF and images are present)
+   - `src/lib/data/press-manifest.json`, the list of files the page links to
 3. Commit the originals and the generated files.
 
 Until a file exists, the page shows it as "準備中 / Coming soon" instead of a broken link.
