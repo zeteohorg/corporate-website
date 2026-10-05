@@ -58,5 +58,27 @@
 		class="bg-background min-h-screen font-sans antialiased"
 	>
 		<div style="display: contents">%sveltekit.body%</div>
+
+		<!-- Netlify Forms detection (hidden): durable fallback lead sink for the
+		     Solution Finder if the HubSpot forward fails. The live form is
+		     client-rendered, so Netlify needs this static markup to register the
+		     field set at build time. -->
+		<form name="solution-finder" data-netlify="true" netlify-honeypot="bot-field" hidden>
+			<input type="text" name="email" />
+			<input type="text" name="name" />
+			<input type="text" name="phone" />
+			<input type="text" name="company" />
+			<input type="text" name="sf_vertical" />
+			<input type="text" name="sf_area_band" />
+			<input type="text" name="sf_headcount_band" />
+			<input type="text" name="sf_accuracy_need" />
+			<input type="text" name="sf_constraints" />
+			<input type="text" name="sf_device_availability" />
+			<input type="text" name="sf_timeline" />
+			<input type="text" name="sf_budget_band" />
+			<input type="text" name="sf_recommended_tech" />
+			<input type="text" name="sf_department_title" />
+			<input type="text" name="sf_lang" />
+		</form>
 	</body>
 </html>

@@ -12,6 +12,8 @@ const ROUTES = [
 	'news',
 	'company',
 	'privacy-policy',
+	'indoor-positioning-selector',
+	'indoor-positioning-comparison',
 	'industries/construction',
 	'industries/factory',
 	'industries/logistics'

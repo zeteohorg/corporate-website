@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import JsonLd from '$lib/components/JsonLd.svelte';
 	import { SITE_ORIGIN } from '$lib/origin';
+	import SlideInCard from '$lib/components/solution-finder/SlideInCard.svelte';
 
 	let { children } = $props();
 
@@ -35,3 +36,5 @@
 </svelte:head>
 
 {@render children?.()}
+
+<SlideInCard />
