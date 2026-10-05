@@ -73,7 +73,9 @@
 		sending = true;
 		sendFailed = false;
 		try {
-			const response = await fetch('/', {
+			// Netlify Forms only accepts POSTs to static files. "/" is a server-side
+			// redirect (not prerendered), so post to the prerendered top page instead.
+			const response = await fetch(`/${lang}/`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: new URLSearchParams(data as unknown as Record<string, string>).toString()
