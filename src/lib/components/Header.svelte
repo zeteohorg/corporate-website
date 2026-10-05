@@ -1,79 +1,76 @@
 <script lang="ts">
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
-	import { theme } from '$lib/stores/theme';
 	import ThemeToggle from './ThemeToggle.svelte';
-	import { MobileNav } from './ui/mobile-nav';
 	import IndustriesDropdown from './navigation/IndustriesDropdown.svelte';
+	import ProductsDropdown from './navigation/ProductsDropdown.svelte';
+	import MobileMenu from './top/MobileMenu.svelte';
+	import Logo from './Logo.svelte';
 	import { translations } from '$lib/i18n/translations';
+	import { trackClick } from '$lib/analytics';
+	import { TOP_EVENTS, TOP_LINKS, topHref } from '$lib/config/top';
+	import { otherLanguage, otherLanguagePath } from '$lib/utils/language';
 
-	const t = $derived(translations[$page.params.lang]);
+	let { onTopPage = false }: { onTopPage?: boolean } = $props();
 
-	const switchLanguage = () => {
-		const currentLang = $page.params.lang;
-		const newLang = currentLang === 'ja' ? 'en' : 'ja';
-		const path = $page.url.pathname.replace(/^\/(ja|en)/, '');
-		window.location.href = `/${newLang}${path || ''}`;
-	};
+	const lang = $derived(($page.params.lang ?? 'en') as keyof typeof translations);
+	const t = $derived(translations[lang]);
+	const nav = $derived(t.top.nav);
+	const href = (anchor: string) => topHref(lang, anchor, onTopPage);
 </script>
 
 <header
-	class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur"
+	class="bg-z-bg/95 supports-backdrop-filter:bg-z-bg/80 border-z-border sticky top-0 z-50 w-full border-b backdrop-blur"
 >
-	<div class="container mx-auto px-4">
-		<div class="flex h-16 items-center justify-between">
-			<a href="/{$page.params.lang}" class="flex items-center space-x-2">
-				<picture>
-					{#if $theme === 'dark'}
-						<source
-							srcset="/images/kana-logo-white-400.webp 2x, /images/kana-logo-white.webp 1x"
-							type="image/webp"
-						/>
-						<img
-							src="/images/kana-logo-white.png"
-							alt="Zeteoh"
-							class="h-8 w-auto"
-							height="32"
-							width="100"
-							loading="eager"
-							decoding="async"
-						/>
-					{:else}
-						<source
-							srcset="/images/kana-logo-bl-400.webp 2x, /images/kana-logo-bl.webp 1x"
-							type="image/webp"
-						/>
-						<img
-							src="/images/kana-logo-bl.png"
-							alt="Zeteoh"
-							class="h-8 w-auto"
-							height="32"
-							width="100"
-							loading="eager"
-							decoding="async"
-						/>
-					{/if}
-				</picture>
+	<div class="z-container">
+		<div class="flex h-16 items-center justify-between gap-3">
+			<a href="/{lang}/" class="flex items-center">
+				<Logo />
 			</a>
 
 			<!-- Desktop Navigation -->
-			<nav class="hidden items-center space-x-4 lg:flex">
-				<a href="/{$page.params.lang}/" class={buttonVariants({ variant: 'ghost' })}> Solutions </a>
-				<IndustriesDropdown lang={$page.params.lang} translations={t} />
-				<a href="/{$page.params.lang}/blog" class={buttonVariants({ variant: 'ghost' })}> Blog </a>
-				<a href="/{$page.params.lang}/news" class={buttonVariants({ variant: 'ghost' })}> News </a>
-				<a href="/{$page.params.lang}/company" class={buttonVariants({ variant: 'ghost' })}>
-					Company
-				</a>
+			<nav class="hidden items-center gap-1 lg:flex">
+				<ProductsDropdown
+					label={nav.products}
+					hint={nav.productsHint}
+					items={[
+						{ label: nav.trails, href: href(TOP_LINKS.trails) },
+						{ label: nav.astra, href: href(TOP_LINKS.astra) }
+					]}
+				/>
+				<IndustriesDropdown translations={t.common} />
+				<a href="/{lang}/blog" class={buttonVariants({ variant: 'ghost' })}> Blog </a>
+				<a href="/{lang}/news" class={buttonVariants({ variant: 'ghost' })}> News </a>
+				<a href="/{lang}/company" class={buttonVariants({ variant: 'ghost' })}> Company </a>
 				<ThemeToggle />
-				<button onclick={switchLanguage} class={buttonVariants({ variant: 'outline' })}>
-					{$page.params.lang === 'ja' ? 'EN' : '日本語'}
-				</button>
+				<a
+					href={otherLanguagePath($page.url.pathname, lang, $page.data.alternateLang)}
+					hreflang={otherLanguage(lang)}
+					lang={otherLanguage(lang)}
+					class={buttonVariants({ variant: 'ghost' })}
+					use:trackClick={{ name: TOP_EVENTS.langSwitch, props: { to: otherLanguage(lang) } }}
+				>
+					{nav.langSwitch}
+				</a>
+				<a
+					href={href(TOP_LINKS.poc)}
+					class="z-btn z-btn-primary ml-2 min-h-11 text-[14px]"
+					use:trackClick={{ name: TOP_EVENTS.ctaClick, props: { location: 'header' } }}
+				>
+					{nav.apply}
+				</a>
 			</nav>
 
-			<!-- Mobile Navigation -->
-			<div class="lg:hidden">
-				<MobileNav />
+			<!-- Mobile / tablet: apply button stays visible next to the menu button -->
+			<div class="flex items-center gap-2 lg:hidden">
+				<a
+					href={href(TOP_LINKS.poc)}
+					class="z-btn z-btn-primary min-h-11 px-4 text-[13px]"
+					use:trackClick={{ name: TOP_EVENTS.ctaClick, props: { location: 'header' } }}
+				>
+					{nav.applyShort}
+				</a>
+				<MobileMenu {onTopPage} />
 			</div>
 		</div>
 	</div>

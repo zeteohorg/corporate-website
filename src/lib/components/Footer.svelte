@@ -1,109 +1,79 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
-	import { Twitter, Github, Linkedin } from 'lucide-svelte';
 
-	const currentLanguage = $derived($page.params.lang ?? 'en');
-	const t = $derived(translations[currentLanguage].common.footer);
+	const lang = $derived(($page.params.lang ?? 'en') as keyof typeof translations);
+	const t = $derived(translations[lang].common.footer);
+	const address = $derived(translations[lang].top.footer.address);
+
+	// Year at build time; the site is rebuilt on every deploy
+	const year = new Date().getFullYear();
+
+	type FooterLink = { href: string; label: string; external?: boolean };
+
+	const columns: Array<{ title: string; links: FooterLink[] }> = $derived([
+		{ title: t.company, links: [{ href: `/${lang}/company/`, label: t.links.about }] },
+		{
+			title: t.resources,
+			links: [
+				{ href: `/${lang}/blog/`, label: t.links.blog },
+				{ href: `/${lang}/news/`, label: t.links.news }
+			]
+		},
+		{ title: t.legal, links: [{ href: `/${lang}/privacy-policy/`, label: t.links.privacyPolicy }] },
+		{
+			title: t.social,
+			links: [
+				{ href: 'https://x.com/zeteoh_ai', label: 'X', external: true },
+				{ href: 'https://jp.linkedin.com/company/zeteoh', label: 'LinkedIn', external: true }
+			]
+		}
+	]);
 </script>
 
-<footer class="border-t">
-	<div class="container mx-auto px-4 py-12">
-		<div class="mx-auto max-w-4xl">
-			<div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-				<div class="space-y-4 text-center">
-					<h2 class="text-sm font-medium">{t.company}</h2>
-					<ul class="text-muted-foreground space-y-1 text-sm">
-						<li>
-							<a
-								href="/{currentLanguage}/company"
-								class="hover:text-foreground inline-block px-2 py-2">{t.links.about}</a
-							>
-						</li>
-						<!-- <li>
-								<a href="/{currentLanguage}/careers" class="hover:text-foreground"
-									>{t.links.careers}</a
-								>
-							</li>
-							<li>
-								<a href="/{currentLanguage}/#contact" class="hover:text-foreground"
-									>{t.links.contact}</a
-								>
-							</li> -->
-					</ul>
-				</div>
-
-				<div class="space-y-4 text-center">
-					<h2 class="text-sm font-medium">{t.resources}</h2>
-					<ul class="text-muted-foreground space-y-1 text-sm">
-						<li>
-							<a href="/{currentLanguage}/blog" class="hover:text-foreground inline-block px-2 py-2"
-								>{t.links.blog}</a
-							>
-						</li>
-						<li>
-							<a href="/{currentLanguage}/news" class="hover:text-foreground inline-block px-2 py-2"
-								>{t.links.news}</a
-							>
-						</li>
-					</ul>
-				</div>
-
-				<div class="space-y-4 text-center">
-					<h2 class="text-sm font-medium">{t.legal}</h2>
-					<ul class="text-muted-foreground space-y-1 text-sm">
-						<li>
-							<a href="/privacy-policy" class="hover:text-foreground inline-block px-2 py-2"
-								>{t.links.privacyPolicy}</a
-							>
-						</li>
-						<!-- <li><a href="/terms" class="hover:text-foreground">{t.links.terms}</a></li> -->
-					</ul>
-				</div>
-
-				<div class="space-y-4 text-center">
-					<h2 class="text-sm font-medium">{t.social}</h2>
-					<ul class="text-muted-foreground mt-4 flex justify-center gap-1">
-						<li>
-							<a
-								href="https://x.com/zeteoh_ai"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="hover:text-foreground inline-flex p-2"
-								aria-label="Twitter"
-							>
-								<Twitter class="h-5 w-5" />
-							</a>
-						</li>
-						<li>
-							<a
-								href="https://github.com/yourcompany"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="hover:text-foreground inline-flex p-2"
-								aria-label="GitHub"
-							>
-								<Github class="h-5 w-5" />
-							</a>
-						</li>
-						<li>
-							<a
-								href="https://jp.linkedin.com/company/zeteoh"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="hover:text-foreground inline-flex p-2"
-								aria-label="LinkedIn"
-							>
-								<Linkedin class="h-5 w-5" />
-							</a>
-						</li>
-					</ul>
-				</div>
+<footer class="bg-z-dark text-z-on-dark">
+	<div class="z-container py-12 lg:py-14">
+		<div class="flex flex-col gap-10 lg:flex-row lg:justify-between">
+			<div>
+				<img
+					src="/images/kana-logo-white.png"
+					alt="Zeteoh"
+					width="100"
+					height="28"
+					loading="lazy"
+					decoding="async"
+					class="h-7 w-auto"
+				/>
+				<p class="text-z-on-dark-sub mt-4 text-[13px] leading-[1.6]">{address}</p>
 			</div>
+
+			<nav aria-label="Footer">
+				<ul class="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 lg:gap-x-10">
+					{#each columns as column (column.title)}
+						<li>
+							<h2 class="text-[13px] font-bold">{column.title}</h2>
+							<ul class="mt-2">
+								{#each column.links as link (link.href)}
+									<li>
+										<a
+											href={link.href}
+											target={link.external ? '_blank' : undefined}
+											rel={link.external ? 'noopener noreferrer' : undefined}
+											class="text-z-on-dark-sub hover:text-z-on-dark inline-flex min-h-11 items-center text-[13px] focus-visible:outline-2 focus-visible:outline-white"
+										>
+											{link.label}
+										</a>
+									</li>
+								{/each}
+							</ul>
+						</li>
+					{/each}
+				</ul>
+			</nav>
 		</div>
 
-		<div class="mt-12 border-t pt-8">
-			<p class="text-muted-foreground text-center text-sm">{t.copyright}</p>
-		</div>
+		<p class="text-z-on-dark-caption border-z-dark-border mt-10 border-t pt-6 text-[12px]">
+			© {year} Zeteoh, Inc. All rights reserved.
+		</p>
 	</div>
 </footer>

@@ -8,7 +8,7 @@ export const en: CommonTranslation = {
 		company: 'Company Name',
 		jobTitle: 'Job Title',
 		message: 'Message',
-		submit: 'Request PoC',
+		submit: 'Submit',
 		success:
 			"Thank you for your interest! We'll contact you soon to discuss your PoC implementation.",
 		required: 'Required fields',
@@ -64,7 +64,7 @@ export const en: CommonTranslation = {
 		company: 'Company',
 		solutions: 'Solutions',
 		industries: {
-			title: 'Use Cases',
+			title: 'Applications',
 			construction: 'Construction',
 			logistics: 'Logistics',
 			factory: 'Factories'
@@ -80,7 +80,7 @@ export const ja: CommonTranslation = {
 		company: '会社名',
 		jobTitle: '役職',
 		message: 'メッセージ',
-		submit: 'PoCを依頼する',
+		submit: '送信する',
 		success:
 			'お問い合わせありがとうございます。PoCの実施について担当者よりご連絡させていただきます。',
 		required: '必須項目',
@@ -136,7 +136,7 @@ export const ja: CommonTranslation = {
 		company: '会社情報',
 		solutions: 'ソリューション',
 		industries: {
-			title: 'ユースケース',
+			title: '活用アイデア',
 			construction: '建設',
 			logistics: '物流',
 			factory: '工場'
