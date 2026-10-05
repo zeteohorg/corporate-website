@@ -135,10 +135,10 @@
 						<img
 							src={logo.src}
 							alt={t.logos[logo.key]}
-							width="736"
-							height="206"
+							width="3000"
+							height="824"
 							loading="lazy"
-							class="h-auto max-h-16 w-auto"
+							class="h-auto max-h-24 w-auto"
 						/>
 					</div>
 					<a

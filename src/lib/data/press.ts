@@ -34,10 +34,10 @@ export const pressDir = (id: string) => `/press/${id}`;
 /** Thumbnail generated next to the original: foo.png → foo-thumb.jpg */
 export const thumbName = (file: string) => file.replace(/\.[a-z]+$/i, '-thumb.jpg');
 
-/** Logos offered for download (existing site assets) */
+/** Logos offered for download: transparent PNG, 3000×824 (static/press/logo/) */
 export const PRESS_LOGOS = [
-	{ key: 'black', src: '/images/kana-logo-bl.png', download: 'zeteoh-logo-black.png' },
-	{ key: 'white', src: '/images/kana-logo-white.png', download: 'zeteoh-logo-white.png' }
+	{ key: 'black', src: '/press/logo/zeteoh-logo-black.png', download: 'zeteoh-logo-black.png' },
+	{ key: 'white', src: '/press/logo/zeteoh-logo-white.png', download: 'zeteoh-logo-white.png' }
 ] as const;
 
 export type PressFile = { url: string; size: number };
