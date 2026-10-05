@@ -24,7 +24,7 @@ export const PRESS_RELEASES: PressRelease[] = [
 		id: '2026-10-06-ceatec-award',
 		date: '2026-10-06',
 		pdf: '2026-10-06_press-release.pdf',
-		images: ['2026-10-06_trails-positioning-image.png', '2026-10-06_astra-usage-image.jpg'],
+		images: ['2026-10-06_trails-positioning-image.png', '2026-10-06_astra-usage-image.png'],
 		zip: '2026-10-06_press-kit.zip'
 	}
 ];
