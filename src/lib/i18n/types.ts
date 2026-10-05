@@ -67,6 +67,7 @@ export type CommonTranslation = {
 			news: string;
 			privacyPolicy: string;
 			terms: string;
+			press: string;
 		};
 	};
 };
@@ -146,6 +147,7 @@ export type Translation = {
 	logistics: LogisticsTranslation;
 	export: ExportTranslation;
 	top: TopTranslation;
+	press: PressTranslation;
 };
 
 // Add to Translation interface
@@ -343,4 +345,24 @@ export type ExportTranslation = {
 			details: string;
 		};
 	};
+};
+
+export type PressTranslation = {
+	meta: { title: string; description: string };
+	title: string;
+	releasesTitle: string;
+	/** Keyed by PressRelease.id (src/lib/data/press.ts) */
+	releases: Record<string, { title: string; images: string[] }>;
+	pressRelease: string;
+	downloadAll: string;
+	download: string;
+	preparing: string;
+	logoTitle: string;
+	logos: { black: string; white: string };
+	companyTitle: string;
+	company: Array<{ label: string; value: string }>;
+	contactTitle: string;
+	contact: string;
+	email: string;
+	usage: string;
 };

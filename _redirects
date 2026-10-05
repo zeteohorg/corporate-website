@@ -1,1 +1,5 @@
 /.well-known/matrix/* /.well-known/matrix/:splat 200!
+
+# The English press release PDF prints https://zeteoh.com/press/ (no language prefix).
+# Exact path only: files under /press/<release>/ must not be redirected.
+/press /en/press/ 301

@@ -12,7 +12,13 @@
 	type FooterLink = { href: string; label: string; external?: boolean };
 
 	const columns: Array<{ title: string; links: FooterLink[] }> = $derived([
-		{ title: t.company, links: [{ href: `/${lang}/company/`, label: t.links.about }] },
+		{
+			title: t.company,
+			links: [
+				{ href: `/${lang}/company/`, label: t.links.about },
+				{ href: `/${lang}/press/`, label: t.links.press }
+			]
+		},
 		{
 			title: t.resources,
 			links: [

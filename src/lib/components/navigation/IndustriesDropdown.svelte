@@ -70,6 +70,7 @@
 				blog: '',
 				news: '',
 				privacyPolicy: '',
+				press: '',
 				terms: ''
 			}
 		}
