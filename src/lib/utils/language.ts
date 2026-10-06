@@ -18,3 +18,25 @@ export function getPreferredLanguage(): 'en' | 'ja' {
 
 	return 'en';
 }
+
+/** The same page in the other language: /ja/blog/ ↔ /en/blog/ */
+export function otherLanguage(lang: string): 'en' | 'ja' {
+	return lang === 'ja' ? 'en' : 'ja';
+}
+
+/**
+ * Language switch target. Blog/news posts don't always exist in both languages
+ * (their page data carries `alternateLang: null` then), so those fall back to
+ * the other language's listing page instead of a 404.
+ */
+export function otherLanguagePath(
+	pathname: string,
+	lang: string,
+	alternateLang?: string | null
+): string {
+	const other = otherLanguage(lang);
+	const rest = pathname.replace(/^\/(ja|en)/, '') || '/';
+	const post = rest.match(/^\/(blog|news)\/[^/]+/);
+	if (post && alternateLang === null) return `/${other}/${post[1]}/`;
+	return `/${other}${rest}`;
+}

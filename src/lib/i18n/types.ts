@@ -1,3 +1,5 @@
+import type { TopTranslation } from './translations/top';
+
 export type CommonTranslation = {
 	nav: {
 		blog: string;
@@ -122,6 +124,7 @@ export type ProductTranslation = {
 
 export type HowItWorksTranslation = {
 	title: string;
+	imageAlt: string;
 	steps: Array<{
 		title: string;
 		description: string;
@@ -143,6 +146,7 @@ export type Translation = {
 	construction: ConstructionTranslation;
 	logistics: LogisticsTranslation;
 	export: ExportTranslation;
+	top: TopTranslation;
 	press: PressTranslation;
 };
 
@@ -262,6 +266,8 @@ export type FactoryTranslation = {
 			description: string;
 		}>;
 	};
+	/** Small print at the end of the page */
+	note?: string;
 };
 export type ConstructionTranslation = {
 	title: string;
@@ -282,6 +288,8 @@ export type ConstructionTranslation = {
 			description: string;
 		}>;
 	};
+	/** Small print at the end of the page */
+	note?: string;
 };
 export type LogisticsTranslation = {
 	title: string;
@@ -302,6 +310,8 @@ export type LogisticsTranslation = {
 			description: string;
 		}>;
 	};
+	/** Small print at the end of the page */
+	note?: string;
 };
 
 export type ExportTranslation = {

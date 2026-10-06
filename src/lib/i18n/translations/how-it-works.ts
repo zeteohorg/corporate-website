@@ -2,11 +2,13 @@ import type { HowItWorksTranslation } from '../types';
 
 export const en: HowItWorksTranslation = {
 	title: 'Simple 3-Step Implementation',
+	imageAlt:
+		'Getting started in 3 steps: share your floor plan with Zeteoh, Zeteoh handles the setup, then get operational insights right away — all within 2–3 days',
 	steps: [
 		{
-			title: 'Provide Documents',
+			title: 'Prepare your floor plans and devices',
 			description:
-				'Give us your floor plans and the existing smartphones or devices your employees already use.'
+				"Have your site's floor plans ready. For devices, choose either smartphones or the Astra spatial AI camera."
 		},
 		{
 			title: 'Easy Setup (2-3 days)',
@@ -23,11 +25,13 @@ export const en: HowItWorksTranslation = {
 
 export const ja: HowItWorksTranslation = {
 	title: 'シンプルな3ステップ導入',
+	imageAlt:
+		'導入の3ステップ：図面をZeteohに共有、Zeteohで設定作業、すぐに現場の動きを把握。ここまで2〜3日',
 	steps: [
 		{
-			title: 'ステップ1：図面と既存のスマートフォンを提供',
+			title: 'ステップ1：図面とデバイスの準備',
 			description:
-				'現場のレイアウト図面と、従業員が持つ既存のスマートフォンやデバイスをご提供ください。'
+				'現場のレイアウト図面をご用意ください。デバイスはスマホまたは空間AIカメラ「Astra」のどちらかをお選びください。'
 		},
 		{
 			title: 'ステップ2：2-3日で簡単セットアップ',

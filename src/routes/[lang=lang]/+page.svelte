@@ -1,14 +1,18 @@
 <script lang="ts">
-	import Hero from '$lib/components/home/Hero.svelte';
-	import Stats from '$lib/components/home/Stats.svelte';
+	import Hero from '$lib/components/top/Hero.svelte';
+	import Stats from '$lib/components/top/Stats.svelte';
 	import BackedBy from '$lib/components/home/BackedBy.svelte';
+	import Problem from '$lib/components/top/Problem.svelte';
+	import Products from '$lib/components/top/Products.svelte';
+	import Astra from '$lib/components/top/Astra.svelte';
+	import Benefits from '$lib/components/top/Benefits.svelte';
 	import Export from '$lib/components/home/Export.svelte';
-	import UseCases from '$lib/components/home/UseCases.svelte';
-	import Challenges from '$lib/components/home/Challenges.svelte';
-	import LatestPosts from '$lib/components/home/LatestPosts.svelte';
-	import ContactForm from '$lib/components/home/ContactForm.svelte';
-	import Product from '$lib/components/home/Product.svelte';
 	import HowItWorks from '$lib/components/home/HowItWorks.svelte';
+	import Evidence from '$lib/components/top/Evidence.svelte';
+	import Vision from '$lib/components/top/Vision.svelte';
+	import PocSection from '$lib/components/top/PocSection.svelte';
+	import News from '$lib/components/top/News.svelte';
+	import StickyCta from '$lib/components/top/StickyCta.svelte';
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
 	import { SITE_ORIGIN } from '$lib/origin';
@@ -20,31 +24,12 @@
 </script>
 
 <svelte:head>
-	{#if currentLanguage === 'en'}
-		<title>TRAILS — Real-Time Motion Analytics for Factories | Zeteoh</title>
-		<meta
-			name="description"
-			content="Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. Results in days."
-		/>
-		<meta property="og:title" content="TRAILS — Real-Time Motion Analytics for Factories" />
-		<meta
-			property="og:description"
-			content="Powered by Spatial AI — real-time motion analytics from your team's smartphones. No sensors. No infrastructure. Results in days."
-		/>
-	{:else}
-		<title>TRAILS — リアルタイム動線分析 | Zeteoh</title>
-		<meta
-			name="description"
-			content="Spatial AI が現場を変える——スマートフォンだけでリアルタイムの動線分析を実現。センサー不要、インフラ不要、環境を選ばない。"
-		/>
-		<meta property="og:title" content="TRAILS — リアルタイム動線分析" />
-		<meta
-			property="og:description"
-			content="Spatial AI が現場を変える——スマートフォンだけでリアルタイムの動線分析を実現。センサー不要、インフラ不要、環境を選ばない。"
-		/>
-	{/if}
+	<title>{t.top.meta.title}</title>
+	<meta name="description" content={t.top.meta.description} />
+	<meta property="og:title" content={t.top.meta.ogTitle} />
+	<meta property="og:description" content={t.top.meta.description} />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="{SITE_ORIGIN}/og/og-default.jpg" />
+	<meta property="og:image" content="{SITE_ORIGIN}{t.top.meta.ogImage}" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:url" content={canonicalUrl} />
@@ -55,15 +40,14 @@
 <Hero />
 <Stats />
 <BackedBy />
+<Problem />
+<Products />
+<Astra />
+<Benefits />
 <Export />
-<Challenges />
-<Product />
 <HowItWorks />
-<UseCases />
-<ContactForm />
-{#if data.blogPosts?.length > 0}
-	<LatestPosts posts={data.blogPosts} type="blog" />
-{/if}
-{#if data.newsPosts?.length > 0}
-	<LatestPosts posts={data.newsPosts} type="news" />
-{/if}
+<Evidence />
+<Vision />
+<PocSection />
+<News newsPosts={data.newsPosts ?? []} blogPosts={data.blogPosts ?? []} />
+<StickyCta />

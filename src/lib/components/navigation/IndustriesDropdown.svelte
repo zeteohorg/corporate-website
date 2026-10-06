@@ -7,7 +7,7 @@
 	const defaultTranslations: Translation['common'] = {
 		nav: {
 			industries: {
-				title: 'Use Cases',
+				title: 'Applications',
 				construction: 'Construction',
 				logistics: 'Logistics',
 				factory: 'Factory'
@@ -77,6 +77,7 @@
 	};
 
 	export let translations: Translation['common'] = defaultTranslations;
+	const industries = ['factory', 'construction', 'logistics'] as const;
 	let isOpen = false;
 
 	$: safeTranslations = {
@@ -112,18 +113,20 @@
 		>
 			<div class="ring-opacity-5 overflow-hidden rounded-lg shadow-lg ring-1 ring-black">
 				<ul class="bg-background relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-					<li>
-						<a
-							href="/{$page.params.lang}/industries/factory"
-							class="hover:bg-accent -m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out"
-						>
-							<div class="ml-4">
-								<p class="text-base font-medium">
-									{safeTranslations.nav.industries.factory}
-								</p>
-							</div>
-						</a>
-					</li>
+					{#each industries as industry (industry)}
+						<li>
+							<a
+								href="/{$page.params.lang}/industries/{industry}"
+								class="hover:bg-accent -m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out"
+							>
+								<div class="ml-4">
+									<p class="text-base font-medium">
+										{safeTranslations.nav.industries[industry]}
+									</p>
+								</div>
+							</a>
+						</li>
+					{/each}
 				</ul>
 			</div>
 		</nav>

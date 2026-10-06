@@ -7,7 +7,7 @@
 </script>
 
 <section class="py-20">
-	<div class="container mx-auto px-4">
+	<div class="z-container">
 		<h2 class="mb-16 text-center text-3xl font-bold sm:text-3xl">{t.title}</h2>
 
 		<div class="grid gap-8 md:grid-cols-2">
@@ -28,18 +28,15 @@
 			</div>
 
 			<div class="order-1 md:order-2">
-				<picture>
-					<source srcset="/images/how_it_works.png" type="image/png" />
-					<img
-						src="/images/how_it_works.png"
-						alt="How TRAILS works"
-						class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
-						width={1174}
-						height={511}
-						loading="lazy"
-						decoding="async"
-					/>
-				</picture>
+				<img
+					src="/images/how_it_works.webp"
+					alt={t.imageAlt}
+					class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
+					width={1300}
+					height={565}
+					loading="lazy"
+					decoding="async"
+				/>
 			</div>
 		</div>
 	</div>

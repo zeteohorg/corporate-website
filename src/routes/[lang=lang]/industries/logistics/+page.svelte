@@ -94,7 +94,7 @@
 		>
 			<div class="lg:pr-4">
 				<div class="max-w-xl text-base/7 lg:max-w-lg">
-					<p>{logistics.challenges.title}：</p>
+					<p>{logistics.challenges.title}{lang === 'ja' ? '：' : ':'}</p>
 					<ul role="list" class="mt-8 space-y-8">
 						{#each logistics.challenges.items as item}
 							<li class="text-muted-foreground flex gap-x-3">
@@ -112,18 +112,23 @@
 <div class="container mx-auto px-4 py-12 md:px-6">
 	<div class="container mx-auto px-4 md:px-6">
 		<div class="mb-12 space-y-4 text-center">
-			<h2 class="text-3xl font-bold tracking-tight">{logistics.solutions.title}</h2>
+			<h2 class="z-phrase text-3xl font-bold tracking-tight">{logistics.solutions.title}</h2>
 			<p class="text-muted-foreground mx-auto max-w-[900px] text-lg">
 				{logistics.solutions.subtitle}
 			</p>
 		</div>
 	</div>
-	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+	<!-- 3 columns only when the items fill them evenly; otherwise 2 columns (e.g. 2×2 for 4 ideas) -->
+	<div
+		class="grid gap-6 md:grid-cols-2 {logistics.solutions.items.length % 3 === 0
+			? 'lg:grid-cols-3'
+			: ''}"
+	>
 		{#each logistics.solutions.items as item}
 			<Card.Root>
 				<Card.Header>
 					<Card.Title>
-						<span class="text-2xl font-bold tracking-tight">{item.title}</span>
+						<span class="z-phrase text-2xl font-bold tracking-tight">{item.title}</span>
 					</Card.Title>
 					<Card.Description>
 						<span class="text-muted-foreground inline-block pt-4 text-sm">{item.description}</span>
@@ -132,4 +137,8 @@
 			</Card.Root>
 		{/each}
 	</div>
+
+	{#if logistics.note}
+		<p class="text-muted-foreground mt-8 text-sm">{logistics.note}</p>
+	{/if}
 </div>

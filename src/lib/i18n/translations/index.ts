@@ -12,6 +12,7 @@ import * as factory from './factory';
 import * as construction from './construction';
 import * as logistics from './logistics';
 import * as exportTranslations from './export';
+import * as top from './top';
 import * as press from './press';
 
 export const en: Translation = {
@@ -28,6 +29,7 @@ export const en: Translation = {
 	construction: construction.en,
 	logistics: logistics.en,
 	export: exportTranslations.en,
+	top: top.en,
 	press: press.en
 };
 
@@ -45,6 +47,7 @@ export const ja: Translation = {
 	construction: construction.ja,
 	logistics: logistics.ja,
 	export: exportTranslations.ja,
+	top: top.ja,
 	press: press.ja
 };
 

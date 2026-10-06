@@ -59,7 +59,7 @@ export const en: CompanyTranslation = {
 				title: 'Co-Founder / COO',
 				location: 'Aomori, Japan',
 				background:
-					'A marketing strategist with over 5 years of experience in the IoT and edge AI camera field, she was involved in product development and commercialization at an IoT company leading the market expansion of entrance management, inventory management, congestion visualization, and indoor positioning solutions. In 2022, in the POWER Accelerator program, an initiative sponsored by the US Embassy (Tokyo, Seoul) to promote comprehensive economic growth. She finished second in the pitch contest in the same program.',
+					'A marketing strategist with over 5 years of experience in the IoT and edge AI camera field, she was involved in product development and commercialization at an IoT company leading the market expansion of entrance management, inventory management, congestion visualization, and indoor positioning solutions.',
 				image: '/images/team/satomi.png',
 				alt: 'Satomi in a white sweater'
 			},
@@ -186,7 +186,7 @@ export const ja: CompanyTranslation = {
 				title: '共同創業者 / COO',
 				location: '青森県、日本',
 				background:
-					'IoT・エッジAIカメラ領域で5年以上の実績を持つマーケティング戦略家。IoT企業にて製品開発から商品化まで携わり入退室管理、在庫管理、混雑度可視化、屋内測位ソリューションの市場展開を牽引。2022年、米国大使館（東京、ソウル）主催の包括的な経済成長を促進する取り組みであるPOWER Acceleratorプログラムに選出。同ピッチコンテストにて準優勝。',
+					'IoT・エッジAIカメラ領域で5年以上の実績を持つマーケティング戦略家。IoT企業にて製品開発から商品化まで携わり入退室管理、在庫管理、混雑度可視化、屋内測位ソリューションの市場展開を牽引。',
 				image: '/images/team/satomi.png',
 				alt: '白いセーターを着た聡美'
 			},

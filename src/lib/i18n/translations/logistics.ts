@@ -1,95 +1,121 @@
 import type { LogisticsTranslation } from '../types';
 
+// Written as application ideas for warehouses in general, not a customer case.
+// Ideas that combine TRAILS with Astra (in development) are covered by the note
+// at the end of the page.
 export const en: LogisticsTranslation = {
-	title: 'Logistics Industry Challenges and TRAILS Implementation',
-	subtitle: 'Real-time Indoor Positioning to Improve Productivity in Logistics Warehouses',
+	title: 'Ideas for TRAILS in logistics warehouses',
+	subtitle: 'Record warehouse movement with location and video to rethink picking and operations',
 	challenges: {
-		title: 'Existing solutions cannot implement the following initiatives:',
-		text: 'A major logistics company with 50 operational centers and nearly 100 warehouses is currently using 200 beacons and smartphones to track approximately 50 workers out of every 100 warehouse staff. With stricter regulations on truck driver overtime implemented in 2024, reducing waiting times and improving logistics costs while maintaining worker engagement have become critical challenges. Warehouse operation efficiency and faster picking times are now essential priorities.',
+		title: 'Common challenges in warehouses',
+		text: "In Japan, the overtime cap for truck drivers that took effect in April 2024 has made shorter loading waits and faster picking more important than ever. Yet how workers move inside a warehouse is rarely recorded, so it's hard to know where to improve. A record of routes alone doesn't explain why something took time. For operators with many sites, installing beacons or similar equipment at every site is also a heavy burden.",
 		items: [
 			{
-				title: 'Maximizing Operational Efficiency Across All Facilities: ',
+				title: 'Equipment at every site:',
 				description:
-					'The current system installation of beacons time and cost make it difficult to deploy across all facilities. With limited worker movement analysis and required manual adjustments, the system cannot achieve efficient tracking and analysis across all locations.'
+					'Beacons and other positioning equipment take time and money to install and tune, which makes rolling them out to every site difficult.'
 			},
 			{
-				title: 'Worker Health Management and Vital Sign Monitoring:',
+				title: "Movement, and the reasons behind it, aren't visible:",
 				description:
-					'There is no suitable indoor positioning solution for tracking worker locations and monitoring health conditions in harsh environments such as refrigerated warehouses and containers.'
+					"Who moved where during picking and transport isn't recorded. Nor is where people are searching or waiting, so there is little evidence to base improvements on."
 			},
 			{
-				title: 'Additional Operational Challenges:',
+				title: 'Know-how that is hard to pass on:',
 				description:
-					'in inventory management, while significant time is spent on manual visual product inspection, temperature control for refrigerated trucks and inventory location tracking are required. There is also a need to understand warehouse inventory movement patterns and optimize storage fee calculations.'
+					'Efficient routes and preparation depend on individual experience, which makes them hard to teach to new staff.'
+			},
+			{
+				title: 'Managing high-value goods:',
+				description:
+					"When you store high-value goods for customers, you want a reliable record of who handled which item and when, and a way to trace what happened when stock doesn't match."
 			}
 		]
 	},
 	solutions: {
-		title: 'What TRAILS Can Do',
-		subtitle: 'Real-time indoor positioning to improve logistics operations productivity',
+		title: 'Ideas for TRAILS × the Astra spatial AI camera',
+		subtitle:
+			"TRAILS needs no installed equipment. Pair it with Astra, a wearable spatial AI camera, and you can record each worker's location and first-person video at the same time. Every site can be recorded the same way, and you keep not just where people went but also what they saw there. Here are some ways it could be used.",
 		items: [
 			{
-				title: '1. Real-time Location Tracking and Health Monitoring',
+				title: 'Find where picking takes time, and why',
 				description:
-					'Using smartphones and smartwatches, TRAILS provides real-time tracking of worker locations and health conditions (heart rate, stress levels). This enables early detection of abnormalities and prevents injuries.'
+					"Use workers' routes to find long walks and crowded aisles. The video from those moments shows what was really happening, such as searching for items, hard-to-read labels or blocked aisles. This could be used to rethink the shelf layout, picking order and labeling."
 			},
 			{
-				title: '2.AI-Powered Movement Analysis and Operations Optimization',
+				title: 'Trace delays in shipping preparation and loading waits',
 				description:
-					'AI analyzes worker movements to suggest optimal picking routes. The system continuously improves warehouse layouts based on seasonal trends, product categories, and historical data patterns.'
+					'From the movement and video of workers around the shipping docks, find moments when sorting or loading preparation falls behind. It can be a starting point for finding why trucks wait and rethinking how work is scheduled.'
 			},
 			{
-				title: '3. Facility-Wide Efficiency Enhancement',
+				title: 'Use expert movement to train new staff',
 				description:
-					'Centralized management of data across all facilities enables efficient space utilization and reduced picking times. This improves operational efficiency while enhancing worker safety and satisfaction.'
+					'Record how experienced workers move and work, with location and first-person video. Because the record shows which shelves they visit in what order and what they check along the way, it could be used to create training materials based on real work.'
+			},
+			{
+				title: 'Keep a record of how high-value goods are handled',
+				description:
+					"In storage areas for high-value goods, record who handled which item, when and where, with location and video. It helps trace what happened when stock doesn't match. Having a record also discourages misconduct, and gives workers evidence that they did their work correctly."
 			}
 		]
-	}
+	},
+	note: '* The Astra spatial AI camera is currently in development. This page shows possible uses, and the actual product specifications may differ.'
 };
 
 export const ja: LogisticsTranslation = {
-	title: '物流の現場での課題とTRAILSの活用',
-	subtitle: '物流倉庫での作業の生産性を向上させるリアルタイム屋内測位',
+	title: '物流倉庫でのTRAILS活用アイデア',
+	subtitle: '倉庫内の動きを位置と映像で記録して、ピッキングと運営を見直す',
 	challenges: {
-		title: '既存のソリューションでは以下のような取り組みを実施できない',
-		text: '運営拠点50カ所、倉庫約100カ所を持つ大手物流企業では、現在200個のビーコンとスマートフォンを使用して、倉庫スタッフ100人あたり約50人の作業員の追跡を行っています。2024年にトラック運転手の残業規制が強化されたことを受け、待機時間の削減と物流コストの改善を、作業員のモチベーションを維持しながら実現することが重要な課題となっており、倉庫運営の効率化とピッキング時間の短縮が、今や最優先事項となっています。',
+		title: '倉庫でよく聞かれる課題',
+		text: '物流倉庫では、2024年4月に始まったトラックドライバーの時間外労働の上限規制をきっかけに、荷待ち時間の短縮やピッキングの効率化がこれまで以上に求められています。一方で、倉庫内で作業員がどう動いているかは記録に残りにくく、改善の手がかりをつかみにくいのが実情です。動線だけを記録しても、なぜそこで時間がかかったのかまでは分かりません。拠点が多い場合は、ビーコンなどの設備を全拠点に設置するのも大きな負担になります。',
 		items: [
 			{
-				title: '全施設での業務効率化の最大化：',
+				title: '拠点ごとの設備の負担：',
 				description:
-					'現行のビーコンシステムでは、設置時間とコストの問題から全施設への展開が難しく、作業員の動き分析による業務改善が限定的となっており、手動での調整作業も必要なため、効率的な全施設の追跡・分析を実現できていません。'
+					'ビーコンなどの測位設備は、設置や調整に時間とコストがかかり、全拠点への展開が難しい。'
 			},
 			{
-				title: '作業員の健康管理とバイタルサイン監視：',
+				title: '作業員の動きと、その理由が見えない：',
 				description:
-					'冷蔵倉庫やコンテナなどの過酷な環境下での作業員の位置情報把握や、健康状態モニタリングが必要となっているが、適合する屋内位置測位ソリューションがない。'
+					'ピッキングや運搬で、誰がどこをどう動いたかが記録に残らない。どこで探したり待ったりしているのかも分からず、改善の根拠にしにくい。'
 			},
 			{
-				title: 'その他の運用課題:',
+				title: '熟練者のノウハウが伝わりにくい：',
+				description: '効率のよい回り方や段取りが個人の経験に頼っていて、新人に伝えにくい。'
+			},
+			{
+				title: '高額商品の管理：',
 				description:
-					'在庫管理においては、商品画像の手動確認に時間を要し、冷蔵トラックの温度管理や在庫位置の追跡が必要とされる中、倉庫内での在庫移動パターンを把握し保管料金の最適化を図ることが求められています。'
+					'お客様から高額な商品を預かっているため、誰がいつ商品を扱ったかを確実に残したい。在庫差異が出たときに、経緯をたどる手がかりがほしい。'
 			}
 		]
 	},
 	solutions: {
-		title: 'TRAILSでできること',
-		subtitle: '物流倉庫での作業の生産性を向上させるリアルタイム屋内測位',
+		title: 'TRAILS × 空間AIカメラ「Astra」の活用アイデア',
+		subtitle:
+			'TRAILSは設備の設置がいりません。これに装着型の空間AIカメラ「Astra」を組み合わせると、作業員の位置と一人称視点の映像を同時に記録できます。複数の拠点でも同じ方法で記録を取れるうえ、「どこを通ったか」に加えて「そこで何を見ていたか」まで残ります。たとえば次のような使い方が考えられます。',
 		items: [
 			{
-				title: 'リアルタイムな位置情報と健康管理',
+				title: 'ピッキングで時間がかかる場所と、その理由を見直す',
 				description:
-					'スマートフォンとスマートウォッチを活用し、作業員の位置情報と健康状態（心拍数、ストレスレベル）をリアルタイムで把握。異常の早期発見と事故防止を実現します。'
+					'作業員の動線から、移動が長くなっている場所や混み合う通路を確認します。そのときの映像で、商品を探している、表示が見づらい、通路がふさがっているといった実際の状況も確かめられます。棚の配置やピッキングの順番、表示の見直しに活かすことが考えられます。'
 			},
 			{
-				title: 'AIによる動線分析と業務最適化',
+				title: '出荷準備の遅れと荷待ちの原因を探る',
 				description:
-					'作業員の動きをAIで分析し、最適なピッキングルートを提案。季節トレンドや商品カテゴリー、過去のデータパターンに基づき、倉庫レイアウトを継続的に改善します。'
+					'出荷バース周りの作業員の動きと映像から、荷揃えや積み込みの準備が遅れている場面を確認します。トラックの荷待ちが生じる原因を探り、段取りを見直すきっかけにできます。'
 			},
 			{
-				title: '施設全体の効率向上',
+				title: '熟練者の動きを、新人教育に活かす',
 				description:
-					'全施設のデータを一元管理し、スペース活用の効率化とピッキング時間の短縮を実現。作業員の安全性と満足度を高めながら、運営効率を向上させます。'
+					'熟練者の回り方や手順を、位置と一人称視点の映像で記録します。どの順番で棚を回り、どこで何を確認しているかが残るので、実際の作業に沿った教育資料づくりに活かすことが考えられます。'
+			},
+			{
+				title: '高額商品の取り扱いを記録に残す',
+				description:
+					'高額品の保管エリアで、誰が、いつ、どこで商品を扱ったかを、位置と映像で記録します。在庫差異が出たときに経緯をたどる手がかりになります。記録が残ること自体が不正の抑止にもつながり、作業員にとっては正しく作業したことを示す材料になります。'
 			}
 		]
-	}
+	},
+	note: '※空間AIカメラ「Astra」は現在開発中です。掲載の内容は活用イメージであり、実際の製品仕様とは異なる場合があります。'
 };

@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 
-const FONT_URL = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..700&display=swap';
+const FONT_URL = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..900&display=swap';
 
 // Preconnect + non-render-blocking load of the Noto Sans JP web font. Injected
 // only on Japanese pages (see app.html's %fonthead% placeholder).

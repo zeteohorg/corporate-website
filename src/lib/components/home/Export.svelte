@@ -108,8 +108,8 @@
 	});
 </script>
 
-<section class="bg-muted/50 py-20">
-	<div class="container mx-auto px-4">
+<section class="bg-z-bg-sub z-section">
+	<div class="z-container">
 		<div class="grid items-center gap-12 lg:grid-cols-2">
 			<!-- Left: Text -->
 			<div>
@@ -155,35 +155,38 @@
 						</div>
 
 						<!-- Table -->
-						<table class="csv-table">
-							<thead>
-								<tr>
-									<th style="width: 36px"></th>
-									<th>{t.mockup.columns.trajectory}</th>
-									<th>{t.mockup.columns.deviceId}</th>
-									<th>{t.mockup.columns.points}</th>
-								</tr>
-							</thead>
-							<tbody>
-								{#each t.mockup.workers as worker, i}
+						<!-- Only this box scrolls sideways on narrow screens, never the page -->
+						<div class="overflow-x-auto">
+							<table class="csv-table">
+								<thead>
 									<tr>
-										<td>
-											<div class="csv-check {selected[i] ? 'checked' : ''}">
-												{#if selected[i]}
-													<Check class="size-3 text-white" strokeWidth={3} />
-												{/if}
-											</div>
-										</td>
-										<td>
-											<span class="csv-color {worker.color}"></span>
-											{worker.name}
-										</td>
-										<td class="csv-device">{worker.deviceId}</td>
-										<td class="csv-pts">{worker.points}</td>
+										<th style="width: 36px"></th>
+										<th>{t.mockup.columns.trajectory}</th>
+										<th>{t.mockup.columns.deviceId}</th>
+										<th>{t.mockup.columns.points}</th>
 									</tr>
-								{/each}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{#each t.mockup.workers as worker, i}
+										<tr>
+											<td>
+												<div class="csv-check {selected[i] ? 'checked' : ''}">
+													{#if selected[i]}
+														<Check class="size-3 text-white" strokeWidth={3} />
+													{/if}
+												</div>
+											</td>
+											<td>
+												<span class="csv-color {worker.color}"></span>
+												{worker.name}
+											</td>
+											<td class="csv-device">{worker.deviceId}</td>
+											<td class="csv-pts">{worker.points}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
+						</div>
 					</div>
 
 					<!-- Footer -->
