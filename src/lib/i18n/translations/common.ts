@@ -55,6 +55,7 @@ export const en: CommonTranslation = {
 			blog: 'Blog',
 			news: 'News',
 			privacyPolicy: 'Privacy Policy',
+			press: 'Press',
 			terms: 'Terms of Service'
 		}
 	},
@@ -127,6 +128,7 @@ export const ja: CommonTranslation = {
 			blog: 'ブログ',
 			news: 'ニュース',
 			privacyPolicy: 'プライバシーポリシー',
+			press: 'プレス',
 			terms: '利用規約'
 		}
 	},

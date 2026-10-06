@@ -178,11 +178,11 @@
 			<div>
 				<Button
 					variant="ghost"
-					class="flex items-center space-x-2"
+					class="flex h-auto max-w-full items-center space-x-2 py-2 whitespace-normal"
 					href="/{lang}/news/{previousPost.slug}"
 				>
 					<ChevronLeft class="h-4 w-4" />
-					<span class="text-sm">{previousPost.title}</span>
+					<span class="line-clamp-2 text-left text-sm">{previousPost.title}</span>
 				</Button>
 			</div>
 		{:else}
@@ -193,10 +193,10 @@
 			<div class="text-right">
 				<Button
 					variant="ghost"
-					class="ml-auto flex items-center space-x-2"
+					class="ml-auto flex h-auto max-w-full items-center space-x-2 py-2 whitespace-normal"
 					href="/{lang}/news/{nextPost.slug}"
 				>
-					<span class="text-sm">{nextPost.title}</span>
+					<span class="line-clamp-2 text-right text-sm">{nextPost.title}</span>
 					<ChevronRight class="h-4 w-4" />
 				</Button>
 			</div>
