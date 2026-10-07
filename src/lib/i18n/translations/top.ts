@@ -195,7 +195,7 @@ export const ja: TopTranslation = {
 	},
 	stats: [
 		{ value: '1-3m', label: '測位精度（TRAILS・Astra共通）' },
-		{ value: '最短3日', label: '現場を止めずに可視化をスタート' }
+		{ value: '工事不要', label: '設置工事が不要なため、導入までの期間を大幅に短縮できます。' }
 	],
 	awards: { title: '受賞・支援・採択実績' },
 	problem: {
@@ -435,7 +435,10 @@ export const en: TopTranslation = {
 	},
 	stats: [
 		{ value: '1–3 m', label: 'Positioning accuracy (TRAILS and Astra)' },
-		{ value: '3 days', label: 'Fastest time to go live, without stopping operations' }
+		{
+			value: 'No install',
+			label: 'With no installation work needed, getting started takes far less time.'
+		}
 	],
 	awards: { title: 'Awards and programs' },
 	problem: {
@@ -521,7 +524,9 @@ export const en: TopTranslation = {
 			items: [
 				{
 					caption: 'Capture hand motion in 3D to document and analyze work procedures',
-					image: { alt: 'Example screen that estimates a worker’s hand pose and records progress through the work steps' }
+					image: {
+						alt: 'Example screen that estimates a worker’s hand pose and records progress through the work steps'
+					}
 				},
 				{
 					caption: 'Rebuild a 3D model of the site from walkthrough footage',
