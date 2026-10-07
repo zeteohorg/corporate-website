@@ -72,31 +72,6 @@ export type CommonTranslation = {
 	};
 };
 
-export type HomeTranslation = {
-	hero: {
-		title: string;
-		subtitle: string;
-		getStarted: string;
-		learnMore: string;
-		stats: Array<{
-			value: string;
-			label: string;
-			colorClass?: string;
-		}>;
-	};
-	useCases: {
-		title: string;
-		subtitle: string;
-		items: Array<{
-			title: string;
-			description: string;
-		}>;
-	};
-	backedBy: {
-		title: string;
-	};
-};
-
 export type BlogTranslation = {
 	title: string;
 	readMore: string;
@@ -134,7 +109,6 @@ export type HowItWorksTranslation = {
 // Update the Translation interface to include factory
 export type Translation = {
 	common: CommonTranslation;
-	home: HomeTranslation;
 	blog: BlogTranslation;
 	news: NewsTranslation;
 	challenges: ChallengesTranslation;
