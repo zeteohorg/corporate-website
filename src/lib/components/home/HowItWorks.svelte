@@ -29,7 +29,7 @@
 
 			<div class="order-1 md:order-2">
 				<img
-					src="/images/how_it_works.webp"
+					src="/images/how-it-works-v2.webp"
 					alt={t.imageAlt}
 					class="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
 					width={1300}
