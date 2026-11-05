@@ -46,20 +46,3 @@ export type CtaLocation = 'announcement' | 'header' | 'hero' | 'astra' | 'menu' 
 
 /** ビジョン締めの一文「現場で取得したデータは、お客様の資産です。」(未確定事項 #2) */
 export const VISION_CLOSING_VISIBLE = true;
-
-/**
- * News posts highlighted with a NEW label and red frame on the top page
- * (未確定事項 #13). Add the award news slug when it's published; the highlight
- * ends at `until` (ISO date-time) or never if null.
- */
-export const NEWS_HIGHLIGHT = {
-	/** CEATEC AWARD 2026 news (2026-10-06) */
-	slugs: ['2026-10-06'] as string[],
-	/** Until the end of October 2026 (JST), when press coverage has settled */
-	until: '2026-11-01T00:00:00+09:00' as string | null
-};
-
-export function isHighlightedPost(slug: string, now: Date = new Date()): boolean {
-	if (!NEWS_HIGHLIGHT.slugs.includes(slug)) return false;
-	return NEWS_HIGHLIGHT.until === null || now < new Date(NEWS_HIGHLIGHT.until);
-}

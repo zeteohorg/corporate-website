@@ -6,7 +6,6 @@
 	import Products from '$lib/components/top/Products.svelte';
 	import Astra from '$lib/components/top/Astra.svelte';
 	import Benefits from '$lib/components/top/Benefits.svelte';
-	import Export from '$lib/components/home/Export.svelte';
 	import HowItWorks from '$lib/components/home/HowItWorks.svelte';
 	import Evidence from '$lib/components/top/Evidence.svelte';
 	import Vision from '$lib/components/top/Vision.svelte';
@@ -44,7 +43,6 @@
 <Products />
 <Astra />
 <Benefits />
-<Export />
 <HowItWorks />
 <Evidence />
 <Vision />
