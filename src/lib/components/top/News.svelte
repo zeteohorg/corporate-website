@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { translations } from '$lib/i18n/translations';
-	import { isHighlightedPost } from '$lib/config/top';
 	import { cn } from '$lib/utils';
 
 	type PostSummary = { slug?: string; title: string; date: string };
@@ -39,6 +38,7 @@
 	]);
 </script>
 
+<!-- The newest news post is always framed with the accent color and a NEW label -->
 <!-- Text only, no thumbnails (the Shinkansen photo must not appear on the top page) -->
 <section aria-label="{t.newsTitle} / {t.blogTitle}" class="bg-z-bg-sub text-z-text z-section">
 	<div class="z-container grid gap-10 lg:grid-cols-2 lg:gap-12">
@@ -47,8 +47,7 @@
 				<h2 class="text-[20px] font-bold lg:text-[24px]">{column.title}</h2>
 				<ul class="mt-4 space-y-3 lg:mt-6">
 					{#each column.posts as post, i (post.slug)}
-						{@const highlighted =
-							column.key === 'news' && !!post.slug && isHighlightedPost(post.slug)}
+						{@const highlighted = column.key === 'news' && i === 0}
 						<li class={cn(i >= column.phoneCount && 'hidden lg:block')}>
 							<a
 								href="/{lang}/{column.key}/{post.slug}/"
